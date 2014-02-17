@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import "CSVDataManager.h"
 
 @interface StartViewController ()
 
@@ -17,6 +18,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CSVDataManager *dataManager = [[CSVDataManager alloc] init];
+    [dataManager saveDataFromURL:@"http://edparry.com/dissertation/locations.csv"];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

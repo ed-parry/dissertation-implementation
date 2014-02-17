@@ -11,7 +11,7 @@
 
 @interface Attraction : NSObject
 
-@property (nonatomic) NSUInteger *id;
+@property (nonatomic) int id;
 @property (strong, nonatomic) NSString *group;
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) NSURL *imageLocation;
@@ -19,7 +19,8 @@
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *telephone;
 @property (nonatomic) NSURL *url;
-@property (nonatomic) CLLocationDegrees *latitude;
-@property (nonatomic) CLLocationDegrees *longtitude;
+@property (nonatomic) double latitude;
+@property (nonatomic) double longtitude;
+@property (nonatomic) BOOL hide;
 
 @end
