@@ -23,6 +23,9 @@
 		6D58577B18B2537600306327 /* Ceredigion_Tourism_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58577A18B2537600306327 /* Ceredigion_Tourism_iOSTests.m */; };
 		6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9418B2559E00E06D7F /* MapViewController.m */; };
 		6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9818B2566900E06D7F /* Model.xcdatamodeld */; };
+		6D749A9E18B2583300E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9D18B2583300E06D7F /* CHCSVParser.m */; };
+		6D749AA218B258DE00E06D7F /* Attraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA118B258DE00E06D7F /* Attraction.m */; };
+		6D749AA518B25D6700E06D7F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA418B25D6700E06D7F /* DataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,12 @@
 		6D749A9318B2559E00E06D7F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		6D749A9418B2559E00E06D7F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6D749A9918B2566900E06D7F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6D749A9C18B2583300E06D7F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		6D749A9D18B2583300E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		6D749AA018B258DE00E06D7F /* Attraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attraction.h; sourceTree = "<group>"; };
+		6D749AA118B258DE00E06D7F /* Attraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attraction.m; sourceTree = "<group>"; };
+		6D749AA318B25D6700E06D7F /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		6D749AA418B25D6700E06D7F /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +138,7 @@
 		6D58575618B2537600306327 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D749A9B18B2581500E06D7F /* Frameworks */,
 				6D58575E18B2537600306327 /* AppDelegate.h */,
 				6D58575F18B2537600306327 /* AppDelegate.m */,
 				6D58575718B2537600306327 /* Ceredigion Tourism iOS-Info.plist */,
@@ -171,9 +181,30 @@
 		6D749A9718B255D200E06D7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6D749AA318B25D6700E06D7F /* DataManager.h */,
+				6D749AA418B25D6700E06D7F /* DataManager.m */,
 				6D749A9818B2566900E06D7F /* Model.xcdatamodeld */,
+				6D749AA018B258DE00E06D7F /* Attraction.h */,
+				6D749AA118B258DE00E06D7F /* Attraction.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6D749A9B18B2581500E06D7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D749A9F18B2583700E06D7F /* CHCSVParser */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D749A9F18B2583700E06D7F /* CHCSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				6D749A9C18B2583300E06D7F /* CHCSVParser.h */,
+				6D749A9D18B2583300E06D7F /* CHCSVParser.m */,
+			);
+			name = CHCSVParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,9 +306,12 @@
 			files = (
 				6D58576618B2537600306327 /* StartViewController.m in Sources */,
 				6D58576018B2537600306327 /* AppDelegate.m in Sources */,
+				6D749A9E18B2583300E06D7F /* CHCSVParser.m in Sources */,
 				6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */,
 				6D58575C18B2537600306327 /* main.m in Sources */,
+				6D749AA518B25D6700E06D7F /* DataManager.m in Sources */,
 				6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */,
+				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
