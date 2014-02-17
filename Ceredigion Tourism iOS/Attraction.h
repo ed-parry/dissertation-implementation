@@ -14,11 +14,11 @@
 @property (nonatomic) int id;
 @property (strong, nonatomic) NSString *group;
 @property (strong, nonatomic) NSString *name;
-@property (nonatomic) NSURL *imageLocation;
+@property (strong, nonatomic) NSString *imageLocationURL;
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *telephone;
-@property (nonatomic) NSURL *url;
+@property (strong, nonatomic) NSString *URL;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longtitude;
 @property (nonatomic) BOOL hide;

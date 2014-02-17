@@ -27,6 +27,7 @@
 		6D749AA518B25D6700E06D7F /* CSVDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA418B25D6700E06D7F /* CSVDataManager.m */; };
 		6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA718B2618E00E06D7F /* CoreDataManager.m */; };
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
+		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		6D749AA718B2618E00E06D7F /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		6D749AA918B26F1200E06D7F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		6D749AAA18B26F1200E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */,
 				6D58575218B2537600306327 /* CoreGraphics.framework in Frameworks */,
 				6D58575418B2537600306327 /* UIKit.framework in Frameworks */,
 				6D58575018B2537600306327 /* Foundation.framework in Frameworks */,
@@ -118,6 +121,7 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D749AAC18B282DC00E06D7F /* CoreData.framework */,
 				6D58574F18B2537600306327 /* Foundation.framework */,
 				6D58575118B2537600306327 /* CoreGraphics.framework */,
 				6D58575318B2537600306327 /* UIKit.framework */,
@@ -259,6 +263,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Aberystwyth University";
 				TargetAttributes = {
+					6D58574B18B2537600306327 = {
+						DevelopmentTeam = JTH8JBWUXG;
+					};
 					6D58576C18B2537600306327 = {
 						TestTargetID = 6D58574B18B2537600306327;
 					};
@@ -444,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
@@ -457,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";

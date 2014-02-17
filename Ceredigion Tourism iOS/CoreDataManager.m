@@ -9,6 +9,8 @@
 #import "CoreDataManager.h"
 #import "CHCSVParser.h"
 #import "Attraction.h"
+#import "AppDelegate.h"
+
 
 @interface CoreDataManager ()
 @property NSArray *attractions;
@@ -28,7 +30,7 @@
 
 - (void)addAttractionToCoreData:(Attraction *)attraction
 {
-    NSLog(@"Attraction Name: %@", attraction.name);
+
 }
 
 - (void)makeArrayFromCSVFile:(NSString *)csvFileLocation
@@ -54,11 +56,11 @@
     newAttraction.id = counter;
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
     newAttraction.name = [singleAttractionArray objectAtIndex:1];
-    newAttraction.imageLocation = [singleAttractionArray objectAtIndex:2];
+    newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
     newAttraction.description = [singleAttractionArray objectAtIndex:3];
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
-    newAttraction.url = [singleAttractionArray objectAtIndex:6];
+    newAttraction.URL = [singleAttractionArray objectAtIndex:6];
     
     newAttraction.latitude = [[singleAttractionArray objectAtIndex:7] doubleValue];
     newAttraction.longtitude = [[singleAttractionArray objectAtIndex:8] doubleValue];
