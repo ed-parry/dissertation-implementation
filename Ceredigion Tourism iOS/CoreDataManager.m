@@ -33,22 +33,20 @@
 // Removes all existing data from the database, incase of duplicates coming from the CSV file.
 - (void)cleanCoreData
 {
+
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
     
     NSFetchRequest * allAttractions = [[NSFetchRequest alloc] init];
     [allAttractions setEntity:[NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context]];
-    [allAttractions setIncludesPropertyValues:NO]; //only fetch the managedObjectID
-    
-    NSError * error = nil;
+    [allAttractions setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
+
     NSArray * attractions = [context executeFetchRequest:allAttractions error:&error];
-    // [allAttractions release]; // figure out why this doesn't work
-    //error handling goes here
     for (NSManagedObject * attraction in attractions) {
         [context deleteObject:attraction];
     }
-    NSError *saveError = nil;
-    [context save:&saveError];
+    [context save:&error];
 }
 
 - (void)addAttractionToCoreData:(Attraction *)attraction
@@ -132,10 +130,8 @@
     NSString *firstItem = [tempObject objectAtIndex:0];
     if([firstItem  isEqual: @""]){
         [tempAttractions removeObjectAtIndex:tempAttractions.count-1];
-        //tempAttractions =  [self removeEmptyLinesFromArray:tempAttractions];
         return tempAttractions;
     }
-    
     return tempAttractions;
 }
 
