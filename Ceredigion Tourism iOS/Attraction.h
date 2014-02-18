@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSString *telephone;
 @property (strong, nonatomic) NSString *URL;
 @property (nonatomic) double latitude;
-@property (nonatomic) double longtitude;
+@property (nonatomic) double longitude;
 @property (nonatomic) BOOL hide;
 
 @end

@@ -4,15 +4,15 @@
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hide" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hide" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attractions" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Attractions" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

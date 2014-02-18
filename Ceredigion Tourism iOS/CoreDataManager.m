@@ -14,6 +14,7 @@
 
 @interface CoreDataManager ()
 @property NSArray *attractions;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation CoreDataManager
@@ -30,7 +31,34 @@
 
 - (void)addAttractionToCoreData:(Attraction *)attraction
 {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSManagedObject *newAttraction;
+    newAttraction = [NSEntityDescription
+                  insertNewObjectForEntityForName:@"Attractions"
+                  inManagedObjectContext:context];
+    
+    // put things into strings for now. Let Core Data deal with them.
+    NSNumber *attractionId = [NSNumber numberWithInt:attraction.id];
+    NSString *attractionLat = [NSString stringWithFormat:@"%f", attraction.latitude];
+    NSString *attractionLong = [NSString stringWithFormat:@"%f", attraction.longitude];
+    NSNumber *attractionHide = [NSNumber numberWithInt:attraction.hide];
+    
+    [newAttraction setValue: attractionId forKey:@"id"];
+    [newAttraction setValue: attraction.group forKey:@"group"];
+    [newAttraction setValue: attraction.name forKey:@"name"];
+    [newAttraction setValue: attraction.description forKey:@"descriptionText"];
+    [newAttraction setValue: attraction.address forKey:@"address"];
+    [newAttraction setValue: attraction.telephone forKey:@"telephone"];
+    [newAttraction setValue: attraction.imageLocationURL forKey:@"image"];
+    [newAttraction setValue: attractionLat forKey:@"latitude"];
+    [newAttraction setValue: attractionLong forKey:@"longitude"];
+    [newAttraction setValue: attractionHide forKey:@"hide"];
 
+    NSError *error;
+    [context save:&error];
 }
 
 - (void)makeArrayFromCSVFile:(NSString *)csvFileLocation
@@ -63,7 +91,7 @@
     newAttraction.URL = [singleAttractionArray objectAtIndex:6];
     
     newAttraction.latitude = [[singleAttractionArray objectAtIndex:7] doubleValue];
-    newAttraction.longtitude = [[singleAttractionArray objectAtIndex:8] doubleValue];
+    newAttraction.longitude = [[singleAttractionArray objectAtIndex:8] doubleValue];
     
     NSString *hideValue = [singleAttractionArray objectAtIndex:9];
     if([hideValue isEqualToString:@""])

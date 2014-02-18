@@ -28,6 +28,19 @@
 		6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA718B2618E00E06D7F /* CoreDataManager.m */; };
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
+		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; };
+		6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD178C418B38E10006BE307 /* GoogleMaps.bundle */; };
+		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
+		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
+		6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CA18B3935A006BE307 /* CoreText.framework */; };
+		6DD178CD18B39361006BE307 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CC18B39361006BE307 /* GLKit.framework */; };
+		6DD178CF18B39369006BE307 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CE18B39369006BE307 /* ImageIO.framework */; };
+		6DD178D118B39373006BE307 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D018B39373006BE307 /* libc++.dylib */; };
+		6DD178D318B39382006BE307 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D218B39382006BE307 /* libicucore.dylib */; };
+		6DD178D518B3938E006BE307 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D418B3938E006BE307 /* libz.dylib */; };
+		6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D618B39396006BE307 /* OpenGLES.framework */; };
+		6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D818B393A2006BE307 /* QuartzCore.framework */; };
+		6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +85,19 @@
 		6D749AA918B26F1200E06D7F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		6D749AAA18B26F1200E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6DD178C218B38DBA006BE307 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		6DD178C418B38E10006BE307 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6DD178C818B39352006BE307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6DD178CA18B3935A006BE307 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		6DD178CC18B39361006BE307 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		6DD178CE18B39369006BE307 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		6DD178D018B39373006BE307 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		6DD178D218B39382006BE307 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		6DD178D418B3938E006BE307 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6DD178D618B39396006BE307 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		6DD178D818B393A2006BE307 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +105,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */,
+				6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */,
+				6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */,
+				6DD178D518B3938E006BE307 /* libz.dylib in Frameworks */,
+				6DD178D318B39382006BE307 /* libicucore.dylib in Frameworks */,
+				6DD178D118B39373006BE307 /* libc++.dylib in Frameworks */,
+				6DD178CF18B39369006BE307 /* ImageIO.framework in Frameworks */,
+				6DD178CD18B39361006BE307 /* GLKit.framework in Frameworks */,
+				6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */,
+				6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */,
+				6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */,
 				6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */,
 				6D58575218B2537600306327 /* CoreGraphics.framework in Frameworks */,
 				6D58575418B2537600306327 /* UIKit.framework in Frameworks */,
+				6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */,
 				6D58575018B2537600306327 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +159,20 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */,
+				6DD178D818B393A2006BE307 /* QuartzCore.framework */,
+				6DD178D618B39396006BE307 /* OpenGLES.framework */,
+				6DD178D418B3938E006BE307 /* libz.dylib */,
+				6DD178D218B39382006BE307 /* libicucore.dylib */,
+				6DD178D018B39373006BE307 /* libc++.dylib */,
+				6DD178CE18B39369006BE307 /* ImageIO.framework */,
+				6DD178CC18B39361006BE307 /* GLKit.framework */,
+				6DD178CA18B3935A006BE307 /* CoreText.framework */,
+				6DD178C818B39352006BE307 /* CoreLocation.framework */,
+				6DD178C618B39346006BE307 /* AVFoundation.framework */,
+				6DD178C418B38E10006BE307 /* GoogleMaps.bundle */,
+				6DD178C218B38DBA006BE307 /* GoogleMaps.framework */,
+				6D749A9F18B2583700E06D7F /* CHCSVParser */,
 				6D749AAC18B282DC00E06D7F /* CoreData.framework */,
 				6D58574F18B2537600306327 /* Foundation.framework */,
 				6D58575118B2537600306327 /* CoreGraphics.framework */,
@@ -145,7 +197,6 @@
 		6D58575618B2537600306327 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6D749A9B18B2581500E06D7F /* Frameworks */,
 				6D58575E18B2537600306327 /* AppDelegate.h */,
 				6D58575F18B2537600306327 /* AppDelegate.m */,
 				6D58575718B2537600306327 /* Ceredigion Tourism iOS-Info.plist */,
@@ -199,14 +250,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		6D749A9B18B2581500E06D7F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6D749A9F18B2583700E06D7F /* CHCSVParser */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6D749A9F18B2583700E06D7F /* CHCSVParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +257,7 @@
 				6D749AAA18B26F1200E06D7F /* CHCSVParser.m */,
 			);
 			name = CHCSVParser;
+			path = "Ceredigion Tourism iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +342,7 @@
 				6D58576818B2537600306327 /* Images.xcassets in Resources */,
 				6D58575A18B2537600306327 /* InfoPlist.strings in Resources */,
 				6D58576318B2537600306327 /* Main.storyboard in Resources */,
+				6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,9 +497,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -466,9 +516,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
