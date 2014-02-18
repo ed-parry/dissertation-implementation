@@ -12,5 +12,4 @@
 
 - (void)saveDataFromURL:(NSString *)url;
 
-
 @end
