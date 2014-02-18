@@ -34,13 +34,12 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
+    NSError *error;
     NSManagedObject *newAttraction;
     newAttraction = [NSEntityDescription
                   insertNewObjectForEntityForName:@"Attractions"
                   inManagedObjectContext:context];
     
-    // put things into strings for now. Let Core Data deal with them.
     NSNumber *attractionId = [NSNumber numberWithInt:attraction.id];
     NSString *attractionLat = [NSString stringWithFormat:@"%f", attraction.latitude];
     NSString *attractionLong = [NSString stringWithFormat:@"%f", attraction.longitude];
@@ -57,7 +56,6 @@
     [newAttraction setValue: attractionLong forKey:@"longitude"];
     [newAttraction setValue: attractionHide forKey:@"hide"];
 
-    NSError *error;
     [context save:&error];
 }
 
@@ -112,7 +110,7 @@
     NSString *firstItem = [tempObject objectAtIndex:0];
     if([firstItem  isEqual: @""]){
         [tempAttractions removeObjectAtIndex:tempAttractions.count-1];
-        tempAttractions =  [self removeEmptyLinesFromArray:tempAttractions];
+        //tempAttractions =  [self removeEmptyLinesFromArray:tempAttractions];
         return tempAttractions;
     }
     
