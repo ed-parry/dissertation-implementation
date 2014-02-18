@@ -19,9 +19,25 @@
 
 - (void)saveDataFromURL:(NSString *)urlString
 {
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    // only do it if there's not an existing file with today's date.
+    if(![self recentFileExists]){
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }
+    // otherwise, we already have a recent file (within 24 hours)
+    // so let's just use that instead.
+}
+
+- (bool)recentFileExists
+{
+    NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullFileName = [NSString stringWithFormat:@"attractions-data-%@.csv", [self getTodaysDate]];
+    NSString *fullFilePath = [NSString stringWithFormat:@"%@/%@", documentFolder, fullFileName];
+    
+    bool fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullFilePath];
+    
+    return fileExists;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
