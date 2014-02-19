@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
 		6D58575018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
 		6D58575218B2537600306327 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575118B2537600306327 /* CoreGraphics.framework */; };
 		6D58575418B2537600306327 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6D39A4D418B51F73007BC8CA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ceredigion Tourism iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D58574F18B2537600306327 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D58575118B2537600306327 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -240,6 +243,8 @@
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D39A4D318B51F73007BC8CA /* SettingsViewController.h */,
+				6D39A4D418B51F73007BC8CA /* SettingsViewController.m */,
 				6D58576418B2537600306327 /* StartViewController.h */,
 				6D58576518B2537600306327 /* StartViewController.m */,
 				6D749A9318B2559E00E06D7F /* MapViewController.h */,
@@ -376,6 +381,7 @@
 				6D58575C18B2537600306327 /* main.m in Sources */,
 				6D749AA518B25D6700E06D7F /* CSVDataManager.m in Sources */,
 				6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */,
+				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,
 			);

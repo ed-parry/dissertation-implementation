@@ -140,12 +140,24 @@
     
     NSFetchRequest * allAttractions = [[NSFetchRequest alloc] init];
     [allAttractions setEntity:[NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context]];
-    [allAttractions setIncludesPropertyValues:YES]; // don't get everything, just the ID field.
+    [allAttractions setIncludesPropertyValues:YES];
     
     NSArray * attractionsManagedObj = [context executeFetchRequest:allAttractions error:&error];
     
     [context save:&error];
     return attractionsManagedObj;
+}
+
+- (NSArray *) getAllAttractionGroupTypes
+{
+    NSArray *allAttractions = [self getAllAttractionPositions];
+    NSMutableSet *allGroups = [[NSMutableSet alloc] init];
+    
+    for(Attraction *currentAttraction in allAttractions){
+        [allGroups addObject:currentAttraction.group];
+    }
+    NSArray *allGroupsArray = [[NSArray alloc] initWithArray:[allGroups allObjects]];
+    return allGroupsArray;
 }
 
 @end

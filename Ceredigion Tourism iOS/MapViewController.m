@@ -12,21 +12,13 @@
 #import "Attraction.h"
 
 @interface MapViewController ()
-- (void)buildMapMarkers:(NSArray *)attractionPositions;
+- (void)buildMapMarkers;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
+@property NSArray *attractionPositions;
 @end
 
 @implementation MapViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -61,22 +53,28 @@
     }];
 }
 
+- (void)toggleGroupOnMap:(NSString *)group
+{
+    // can't seem to access the data from here...
+    // might need to grab it again, and then call a function that "resets" the map view...
+    // will also need to be careful of any radius objects on the map, too...
+}
+
 - (void)setUpMapView
 {
     _mapView.myLocationEnabled = YES;
     _mapView.settings.myLocationButton = YES;
     
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
-    NSArray *attractionPositions = [dataManager getAllAttractionPositions];
-    [self buildMapMarkers:attractionPositions];
+    _attractionPositions = [dataManager getAllAttractionPositions];
+    [self buildMapMarkers];
     
     [_spinner stopAnimating];
     self.view = _mapView;
 }
 
-- (void)buildMapMarkers:(NSArray *)attractionPositions
-{
-    for(Attraction *currentAttraction in attractionPositions){
+- (void)buildMapMarkers{
+    for(Attraction *currentAttraction in _attractionPositions){
 
         GMSMarker *attractionMarker = [[GMSMarker alloc] init];
         double attractionLat = [currentAttraction.latitude doubleValue];
