@@ -60,8 +60,6 @@
                   inManagedObjectContext:context];
     
     NSNumber *attractionId = [NSNumber numberWithInt:attraction.id];
-    NSString *attractionLat = [NSString stringWithFormat:@"%f", attraction.latitude];
-    NSString *attractionLong = [NSString stringWithFormat:@"%f", attraction.longitude];
     NSNumber *attractionHide = [NSNumber numberWithInt:attraction.hide];
     
     [newAttraction setValue: attractionId forKey:@"id"];
@@ -71,8 +69,8 @@
     [newAttraction setValue: attraction.address forKey:@"address"];
     [newAttraction setValue: attraction.telephone forKey:@"telephone"];
     [newAttraction setValue: attraction.imageLocationURL forKey:@"image"];
-    [newAttraction setValue: attractionLat forKey:@"latitude"];
-    [newAttraction setValue: attractionLong forKey:@"longitude"];
+    [newAttraction setValue: attraction.latitude forKey:@"latitude"];
+    [newAttraction setValue: attraction.longitude forKey:@"longitude"];
     [newAttraction setValue: attractionHide forKey:@"hide"];
 
     [context save:&error];

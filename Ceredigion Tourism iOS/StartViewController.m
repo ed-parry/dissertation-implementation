@@ -34,7 +34,7 @@
 - (void)setUpDataManager
 {
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
-    [dataManager saveDataFromURL:@"http://edparry.com/dissertation/locations.csv"];
+    [dataManager saveDataFromURL:@"http://www.cardigan.cc/app/locations.csv"];
 }
 
 - (void)dismissKeyboard

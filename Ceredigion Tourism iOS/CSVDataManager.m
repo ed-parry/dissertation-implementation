@@ -23,12 +23,28 @@
 {
     // only do it if there's not an existing file with today's date.
     if(![self recentFileExists]){
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection connectionWithRequest:request delegate:self];
+
+        NSURL *URL = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:URL
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                             timeoutInterval:30.0];
+        
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [connection start];
     }
     // otherwise, we already have a recent file (within 24 hours)
     // so let's just use that instead.
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([challenge previousFailureCount] == 0) {
+        // Tried to access the CSV, but password is required
+        NSURLCredential *newCredential = [NSURLCredential credentialWithUser:@"authors"
+                                                                    password:@"5eQqEti5"
+                                                                 persistence:NSURLCredentialPersistenceForSession];
+        [[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
+        // Trying again with new credentials
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -59,7 +75,7 @@
     }
 }
 
-- (bool)areFilesTheSame:(NSString *)fullFilePathOne :(NSString *)fullFilePathTwo
+- (bool)compareCSVFiles:(NSString *)fullFilePathOne :(NSString *)fullFilePathTwo
 {
     // This method will check the two incoming CSV files to see whether they are the same
     // or whether they are different. If they're the same, we don't bother going forward
