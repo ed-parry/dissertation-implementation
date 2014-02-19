@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MapViewController : UIViewController
-
+- (void)useSearchedAddress:(NSString *)address;
+- (void)useCurrentLocationPosition;
 @end

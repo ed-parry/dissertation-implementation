@@ -13,7 +13,6 @@
 
 @interface MapViewController ()
 - (void)buildMapMarkers:(NSArray *)attractionPositions;
-
 @property GMSMapView *mapView;
 @end
 
@@ -31,12 +30,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _mapView.myLocationEnabled = YES;
-    CLLocationCoordinate2D userLocation = _mapView.myLocation.coordinate;
+    NSLog(@"Got here without pressing one of the two options?");
+}
 
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:userLocation.latitude longitude:userLocation.longitude zoom:6];
+- (void)useCurrentLocationPosition
+{
+    NSLog(@"Called from current location");
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:52.403578 longitude:-3.965031 zoom:6];
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    [self setUpMapView];
+}
+
+- (void)useSearchedAddress:(NSString *)address
+{
+    NSLog(@"Called from search address");
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks lastObject];
+            GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:9];
+            _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+            [self setUpMapView];
+        }
+    }];
     
+}
+
+- (void)setUpMapView
+{
     _mapView.myLocationEnabled = YES;
     _mapView.settings.myLocationButton = YES;
     
@@ -45,7 +68,6 @@
     [self buildMapMarkers:attractionPositions];
     
     self.view = _mapView;
-    
 }
 
 - (void)buildMapMarkers:(NSArray *)attractionPositions
