@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
+		6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D718B5356F007BC8CA /* ListViewController.m */; };
 		6D58575018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
 		6D58575218B2537600306327 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575118B2537600306327 /* CoreGraphics.framework */; };
 		6D58575418B2537600306327 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 /* Begin PBXFileReference section */
 		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6D39A4D418B51F73007BC8CA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		6D39A4D618B5356F007BC8CA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		6D39A4D718B5356F007BC8CA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ceredigion Tourism iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D58574F18B2537600306327 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D58575118B2537600306327 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,6 +246,8 @@
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D39A4D618B5356F007BC8CA /* ListViewController.h */,
+				6D39A4D718B5356F007BC8CA /* ListViewController.m */,
 				6D39A4D318B51F73007BC8CA /* SettingsViewController.h */,
 				6D39A4D418B51F73007BC8CA /* SettingsViewController.m */,
 				6D58576418B2537600306327 /* StartViewController.h */,
@@ -376,6 +381,7 @@
 			files = (
 				6D58576618B2537600306327 /* StartViewController.m in Sources */,
 				6D58576018B2537600306327 /* AppDelegate.m in Sources */,
+				6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */,
 				6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */,
 				6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */,
 				6D58575C18B2537600306327 /* main.m in Sources */,

@@ -161,11 +161,41 @@
                     <connections>
                         <segue destination="wC6-H5-ytp" kind="relationship" relationship="viewControllers" id="gu5-Ut-xsg"/>
                         <segue destination="JnB-Lm-CNZ" kind="relationship" relationship="viewControllers" id="fZL-VZ-JUG"/>
+                        <segue destination="A6a-q4-iXf" kind="relationship" relationship="viewControllers" id="TCo-0g-A53"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gio-dG-bTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1051" y="-247"/>
+        </scene>
+        <!--List View Controller - List View-->
+        <scene sceneID="i5O-Ag-SdJ">
+            <objects>
+                <tableViewController id="A6a-q4-iXf" customClass="ListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r1o-JY-OZE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="attractionListViewCells" id="15e-rZ-bzE">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15e-rZ-bzE" id="os4-Ad-HEI">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="A6a-q4-iXf" id="BuU-Lu-KVK"/>
+                            <outlet property="delegate" destination="A6a-q4-iXf" id="Zfj-Sl-o4B"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="List View" id="0oV-wh-QXs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MnI-Lj-bUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589" y="-45"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="DQz-xM-YcA">
@@ -238,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQn-Ne-q8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="20"/>
+            <point key="canvasLocation" x="1589" y="730"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
