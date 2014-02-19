@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
 @property NSArray *attractionPositions;
+@property NSString *disallowedGroup;
 @end
 
 @implementation MapViewController
@@ -55,9 +56,7 @@
 
 - (void)toggleGroupOnMap:(NSString *)group
 {
-    // can't seem to access the data from here...
-    // might need to grab it again, and then call a function that "resets" the map view...
-    // will also need to be careful of any radius objects on the map, too...
+    
 }
 
 - (void)setUpMapView
@@ -75,18 +74,17 @@
 
 - (void)buildMapMarkers{
     for(Attraction *currentAttraction in _attractionPositions){
-
-        GMSMarker *attractionMarker = [[GMSMarker alloc] init];
-        double attractionLat = [currentAttraction.latitude doubleValue];
-        double attractionLong = [currentAttraction.longitude doubleValue];
-        
-        attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
-        attractionMarker.title = currentAttraction.name;
-        attractionMarker.snippet = currentAttraction.group;
-        
-        attractionMarker.icon = [GMSMarker markerImageWithColor:[self getAttractionGroupColor:currentAttraction.group]];
-
-        attractionMarker.map = _mapView;
+            GMSMarker *attractionMarker = [[GMSMarker alloc] init];
+            double attractionLat = [currentAttraction.latitude doubleValue];
+            double attractionLong = [currentAttraction.longitude doubleValue];
+            
+            attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
+            attractionMarker.title = currentAttraction.name;
+            attractionMarker.snippet = currentAttraction.group;
+            
+            attractionMarker.icon = [GMSMarker markerImageWithColor:[self getAttractionGroupColor:currentAttraction.group]];
+            
+            attractionMarker.map = _mapView;
     }
 }
 
