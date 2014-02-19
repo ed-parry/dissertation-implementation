@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place name to search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-cN-jMC">
-                                <rect key="frame" x="20" y="174" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place name to search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-cN-jMC">
+                                <rect key="frame" x="20" y="197" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="light" returnKeyType="search"/>
@@ -26,18 +26,18 @@
                                     <segue destination="zeh-uP-Jhx" kind="push" identifier="searchBarSegue" id="17c-Zs-MeP"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Events, Attraction &amp; Activities Catalogue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9P-Xc-2CU">
-                                <rect key="frame" x="6" y="112" width="309" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events, Attraction &amp; Activities Catalogue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9P-Xc-2CU">
+                                <rect key="frame" x="6" y="157" width="309" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="vL4-YB-gYe"/>
+                                    <constraint firstAttribute="height" constant="21" id="jiv-Zc-afG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-PO-JcL">
-                                <rect key="frame" x="87" y="212" width="146" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-PO-JcL">
+                                <rect key="frame" x="87" y="235" width="146" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Use Current Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,18 +58,18 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="5aA-vp-WQX"/>
-                            <constraint firstItem="n3r-PO-JcL" firstAttribute="top" secondItem="uM9-cN-jMC" secondAttribute="bottom" constant="8" symbolic="YES" id="6ro-rU-azv"/>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="top" secondItem="p9P-Xc-2CU" secondAttribute="bottom" constant="91" id="7pV-u1-SgG"/>
-                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="top" secondItem="eAb-JC-MN4" secondAttribute="bottom" constant="93" id="Bc1-SE-G7V"/>
-                            <constraint firstAttribute="trailing" secondItem="uM9-cN-jMC" secondAttribute="trailing" constant="20" symbolic="YES" id="Hlr-7G-vsa"/>
-                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="centerX" secondItem="uM9-cN-jMC" secondAttribute="centerX" id="QBH-ig-pCG"/>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="centerX" secondItem="n3r-PO-JcL" secondAttribute="centerX" id="YIA-bX-sxU"/>
-                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="6" id="dAS-SE-KRD"/>
-                            <constraint firstAttribute="bottom" secondItem="Vhc-Qh-vAR" secondAttribute="bottom" constant="20" symbolic="YES" id="eE5-2J-2rs"/>
-                            <constraint firstItem="Vhc-Qh-vAR" firstAttribute="centerX" secondItem="n3r-PO-JcL" secondAttribute="centerX" id="z1N-ft-8UT"/>
+                            <constraint firstItem="n3r-PO-JcL" firstAttribute="centerX" secondItem="Vhc-Qh-vAR" secondAttribute="centerX" id="9ob-as-6cE"/>
+                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="top" secondItem="eAb-JC-MN4" secondAttribute="bottom" constant="93" id="MmA-RC-ykD"/>
+                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="6" id="PDW-XF-grg"/>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="centerX" secondItem="p9P-Xc-2CU" secondAttribute="centerX" id="WdD-hI-dGm"/>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="top" secondItem="p9P-Xc-2CU" secondAttribute="bottom" constant="19" id="X2L-ep-r3J"/>
+                            <constraint firstItem="n3r-PO-JcL" firstAttribute="top" secondItem="uM9-cN-jMC" secondAttribute="bottom" constant="8" symbolic="YES" id="b4S-Qn-Pcv"/>
+                            <constraint firstItem="n3r-PO-JcL" firstAttribute="centerX" secondItem="uM9-cN-jMC" secondAttribute="centerX" id="bwr-JU-srU"/>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="kQo-Xe-bE2"/>
+                            <constraint firstAttribute="trailing" secondItem="uM9-cN-jMC" secondAttribute="trailing" constant="20" symbolic="YES" id="v3Q-fc-bMK"/>
+                            <constraint firstAttribute="bottom" secondItem="Vhc-Qh-vAR" secondAttribute="bottom" constant="20" symbolic="YES" id="vOy-ow-xAU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ceredigion Tourism" id="aRQ-Tv-ZA0"/>
