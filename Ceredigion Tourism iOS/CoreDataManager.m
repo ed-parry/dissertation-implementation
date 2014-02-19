@@ -33,7 +33,6 @@
 // Removes all existing data from the database, incase of duplicates coming from the CSV file.
 - (void)cleanCoreData
 {
-
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
@@ -108,8 +107,8 @@
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
     newAttraction.URL = [singleAttractionArray objectAtIndex:6];
     
-    newAttraction.latitude = [[singleAttractionArray objectAtIndex:7] doubleValue];
-    newAttraction.longitude = [[singleAttractionArray objectAtIndex:8] doubleValue];
+    newAttraction.latitude = [singleAttractionArray objectAtIndex:7];
+    newAttraction.longitude = [singleAttractionArray objectAtIndex:8];
     
     NSString *hideValue = [singleAttractionArray objectAtIndex:9];
     if([hideValue isEqualToString:@""])
@@ -133,6 +132,22 @@
         return tempAttractions;
     }
     return tempAttractions;
+}
+
+- (NSArray *) getAllAttractionPositions
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest * allAttractions = [[NSFetchRequest alloc] init];
+    [allAttractions setEntity:[NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context]];
+    [allAttractions setIncludesPropertyValues:YES]; // don't get everything, just the ID field.
+    
+    NSArray * attractionsManagedObj = [context executeFetchRequest:allAttractions error:&error];
+    
+    [context save:&error];
+    return attractionsManagedObj;
 }
 
 @end

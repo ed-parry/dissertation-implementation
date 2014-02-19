@@ -11,4 +11,5 @@
 
 @interface CoreDataManager : NSObject
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation;
+- (NSArray *) getAllAttractionPositions;
 @end

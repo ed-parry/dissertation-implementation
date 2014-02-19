@@ -137,6 +137,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D47B6CC18B4C153008DFDF3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6D749AA318B25D6700E06D7F /* CSVDataManager.h */,
+				6D749AA418B25D6700E06D7F /* CSVDataManager.m */,
+				6D749AA618B2618E00E06D7F /* CoreDataManager.h */,
+				6D749AA718B2618E00E06D7F /* CoreDataManager.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		6D58574318B2537600306327 = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +196,7 @@
 		6D58575518B2537600306327 /* Ceredigion Tourism iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6D47B6CC18B4C153008DFDF3 /* Controllers */,
 				6D749A9718B255D200E06D7F /* Model */,
 				6D749A9618B255A600E06D7F /* View Controllers */,
 				6D58576118B2537600306327 /* Main.storyboard */,
@@ -239,13 +251,9 @@
 		6D749A9718B255D200E06D7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6D749AA318B25D6700E06D7F /* CSVDataManager.h */,
-				6D749AA418B25D6700E06D7F /* CSVDataManager.m */,
 				6D749A9818B2566900E06D7F /* Model.xcdatamodeld */,
 				6D749AA018B258DE00E06D7F /* Attraction.h */,
 				6D749AA118B258DE00E06D7F /* Attraction.m */,
-				6D749AA618B2618E00E06D7F /* CoreDataManager.h */,
-				6D749AA718B2618E00E06D7F /* CoreDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

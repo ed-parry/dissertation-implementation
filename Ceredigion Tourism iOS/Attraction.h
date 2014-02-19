@@ -19,8 +19,8 @@
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *telephone;
 @property (strong, nonatomic) NSString *URL;
-@property (nonatomic) double latitude;
-@property (nonatomic) double longitude;
+@property (strong, nonatomic) NSString *latitude;
+@property (strong, nonatomic) NSString *longitude;
 @property (nonatomic) BOOL hide;
 
 @end
