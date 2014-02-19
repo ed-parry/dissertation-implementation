@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Start View Controller-->
+        <!--Start View Controller - Ceredigion Tourism-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="StartViewController" sceneMemberID="viewController">
@@ -13,27 +13,85 @@
                         <viewControllerLayoutGuide type="bottom" id="q7Y-fa-v4r"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpA-QE-qWs">
-                                <rect key="frame" x="126" y="269" width="68" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place name to search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-cN-jMC">
+                                <rect key="frame" x="20" y="225" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="View Map">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Events, Attraction &amp; Activities Catalogue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9P-Xc-2CU">
+                                <rect key="frame" x="6" y="134" width="309" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="vL4-YB-gYe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-PO-JcL">
+                                <rect key="frame" x="87" y="263" width="146" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use Current Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zeh-uP-Jhx" kind="push" id="GGz-dq-pMm"/>
+                                    <segue destination="zeh-uP-Jhx" kind="push" id="riR-6I-hez"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhc-Qh-vAR">
+                                <rect key="frame" x="149" y="438" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ppq-eM-k7O" kind="push" id="4bn-jb-TYu"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="5aA-vp-WQX"/>
+                            <constraint firstItem="n3r-PO-JcL" firstAttribute="top" secondItem="uM9-cN-jMC" secondAttribute="bottom" constant="8" symbolic="YES" id="6ro-rU-azv"/>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="top" secondItem="p9P-Xc-2CU" secondAttribute="bottom" constant="91" id="7pV-u1-SgG"/>
+                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="top" secondItem="eAb-JC-MN4" secondAttribute="bottom" constant="93" id="Bc1-SE-G7V"/>
+                            <constraint firstAttribute="trailing" secondItem="uM9-cN-jMC" secondAttribute="trailing" constant="20" symbolic="YES" id="Hlr-7G-vsa"/>
+                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="centerX" secondItem="uM9-cN-jMC" secondAttribute="centerX" id="QBH-ig-pCG"/>
+                            <constraint firstItem="uM9-cN-jMC" firstAttribute="centerX" secondItem="n3r-PO-JcL" secondAttribute="centerX" id="YIA-bX-sxU"/>
+                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="6" id="dAS-SE-KRD"/>
+                            <constraint firstAttribute="bottom" secondItem="Vhc-Qh-vAR" secondAttribute="bottom" constant="20" symbolic="YES" id="eE5-2J-2rs"/>
+                            <constraint firstItem="Vhc-Qh-vAR" firstAttribute="centerX" secondItem="n3r-PO-JcL" secondAttribute="centerX" id="z1N-ft-8UT"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aRQ-Tv-ZA0"/>
+                    <navigationItem key="navigationItem" title="Ceredigion Tourism" id="aRQ-Tv-ZA0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="511" y="71"/>
+        </scene>
+        <!--View Controller - About Ceredigion Tourism-->
+        <scene sceneID="NGv-LQ-a08">
+            <objects>
+                <viewController id="Ppq-eM-k7O" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0FH-A2-wR5"/>
+                        <viewControllerLayoutGuide type="bottom" id="vQf-yc-S5r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="log-RI-LAv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="About Ceredigion Tourism" id="aCh-1B-4UN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHv-js-Wue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="388"/>
         </scene>
         <!--Map View Controller - Map View-->
         <scene sceneID="hbS-1t-uc9">
@@ -44,7 +102,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Cv7-8D-0FF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="m8F-Ir-vwr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -52,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2t-p5-M8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681" y="-610"/>
+            <point key="canvasLocation" x="1589" y="-652"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oAf-tn-Dyw">
@@ -89,12 +147,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gio-dG-bTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075" y="-283"/>
+            <point key="canvasLocation" x="1051" y="-247"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

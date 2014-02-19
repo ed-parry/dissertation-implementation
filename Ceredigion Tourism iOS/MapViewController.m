@@ -31,14 +31,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868 longitude:151.2085 zoom:6];
+    _mapView.myLocationEnabled = YES;
+    CLLocationCoordinate2D userLocation = _mapView.myLocation.coordinate;
+
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:userLocation.latitude longitude:userLocation.longitude zoom:6];
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
-    self.view = _mapView;
+    _mapView.myLocationEnabled = YES;
+    _mapView.settings.myLocationButton = YES;
     
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     NSArray *attractionPositions = [dataManager getAllAttractionPositions];
     [self buildMapMarkers:attractionPositions];
+    
+    self.view = _mapView;
+    
 }
 
 - (void)buildMapMarkers:(NSArray *)attractionPositions
@@ -77,7 +84,8 @@
         return [UIColor blueColor]; // need to change to teal
     }
     else if([group isEqualToString:@"Retail"]){
-        return [UIColor redColor]; // need to change to pink
+        // RGB Pink
+        return [UIColor colorWithRed:255.0f/255.0f green:51.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     }
     else if([group isEqualToString:@"Camp & caravan"]){
         // RGB Yellow
