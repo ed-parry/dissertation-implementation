@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Got here without pressing one of the two options?");
+    // Do things that both options require
 }
 
 - (void)useCurrentLocationPosition
@@ -55,7 +55,6 @@
             [self setUpMapView];
         }
     }];
-    
 }
 
 - (void)setUpMapView
