@@ -13,6 +13,7 @@
 
 @interface MapViewController ()
 - (void)buildMapMarkers:(NSArray *)attractionPositions;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
 @end
 
@@ -30,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.view addSubview:_spinner];
+    [_spinner startAnimating];
     // Do things that both options require
 }
 
@@ -66,6 +70,7 @@
     NSArray *attractionPositions = [dataManager getAllAttractionPositions];
     [self buildMapMarkers:attractionPositions];
     
+    [_spinner stopAnimating];
     self.view = _mapView;
 }
 
