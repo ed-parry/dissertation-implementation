@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "Attraction.h"
+#import "SingleAttractionEventViewController.h"
 #import "CoreDataManager.h"
 
 @interface ListViewController ()
@@ -76,9 +77,11 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    Attraction *selectedAttraction = [_attractionPositions objectAtIndex: path.item];
+    [segue.destinationViewController startWithAttraction:selectedAttraction];
+
 }
 
 

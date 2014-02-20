@@ -100,7 +100,7 @@
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
     newAttraction.name = [singleAttractionArray objectAtIndex:1];
     newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
-    newAttraction.description = [singleAttractionArray objectAtIndex:3];
+    newAttraction.descriptionText = [singleAttractionArray objectAtIndex:3];
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
     newAttraction.URL = [singleAttractionArray objectAtIndex:6];
