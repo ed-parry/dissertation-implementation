@@ -95,12 +95,13 @@
 - (void)makeAttractionObjectFromArray:(NSArray *)singleAttractionArray :(int)counter
 {
     Attraction *newAttraction = [[Attraction alloc] init];
+    NSString *cleanDescription = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
     
     newAttraction.id = counter;
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
     newAttraction.name = [singleAttractionArray objectAtIndex:1];
     newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
-    newAttraction.descriptionText = [singleAttractionArray objectAtIndex:3];
+    newAttraction.descriptionText = cleanDescription;
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
     newAttraction.URL = [singleAttractionArray objectAtIndex:6];
@@ -118,6 +119,15 @@
     }
     
     [self addAttractionToCoreData:newAttraction];
+}
+
+- (NSString *)stripHTMLFromString:(NSString *)stringToStrip
+{
+    #warning Need to understand this
+    NSRange r;
+    while ((r = [stringToStrip rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        stringToStrip = [stringToStrip stringByReplacingCharactersInRange:r withString:@""];
+    return stringToStrip;
 }
 
 - (NSMutableArray *) removeEmptyLinesFromArray:(NSMutableArray *)tempAttractions
