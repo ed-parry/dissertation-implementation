@@ -56,7 +56,7 @@
 
 - (void)toggleGroupOnMap:(NSString *)group
 {
-    
+    // The code called when a user removes a group from the settings page. All the markers of that group should then be removed from the map.
 }
 
 - (void)setUpMapView
