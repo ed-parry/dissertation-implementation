@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *group;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageLocationURL;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *telephone;
 @property (strong, nonatomic) NSString *URL;
