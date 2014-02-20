@@ -132,6 +132,28 @@
     return tempAttractions;
 }
 
+- (Attraction *)getSingleAttractionFromName:(NSString *)name
+{
+    Attraction *returnedAttraction = [[Attraction alloc] init];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *singleAttraction = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context];
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"name==%@",name];
+    [singleAttraction setEntity:entity];
+    [singleAttraction setPredicate:predicate];
+    [singleAttraction setIncludesPropertyValues:YES];
+    
+    NSArray *entities = [[context executeFetchRequest:singleAttraction error:&error] mutableCopy];
+    
+    returnedAttraction = [entities objectAtIndex:0];
+    
+    return returnedAttraction;
+}
+
 - (NSArray *) getAllAttractionPositions
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
