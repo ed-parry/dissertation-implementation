@@ -65,7 +65,7 @@
     [newAttraction setValue: attractionId forKey:@"id"];
     [newAttraction setValue: attraction.group forKey:@"group"];
     [newAttraction setValue: attraction.name forKey:@"name"];
-    [newAttraction setValue: attraction.description forKey:@"descriptionText"];
+    [newAttraction setValue: attraction.descriptionText forKey:@"descriptionText"];
     [newAttraction setValue: attraction.address forKey:@"address"];
     [newAttraction setValue: attraction.telephone forKey:@"telephone"];
     [newAttraction setValue: attraction.imageLocationURL forKey:@"image"];
@@ -95,13 +95,12 @@
 - (void)makeAttractionObjectFromArray:(NSArray *)singleAttractionArray :(int)counter
 {
     Attraction *newAttraction = [[Attraction alloc] init];
-    NSString *cleanDescription = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
     
     newAttraction.id = counter;
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
     newAttraction.name = [singleAttractionArray objectAtIndex:1];
     newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
-    newAttraction.descriptionText = cleanDescription;
+    newAttraction.descriptionText = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
     newAttraction.URL = [singleAttractionArray objectAtIndex:6];
@@ -123,10 +122,9 @@
 
 - (NSString *)stripHTMLFromString:(NSString *)stringToStrip
 {
-    #warning Need to understand this
     NSRange r;
     while ((r = [stringToStrip rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-        stringToStrip = [stringToStrip stringByReplacingCharactersInRange:r withString:@""];
+        stringToStrip = [stringToStrip stringByReplacingCharactersInRange:r withString:@" "]; // replace with a space.
     return stringToStrip;
 }
 
