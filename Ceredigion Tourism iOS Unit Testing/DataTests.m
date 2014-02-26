@@ -30,6 +30,7 @@
 {
     int twelve = 12;
     XCTAssertEqual(twelve, 12, @"check that twelve is equal to 12");
+    // comment added here.
 }
 
 @end
