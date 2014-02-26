@@ -66,7 +66,6 @@
         [mapView useSearchedAddress:_searchTextField.text];
     }
     else if([segue.identifier isEqualToString:@"currentLocationSegue"]){
-        NSLog(@"Works kinda");
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useCurrentLocationPosition];

@@ -32,7 +32,6 @@
 
 - (void)useCurrentLocationPosition
 {
-    NSLog(@"Called from current location");
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:52.403578 longitude:-3.965031 zoom:6];
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     [self setUpMapView];
@@ -40,7 +39,6 @@
 
 - (void)useSearchedAddress:(NSString *)address
 {
-    NSLog(@"Called from search address");
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
