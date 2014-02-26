@@ -13,4 +13,5 @@
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation;
 - (NSArray *) getAllAttractionPositions;
 - (NSArray *) getAllAttractionGroupTypes;
+- (NSString *)stripHTMLFromString:(NSString *)stringToStrip;
 @end
