@@ -9,11 +9,11 @@
 #import <XCTest/XCTest.h>
 #import "Attraction.h"
 
-@interface AttractionTests : XCTestCase
+@interface AttractionObjectTests : XCTestCase
 @property Attraction *testAttraction;
 @end
 
-@implementation AttractionTests
+@implementation AttractionObjectTests
 
 - (void)setUp
 {
