@@ -18,11 +18,6 @@
 		6D58576318B2537600306327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D58576118B2537600306327 /* Main.storyboard */; };
 		6D58576618B2537600306327 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58576518B2537600306327 /* StartViewController.m */; };
 		6D58576818B2537600306327 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D58576718B2537600306327 /* Images.xcassets */; };
-		6D58576F18B2537600306327 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
-		6D58577018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
-		6D58577118B2537600306327 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
-		6D58577918B2537600306327 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D58577718B2537600306327 /* InfoPlist.strings */; };
-		6D58577B18B2537600306327 /* Ceredigion_Tourism_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58577A18B2537600306327 /* Ceredigion_Tourism_iOSTests.m */; };
 		6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9418B2559E00E06D7F /* MapViewController.m */; };
 		6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9818B2566900E06D7F /* Model.xcdatamodeld */; };
 		6D749AA218B258DE00E06D7F /* Attraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA118B258DE00E06D7F /* Attraction.m */; };
@@ -31,6 +26,11 @@
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
+		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
+		6DB4041D18BE1F13007A092E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
+		6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
+		6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4042218BE1F13007A092E /* InfoPlist.strings */; };
+		6DB4042E18BE1F2B007A092E /* DataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* DataTests.m */; };
 		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; };
 		6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD178C418B38E10006BE307 /* GoogleMaps.bundle */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
@@ -47,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6D58577218B2537600306327 /* PBXContainerItemProxy */ = {
+		6DB4042818BE1F13007A092E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6D58574418B2537600306327 /* Project object */;
 			proxyType = 1;
@@ -75,11 +75,7 @@
 		6D58576418B2537600306327 /* StartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		6D58576518B2537600306327 /* StartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		6D58576718B2537600306327 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6D58576D18B2537600306327 /* Ceredigion Tourism iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ceredigion Tourism iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D58576E18B2537600306327 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6D58577618B2537600306327 /* Ceredigion Tourism iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ceredigion Tourism iOSTests-Info.plist"; sourceTree = "<group>"; };
-		6D58577818B2537600306327 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6D58577A18B2537600306327 /* Ceredigion_Tourism_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ceredigion_Tourism_iOSTests.m; sourceTree = "<group>"; };
 		6D749A9318B2559E00E06D7F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		6D749A9418B2559E00E06D7F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6D749A9918B2566900E06D7F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -94,6 +90,11 @@
 		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleAttractionEventViewController.h; sourceTree = "<group>"; };
 		6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleAttractionEventViewController.m; sourceTree = "<group>"; };
+		6DB4041B18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ceredigion Tourism iOS Unit Testing.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DB4042118BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ceredigion Tourism iOS Unit Testing-Info.plist"; sourceTree = "<group>"; };
+		6DB4042318BE1F13007A092E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ceredigion Tourism iOS Unit Testing-Prefix.pch"; sourceTree = "<group>"; };
+		6DB4042D18BE1F2B007A092E /* DataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTests.m; sourceTree = "<group>"; };
 		6DD178C218B38DBA006BE307 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		6DD178C418B38E10006BE307 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -133,13 +134,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D58576A18B2537600306327 /* Frameworks */ = {
+		6DB4041818BE1F13007A092E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D58576F18B2537600306327 /* XCTest.framework in Frameworks */,
-				6D58577118B2537600306327 /* UIKit.framework in Frameworks */,
-				6D58577018B2537600306327 /* Foundation.framework in Frameworks */,
+				6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */,
+				6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */,
+				6DB4041D18BE1F13007A092E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,9 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				6D58575518B2537600306327 /* Ceredigion Tourism iOS */,
-				6D58577418B2537600306327 /* Ceredigion Tourism iOSTests */,
-				6D58574E18B2537600306327 /* Frameworks */,
+				6DB4041F18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */,
 				6D58574D18B2537600306327 /* Products */,
+				6D58574E18B2537600306327 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */,
-				6D58576D18B2537600306327 /* Ceredigion Tourism iOSTests.xctest */,
+				6DB4041B18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,24 +229,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6D58577418B2537600306327 /* Ceredigion Tourism iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				6D58577A18B2537600306327 /* Ceredigion_Tourism_iOSTests.m */,
-				6D58577518B2537600306327 /* Supporting Files */,
-			);
-			path = "Ceredigion Tourism iOSTests";
-			sourceTree = "<group>";
-		};
-		6D58577518B2537600306327 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6D58577618B2537600306327 /* Ceredigion Tourism iOSTests-Info.plist */,
-				6D58577718B2537600306327 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +266,25 @@
 			path = "Ceredigion Tourism iOS";
 			sourceTree = "<group>";
 		};
+		6DB4041F18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */ = {
+			isa = PBXGroup;
+			children = (
+				6DB4042D18BE1F2B007A092E /* DataTests.m */,
+				6DB4042018BE1F13007A092E /* Supporting Files */,
+			);
+			path = "Ceredigion Tourism iOS Unit Testing";
+			sourceTree = "<group>";
+		};
+		6DB4042018BE1F13007A092E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DB4042118BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Info.plist */,
+				6DB4042218BE1F13007A092E /* InfoPlist.strings */,
+				6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -303,22 +305,22 @@
 			productReference = 6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6D58576C18B2537600306327 /* Ceredigion Tourism iOSTests */ = {
+		6DB4041A18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D58578118B2537600306327 /* Build configuration list for PBXNativeTarget "Ceredigion Tourism iOSTests" */;
+			buildConfigurationList = 6DB4042A18BE1F13007A092E /* Build configuration list for PBXNativeTarget "Ceredigion Tourism iOS Unit Testing" */;
 			buildPhases = (
-				6D58576918B2537600306327 /* Sources */,
-				6D58576A18B2537600306327 /* Frameworks */,
-				6D58576B18B2537600306327 /* Resources */,
+				6DB4041718BE1F13007A092E /* Sources */,
+				6DB4041818BE1F13007A092E /* Frameworks */,
+				6DB4041918BE1F13007A092E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6D58577318B2537600306327 /* PBXTargetDependency */,
+				6DB4042918BE1F13007A092E /* PBXTargetDependency */,
 			);
-			name = "Ceredigion Tourism iOSTests";
-			productName = "Ceredigion Tourism iOSTests";
-			productReference = 6D58576D18B2537600306327 /* Ceredigion Tourism iOSTests.xctest */;
+			name = "Ceredigion Tourism iOS Unit Testing";
+			productName = "Ceredigion Tourism iOS Unit Testing";
+			productReference = 6DB4041B18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -333,7 +335,7 @@
 					6D58574B18B2537600306327 = {
 						DevelopmentTeam = JTH8JBWUXG;
 					};
-					6D58576C18B2537600306327 = {
+					6DB4041A18BE1F13007A092E = {
 						TestTargetID = 6D58574B18B2537600306327;
 					};
 				};
@@ -352,7 +354,7 @@
 			projectRoot = "";
 			targets = (
 				6D58574B18B2537600306327 /* Ceredigion Tourism iOS */,
-				6D58576C18B2537600306327 /* Ceredigion Tourism iOSTests */,
+				6DB4041A18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */,
 			);
 		};
 /* End PBXProject section */
@@ -369,11 +371,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D58576B18B2537600306327 /* Resources */ = {
+		6DB4041918BE1F13007A092E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D58577918B2537600306327 /* InfoPlist.strings in Resources */,
+				6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,21 +401,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D58576918B2537600306327 /* Sources */ = {
+		6DB4041718BE1F13007A092E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D58577B18B2537600306327 /* Ceredigion_Tourism_iOSTests.m in Sources */,
+				6DB4042E18BE1F2B007A092E /* DataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6D58577318B2537600306327 /* PBXTargetDependency */ = {
+		6DB4042918BE1F13007A092E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6D58574B18B2537600306327 /* Ceredigion Tourism iOS */;
-			targetProxy = 6D58577218B2537600306327 /* PBXContainerItemProxy */;
+			targetProxy = 6DB4042818BE1F13007A092E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -434,10 +436,10 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		6D58577718B2537600306327 /* InfoPlist.strings */ = {
+		6DB4042218BE1F13007A092E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6D58577818B2537600306327 /* en */,
+				6DB4042318BE1F13007A092E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -526,6 +528,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
@@ -545,6 +548,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
@@ -555,7 +559,7 @@
 			};
 			name = Release;
 		};
-		6D58578218B2537600306327 /* Debug */ = {
+		6DB4042B18BE1F13007A092E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -566,19 +570,19 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Ceredigion Tourism iOSTests/Ceredigion Tourism iOSTests-Info.plist";
+				INFOPLIST_FILE = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		6D58578318B2537600306327 /* Release */ = {
+		6DB4042C18BE1F13007A092E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -589,8 +593,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
-				INFOPLIST_FILE = "Ceredigion Tourism iOSTests/Ceredigion Tourism iOSTests-Info.plist";
+				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Prefix.pch";
+				INFOPLIST_FILE = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -618,14 +622,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D58578118B2537600306327 /* Build configuration list for PBXNativeTarget "Ceredigion Tourism iOSTests" */ = {
+		6DB4042A18BE1F13007A092E /* Build configuration list for PBXNativeTarget "Ceredigion Tourism iOS Unit Testing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6D58578218B2537600306327 /* Debug */,
-				6D58578318B2537600306327 /* Release */,
+				6DB4042B18BE1F13007A092E /* Debug */,
+				6DB4042C18BE1F13007A092E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
