@@ -117,25 +117,24 @@
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError *error;
     
-    NSFetchRequest * lastFetchedDateRequest = [[NSFetchRequest alloc] init];
-    [lastFetchedDateRequest setEntity:[NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context]];
-    [lastFetchedDateRequest setIncludesPropertyValues:YES];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-    NSArray *lastDateArray = [context executeFetchRequest:lastFetchedDateRequest error:&error];
+    NSMutableArray *elementsFromColumn = [[NSMutableArray alloc] init];
+    for (NSManagedObject *fetchedObject in fetchedObjects) {
+        [elementsFromColumn addObject:[fetchedObject valueForKey:@"csv_last_fetched"]];
+    }
     
-    [context save:&error];
+    NSString *lastFetchedDateString = [elementsFromColumn objectAtIndex: 0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *lastFetchedDate = [dateFormatter dateFromString:lastFetchedDateString];
 
-    if(lastDateArray.count > 0){
-        // get the date string and send it back!
-        NSLog(@"Number of dates in Core Data: %i", lastDateArray.count);
-        return nil; // change this
-    }
-    else{
-        NSLog(@"Error: There's no date available.");
-        return nil;
-    }
+    return lastFetchedDate;
 }
 
 - (void)removeExistingFetchedDate
