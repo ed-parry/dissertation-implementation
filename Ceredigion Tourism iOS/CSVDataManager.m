@@ -18,23 +18,29 @@
 
 - (void)saveDataFromURL:(NSString *)urlString
 {
-    // get the last fetched date from core data
     NSDate *lastFetched = [self getLastFetchedDate];
-    // get the last modified date from the server
     NSDate *lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
     
-    // if the last modified is more recent than the last fetched, go ahead
-    NSLog(@"Last Fetched: %@", lastFetched);
-    NSLog(@"Last Modified: %@", lastModified);
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
+    if(lastModified == nil){
+        // give it a second chance to get the HTTP header.
+        lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
+    }
+    
+    // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
+    if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
+    {
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
         
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
-    [connection start];
+        [connection start];
+    }
+    else{
+        // Already have the latest version.
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -123,18 +129,21 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-    NSMutableArray *elementsFromColumn = [[NSMutableArray alloc] init];
-    for (NSManagedObject *fetchedObject in fetchedObjects) {
-        [elementsFromColumn addObject:[fetchedObject valueForKey:@"csv_last_fetched"]];
+    if(fetchedObjects.count > 0){
+        NSMutableArray *elementsFromColumn = [[NSMutableArray alloc] init];
+        [elementsFromColumn addObject:[[fetchedObjects objectAtIndex:0] valueForKey:@"csv_last_fetched"]];
+        
+        NSString *lastFetchedDateString = [elementsFromColumn objectAtIndex: 0];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *lastFetchedDate = [dateFormatter dateFromString:lastFetchedDateString];
+        
+        return lastFetchedDate;
     }
-    
-    NSString *lastFetchedDateString = [elementsFromColumn objectAtIndex: 0];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *lastFetchedDate = [dateFormatter dateFromString:lastFetchedDateString];
-
-    return lastFetchedDate;
+    else{
+        return nil;
+    }
 }
 
 - (void)removeExistingFetchedDate
