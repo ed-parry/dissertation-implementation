@@ -8,33 +8,33 @@
 
 #import "CSVDataManager.h"
 #import "CoreDataManager.h"
+#import "AppDelegate.h"
 
 @interface CSVDataManager ()
-- (NSString *)getTodaysDate;
-- (bool)recentFileExists;
-- (bool)compareCSVFiles:(NSString *)fullFilePathOne :(NSString *)fullFilePathTwo;
-
 @property NSMutableData *dataReceived;
 @end
 
 @implementation CSVDataManager
 
 - (void)saveDataFromURL:(NSString *)urlString
-{    
-    // only do it if there's not an existing file with today's date.
-    if(![self recentFileExists]){
+{
+    // get the last fetched date from core data
+    NSDate *lastFetched = [self getLastFetchedDate];
+    // get the last modified date from the server
+    NSDate *lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
+    
+    // if the last modified is more recent than the last fetched, go ahead
+    NSLog(@"Last Fetched: %@", lastFetched);
+    NSLog(@"Last Modified: %@", lastModified);
 
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
         
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
-        [connection start];
-    }
-    // otherwise, we already have a recent file (within 24 hours)
-    // so let's just use that instead.
+    [connection start];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -60,6 +60,9 @@
     NSString *fullFilePath = [NSString stringWithFormat:@"%@/%@", documentFolder, fullFileName];
     
     [_dataReceived writeToFile:fullFilePath atomically:YES];
+
+    // Save today's date into Core Data for future reference.
+    [self saveLastFetchedDate:[self getTodaysDate]];
     
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     [coreDataManager saveCSVToCoreData:fullFilePath];
@@ -75,15 +78,6 @@
         // with this first set of data.
         _dataReceived = [[NSMutableData alloc] initWithData:data];
     }
-}
-
-- (bool)compareCSVFiles:(NSString *)fullFilePathOne :(NSString *)fullFilePathTwo
-{
-    // This method will check the two incoming CSV files to see whether they are the same
-    // or whether they are different. If they're the same, we don't bother going forward
-    // to process it into the database. But if they're different, we remove the old one
-    // and process the new one into Core Data.
-    return NO;
 }
 
 - (NSDate *)getLastUpdatedDateOfServerCSV:(NSString *)urlString
@@ -117,6 +111,66 @@
     else{
         return nil;
     }
+}
+
+- (NSDate *)getLastFetchedDate
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest * lastFetchedDateRequest = [[NSFetchRequest alloc] init];
+    [lastFetchedDateRequest setEntity:[NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context]];
+    [lastFetchedDateRequest setIncludesPropertyValues:YES];
+    
+    NSArray *lastDateArray = [context executeFetchRequest:lastFetchedDateRequest error:&error];
+    
+    [context save:&error];
+
+    if(lastDateArray.count > 0){
+        // get the date string and send it back!
+        NSLog(@"Number of dates in Core Data: %i", lastDateArray.count);
+        return nil; // change this
+    }
+    else{
+        NSLog(@"Error: There's no date available.");
+        return nil;
+    }
+}
+
+- (void)removeExistingFetchedDate
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest * allDates = [[NSFetchRequest alloc] init];
+    [allDates setEntity:[NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context]];
+    [allDates setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
+    
+    NSArray * dates = [context executeFetchRequest:allDates error:&error];
+    for (NSManagedObject * date in dates) {
+        [context deleteObject:date];
+    }
+    [context save:&error];
+}
+
+- (void)saveLastFetchedDate:(NSString *)date
+{
+    [self removeExistingFetchedDate];
+    // connect to Core Data, and save the date
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    NSManagedObject *newFetchedDate;
+    newFetchedDate = [NSEntityDescription
+                     insertNewObjectForEntityForName:@"CSV_Settings"
+                     inManagedObjectContext:context];
+    
+    [newFetchedDate setValue: date forKey:@"csv_last_fetched"];
+
+    [context save:&error];
 }
 
 - (bool)recentFileExists
