@@ -20,23 +20,25 @@
 @implementation CSVDataManager
 
 - (void)saveDataFromURL:(NSString *)urlString
-{
+{    
     // only do it if there's not an existing file with today's date.
     if(![self recentFileExists]){
 
-        NSURL *URL = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:URL
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
         [connection start];
     }
     // otherwise, we already have a recent file (within 24 hours)
     // so let's just use that instead.
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
     if ([challenge previousFailureCount] == 0) {
         // Tried to access the CSV, but password is required
         NSURLCredential *newCredential = [NSURLCredential credentialWithUser:@"authors"
@@ -82,6 +84,39 @@
     // to process it into the database. But if they're different, we remove the old one
     // and process the new one into Core Data.
     return NO;
+}
+
+- (NSDate *)getLastUpdatedDateOfServerCSV:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    // Has to be mutable, to be able to set HTTP Method.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"GET"];
+    
+    NSHTTPURLResponse *response;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    
+    if(response){
+        NSDate *lastModifiedDate;
+        NSString *lastModifiedString = [[response allHeaderFields] objectForKey:@"Last-Modified"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+
+        lastModifiedDate = [dateFormatter dateFromString:lastModifiedString];
+        
+        NSDateFormatter *secondaryFormatter = [[NSDateFormatter alloc]init];
+        [secondaryFormatter setDateFormat:@"dd-MM-yyyy"];
+        
+        lastModifiedString = [secondaryFormatter stringFromDate:lastModifiedDate];
+        lastModifiedDate = [secondaryFormatter dateFromString:lastModifiedString];
+        
+        return lastModifiedDate;
+    }
+    else{
+        return nil;
+    }
 }
 
 - (bool)recentFileExists
