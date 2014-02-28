@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface MapViewController : UIViewController
 - (void)useSearchedAddress:(NSString *)address;
-- (void)useCurrentLocationPosition;
+- (void)useCurrentLocationPosition:(CLLocationManager *)locationManager;
 
 - (void)toggleGroupOnMap:(NSString *)group;
 @end

@@ -8,13 +8,14 @@
 
 #import "StartViewController.h"
 #import "CSVDataManager.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 
 @interface StartViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic) bool shouldMove;
 - (IBAction)searchTextFieldReturn:(id)sender;
-
+@property CLLocationManager *locationManager;
 @end
 
 @implementation StartViewController
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     _shouldMove = YES;
     
+    [self startLocationManager];
     // This needs to happen in a different thread
     [self setUpDataManager];
 
@@ -35,6 +37,15 @@
 {
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
     [dataManager saveDataFromURL:@"http://www.cardigan.cc/app/locations.csv"];
+}
+
+- (void)startLocationManager
+{
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)dismissKeyboard
@@ -68,7 +79,7 @@
     else if([segue.identifier isEqualToString:@"currentLocationSegue"]){
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
-        [mapView useCurrentLocationPosition];
+        [mapView useCurrentLocationPosition:_locationManager];
     }
 }
 

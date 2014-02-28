@@ -28,13 +28,29 @@
     [self.view addSubview:_spinner];
     [_spinner startAnimating];
     // Do things that both options require
+  
 }
 
-- (void)useCurrentLocationPosition
+- (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
 {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:52.403578 longitude:-3.965031 zoom:6];
-    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    [self setUpMapView];
+    double lat = locationManager.location.coordinate.latitude;
+    double longitude = locationManager.location.coordinate.longitude;
+    
+    // wasn't enough time to fetch coords, so let's try again
+    if((lat == 0.000000) && (longitude == 0.000000)){
+        CLLocationManager *newLocationManager = [[CLLocationManager alloc] init];
+        newLocationManager.distanceFilter = kCLDistanceFilterNone;
+        newLocationManager.desiredAccuracy = kCLLocationAccuracyBest; // best possible accuracy level
+        
+        [newLocationManager startUpdatingLocation];
+        [self useCurrentLocationPosition:newLocationManager];
+    }
+    else{
+        NSLog(@"Working, with lat value: %f and long value: %f", lat, longitude);
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
+        _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+        [self setUpMapView];
+    }
 }
 
 - (void)useSearchedAddress:(NSString *)address
@@ -45,7 +61,7 @@
             NSLog(@"%@", error);
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
-            GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:9];
+            GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
             [self setUpMapView];
         }
