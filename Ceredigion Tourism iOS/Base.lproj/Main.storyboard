@@ -128,6 +128,7 @@
                     <tabBarItem key="tabBarItem" title="Map View" image="Map Icon" id="PAX-Ph-ddG"/>
                     <connections>
                         <outlet property="spinner" destination="BUQ-wk-XUH" id="axB-SN-AgO"/>
+                        <segue destination="F95-fg-aCk" kind="push" identifier="tappedMapAttractionSegue" id="lFU-9D-YWQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2t-p5-M8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,5 +381,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
+        <segue reference="lFU-9D-YWQ"/>
     </inferredMetricsTieBreakers>
 </document>

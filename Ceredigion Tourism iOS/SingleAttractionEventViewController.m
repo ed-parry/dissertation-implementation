@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(_thisAttraction){
+    if(_thisAttraction.name != nil){
         // populate the content
         self.navigationItem.title = _thisAttraction.name;
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
@@ -46,9 +46,8 @@
         _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
     }
     else{
-        NSLog(@"There's no Attraction object to use");
+        NSLog(@"There's no Attraction object to use. Try again.");
     }
-
 }
 
 - (void)didReceiveMemoryWarning

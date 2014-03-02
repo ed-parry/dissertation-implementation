@@ -10,7 +10,7 @@
 #import "MapViewController.h"
 #import "CoreDataManager.h"
 #import "Attraction.h"
-#import "Dispatch/Dispatch.h"
+#import "SingleAttractionEventViewController.h"
 
 @interface MapViewController () <GMSMapViewDelegate>
 - (void)buildMapMarkers;
@@ -19,6 +19,8 @@
 @property GMSMapView *mapView;
 @property NSArray *attractionPositions;
 @property NSString *disallowedGroup;
+
+@property Attraction *tappedAttraction;
 @end
 
 @implementation MapViewController
@@ -108,8 +110,21 @@
 
 - (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
+    for(Attraction *tempAttraction in _attractionPositions){
+        if((tempAttraction.name == marker.title) && (tempAttraction.group == marker.snippet)){
+            _tappedAttraction = tempAttraction;
+            [self performSegueWithIdentifier:@"tappedMapAttractionSegue" sender: self];
+            break;
+        }
+    }
+}
 
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"tappedMapAttractionSegue"]){
+        SingleAttractionEventViewController *singleView = [[SingleAttractionEventViewController alloc] init];
+        [singleView startWithAttraction:_tappedAttraction];
+    }
 }
 
 - (UIColor *)getAttractionGroupColor:(NSString *)group
