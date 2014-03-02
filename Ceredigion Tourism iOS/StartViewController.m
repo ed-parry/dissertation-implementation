@@ -24,9 +24,8 @@
 {
     [super viewDidLoad];
     _shouldMove = YES;
-    
+
     [self startLocationManager];
-    // This needs to happen in a different thread
     [self setUpDataManager];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
