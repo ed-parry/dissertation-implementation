@@ -10,9 +10,11 @@
 #import "MapViewController.h"
 #import "CoreDataManager.h"
 #import "Attraction.h"
+#import "Dispatch/Dispatch.h"
 
-@interface MapViewController ()
+@interface MapViewController () <GMSMapViewDelegate>
 - (void)buildMapMarkers;
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
 @property NSArray *attractionPositions;
@@ -24,9 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 
-    
     _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.view addSubview:_spinner];
     [_spinner startAnimating];
@@ -38,7 +38,7 @@
 {
     double lat = locationManager.location.coordinate.latitude;
     double longitude = locationManager.location.coordinate.longitude;
-        
+    
     // wasn't enough time to fetch coords, so let's try again
     if((lat == 0.000000) && (longitude == 0.000000)){
         CLLocationManager *newLocationManager = [[CLLocationManager alloc] init];
@@ -86,6 +86,7 @@
     [self buildMapMarkers];
     
     [_spinner stopAnimating];
+    _mapView.delegate = (id)self;
     self.view = _mapView;
 }
 
@@ -103,6 +104,12 @@
             
             attractionMarker.map = _mapView;
     }
+}
+
+- (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
+{
+
+    
 }
 
 - (UIColor *)getAttractionGroupColor:(NSString *)group

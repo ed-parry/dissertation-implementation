@@ -31,19 +31,19 @@
 
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
-    self.thisAttraction = [[Attraction alloc] init];
-    self.thisAttraction = currentAttraction;
+    _thisAttraction = [[Attraction alloc] init];
+    _thisAttraction = currentAttraction;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(self.thisAttraction){
+    if(_thisAttraction){
         // populate the content
-        self.navigationItem.title = self.thisAttraction.name;
-        self.descriptionField.text = [NSString stringWithFormat:@"%@", self.thisAttraction.descriptionText];
-        self.addressFIeld.text = [NSString stringWithFormat:@"%@", self.thisAttraction.address];
-        self.telephoneField.text = [NSString stringWithFormat:@"%@", self.thisAttraction.telephone];
+        self.navigationItem.title = _thisAttraction.name;
+        _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
+        _addressFIeld.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
+        _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
     }
     else{
         NSLog(@"There's no Attraction object to use");
