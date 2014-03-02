@@ -28,12 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [self.view addSubview:_spinner];
-    [_spinner startAnimating];
-    // Do things that both options require
-  
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -51,7 +45,6 @@
         [self useCurrentLocationPosition:newLocationManager];
     }
     else{
-        NSLog(@"Working, with lat value: %f and long value: %f", lat, longitude);
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
         _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
         [self setUpMapView];
@@ -87,7 +80,6 @@
     _attractionPositions = [dataManager getAllAttractionPositions];
     [self buildMapMarkers];
     
-    [_spinner stopAnimating];
     _mapView.delegate = (id)self;
     self.view = _mapView;
 }
