@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "MapViewController.h"
 #import "CoreDataManager.h"
+#import "Attraction.h"
 
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
@@ -52,7 +53,27 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    // Added colour-based image as a key explanation.
+    cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
+    cell.imageView.layer.cornerRadius = 25.0;
+    cell.imageView.layer.masksToBounds = YES;
+    
     return cell;
+}
+
+- (UIImage *)returnColorImageFromAttractionGroup:(NSString *)group
+{
+    Attraction *colourAttractionObj = [[Attraction alloc] init];
+    
+    CGRect rect = CGRectMake(0, 0, 25, 25);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   [[colourAttractionObj getAttractionGroupColor:group] CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
+    return colorImage;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
