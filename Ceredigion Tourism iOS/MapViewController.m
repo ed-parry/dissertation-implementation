@@ -20,7 +20,7 @@
 @property NSArray *attractionPositions;
 @property NSString *disallowedGroup;
 
-@property Attraction *tappedAttraction;
+@property GMSMarker *tappedMarker;
 @end
 
 @implementation MapViewController
@@ -110,20 +110,19 @@
 
 - (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    for(Attraction *tempAttraction in _attractionPositions){
-        if((tempAttraction.name == marker.title) && (tempAttraction.group == marker.snippet)){
-            _tappedAttraction = tempAttraction;
-            [self performSegueWithIdentifier:@"tappedMapAttractionSegue" sender: self];
-            break;
-        }
-    }
+    _tappedMarker = marker;
+    [self performSegueWithIdentifier:@"tappedMapAttractionSegue" sender: self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"tappedMapAttractionSegue"]){
-        SingleAttractionEventViewController *singleView = [[SingleAttractionEventViewController alloc] init];
-        [singleView startWithAttraction:_tappedAttraction];
+        for(Attraction *tempAttraction in _attractionPositions){
+            if((tempAttraction.name == _tappedMarker.title) && (tempAttraction.group == _tappedMarker.snippet)){
+                [segue.destinationViewController startWithAttraction:tempAttraction];
+                break;
+            }
+        }
     }
 }
 
