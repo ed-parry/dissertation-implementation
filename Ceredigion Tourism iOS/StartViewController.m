@@ -25,6 +25,7 @@
     [super viewDidLoad];
     _shouldMove = YES;
 
+    // TODO: put these into new threads
     [self startLocationManager];
     [self setUpDataManager];
 

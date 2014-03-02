@@ -12,10 +12,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionField;
 @property (strong, nonatomic) IBOutlet UILabel *addressFIeld;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
-@property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 
 @property Attraction *thisAttraction;
+
 @end
 
 @implementation SingleAttractionEventViewController
@@ -44,6 +44,9 @@
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
         _addressFIeld.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
+        if([_thisAttraction.group  isEqual: @"Accommodation"]){
+            _addToCalendarButton.enabled = FALSE;
+        }
     }
     else{
         NSLog(@"There's no Attraction object to use. Try again.");
@@ -56,4 +59,5 @@
     // Dispose of any resources that can be recreated.
 }
 
+//   [[UIApplication sharedApplication] openURL:[NSURL URLWithString: websiteUrl]];
 @end
