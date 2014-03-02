@@ -13,9 +13,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *addressFIeld;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
-
+@property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 @property Attraction *thisAttraction;
 
+- (IBAction)visitWebsiteTapped:(id)sender;
 @end
 
 @implementation SingleAttractionEventViewController
@@ -35,6 +36,11 @@
     _thisAttraction = currentAttraction;
 }
 
+- (IBAction)visitWebsiteTapped:(id)sender
+{
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: websiteUrl]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,6 +53,8 @@
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
         }
+        NSString *attractionURL = _thisAttraction.URL;
+        NSLog(@"This attraction has the URL of: %@", attractionURL);
     }
     else{
         NSLog(@"There's no Attraction object to use. Try again.");
@@ -58,6 +66,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//   [[UIApplication sharedApplication] openURL:[NSURL URLWithString: websiteUrl]];
 @end
