@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *telephone;
-@property (strong, nonatomic) NSString *URL;
+@property (strong, nonatomic) NSString *website;
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
 @property (nonatomic) BOOL hide;

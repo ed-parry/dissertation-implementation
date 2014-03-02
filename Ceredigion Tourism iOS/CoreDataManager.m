@@ -69,7 +69,7 @@
     [newAttraction setValue: attraction.address forKey:@"address"];
     [newAttraction setValue: attraction.telephone forKey:@"telephone"];
     [newAttraction setValue: attraction.imageLocationURL forKey:@"image"];
-    [newAttraction setValue: attraction.URL forKey:@"website"];
+    [newAttraction setValue: attraction.website forKey:@"website"];
     [newAttraction setValue: attraction.latitude forKey:@"latitude"];
     [newAttraction setValue: attraction.longitude forKey:@"longitude"];
     [newAttraction setValue: attractionHide forKey:@"hide"];
@@ -104,7 +104,7 @@
     newAttraction.descriptionText = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
-    newAttraction.URL = [singleAttractionArray objectAtIndex:6];
+    newAttraction.website = [singleAttractionArray objectAtIndex:6];
     
     newAttraction.latitude = [singleAttractionArray objectAtIndex:7];
     newAttraction.longitude = [singleAttractionArray objectAtIndex:8];

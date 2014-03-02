@@ -38,7 +38,7 @@
 
 - (IBAction)visitWebsiteTapped:(id)sender
 {
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: websiteUrl]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
 }
 
 - (void)viewDidLoad
@@ -53,8 +53,9 @@
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
         }
-        NSString *attractionURL = _thisAttraction.URL;
-        NSLog(@"This attraction has the URL of: %@", attractionURL);
+        if([_thisAttraction.website length] < 1){
+            _visitWebsiteButton.enabled = FALSE;
+        }
     }
     else{
         NSLog(@"There's no Attraction object to use. Try again.");
