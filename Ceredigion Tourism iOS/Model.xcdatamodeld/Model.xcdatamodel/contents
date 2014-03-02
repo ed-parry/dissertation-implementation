@@ -11,6 +11,7 @@
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CSV_Settings" syncable="YES">
         <attribute name="csv_last_fetched" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +19,7 @@
     <entity name="Events" syncable="YES"/>
     <elements>
         <element name="Attractions" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Events" positionX="0" positionY="0" width="0" height="0"/>
         <element name="CSV_Settings" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Events" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

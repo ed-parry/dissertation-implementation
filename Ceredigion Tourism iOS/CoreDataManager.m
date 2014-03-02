@@ -69,6 +69,7 @@
     [newAttraction setValue: attraction.address forKey:@"address"];
     [newAttraction setValue: attraction.telephone forKey:@"telephone"];
     [newAttraction setValue: attraction.imageLocationURL forKey:@"image"];
+    [newAttraction setValue: attraction.URL forKey:@"website"];
     [newAttraction setValue: attraction.latitude forKey:@"latitude"];
     [newAttraction setValue: attraction.longitude forKey:@"longitude"];
     [newAttraction setValue: attractionHide forKey:@"hide"];
