@@ -15,7 +15,6 @@
 		6D58575A18B2537600306327 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D58575818B2537600306327 /* InfoPlist.strings */; };
 		6D58575C18B2537600306327 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58575B18B2537600306327 /* main.m */; };
 		6D58576018B2537600306327 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58575F18B2537600306327 /* AppDelegate.m */; };
-		6D58576318B2537600306327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D58576118B2537600306327 /* Main.storyboard */; };
 		6D58576618B2537600306327 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D58576518B2537600306327 /* StartViewController.m */; };
 		6D58576818B2537600306327 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D58576718B2537600306327 /* Images.xcassets */; };
 		6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749A9418B2559E00E06D7F /* MapViewController.m */; };
@@ -72,7 +71,6 @@
 		6D58575D18B2537600306327 /* Ceredigion Tourism iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ceredigion Tourism iOS-Prefix.pch"; sourceTree = "<group>"; };
 		6D58575E18B2537600306327 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D58575F18B2537600306327 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6D58576218B2537600306327 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D58576418B2537600306327 /* StartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		6D58576518B2537600306327 /* StartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		6D58576718B2537600306327 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				6D47B6CC18B4C153008DFDF3 /* Controllers */,
 				6D749A9718B255D200E06D7F /* Model */,
 				6D749A9618B255A600E06D7F /* View Controllers */,
-				6D58576118B2537600306327 /* Main.storyboard */,
 				6D58576718B2537600306327 /* Images.xcassets */,
 				6D58575618B2537600306327 /* Supporting Files */,
 			);
@@ -369,7 +366,6 @@
 			files = (
 				6D58576818B2537600306327 /* Images.xcassets in Resources */,
 				6D58575A18B2537600306327 /* InfoPlist.strings in Resources */,
-				6D58576318B2537600306327 /* Main.storyboard in Resources */,
 				6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,14 +426,6 @@
 				6D58575918B2537600306327 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6D58576118B2537600306327 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D58576218B2537600306327 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		6DB4042218BE1F13007A092E /* InfoPlist.strings */ = {
