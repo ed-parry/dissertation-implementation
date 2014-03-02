@@ -23,4 +23,6 @@
 @property (strong, nonatomic) NSString *longitude;
 @property (nonatomic) BOOL hide;
 
+- (UIColor *)getAttractionGroupColor:(NSString *)group;
+
 @end
