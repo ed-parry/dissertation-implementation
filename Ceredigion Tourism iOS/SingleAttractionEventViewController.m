@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
+@property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
+
 @property Attraction *thisAttraction;
 
 - (IBAction)visitWebsiteTapped:(id)sender;
@@ -56,9 +58,26 @@
         if([_thisAttraction.website length] < 1){
             _visitWebsiteButton.enabled = FALSE;
         }
+        _attractionImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_attractionImageView setImage:[self fetchImageFromUrl:_thisAttraction.imageLocationURL]];
     }
     else{
         NSLog(@"There's no Attraction object to use. Try again.");
+    }
+}
+// 320 x 128
+- (UIImage *)fetchImageFromUrl:(NSString *)URL
+{
+    NSURL *imageUrl = [NSURL URLWithString:URL];
+    NSData *attractionImageData = [NSData dataWithContentsOfURL:imageUrl];
+        
+    // if there's something available to grab
+    if(attractionImageData){
+        UIImage *attractionImage = [[UIImage alloc] initWithData:attractionImageData];
+        return attractionImage;
+    }
+    else{
+        return nil;
     }
 }
 
