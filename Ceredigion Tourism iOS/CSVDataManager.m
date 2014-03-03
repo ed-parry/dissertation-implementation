@@ -18,6 +18,9 @@
 
 - (void)saveDataFromURL:(NSString *)urlString
 {
+    // Start the network activity indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     NSDate *lastFetched = [self getLastFetchedDate];
     NSDate *lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
     
@@ -39,6 +42,7 @@
         [connection start];
     }
     else{
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         // Already have the latest version.
     }
 }
@@ -69,6 +73,9 @@
 
     // Save today's date into Core Data for future reference.
     [self saveLastFetchedDate:[self getTodaysDate]];
+    
+    // stop the network activity indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     [coreDataManager saveCSVToCoreData:fullFilePath];
