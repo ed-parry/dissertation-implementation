@@ -68,15 +68,18 @@
 // 320 x 128
 - (UIImage *)fetchImageFromUrl:(NSString *)URL
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSURL *imageUrl = [NSURL URLWithString:URL];
     NSData *attractionImageData = [NSData dataWithContentsOfURL:imageUrl];
         
     // if there's something available to grab
     if(attractionImageData){
         UIImage *attractionImage = [[UIImage alloc] initWithData:attractionImageData];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         return attractionImage;
     }
     else{
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         return nil;
     }
 }
