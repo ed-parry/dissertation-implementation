@@ -23,9 +23,6 @@
 @property NSString *disallowedGroup;
 
 @property GMSMarker *tappedMarker;
-
-//GCD
-@property dispatch_queue_t backgroundTasks;
 @end
 
 @implementation MapViewController

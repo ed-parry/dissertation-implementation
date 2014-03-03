@@ -191,4 +191,35 @@
     return allGroupsArray;
 }
 
+- (NSArray *) getAllAttractionsInGroupArrays
+{
+    NSArray *allGroups = [self getAllAttractionGroupTypes];
+    NSMutableArray *allAttractionsByGroupArrays = [[NSMutableArray alloc] init];
+    
+    for(NSString *group in allGroups){
+        NSArray *allSingleGroupAttractions = [self getAllAttractionsForGroup:group];
+        [allAttractionsByGroupArrays addObject:allSingleGroupAttractions];
+    }
+    NSArray *allAttractionsInGroupArrays = [[NSArray alloc] initWithArray:allAttractionsByGroupArrays];
+    return allAttractionsInGroupArrays;
+}
+
+- (NSArray *)getAllAttractionsForGroup:(NSString *)group
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *singleAttraction = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context];
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"group==%@",group];
+    [singleAttraction setEntity:entity];
+    [singleAttraction setPredicate:predicate];
+    [singleAttraction setIncludesPropertyValues:YES];
+    
+    NSArray *allAttractions = [[context executeFetchRequest:singleAttraction error:&error] mutableCopy];
+    
+    return allAttractions;
+}
+
 @end

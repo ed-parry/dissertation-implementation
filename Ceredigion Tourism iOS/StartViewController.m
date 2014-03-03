@@ -28,15 +28,9 @@
     [super viewDidLoad];
     _shouldMove = YES;
 
-    // TODO: put these into new threads
-    _backgroundTasks = dispatch_queue_create("aber.edp7.ceredigion-tourism-ios.background-tasks", NULL);
-    dispatch_async(_backgroundTasks, ^(void){
-            [self startLocationManager];
-    });
-    dispatch_async(_backgroundTasks, ^(void){
-        [self setUpDataManager];
-    });
-
+    [self startLocationManager];
+    [self setUpDataManager];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
 }
