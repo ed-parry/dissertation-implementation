@@ -7,10 +7,12 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
+#import <dispatch/dispatch.h>
 #import "MapViewController.h"
 #import "CoreDataManager.h"
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
+
 
 @interface MapViewController () <GMSMapViewDelegate>
 - (void)buildMapMarkers;
@@ -21,6 +23,9 @@
 @property NSString *disallowedGroup;
 
 @property GMSMarker *tappedMarker;
+
+//GCD
+@property dispatch_queue_t backgroundTasks;
 @end
 
 @implementation MapViewController
@@ -78,8 +83,9 @@
     
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
+
     [self buildMapMarkers];
-    
+
     _mapView.delegate = (id)self;
     self.view = _mapView;
 }

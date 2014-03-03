@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import <dispatch/dispatch.h>
 #import "CSVDataManager.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
@@ -16,6 +17,8 @@
 @property (nonatomic) bool shouldMove;
 - (IBAction)searchTextFieldReturn:(id)sender;
 @property CLLocationManager *locationManager;
+
+@property dispatch_queue_t backgroundTasks;
 @end
 
 @implementation StartViewController
@@ -26,8 +29,13 @@
     _shouldMove = YES;
 
     // TODO: put these into new threads
-    [self startLocationManager];
-    [self setUpDataManager];
+    _backgroundTasks = dispatch_queue_create("aber.edp7.ceredigion-tourism-ios.background-tasks", NULL);
+    dispatch_async(_backgroundTasks, ^(void){
+            [self startLocationManager];
+    });
+    dispatch_async(_backgroundTasks, ^(void){
+        [self setUpDataManager];
+    });
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
