@@ -81,7 +81,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"All data is back...");
     // if we have all of the data from the URL, save it to file
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
@@ -104,7 +103,6 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"Receiving data...");
     if (_dataReceived){
         [_dataReceived appendData:data];
     }
