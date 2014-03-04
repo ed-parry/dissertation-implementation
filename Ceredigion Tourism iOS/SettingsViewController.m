@@ -89,8 +89,7 @@
 
 - (void)toggleGroupOnMapView:(NSString *)group
 {
-    MapViewController *mapView = [[MapViewController alloc] init];
-    [mapView toggleGroupOnMap:group];
+    // need to figure out how to build this, with a data structure that's available all over.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -143,6 +142,7 @@
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self toggleGroupOnMapView:cell.textLabel.text];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
