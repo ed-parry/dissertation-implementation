@@ -15,6 +15,7 @@
 
 @interface MapViewController () <GMSMapViewDelegate>
 - (void)buildMapMarkers;
+@property CLLocationManager *locationManager;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
@@ -35,17 +36,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_mapLoadSpinner startAnimating];
-    // to start a background process:
-    // [self performSelectorInBackground:@selector(loadMap) withObject:nil];
-    // to stop background process:
-    // [self performSelectorOnMainThread:@selector(wrapupLoadMap) withObject:nil waitUntilDone:NO];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
 {
-    double lat = locationManager.location.coordinate.latitude;
-    double longitude = locationManager.location.coordinate.longitude;
+    [_mapLoadSpinner startAnimating];
+    _locationManager = locationManager;
+    [self getActualLocationCoordinates];
+
+}
+
+- (void)getActualLocationCoordinates
+{
+    double lat = _locationManager.location.coordinate.latitude;
+    double longitude = _locationManager.location.coordinate.longitude;
     
     // wasn't enough time to fetch coords, so let's try again
     if((lat == 0.000000) && (longitude == 0.000000)){
@@ -54,19 +58,29 @@
         newLocationManager.desiredAccuracy = kCLLocationAccuracyBest; // best possible accuracy level
         
         [newLocationManager startUpdatingLocation];
-        [self useCurrentLocationPosition:newLocationManager];
+        _locationManager = newLocationManager;
+        [self getActualLocationCoordinates];
     }
     else{
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
-        _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-        
-        [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
-        [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
+        [self setUpMapWithCurrentLocation];
     }
+}
+
+- (void)setUpMapWithCurrentLocation
+{
+    double lat = _locationManager.location.coordinate.latitude;
+    double longitude = _locationManager.location.coordinate.longitude;
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
+    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    
+    [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
+    [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
 }
 
 - (void)useSearchedAddress:(NSString *)address
 {
+    [_mapLoadSpinner startAnimating];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
@@ -87,7 +101,6 @@
 
 - (void)setUpMapView
 {
-    NSLog(@"Starting to load the data");
     _mapView.myLocationEnabled = YES;
     _mapView.settings.myLocationButton = YES;
     
@@ -101,7 +114,6 @@
 
 - (void)putMapOnView
 {
-    NSLog(@"Data's all there!");
     [_mapLoadSpinner stopAnimating];
     self.view = _mapView;
 }

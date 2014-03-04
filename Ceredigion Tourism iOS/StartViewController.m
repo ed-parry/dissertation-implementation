@@ -16,6 +16,8 @@
 @property (nonatomic) bool shouldMove;
 - (IBAction)searchTextFieldReturn:(id)sender;
 @property CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet UIView *loadingView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -24,18 +26,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_loadingIndicator startAnimating];
     _shouldMove = YES;
-
-    [self startLocationManager];
     
-    _operationQueue = [NSOperationQueue new];
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                            selector:@selector(setUpDataManager)
-                                                                              object:nil];
-    [_operationQueue addOperation:operation];
+    [self startLocationManager];
+    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+
+    [self performSelectorOnMainThread:@selector(allDataProcessingComplete) withObject:nil waitUntilDone:NO];
+
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)allDataProcessingComplete
+{
+    [_loadingIndicator stopAnimating];
+    _loadingView.hidden = YES;
 }
 
 - (void)setUpDataManager
@@ -65,6 +72,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    NSLog(@"First call from the button press");
     // This is confusing logic, maybe need to clean it up.
     if(_shouldMove){
         _shouldMove = NO;
@@ -76,14 +84,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"Into the prepareForSegue");
     if([segue.identifier isEqualToString:@"searchBarSegue"]){
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useSearchedAddress:_searchTextField.text];
     }
     else if([segue.identifier isEqualToString:@"currentLocationSegue"]){
+        NSLog(@"Into the correct else if statement");
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
+        NSLog(@"Found the view, about to transition");
         [mapView useCurrentLocationPosition:_locationManager];
     }
 }
