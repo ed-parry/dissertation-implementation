@@ -176,7 +176,7 @@
     NSArray * attractionsManagedObj = [context executeFetchRequest:allAttractions error:&error];
     
     [context save:&error];
-    return attractionsManagedObj;
+    return [self checkAndRemoveHiddenAttractions:attractionsManagedObj];
 }
 
 - (NSArray *) getAllAttractionGroupTypes
@@ -219,7 +219,22 @@
     
     NSArray *allAttractions = [[context executeFetchRequest:singleAttraction error:&error] mutableCopy];
     
-    return allAttractions;
+    return [self checkAndRemoveHiddenAttractions:allAttractions];
+}
+
+- (NSArray *)checkAndRemoveHiddenAttractions:(NSArray *)attractions
+{
+    NSMutableArray *mutableAttractions = [[NSMutableArray alloc] initWithArray:attractions];
+    
+    for(Attraction *temp in attractions){
+        if(temp.hide == 1){
+            [mutableAttractions removeObject:temp];
+        }
+    }
+    
+    NSArray *correctAttractions = [[NSArray alloc]initWithArray:mutableAttractions];
+    
+    return correctAttractions;
 }
 
 @end
