@@ -89,7 +89,8 @@
             CLPlacemark *placemark = [placemarks lastObject];
             GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-            [self setUpMapView];
+            [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
+            [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
         }
     }];
 }

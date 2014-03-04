@@ -45,7 +45,7 @@
                                              timeoutInterval:30.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        
+        NSLog(@"Happy with the connection...");
         [connection start];
     }
     else{
@@ -82,6 +82,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    NSLog(@"All data is back...");
     // if we have all of the data from the URL, save it to file
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     

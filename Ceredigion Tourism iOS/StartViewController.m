@@ -72,8 +72,6 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSLog(@"First call from the button press");
-    // This is confusing logic, maybe need to clean it up.
     if(_shouldMove){
         _shouldMove = NO;
         return YES;
@@ -84,17 +82,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"Into the prepareForSegue");
     if([segue.identifier isEqualToString:@"searchBarSegue"]){
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useSearchedAddress:_searchTextField.text];
     }
     else if([segue.identifier isEqualToString:@"currentLocationSegue"]){
-        NSLog(@"Into the correct else if statement");
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
-        NSLog(@"Found the view, about to transition");
         [mapView useCurrentLocationPosition:_locationManager];
     }
 }
