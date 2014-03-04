@@ -38,7 +38,7 @@
 - (void)setUpDataManager
 {
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
-    [dataManager saveDataFromURL:@"http://www.cardigan.cc/app/locations.csv"];
+    [dataManager saveDataFromURL];
 }
 
 - (void)startLocationManager

@@ -12,27 +12,34 @@
 
 @interface CSVDataManager ()
 @property NSMutableData *dataReceived;
+@property NSString *attractionsURL;
 @end
 
 @implementation CSVDataManager
 
-- (void)saveDataFromURL:(NSString *)urlString
+- (id)init
+{
+    _attractionsURL = @"http://www.cardigan.cc/app/locations.csv";
+    return self;
+}
+
+- (void)saveDataFromURL
 {
     // Start the network activity indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     NSDate *lastFetched = [self getLastFetchedDate];
-    NSDate *lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
+    NSDate *lastModified = [self getLastUpdatedDateOfServerCSV:_attractionsURL];
     
     if(lastModified == nil){
         // give it a second chance to get the HTTP header.
-        lastModified = [self getLastUpdatedDateOfServerCSV:urlString];
+        lastModified = [self getLastUpdatedDateOfServerCSV:_attractionsURL];
     }
     
     // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
     if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
     {
-        NSURL *url = [NSURL URLWithString:urlString];
+        NSURL *url = [NSURL URLWithString:_attractionsURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
@@ -45,6 +52,20 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         // Already have the latest version.
     }
+}
+
+// only to be called from the settings menu
+- (void)saveDataFromURLReset
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    NSURL *url = [NSURL URLWithString:_attractionsURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:30.0];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    [connection start];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge

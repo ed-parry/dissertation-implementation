@@ -13,7 +13,6 @@
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 
-
 @interface MapViewController () <GMSMapViewDelegate>
 - (void)buildMapMarkers;
 
@@ -23,6 +22,11 @@
 @property NSString *disallowedGroup;
 
 @property GMSMarker *tappedMarker;
+
+@property (strong, nonatomic) IBOutlet UIView *customMapMarker;
+@property (strong, nonatomic) IBOutlet UILabel *customMarkerName;
+@property (strong, nonatomic) IBOutlet UILabel *customMarkerGroup;
+- (IBAction)customMarkerButton:(id)sender;
 @end
 
 @implementation MapViewController
@@ -96,6 +100,7 @@
             attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
             attractionMarker.title = currentAttraction.name;
             attractionMarker.snippet = currentAttraction.group;
+//            attractionMarker.infoWindowAnchor = CGPointMake(0.44f, 0.45f);
         
             // Make a new Attraciton object to grab the correct group colour.
             Attraction *colourAttractionObj = [[Attraction alloc] init];
@@ -103,6 +108,17 @@
             
             attractionMarker.map = _mapView;
     }
+}
+
+// Develop a custom view for the marker overlays.
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
+{
+    _customMapMarker = [[[NSBundle mainBundle] loadNibNamed:@"CustomMarkerView" owner:self options:nil] objectAtIndex:0];
+
+    _customMarkerName.text = marker.title;
+    _customMarkerGroup.text = marker.snippet;
+
+    return _customMapMarker;
 }
 
 - (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
@@ -129,4 +145,6 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)customMarkerButton:(id)sender {
+}
 @end

@@ -12,6 +12,5 @@
 @interface MapViewController : UIViewController
 - (void)useSearchedAddress:(NSString *)address;
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager;
-
 - (void)toggleGroupOnMap:(NSString *)group;
 @end

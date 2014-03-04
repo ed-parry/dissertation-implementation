@@ -10,6 +10,6 @@
 
 @interface CSVDataManager : NSObject
 
-- (void)saveDataFromURL:(NSString *)url;
-
+- (void)saveDataFromURL;
+- (void)saveDataFromURLReset;
 @end
