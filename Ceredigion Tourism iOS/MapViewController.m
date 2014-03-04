@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *customMarkerName;
 @property (strong, nonatomic) IBOutlet UILabel *customMarkerGroup;
 - (IBAction)customMarkerButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *mapLoadSpinner;
 @end
 
 @implementation MapViewController
@@ -34,6 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_mapLoadSpinner startAnimating];
+    // to start a background process:
+    // [self performSelectorInBackground:@selector(loadMap) withObject:nil];
+    // to stop background process:
+    // [self performSelectorOnMainThread:@selector(wrapupLoadMap) withObject:nil waitUntilDone:NO];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -53,7 +59,9 @@
     else{
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
         _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-        [self setUpMapView];
+        
+        [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
+        [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -79,6 +87,7 @@
 
 - (void)setUpMapView
 {
+    NSLog(@"Starting to load the data");
     _mapView.myLocationEnabled = YES;
     _mapView.settings.myLocationButton = YES;
     
@@ -88,6 +97,12 @@
     [self buildMapMarkers];
 
     _mapView.delegate = (id)self;
+}
+
+- (void)putMapOnView
+{
+    NSLog(@"Data's all there!");
+    [_mapLoadSpinner stopAnimating];
     self.view = _mapView;
 }
 

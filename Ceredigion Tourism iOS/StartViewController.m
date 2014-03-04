@@ -7,7 +7,6 @@
 //
 
 #import "StartViewController.h"
-#import <dispatch/dispatch.h>
 #import "CSVDataManager.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
@@ -18,7 +17,6 @@
 - (IBAction)searchTextFieldReturn:(id)sender;
 @property CLLocationManager *locationManager;
 
-@property dispatch_queue_t backgroundTasks;
 @end
 
 @implementation StartViewController
@@ -29,7 +27,12 @@
     _shouldMove = YES;
 
     [self startLocationManager];
-    [self setUpDataManager];
+    
+    _operationQueue = [NSOperationQueue new];
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                            selector:@selector(setUpDataManager)
+                                                                              object:nil];
+    [_operationQueue addOperation:operation];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];

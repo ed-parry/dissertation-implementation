@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StartViewController : UIViewController
-
+    @property NSOperationQueue *operationQueue;
 @end
