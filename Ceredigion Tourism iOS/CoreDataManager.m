@@ -24,7 +24,7 @@
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation
 {
     [self makeArrayFromCSVFile:csvFileLocation];
-    [_dataTools cleanCoreData];
+    [self cleanCoreData];
     int counter = 0;
     for (NSArray *singleAttractionArray in _attractions){
         [self makeAttractionObjectFromArray:singleAttractionArray :counter];
@@ -79,6 +79,23 @@
     _attractions = [tempAttractions mutableCopy];
 }
 
+- (void)cleanCoreData
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest * allAttractions = [[NSFetchRequest alloc] init];
+    [allAttractions setEntity:[NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context]];
+    [allAttractions setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
+    
+    NSArray * attractions = [context executeFetchRequest:allAttractions error:&error];
+    for (NSManagedObject * attraction in attractions) {
+        [context deleteObject:attraction];
+    }
+    [context save:&error];
+}
+
 - (void)makeAttractionObjectFromArray:(NSArray *)singleAttractionArray :(int)counter
 {
     Attraction *newAttraction = [[Attraction alloc] init];
@@ -87,7 +104,7 @@
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
     newAttraction.name = [singleAttractionArray objectAtIndex:1];
     newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
-    newAttraction.descriptionText = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
+    newAttraction.descriptionText = [_dataTools stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
     newAttraction.address = [singleAttractionArray objectAtIndex:4];
     newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
     newAttraction.website = [singleAttractionArray objectAtIndex:6];

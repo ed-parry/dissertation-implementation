@@ -14,5 +14,4 @@
 - (NSArray *) getAllAttractionPositions;
 - (NSArray *) getAllAttractionGroupTypes;
 - (NSArray *) getAllAttractionsInGroupArrays;
-- (NSString *)stripHTMLFromString:(NSString *)stringToStrip;
 @end
