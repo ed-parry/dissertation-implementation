@@ -45,7 +45,6 @@
                                              timeoutInterval:30.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        NSLog(@"Happy with the connection...");
         [connection start];
     }
     else{
@@ -105,6 +104,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSLog(@"Receiving data...");
     if (_dataReceived){
         [_dataReceived appendData:data];
     }

@@ -30,25 +30,18 @@
     _shouldMove = YES;
     
     [self startLocationManager];
-    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+    [self setUpDataManager];
 
-    [self performSelectorOnMainThread:@selector(allDataProcessingComplete) withObject:nil waitUntilDone:NO];
-
-    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-}
-
-- (void)allDataProcessingComplete
-{
-    [_loadingIndicator stopAnimating];
-    _loadingView.hidden = YES;
 }
 
 - (void)setUpDataManager
 {
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
     [dataManager saveDataFromURL];
+    [_loadingIndicator stopAnimating];
+    _loadingView.hidden = YES;
 }
 
 - (void)startLocationManager
