@@ -17,17 +17,15 @@
 - (void)buildMapMarkers;
 @property CLLocationManager *locationManager;
 
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property GMSMapView *mapView;
+
 @property NSArray *attractionPositions;
-@property NSString *disallowedGroup;
 
 @property GMSMarker *tappedMarker;
-
 @property (strong, nonatomic) IBOutlet UIView *customMapMarker;
 @property (strong, nonatomic) IBOutlet UILabel *customMarkerName;
 @property (strong, nonatomic) IBOutlet UILabel *customMarkerGroup;
-- (IBAction)customMarkerButton:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *mapLoadSpinner;
 @end
 
@@ -43,7 +41,6 @@
     [_mapLoadSpinner startAnimating];
     _locationManager = locationManager;
     [self getActualLocationCoordinates];
-
 }
 
 - (void)getActualLocationCoordinates
@@ -109,7 +106,10 @@
     _attractionPositions = [dataManager getAllAttractionPositions];
 
     [self buildMapMarkers];
-
+    
+    // Map Radius Testing
+    [self changeMapRadiusView:10];
+    
     _mapView.delegate = (id)self;
 }
 
@@ -117,6 +117,36 @@
 {
     [_mapLoadSpinner stopAnimating];
     self.view = _mapView;
+}
+
+- (void)changeMapRadiusView:(double)miles
+{
+    double latitude = _locationManager.location.coordinate.latitude;
+    double longitude = _locationManager.location.coordinate.longitude;
+    
+    double meters = [self changeMilesToMeters:miles];
+    
+    CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
+    GMSCircle *circ = [GMSCircle circleWithPosition:circleCenter
+                                             radius:meters];
+    circ.fillColor = [UIColor colorWithRed:0 green:0 blue:0.25 alpha:0.10];
+    circ.strokeColor = [UIColor blueColor];
+    circ.strokeWidth = 2;
+    circ.map = _mapView;
+    [self putMapOnView];
+}
+
+- (double)changeMilesToMeters:(double)miles
+{
+    if(miles > 0){
+        double km = miles * 1.609344;
+        double meters = km * 1000;
+        
+        return meters;
+    }
+    else{
+        return 0;
+    }
 }
 
 - (void)buildMapMarkers{
