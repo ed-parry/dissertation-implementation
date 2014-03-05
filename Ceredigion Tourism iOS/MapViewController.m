@@ -77,6 +77,8 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
+    [self setMapRadiusView:10 withCenter:_locationManager.location.coordinate];
+    
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
 }
@@ -92,6 +94,9 @@
             CLPlacemark *placemark = [placemarks lastObject];
             GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+
+            [self setMapRadiusView:10 withCenter:placemark.location.coordinate];
+            
             [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
             [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
         }
@@ -111,9 +116,8 @@
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
 
-    [self changeMapRadiusView:10 withCenter:_locationManager.location.coordinate];
     [self buildMapMarkers];
-        
+    
     _mapView.delegate = (id)self;
 }
 
@@ -123,7 +127,7 @@
     self.view = _mapView;
 }
 
-- (void)changeMapRadiusView:(double)miles withCenter:(CLLocationCoordinate2D)centerCoordinates
+- (void)setMapRadiusView:(double)miles withCenter:(CLLocationCoordinate2D)centerCoordinates
 {
     _currentRadiusCenter = centerCoordinates;
     
@@ -221,10 +225,6 @@
     _customMarkerGroup.text = marker.snippet;
 
     return _customMapMarker;
-    
-
-
-    
 }
 
 - (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
@@ -251,6 +251,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)customMarkerButton:(id)sender {
-}
 @end
