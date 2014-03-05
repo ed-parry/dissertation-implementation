@@ -7,8 +7,8 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
-#import <dispatch/dispatch.h>
 #import "MapViewController.h"
+#import "MapDataManager.h"
 #import "CoreDataManager.h"
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
@@ -20,6 +20,9 @@
 @property CLLocationManager *locationManager;
 @property GMSMapView *mapView;
 @property NSArray *attractionPositions;
+
+// Map Data Manager
+@property MapDataManager *mapDataManager;
 
 // Loading
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *mapLoadSpinner;
@@ -40,6 +43,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)createMapDataManager
+{
+
+    _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:_currentRadiusCenter andRadiusInMeters:_currentRadiusInMeters];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -134,7 +143,8 @@
     double latitude = centerCoordinates.latitude;
     double longitude = centerCoordinates.longitude;
     
-    double meters = [self changeMilesToMeters:miles];
+    [self createMapDataManager];
+    double meters = [_mapDataManager changeMilesToMeters:miles];
     _currentRadiusInMeters = meters;
     
     CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
@@ -148,18 +158,7 @@
     [self putMapOnView];
 }
 
-- (double)changeMilesToMeters:(double)miles
-{
-    if(miles > 0){
-        double km = miles * 1.609344;
-        double meters = km * 1000;
-        
-        return meters;
-    }
-    else{
-        return 0;
-    }
-}
+
 
 - (void)buildMapMarkers{
     for(Attraction *currentAttraction in _attractionPositions){
@@ -168,7 +167,8 @@
         attractionCoordinates.latitude = [currentAttraction.latitude doubleValue];
         attractionCoordinates.longitude = [currentAttraction.longitude doubleValue];
         
-        if([self isCoordinatesWithinRadius:attractionCoordinates])
+        [self createMapDataManager];
+        if([_mapDataManager isCoordinatesWithinRadius:attractionCoordinates])
         {
             double attractionLat = [currentAttraction.latitude doubleValue];
             double attractionLong = [currentAttraction.longitude doubleValue];
@@ -187,33 +187,6 @@
             // The marker is outside of the current radius, so we shouldn't show it.
         }
     }
-}
-
-- (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates
-{
-    CLLocationCoordinate2D circleCenter = _currentRadiusCenter;
-    double circleRadius = _currentRadiusInMeters;
-    
-    double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
-    
-    if(distanceFromMiddle <= circleRadius){
-        // It's inside the radius
-        return YES;
-    }
-    else{
-        // It's outside of the radius.
-        return NO;
-    }
-}
-
-- (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint
-{
-    CLLocation *firstLocation = [[CLLocation alloc] initWithLatitude:firstPoint.latitude longitude:firstPoint.longitude];
-    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:secondPoint.latitude longitude:secondPoint.longitude];
-    
-    double distanceInMeters = [firstLocation distanceFromLocation:secondLocation];
-    
-    return distanceInMeters;
 }
 
 // Develop a custom view for the marker overlays.
