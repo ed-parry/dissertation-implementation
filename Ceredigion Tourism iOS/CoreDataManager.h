@@ -15,4 +15,5 @@
 - (NSArray *) getAllAttractionGroupTypes;
 - (NSArray *) getAllAttractionsInGroupArrays;
 - (NSString *)stripHTMLFromString:(NSString *)stringToStrip;
+- (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)groups;
 @end

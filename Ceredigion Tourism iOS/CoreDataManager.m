@@ -188,7 +188,7 @@
         [allGroups addObject:currentAttraction.group];
     }
     NSArray *allGroupsArray = [[NSArray alloc] initWithArray:[allGroups allObjects]];
-    return allGroupsArray;
+    return [self getAlphabeticallyOrderedArray:allGroupsArray forArrayType:@"groups"];
 }
 
 - (NSArray *) getAllAttractionsInGroupArrays
@@ -219,7 +219,9 @@
     
     NSArray *allAttractions = [[context executeFetchRequest:singleAttraction error:&error] mutableCopy];
     
-    return [self checkAndRemoveHiddenAttractions:allAttractions];
+    NSArray *allOrderedAttractions = [self getAlphabeticallyOrderedArray:allAttractions forArrayType:@"attractions"];
+    
+    return [self checkAndRemoveHiddenAttractions:allOrderedAttractions];
 }
 
 - (NSArray *)checkAndRemoveHiddenAttractions:(NSArray *)attractions
@@ -235,6 +237,23 @@
     NSArray *correctAttractions = [[NSArray alloc]initWithArray:mutableAttractions];
     
     return correctAttractions;
+}
+
+- (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)unsortedArray forArrayType:(NSString *)arrayType
+{
+    NSArray *sortedArray;
+    
+    if([arrayType isEqualToString:@"groups"]){
+        sortedArray = [unsortedArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [(NSString *)obj1 compare:(NSString *)obj2 options:NSNumericSearch];
+        }];
+    }
+    else if([arrayType isEqualToString:@"attractions"]){
+        sortedArray = [unsortedArray sortedArrayUsingComparator:^NSComparisonResult(Attraction *obj1, Attraction *obj2) {
+            return [(NSString *)obj1.name compare:(NSString *)obj2.name options:NSNumericSearch];
+        }];
+    }
+    return sortedArray;
 }
 
 @end
