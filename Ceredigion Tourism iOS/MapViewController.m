@@ -113,10 +113,7 @@
 
     [self changeMapRadiusView:10 withCenter:_locationManager.location.coordinate];
     [self buildMapMarkers];
-    
-    // Map Radius Testing
-
-    
+        
     _mapView.delegate = (id)self;
 }
 
