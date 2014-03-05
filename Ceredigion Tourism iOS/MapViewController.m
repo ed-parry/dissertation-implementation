@@ -40,14 +40,9 @@
 
 @implementation MapViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)createMapDataManager
 {
-
+    // initialize the Map Data Manager with the latest values for the radius center and distance.
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:_currentRadiusCenter andRadiusInMeters:_currentRadiusInMeters];
 }
 
@@ -157,8 +152,6 @@
     
     [self putMapOnView];
 }
-
-
 
 - (void)buildMapMarkers{
     for(Attraction *currentAttraction in _attractionPositions){
