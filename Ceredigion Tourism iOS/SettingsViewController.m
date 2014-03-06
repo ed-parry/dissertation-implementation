@@ -39,11 +39,19 @@
     
     [self setActiveSettingsMenu:@"group"];
     [self setRadiusSettingsValue];
-    [self setGroupSelectionValues];
+
     
     // get array of all groups
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionGroups = [dataManager getAllAttractionGroupTypes];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(animated == FALSE){
+        // While this does somewhat work, it removes the items from the array entirely, and so they are removed from the list. We only need to set them as deselected, rather than remove them.
+        [self setGroupSelectionValues];
+    }
 }
 
 - (void)setActiveSettingsMenu:(NSString *) menu
@@ -98,9 +106,9 @@
 - (void)setGroupSelectionValues
 {
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    NSArray *allowedGroups = [groupDataManager getAllowedGroupsFromPlist];
-    // get array of groups from Plist
-    // set those to be active in the list.
+    _attractionGroups = [groupDataManager getAllowedGroupsFromPlist];
+
+    [_groupTableView reloadData];
 }
 
 - (void)setRadiusSettingsValue
