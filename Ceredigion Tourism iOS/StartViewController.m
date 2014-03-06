@@ -31,7 +31,7 @@
     _shouldMove = YES;
     
     MapDataManager *mapDataManager = [[MapDataManager alloc] init];
-    [mapDataManager storeDefaultMapRadiusInPlist];
+    [mapDataManager storeDefaultMapRadiusMetersInPlist];
     
     [self startLocationManager];
     [self setUpDataManager];

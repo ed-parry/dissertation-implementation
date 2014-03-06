@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
+#import "MapViewController.h"
 #import "CoreDataManager.h"
 
 @interface ListViewController ()
@@ -27,6 +28,17 @@
     _allAttractionsByGroup = [dataManager getAllAttractionsInGroupArrays];
     _attractionPositions = [dataManager getAllAttractionPositions];
     _attractionGroups = [dataManager getAllAttractionGroupTypes];
+    
+    [self applyRadiusSettings];
+}
+
+- (void)applyRadiusSettings
+{
+    MapViewController *mapViewController = [[MapViewController alloc] init];
+    
+
+    // need to get them from a Plist?
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -96,7 +96,7 @@
 - (void)setRadiusSettingsValue
 {
     _mapDataManager = [[MapDataManager alloc] init];
-    double mapRadius = [_mapDataManager getMapRadiusFromPlist];
+    double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
     
     _mapRadiusSettingsSegment.selectedSegmentIndex = [self getMapSegmentPositionFromRadius:mapRadius];
 }
@@ -133,31 +133,31 @@
     _mapDataManager = [[MapDataManager alloc] init];
     
     if(mapRadiusValue == 0){
-        [_mapDataManager storeMapRadiusInPlist:0];
+        [_mapDataManager storeMapRadiusMetersInPlist:0];
     }
     else if(mapRadiusValue == 1){
-        [_mapDataManager storeMapRadiusInPlist:1];
+        [_mapDataManager storeMapRadiusMetersInPlist:1];
         // 1 mile
     }
     else if(mapRadiusValue == 2){
-        [_mapDataManager storeMapRadiusInPlist:5];
+        [_mapDataManager storeMapRadiusMetersInPlist:5];
         // 5 mile
     }
     else if(mapRadiusValue == 3){
-        [_mapDataManager storeMapRadiusInPlist:10];
+        [_mapDataManager storeMapRadiusMetersInPlist:10];
         // 10 mile
     }
     else if(mapRadiusValue == 4){
-        [_mapDataManager storeMapRadiusInPlist:20];
+        [_mapDataManager storeMapRadiusMetersInPlist:20];
         // 20 mile
     }
     else if(mapRadiusValue == 5){
-        [_mapDataManager storeMapRadiusInPlist:25];
+        [_mapDataManager storeMapRadiusMetersInPlist:25];
         // 25 mile
     }
     else{
         // something went wrong, don't set a radius.
-        [_mapDataManager storeMapRadiusInPlist:0];
+        [_mapDataManager storeMapRadiusMetersInPlist:0];
     }
 }
 

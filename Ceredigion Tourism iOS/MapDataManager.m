@@ -68,12 +68,11 @@
     return distanceInMeters;
 }
 
-- (double) getMapRadiusFromPlist
+- (double) getMapRadiusMetersFromPlist
 {
-    NSString *filePath = [self mapSettingsPlistFilePath];
+    NSString *filePath = [self getPlistFilePath:@"map_radius_meters"];
     NSArray *mapRadiusArray;
     
-    // get the file contents
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         mapRadiusArray = [[NSArray alloc] initWithContentsOfFile:filePath];
     }
@@ -81,12 +80,43 @@
     return [mapRadiusString doubleValue];
 }
 
-- (void) storeDefaultMapRadiusInPlist
+- (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist
 {
-    [self storeMapRadiusInPlist:10.0];
+    CLLocationCoordinate2D mapRadiusCoordinates;
+    
+    NSString *filePath = [ self getPlistFilePath:@"map_radius_coordinates"];
+    NSArray *mapRadiusCoordinatesArray;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath]){
+        mapRadiusCoordinatesArray = [[NSArray alloc] initWithContentsOfFile:filePath];
+    }
+    
+    NSString *coordLat = [mapRadiusCoordinatesArray objectAtIndex:0];
+    NSString *coordLong = [mapRadiusCoordinatesArray objectAtIndex: 1];
+    
+    mapRadiusCoordinates.latitude = [coordLat doubleValue];
+    mapRadiusCoordinates.longitude = [coordLong doubleValue];
+    
+    return mapRadiusCoordinates;
 }
 
-- (void) storeMapRadiusInPlist:(double)mapRadius
+- (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates
+{
+    NSArray *radiusCoordinatesArray;
+    NSString *coordinateLat = [NSString stringWithFormat:@"%f", coordinates.latitude];
+    NSString *coordinateLong = [NSString stringWithFormat:@"%f", coordinates.longitude];
+    
+    radiusCoordinatesArray = [[NSArray alloc] initWithObjects:coordinateLat, coordinateLong, nil];
+    
+    [radiusCoordinatesArray writeToFile:[self getPlistFilePath:@"map_radius_coordinates"] atomically:YES];
+}
+
+- (void) storeDefaultMapRadiusMetersInPlist
+{
+    [self storeMapRadiusMetersInPlist:10.0];
+}
+
+- (void) storeMapRadiusMetersInPlist:(double)mapRadius
 {
     NSString *mapRadiusString;
     NSArray *mapRadiusArray;
@@ -99,14 +129,14 @@
         mapRadiusString = [NSString stringWithFormat:@"%f", mapRadius];
         mapRadiusArray = [[NSArray alloc] initWithObjects:mapRadiusString, nil];
     }
-    
-    [mapRadiusArray writeToFile:[self mapSettingsPlistFilePath] atomically:YES];
+    [mapRadiusArray writeToFile:[self getPlistFilePath:@"map_radius_meters"] atomically:YES];
 }
 
-- (NSString *)mapSettingsPlistFilePath {
+- (NSString *)getPlistFilePath:(NSString *)fileName
+{
     NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [filePaths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingPathComponent:@"map_settings"];
+    return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
 
 @end

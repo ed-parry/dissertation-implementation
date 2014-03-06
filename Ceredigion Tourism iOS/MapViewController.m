@@ -50,7 +50,7 @@
 {
     if(animated == FALSE){
         MapDataManager *dataManager = [[MapDataManager alloc] init];
-        double mapRadius = [dataManager getMapRadiusFromPlist];
+        double mapRadius = [dataManager getMapRadiusMetersFromPlist];
         
         _currentRadiusInMeters = mapRadius;
         
@@ -130,20 +130,18 @@
 
 - (void)setUpMapView
 {
-    _mapView.myLocationEnabled = YES;
-    _mapView.settings.myLocationButton = YES;
-    
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
 
     [self buildMapMarkers];
-
-    _mapView.delegate = (id)self;
 }
 
 - (void)putMapOnView
 {
+    _mapView.myLocationEnabled = YES;
+    _mapView.settings.myLocationButton = YES;
     [_mapLoadSpinner stopAnimating];
+    _mapView.delegate = (id)self;
     self.view = _mapView;
 }
 
@@ -169,6 +167,8 @@
         circleRadius.strokeColor = [UIColor blueColor];
         circleRadius.strokeWidth = 2;
         circleRadius.map = _mapView;
+        
+        [self storeRadiusCenterCoordinatesInPlist:circleCenter];
     }
 }
 
@@ -218,6 +218,12 @@
 {
     _tappedMarker = marker;
     [self performSegueWithIdentifier:@"tappedMapAttractionSegue" sender: self];
+}
+
+- (void)storeRadiusCenterCoordinatesInPlist:(CLLocationCoordinate2D)coordinates
+{
+    _mapDataManager = [[MapDataManager alloc] init];
+    [_mapDataManager storeMapRadiusCoordinatesInPlist:coordinates];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
