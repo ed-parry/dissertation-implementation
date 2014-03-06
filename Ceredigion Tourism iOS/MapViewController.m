@@ -49,18 +49,16 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(animated){
-        NSLog(@"This is animated");
+    if(animated == FALSE){
+        MapDataManager *dataManager = [[MapDataManager alloc] init];
+        double mapRadius = [dataManager getMapRadiusFromPlist];
+        
+        _currentRadiusInMeters = mapRadius;
+        
+        [_mapView clear];
+        [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
+        [self setUpMapView];
     }
-    else{
-        NSLog(@"This is not animated");
-    }
-//    MapDataManager *dataManager = [[MapDataManager alloc] init];
-//    double mapRadius = [dataManager getMapRadiusFromPlist];
-//        
-//    _currentRadiusInMeters = mapRadius;
-//    
-//    [self setUpMapView];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -99,7 +97,8 @@
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     _currentRadiusCenter = _locationManager.location.coordinate;
-    
+    [self setMapRadiusView:10 withCenter:_currentRadiusCenter];
+
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
 }
@@ -117,6 +116,7 @@
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 
             _currentRadiusCenter = placemark.location.coordinate;
+            [self setMapRadiusView:10 withCenter:_currentRadiusCenter];
             
             [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
             [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
@@ -136,10 +136,9 @@
     
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
-    
+
     [self buildMapMarkers];
-    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
-    
+
     _mapView.delegate = (id)self;
 }
 
@@ -151,27 +150,30 @@
 
 - (void)setMapRadiusView:(double)miles withCenter:(CLLocationCoordinate2D)centerCoordinates
 {
-    _currentRadiusCenter = centerCoordinates;
-    
-    double latitude = centerCoordinates.latitude;
-    double longitude = centerCoordinates.longitude;
-    
-    [self createMapDataManager];
-    double meters = [_mapDataManager changeMilesToMeters:miles];
-    _currentRadiusInMeters = meters;
-    
-    CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
-    GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter
-                                                     radius:meters];
-    circleRadius.fillColor = [UIColor colorWithRed:0 green:0 blue:0.25 alpha:0.10];
-    circleRadius.strokeColor = [UIColor blueColor];
-    circleRadius.strokeWidth = 2;
-    circleRadius.map = _mapView;
-    [self putMapOnView];
+    if(miles == 0){
+        _currentRadiusInMeters = 0;
+    }
+    else{
+        _currentRadiusCenter = centerCoordinates;
+        
+        double latitude = centerCoordinates.latitude;
+        double longitude = centerCoordinates.longitude;
+        
+        [self createMapDataManager];
+        double meters = [_mapDataManager changeMilesToMeters:miles];
+        _currentRadiusInMeters = meters;
+        
+        CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
+        GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter
+                                                         radius:meters];
+        circleRadius.fillColor = [UIColor colorWithRed:0 green:0 blue:0.25 alpha:0.10];
+        circleRadius.strokeColor = [UIColor blueColor];
+        circleRadius.strokeWidth = 2;
+        circleRadius.map = _mapView;
+    }
 }
 
 - (void)buildMapMarkers{
-    [_mapView clear];
     for(Attraction *currentAttraction in _attractionPositions){
 
         CLLocationCoordinate2D attractionCoordinates;

@@ -38,18 +38,23 @@
 
 - (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates
 {
-    CLLocationCoordinate2D circleCenter = _currentRadiusCenter;
-    double circleRadius = _currentRadiusInMeters;
-    
-    double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
-    
-    if(distanceFromMiddle <= circleRadius){
-        // It's inside the radius
+    if(_currentRadiusInMeters == 0){
         return YES;
     }
     else{
-        // It's outside of the radius.
-        return NO;
+        CLLocationCoordinate2D circleCenter = _currentRadiusCenter;
+        double circleRadius = _currentRadiusInMeters;
+        
+        double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
+        
+        if(distanceFromMiddle <= circleRadius){
+            // It's inside the radius
+            return YES;
+        }
+        else{
+            // It's outside of the radius.
+            return NO;
+        }
     }
 }
 
@@ -73,14 +78,12 @@
         mapRadiusArray = [[NSArray alloc] initWithContentsOfFile:filePath];
     }
     NSString *mapRadiusString = [mapRadiusArray objectAtIndex:0];
-    double mapRadius = [mapRadiusString doubleValue];
-    
-    return mapRadius;
+    return [mapRadiusString doubleValue];
 }
 
 - (void) storeDefaultMapRadiusInPlist
 {
-    [self storeMapRadiusInPlist:10];
+    [self storeMapRadiusInPlist:10.0];
 }
 
 - (void) storeMapRadiusInPlist:(double)mapRadius

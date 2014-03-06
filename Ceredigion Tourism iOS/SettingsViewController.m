@@ -95,14 +95,15 @@
 
 - (void)setRadiusSettingsValue
 {
+    _mapDataManager = [[MapDataManager alloc] init];
     double mapRadius = [_mapDataManager getMapRadiusFromPlist];
-    int mapRadiusSegmentControlPosition = [self getMapSegmentPositionFromRadius:mapRadius];
     
-    _mapRadiusSettingsSegment.selectedSegmentIndex = mapRadiusSegmentControlPosition;
+    _mapRadiusSettingsSegment.selectedSegmentIndex = [self getMapSegmentPositionFromRadius:mapRadius];
 }
 
-- (int)getMapSegmentPositionFromRadius:(double)mapRadius
+- (int)getMapSegmentPositionFromRadius:(int)mapRadius
 {
+    NSLog(@"Contents of Map Radius: %i", mapRadius);
     if(mapRadius == 0){
         return 0;
     }
