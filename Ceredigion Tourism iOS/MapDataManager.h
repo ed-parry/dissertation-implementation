@@ -15,4 +15,10 @@
 - (double)changeMilesToMeters:(double)miles;
 - (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates;
 - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
+
+- (double) getMapRadiusFromPlist;
+- (void) storeDefaultMapRadiusInPlist;
+- (void) storeMapRadiusInPlist:(double)mapRadius;
+
+- (NSString *)mapSettingsPlistFilePath;
 @end

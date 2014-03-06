@@ -418,16 +418,32 @@
                                 <rect key="frame" x="0.0" y="112" width="320" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-qX-Ryt">
-                                        <rect key="frame" x="109" y="148" width="102" height="21"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="yQE-Al-HpW">
+                                        <rect key="frame" x="20" y="74" width="281" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <segments>
+                                            <segment title="None"/>
+                                            <segment title="1"/>
+                                            <segment title="5"/>
+                                            <segment title="10"/>
+                                            <segment title="20"/>
+                                            <segment title="25"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="mapRadiusSettingBar:" destination="JnB-Lm-CNZ" eventType="valueChanged" id="yrN-wh-cv0"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a map radius from the options " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhz-dq-FDc">
+                                        <rect key="frame" x="20" y="26" width="258" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="coming soon..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAl-wy-Ijp">
-                                        <rect key="frame" x="109" y="171" width="114" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="below, in miles." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fht-0c-tFo">
+                                        <rect key="frame" x="21" y="45" width="191" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -458,6 +474,7 @@
                         <outlet property="dataSettingView" destination="iKB-BE-uMA" id="Igt-Kw-mvS"/>
                         <outlet property="groupSettingView" destination="CBG-LL-GaG" id="eFx-qV-RYb"/>
                         <outlet property="groupTableView" destination="JEl-fB-XjJ" id="UDD-7i-i2v"/>
+                        <outlet property="mapRadiusSettingsSegment" destination="yQE-Al-HpW" id="QKP-xL-u8d"/>
                         <outlet property="mappingSettingView" destination="Jz8-bN-QHY" id="t9D-tW-QEN"/>
                     </connections>
                 </viewController>

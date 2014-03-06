@@ -26,6 +26,7 @@
 
 // Loading
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *mapLoadSpinner;
+@property bool mapLoadedOnScreen;
 
 // Markers
 @property GMSMarker *tappedMarker;
@@ -44,6 +45,22 @@
 {
     // initialize the Map Data Manager with the latest values for the radius center and distance.
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:_currentRadiusCenter andRadiusInMeters:_currentRadiusInMeters];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(animated){
+        NSLog(@"This is animated");
+    }
+    else{
+        NSLog(@"This is not animated");
+    }
+//    MapDataManager *dataManager = [[MapDataManager alloc] init];
+//    double mapRadius = [dataManager getMapRadiusFromPlist];
+//        
+//    _currentRadiusInMeters = mapRadius;
+//    
+//    [self setUpMapView];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -81,7 +98,7 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
-    [self setMapRadiusView:10 withCenter:_locationManager.location.coordinate];
+    _currentRadiusCenter = _locationManager.location.coordinate;
     
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
@@ -99,7 +116,7 @@
             GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 
-            [self setMapRadiusView:10 withCenter:placemark.location.coordinate];
+            _currentRadiusCenter = placemark.location.coordinate;
             
             [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
             [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
@@ -119,8 +136,9 @@
     
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
-
+    
     [self buildMapMarkers];
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
     
     _mapView.delegate = (id)self;
 }
@@ -144,16 +162,16 @@
     
     CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
     GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter
-                                             radius:meters];
+                                                     radius:meters];
     circleRadius.fillColor = [UIColor colorWithRed:0 green:0 blue:0.25 alpha:0.10];
     circleRadius.strokeColor = [UIColor blueColor];
     circleRadius.strokeWidth = 2;
     circleRadius.map = _mapView;
-    
     [self putMapOnView];
 }
 
 - (void)buildMapMarkers{
+    [_mapView clear];
     for(Attraction *currentAttraction in _attractionPositions){
 
         CLLocationCoordinate2D attractionCoordinates;
@@ -165,16 +183,18 @@
         {
             double attractionLat = [currentAttraction.latitude doubleValue];
             double attractionLong = [currentAttraction.longitude doubleValue];
-            GMSMarker *attractionMarker = [[GMSMarker alloc] init];
-            attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
-            attractionMarker.title = currentAttraction.name;
-            attractionMarker.snippet = currentAttraction.group;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                GMSMarker *attractionMarker = [[GMSMarker alloc] init];
+                attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
+                attractionMarker.title = currentAttraction.name;
+                attractionMarker.snippet = currentAttraction.group;
             
-            // Make a new Attraciton object to grab the correct group colour.
-            Attraction *colourAttractionObj = [[Attraction alloc] init];
-            attractionMarker.icon = [GMSMarker markerImageWithColor:[colourAttractionObj getAttractionGroupColor:currentAttraction.group]];
+                // Make a new Attraciton object to grab the correct group colour.
+                Attraction *colourAttractionObj = [[Attraction alloc] init];
+                attractionMarker.icon = [GMSMarker markerImageWithColor:[colourAttractionObj getAttractionGroupColor:currentAttraction.group]];
             
-            attractionMarker.map = _mapView;
+                attractionMarker.map = _mapView;
+            });
         }
         else{
             // The marker is outside of the current radius, so we shouldn't show it.

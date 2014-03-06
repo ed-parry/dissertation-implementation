@@ -7,6 +7,7 @@
 //
 
 #import "MapDataManager.h"
+#import "AppDelegate.h"
 
 @interface MapDataManager ()
     @property CLLocationCoordinate2D currentRadiusCenter;
@@ -60,6 +61,49 @@
     double distanceInMeters = [firstLocation distanceFromLocation:secondLocation];
     
     return distanceInMeters;
+}
+
+- (double) getMapRadiusFromPlist
+{
+    NSString *filePath = [self mapSettingsPlistFilePath];
+    NSArray *mapRadiusArray;
+    
+    // get the file contents
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        mapRadiusArray = [[NSArray alloc] initWithContentsOfFile:filePath];
+    }
+    NSString *mapRadiusString = [mapRadiusArray objectAtIndex:0];
+    double mapRadius = [mapRadiusString doubleValue];
+    
+    return mapRadius;
+}
+
+- (void) storeDefaultMapRadiusInPlist
+{
+    [self storeMapRadiusInPlist:10];
+}
+
+- (void) storeMapRadiusInPlist:(double)mapRadius
+{
+    NSString *mapRadiusString;
+    NSArray *mapRadiusArray;
+
+    if(mapRadius == 0){
+        mapRadiusString = [NSString stringWithFormat:@"none"];
+        mapRadiusArray = [[NSArray alloc] initWithObjects:mapRadiusString, nil];
+    }
+    else{
+        mapRadiusString = [NSString stringWithFormat:@"%f", mapRadius];
+        mapRadiusArray = [[NSArray alloc] initWithObjects:mapRadiusString, nil];
+    }
+    
+    [mapRadiusArray writeToFile:[self mapSettingsPlistFilePath] atomically:YES];
+}
+
+- (NSString *)mapSettingsPlistFilePath {
+    NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [filePaths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:@"map_settings"];
 }
 
 @end

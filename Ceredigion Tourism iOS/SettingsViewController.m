@@ -10,16 +10,21 @@
 #import "MapViewController.h"
 #import "CoreDataManager.h"
 #import "CSVDataManager.h"
+#import "MapDataManager.h"
 #import "Attraction.h"
 
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
 @property NSArray *attractionGroups;
-- (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
 @property (strong, nonatomic) IBOutlet UIView *groupSettingView;
 @property (strong, nonatomic) IBOutlet UIView *mappingSettingView;
 @property (strong, nonatomic) IBOutlet UIView *dataSettingView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *mapRadiusSettingsSegment;
+@property MapDataManager *mapDataManager;
+
+- (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
 - (IBAction)dataRefreshButton:(id)sender;
+- (IBAction)mapRadiusSettingBar:(UISegmentedControl *)sender;
 
 @end
 
@@ -32,6 +37,7 @@
     _groupTableView.delegate = self;
     
     [self setActiveSettingsMenu:@"group"];
+    [self setRadiusSettingsValue];
     
     // get array of all groups
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
@@ -85,6 +91,73 @@
     // call a function to reset the data
     CSVDataManager *csvFetch = [[CSVDataManager alloc] init];
     [csvFetch saveDataFromURLReset];
+}
+
+- (void)setRadiusSettingsValue
+{
+    double mapRadius = [_mapDataManager getMapRadiusFromPlist];
+    int mapRadiusSegmentControlPosition = [self getMapSegmentPositionFromRadius:mapRadius];
+    
+    _mapRadiusSettingsSegment.selectedSegmentIndex = mapRadiusSegmentControlPosition;
+}
+
+- (int)getMapSegmentPositionFromRadius:(double)mapRadius
+{
+    if(mapRadius == 0){
+        return 0;
+    }
+    else if(mapRadius == 1){
+        return 1;
+    }
+    else if(mapRadius == 5){
+        return 2;
+    }
+    else if(mapRadius == 10){
+        return 3;
+    }
+    else if(mapRadius == 20){
+        return 4;
+    }
+    else if(mapRadius == 25){
+        return 5;
+    }
+    else{
+        return 0;
+    }
+}
+
+- (IBAction)mapRadiusSettingBar:(UISegmentedControl *)sender
+{
+    int mapRadiusValue = sender.selectedSegmentIndex;
+    _mapDataManager = [[MapDataManager alloc] init];
+    
+    if(mapRadiusValue == 0){
+        [_mapDataManager storeMapRadiusInPlist:0];
+    }
+    else if(mapRadiusValue == 1){
+        [_mapDataManager storeMapRadiusInPlist:1];
+        // 1 mile
+    }
+    else if(mapRadiusValue == 2){
+        [_mapDataManager storeMapRadiusInPlist:5];
+        // 5 mile
+    }
+    else if(mapRadiusValue == 3){
+        [_mapDataManager storeMapRadiusInPlist:10];
+        // 10 mile
+    }
+    else if(mapRadiusValue == 4){
+        [_mapDataManager storeMapRadiusInPlist:20];
+        // 20 mile
+    }
+    else if(mapRadiusValue == 5){
+        [_mapDataManager storeMapRadiusInPlist:25];
+        // 25 mile
+    }
+    else{
+        // something went wrong, don't set a radius.
+        [_mapDataManager storeMapRadiusInPlist:0];
+    }
 }
 
 - (void)toggleGroupOnMapView:(NSString *)group

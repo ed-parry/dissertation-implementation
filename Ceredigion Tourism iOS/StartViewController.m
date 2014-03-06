@@ -10,15 +10,16 @@
 #import "CSVDataManager.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
+#import "MapDataManager.h"
 
 @interface StartViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic) bool shouldMove;
-- (IBAction)searchTextFieldReturn:(id)sender;
 @property CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIView *loadingView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
+- (IBAction)searchTextFieldReturn:(id)sender;
 @end
 
 @implementation StartViewController
@@ -28,6 +29,9 @@
     [super viewDidLoad];
     [_loadingIndicator startAnimating];
     _shouldMove = YES;
+    
+    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    [mapDataManager storeDefaultMapRadiusInPlist];
     
     [self startLocationManager];
     [self setUpDataManager];

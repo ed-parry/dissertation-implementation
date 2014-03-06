@@ -152,7 +152,7 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Application_Settings" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
@@ -180,7 +180,7 @@
     NSError *error;
     
     NSFetchRequest * allDates = [[NSFetchRequest alloc] init];
-    [allDates setEntity:[NSEntityDescription entityForName:@"CSV_Settings" inManagedObjectContext:context]];
+    [allDates setEntity:[NSEntityDescription entityForName:@"Application_Settings" inManagedObjectContext:context]];
     [allDates setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
     
     NSArray * dates = [context executeFetchRequest:allDates error:&error];
@@ -200,7 +200,7 @@
     NSError *error;
     NSManagedObject *newFetchedDate;
     newFetchedDate = [NSEntityDescription
-                     insertNewObjectForEntityForName:@"CSV_Settings"
+                     insertNewObjectForEntityForName:@"Application_Settings"
                      inManagedObjectContext:context];
     
     [newFetchedDate setValue: date forKey:@"csv_last_fetched"];
