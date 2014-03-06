@@ -10,6 +10,7 @@
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 #import "MapViewController.h"
+#import "MapDataManager.h"
 #import "CoreDataManager.h"
 
 @interface ListViewController ()
@@ -26,7 +27,6 @@
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _allAttractionsByGroup = [dataManager getAllAttractionsInGroupArrays];
-    _attractionPositions = [dataManager getAllAttractionPositions];
     _attractionGroups = [dataManager getAllAttractionGroupTypes];
     
     [self applyRadiusSettings];
@@ -34,11 +34,11 @@
 
 - (void)applyRadiusSettings
 {
-    MapViewController *mapViewController = [[MapViewController alloc] init];
-    
+    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    double radiusMeters = [mapDataManager getMapRadiusMetersFromPlist];
+    CLLocationCoordinate2D radiusCoordinates = [mapDataManager getMapRadiusCoordinatesFromPlist];
 
-    // need to get them from a Plist?
-    
+//    Need to re-make the "_allAttractionsByGroup" array here, and then let it work as normal.
 }
 
 - (void)didReceiveMemoryWarning
