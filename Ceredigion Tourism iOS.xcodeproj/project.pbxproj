@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0DD18C8E86700091562 /* GroupDataManager.m */; };
 		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
 		6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D718B5356F007BC8CA /* ListViewController.m */; };
 		6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D55B36318C5EB51005B790F /* CustomMarkerView.xib */; };
@@ -60,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D0AC0DC18C8E86700091562 /* GroupDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataManager.h; sourceTree = "<group>"; };
+		6D0AC0DD18C8E86700091562 /* GroupDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataManager.m; sourceTree = "<group>"; };
 		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6D39A4D418B51F73007BC8CA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6D39A4D618B5356F007BC8CA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				6D749AA718B2618E00E06D7F /* CoreDataManager.m */,
 				6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */,
 				6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */,
+				6D0AC0DC18C8E86700091562 /* GroupDataManager.h */,
+				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */,
 				6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */,
 				6D58575C18B2537600306327 /* main.m in Sources */,
+				6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */,
 				6D749AA518B25D6700E06D7F /* CSVDataManager.m in Sources */,
 				6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */,
 				6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */,

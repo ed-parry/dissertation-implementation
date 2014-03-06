@@ -11,6 +11,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
+#import "GroupDataManager.h"
 
 @interface StartViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
@@ -31,7 +32,9 @@
     _shouldMove = YES;
     
     MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
     [mapDataManager storeDefaultMapRadiusMetersInPlist];
+    [groupDataManager storeDefaultAllowedGroupsInPlist];
     
     [self startLocationManager];
     [self setUpDataManager];
