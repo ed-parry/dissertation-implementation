@@ -11,6 +11,7 @@
 #import "CoreDataManager.h"
 #import "CSVDataManager.h"
 #import "MapDataManager.h"
+#import "GroupDataManager.h"
 #import "Attraction.h"
 
 @interface SettingsViewController ()
@@ -38,6 +39,7 @@
     
     [self setActiveSettingsMenu:@"group"];
     [self setRadiusSettingsValue];
+    [self setGroupSelectionValues];
     
     // get array of all groups
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
@@ -91,6 +93,14 @@
     // call a function to reset the data
     CSVDataManager *csvFetch = [[CSVDataManager alloc] init];
     [csvFetch saveDataFromURLReset];
+}
+
+- (void)setGroupSelectionValues
+{
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    NSArray *allowedGroups = [groupDataManager getAllowedGroupsFromPlist];
+    // get array of groups from Plist
+    // set those to be active in the list.
 }
 
 - (void)setRadiusSettingsValue
@@ -163,7 +173,8 @@
 
 - (void)toggleGroupOnMapView:(NSString *)group
 {
-    // need to figure out how to build this, with a data structure that's available all over.
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    [groupDataManager toggleGroupInAllowedGroups:group];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

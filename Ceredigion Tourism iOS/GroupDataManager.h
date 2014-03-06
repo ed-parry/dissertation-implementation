@@ -11,5 +11,6 @@
 @interface GroupDataManager : NSObject
 - (void)storeDefaultAllowedGroupsInPlist;
 - (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups;
+- (void)toggleGroupInAllowedGroups:(NSString *)group;
 - (NSArray *)getAllowedGroupsFromPlist;
 @end

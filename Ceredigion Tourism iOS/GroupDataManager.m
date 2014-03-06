@@ -27,6 +27,28 @@
     [self storeAllowedGroupsInPlist:defaultGroups];
 }
 
+- (void)toggleGroupInAllowedGroups:(NSString *)group
+{
+    NSArray *currentGroups = [self getAllowedGroupsFromPlist];
+    NSMutableArray *currentMutableGroups = [[NSMutableArray alloc] initWithArray:currentGroups];
+    
+    bool isFound = NO;
+    
+    for(NSString *tempGroup in currentGroups){
+        if([tempGroup isEqualToString:group]){
+            [currentMutableGroups removeObject:tempGroup];
+            isFound = YES;
+            break;
+        }
+    }
+    
+    if(isFound == NO){
+        [currentMutableGroups addObject:group];
+    }
+    
+    [self storeAllowedGroupsInPlist:currentMutableGroups];
+}
+
 - (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups
 {
     [allowedGroups writeToFile:_filePath atomically:YES];
