@@ -26,7 +26,6 @@
 
 // Loading
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *mapLoadSpinner;
-@property bool mapLoadedOnScreen;
 
 // Markers
 @property GMSMarker *tappedMarker;
