@@ -17,6 +17,8 @@
 @property NSArray *allAttractionsByGroup;
 @property NSArray *attractionGroups;
 @property NSArray *attractionPositions;
+@property MapDataManager *mapDataManagerWithCoords;
+@property CoreDataManager *dataManager;
 @end
 
 @implementation ListViewController
@@ -25,11 +27,17 @@
 {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-    CoreDataManager *dataManager = [[CoreDataManager alloc] init];
-    _allAttractionsByGroup = [dataManager getAllAttractionsInGroupArrays];
-    _attractionGroups = [dataManager getAllAttractionGroupTypes];
-    
-    [self applyRadiusSettings];
+    _dataManager = [[CoreDataManager alloc] init];
+    _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
+    _attractionGroups = [_dataManager getAllAttractionGroupTypes];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(animated == FALSE){
+//        [self applyRadiusSettings];
+//        [self.tableView reloadData];
+    }
 }
 
 - (void)applyRadiusSettings
@@ -38,7 +46,30 @@
     double radiusMeters = [mapDataManager getMapRadiusMetersFromPlist];
     CLLocationCoordinate2D radiusCoordinates = [mapDataManager getMapRadiusCoordinatesFromPlist];
 
-//    Need to re-make the "_allAttractionsByGroup" array here, and then let it work as normal.
+    // got a fresh copy of the data
+    _dataManager = [[CoreDataManager alloc] init];
+    _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
+
+    _mapDataManagerWithCoords = [[MapDataManager alloc] initWithCurrentRadiusCenter:radiusCoordinates
+                                                                                 andRadiusInMeters:radiusMeters];
+    NSMutableArray *allAttractionsByGroupInRadius;
+    
+    for(NSArray *singleGroupAttractions in _allAttractionsByGroup){
+        NSMutableArray *allAttractionsInGroupInRadius;
+        
+        for(Attraction *tempAttraction in singleGroupAttractions){
+            CLLocationCoordinate2D tempCoords;
+            tempCoords.latitude = [tempAttraction.latitude doubleValue];
+            tempCoords.longitude = [tempAttraction.longitude doubleValue];
+            
+            if([_mapDataManagerWithCoords isCoordinatesWithinRadius:tempCoords])
+            {
+                [allAttractionsInGroupInRadius addObject:tempAttraction];
+            }
+        }
+        [allAttractionsByGroupInRadius addObject:allAttractionsInGroupInRadius];
+    }
+    _allAttractionsByGroup = allAttractionsByGroupInRadius;
 }
 
 - (void)didReceiveMemoryWarning
