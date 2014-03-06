@@ -138,7 +138,7 @@
     _attractionPositions = [dataManager getAllAttractionPositions];
     
     [self buildMapMarkers];
-    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
+    //[self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
     
     _mapView.delegate = (id)self;
 }
@@ -183,18 +183,17 @@
         {
             double attractionLat = [currentAttraction.latitude doubleValue];
             double attractionLong = [currentAttraction.longitude doubleValue];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                GMSMarker *attractionMarker = [[GMSMarker alloc] init];
-                attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
-                attractionMarker.title = currentAttraction.name;
-                attractionMarker.snippet = currentAttraction.group;
-            
-                // Make a new Attraciton object to grab the correct group colour.
-                Attraction *colourAttractionObj = [[Attraction alloc] init];
-                attractionMarker.icon = [GMSMarker markerImageWithColor:[colourAttractionObj getAttractionGroupColor:currentAttraction.group]];
-            
-                attractionMarker.map = _mapView;
-            });
+
+            GMSMarker *attractionMarker = [[GMSMarker alloc] init];
+            attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
+            attractionMarker.title = currentAttraction.name;
+            attractionMarker.snippet = currentAttraction.group;
+        
+            // Make a new Attraciton object to grab the correct group colour.
+            Attraction *colourAttractionObj = [[Attraction alloc] init];
+            attractionMarker.icon = [GMSMarker markerImageWithColor:[colourAttractionObj getAttractionGroupColor:currentAttraction.group]];
+        
+            attractionMarker.map = _mapView;
         }
         else{
             // The marker is outside of the current radius, so we shouldn't show it.
