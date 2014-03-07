@@ -7,6 +7,7 @@
 //
 
 #import "MapDataManager.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import "AppDelegate.h"
 
 @interface MapDataManager ()

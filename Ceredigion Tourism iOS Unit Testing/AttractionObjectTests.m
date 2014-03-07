@@ -26,7 +26,7 @@
     _testAttraction.descriptionText = @"The description field of the Aberystwyth Arts Centre location";
     _testAttraction.address = @"Aberystwyth Arts Centre, Aberystwyth University Campus, Aberystywth, Ceredigion, SY23 2ET";
     _testAttraction.telephone = @"01782 398338";
-    _testAttraction.URL = @"http://google.com";
+    _testAttraction.website = @"http://google.com";
     _testAttraction.latitude = @"0.402731";
     _testAttraction.longitude = @"-1.323723";
     _testAttraction.hide = NO;
@@ -69,7 +69,7 @@
 
 - (void)testAttractionURL
 {
-    XCTAssertEqual(_testAttraction.URL, @"http://google.com", @"Check the Attraction URL value");
+    XCTAssertEqual(_testAttraction.website, @"http://google.com", @"Check the Attraction URL value");
 }
 
 - (void)testAttractionLatitude

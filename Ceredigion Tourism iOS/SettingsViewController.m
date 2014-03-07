@@ -121,7 +121,6 @@
 
 - (int)getMapSegmentPositionFromRadius:(int)mapRadius
 {
-    NSLog(@"Contents of Map Radius: %i", mapRadius);
     if(mapRadius == 0){
         return 0;
     }

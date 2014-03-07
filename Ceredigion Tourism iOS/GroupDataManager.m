@@ -10,7 +10,7 @@
 #import "CoreDataManager.h"
 
 @interface GroupDataManager ()
-@property NSString *filePath;
+    @property NSString *filePath;
 @end
 
 @implementation GroupDataManager
