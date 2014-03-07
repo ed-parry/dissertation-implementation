@@ -28,6 +28,7 @@
 		6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA718B2618E00E06D7F /* CoreDataManager.m */; };
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
+		6D84A6AD18CA8EA7004C1E14 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D84A6AC18CA8EA7004C1E14 /* Crashlytics.framework */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
 		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
@@ -97,6 +98,7 @@
 		6D749AA918B26F1200E06D7F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		6D749AAA18B26F1200E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6D84A6AC18CA8EA7004C1E14 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleAttractionEventViewController.h; sourceTree = "<group>"; };
 		6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleAttractionEventViewController.m; sourceTree = "<group>"; };
 		6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionObjectTests.m; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6DD178D118B39373006BE307 /* libc++.dylib in Frameworks */,
 				6DD178CF18B39369006BE307 /* ImageIO.framework in Frameworks */,
 				6DD178CD18B39361006BE307 /* GLKit.framework in Frameworks */,
+				6D84A6AD18CA8EA7004C1E14 /* Crashlytics.framework in Frameworks */,
 				6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */,
 				6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */,
 				6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */,
@@ -204,6 +207,7 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D84A6AC18CA8EA7004C1E14 /* Crashlytics.framework */,
 				6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */,
 				6DD178D818B393A2006BE307 /* QuartzCore.framework */,
 				6DD178D618B39396006BE307 /* OpenGLES.framework */,
@@ -322,6 +326,7 @@
 				6D58574818B2537600306327 /* Sources */,
 				6D58574918B2537600306327 /* Frameworks */,
 				6D58574A18B2537600306327 /* Resources */,
+				6D84A6AB18CA8E5B004C1E14 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -408,6 +413,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6D84A6AB18CA8E5B004C1E14 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 93674e6ba44518b3edb9d4478365345154d0a599 bdf2e4caef3dd3d7864348bda850425ab5596d716c452cce65a319714d8ec1b1";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6D58574818B2537600306327 /* Sources */ = {

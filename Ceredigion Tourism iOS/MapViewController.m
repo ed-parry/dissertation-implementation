@@ -49,6 +49,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {    
     if(animated == FALSE){
+        int *x = NULL; *x = 42;
         MapDataManager *dataManager = [[MapDataManager alloc] init];
         double mapRadius = [dataManager getMapRadiusMetersFromPlist];
         
