@@ -29,6 +29,7 @@
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 		6D84A6AD18CA8EA7004C1E14 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D84A6AC18CA8EA7004C1E14 /* Crashlytics.framework */; };
+		6D84A6AE18CA9A9C004C1E14 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
 		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
@@ -37,7 +38,7 @@
 		6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4042218BE1F13007A092E /* InfoPlist.strings */; };
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
-		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; };
+		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD178C418B38E10006BE307 /* GoogleMaps.bundle */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
 		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
@@ -153,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D84A6AE18CA9A9C004C1E14 /* GoogleMaps.framework in Frameworks */,
 				6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */,
 				6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */,
 				6DB4041D18BE1F13007A092E /* Foundation.framework in Frameworks */,
@@ -621,6 +623,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Prefix.pch";
@@ -644,6 +647,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth\\ Year/Second\\ Semester/Dissertation/Implementation/Ceredigion\\ Tourism\\ iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS Unit Testing/Ceredigion Tourism iOS Unit Testing-Prefix.pch";

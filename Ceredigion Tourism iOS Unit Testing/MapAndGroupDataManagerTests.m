@@ -23,8 +23,6 @@
 - (void)setUp
 {
     [super setUp];
-    _groupDataManager = [[GroupDataManager alloc] init];
-    _defaultGroups = [_dataManager getAllAttractionGroupTypes];
 }
 
 - (void)tearDown
@@ -36,14 +34,22 @@
 // Group Data Manager
 - (void)testStoreDefaultAllowedGroupsInPlist
 {
+    // set up for the test.
+    _groupDataManager = [[GroupDataManager alloc] init];
+    _dataManager = [[CoreDataManager alloc] init];
+
     // run the method, to store the defaults.
     [_groupDataManager storeDefaultAllowedGroupsInPlist];
     
-    // no errors as of yet, so assume it worked. Let's check.
+    // fetch what was stored, and fetch the absolute default to check.
     NSArray *returnedDefaultGroups = [_groupDataManager getAllowedGroupsFromPlist];
+    NSArray *defaultGroups = [_dataManager getAllAttractionGroupTypes];
     
     // check that the returned array is equal to the default groups array.
-    XCTAssertEqualObjects(_defaultGroups, returnedDefaultGroups, @"The stored default groups is equal to the default groups.");
+    NSSet *defaultGroupsSet = [NSSet setWithArray:defaultGroups];
+    NSSet *returnedDefaultGroupsSet = [NSSet setWithArray:returnedDefaultGroups];
+
+    XCTAssert([defaultGroupsSet isEqualToSet:returnedDefaultGroupsSet], @"The stored array is working correctly.");
 }
 
 - (void)testStoreAllowedGroupsInPlist

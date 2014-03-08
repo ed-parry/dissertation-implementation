@@ -188,6 +188,7 @@
         [allGroups addObject:currentAttraction.group];
     }
     NSArray *allGroupsArray = [[NSArray alloc] initWithArray:[allGroups allObjects]];
+
     return [self getAlphabeticallyOrderedArray:allGroupsArray forArrayType:@"groups"];
 }
 
