@@ -55,6 +55,21 @@
 - (void)testStoreAllowedGroupsInPlist
 {
 // - (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups;
+    
+    // create a test array to store to the plist.
+    NSArray *groupsToStore = @[@"Retail", @"Activities", @"Accommodation"];
+    
+    // store the array to the Plist
+    [_groupDataManager storeAllowedGroupsInPlist:groupsToStore];
+    
+    // get the contents of the stored Plist
+    NSArray *returnedGroupsFromPlist = [_groupDataManager getAllowedGroupsFromPlist];
+    
+    // put the two arrays into sets to compare them
+    NSSet *storedGroupsSet = [NSSet setWithArray:groupsToStore];
+    NSSet *returnedGroupsSet = [NSSet setWithArray:returnedGroupsFromPlist];
+    
+    XCTAssert([storedGroupsSet isEqualToSet:returnedGroupsSet], @"The selected groups are stored to Plist correctly.");
 }
 
 - (void)testToggleGroupInAllowedGroups
