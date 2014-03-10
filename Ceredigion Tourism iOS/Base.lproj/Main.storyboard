@@ -302,20 +302,23 @@
             </objects>
             <point key="canvasLocation" x="2205" y="-247"/>
         </scene>
-        <!--View Controller - Calendar-->
+        <!--Calendar View Controller - Calendar-->
         <scene sceneID="Kc2-No-vOQ">
             <objects>
-                <viewController id="6oO-6S-qjB" sceneMemberID="viewController">
+                <viewController id="6oO-6S-qjB" customClass="CalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="59G-yT-2F7"/>
                         <viewControllerLayoutGuide type="bottom" id="fJ5-0g-bLn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yO1-Yc-ja6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <rect key="contentStretch" x="0.0" y="1.3877787807814457e-17" width="1" height="1"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Calendar" image="Calendar Icon" id="ASp-LG-rTY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rth-DS-4HG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -480,7 +483,7 @@
         <image name="Map Icon" width="32" height="32"/>
         <image name="Settings Icon" width="32" height="32"/>
     </resources>
-    <color key="tintColor" red="0.96921180210000002" green="0.97632334180000002" blue="0.96475528479999995" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.22572991794775565" green="0.54297304012100978" blue="0.89730268716812134" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -36,6 +36,7 @@
 		6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
 		6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4042218BE1F13007A092E /* InfoPlist.strings */; };
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
+		6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
 		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD178C418B38E10006BE307 /* GoogleMaps.bundle */; };
@@ -106,6 +107,8 @@
 		6DB4042318BE1F13007A092E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ceredigion Tourism iOS Unit Testing-Prefix.pch"; sourceTree = "<group>"; };
 		6DB4042D18BE1F2B007A092E /* CoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTests.m; sourceTree = "<group>"; };
+		6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
 		6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
 		6DD178C218B38DBA006BE307 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */,
+				6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */,
 				6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */,
 				6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */,
 				6D39A4D618B5356F007BC8CA /* ListViewController.h */,
@@ -429,6 +434,7 @@
 				6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
+				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,8 +573,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "PDTSimpleCalendar/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -587,8 +597,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "PDTSimpleCalendar/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
