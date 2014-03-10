@@ -27,6 +27,10 @@
 
 - (void)viewDidLoad
 {
+    [self.view setBackgroundColor:[UIColor colorWithRed:35.0/255.0
+                                                  green:164.0/255.0
+                                                   blue:219.0/255.0
+                                                  alpha:1.0]];
     [super viewDidLoad];
     [_loadingIndicator startAnimating];
     _shouldMove = YES;

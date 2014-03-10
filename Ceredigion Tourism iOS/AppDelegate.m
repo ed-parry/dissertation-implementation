@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Crashlytics/Crashlytics.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
@@ -18,12 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Set the status bar colour
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:35.0/255.0
+                                                                  green:164.0/255.0
+                                                                   blue:219.0/255.0
+                                                                  alpha:1.0]];
 
     [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     // [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
-    
-    // Crashlytics API Key.
-    [Crashlytics startWithAPIKey:@"93674e6ba44518b3edb9d4478365345154d0a599"];
     
     return YES;
 }
