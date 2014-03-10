@@ -8,6 +8,7 @@
 
 #import "CalendarViewController.h"
 
+
 @interface CalendarViewController ()
 
 @end
@@ -25,7 +26,6 @@
 
 - (void)viewDidLoad
 {
-    self.navigationController.navigationBar.translucent = NO;
     [super viewDidLoad];
 }
 
