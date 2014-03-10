@@ -17,12 +17,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [application setStatusBarHidden:NO];
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     // Set the status bar colour
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:35.0/255.0
                                                                   green:164.0/255.0
                                                                    blue:219.0/255.0
                                                                   alpha:1.0]];
-
+    
+    // Set the tab bar tint colour
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:(35.0/256.0)
+                                                        green:(164.0/256.0)
+                                                         blue:(219.0/256.0)
+                                                        alpha:(1.0)]];
+    
     [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     // [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
     

@@ -235,7 +235,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MHx-3g-4wj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k6g-eL-QmM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-0n-URk">
@@ -488,6 +488,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="lFU-9D-YWQ"/>
+        <segue reference="iqk-FG-hNu"/>
     </inferredMetricsTieBreakers>
 </document>
