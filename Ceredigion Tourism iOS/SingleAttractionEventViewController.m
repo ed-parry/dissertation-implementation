@@ -7,17 +7,18 @@
 //
 
 #import "SingleAttractionEventViewController.h"
+#import <EventKitUI/EventKitUI.h>
 
-@interface SingleAttractionEventViewController ()
+@interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *descriptionField;
-@property (strong, nonatomic) IBOutlet UILabel *addressFIeld;
+@property (strong, nonatomic) IBOutlet UILabel *addressField;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
 @property Attraction *thisAttraction;
-
+- (IBAction)addToCalendarTapped:(id)sender;
 - (IBAction)visitWebsiteTapped:(id)sender;
 @end
 
@@ -38,6 +39,35 @@
     _thisAttraction = currentAttraction;
 }
 
+- (IBAction)addToCalendarTapped:(id)sender
+{
+    // called to add a new calendar event.
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        if(granted){
+            EKEventEditViewController *eventController = [[EKEventEditViewController alloc] init];
+            eventController.eventStore = eventStore;
+            eventController.editViewDelegate = self;
+            
+            [self presentViewController:eventController animated:YES completion:nil];
+        }
+        else{
+            NSLog(@"Not granted access");
+            // Need to display an error message saying we don't have access.
+            // Users can re-enable access from Privacy Settings on their device.
+        }
+        
+    }];
+    
+
+}
+
+- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
+{
+    // EventKitUI creates the event for me, so just close the view.
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)visitWebsiteTapped:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
@@ -50,7 +80,7 @@
         // populate the content
         self.navigationItem.title = _thisAttraction.name;
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
-        _addressFIeld.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
+        _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
