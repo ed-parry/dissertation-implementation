@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -32,8 +33,12 @@
                                                          blue:(219.0/256.0)
                                                         alpha:(1.0)]];
     
+    // Google Maps SDK API
     [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     // [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
+    
+    // Crashlytics API
+    [Crashlytics startWithAPIKey:@"93674e6ba44518b3edb9d4478365345154d0a599"];
     
     return YES;
 }
