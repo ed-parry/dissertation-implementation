@@ -12,15 +12,30 @@
 
 @interface CSVDataManager ()
 @property NSMutableData *dataReceived;
+@property NSString *baseServerURL;
 @property NSString *attractionsURL;
+@property NSString *calendarURL;
 @end
 
 @implementation CSVDataManager
 
 - (id)init
 {
-    _attractionsURL = @"http://www.cardigan.cc/app/locations.csv";
+    _baseServerURL = @"http://www.cardigan.cc/app/";
+    
+    // append the locations.csv to the base URL.
+    _attractionsURL = [NSString stringWithFormat:@"%@locations.csv", _baseServerURL];
+    _calendarURL = [NSString stringWithFormat:@"%@calendar.csv", _baseServerURL];
     return self;
+}
+
+- (bool)isConnectionAvailable
+{
+    NSString *URLString = [NSString stringWithContentsOfURL:[NSURL URLWithString:_baseServerURL] encoding:NSUTF8StringEncoding error:nil];
+    if(URLString != NULL){
+        return YES;
+    }
+    return NO;
 }
 
 - (void)saveDataFromURL

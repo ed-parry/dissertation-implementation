@@ -50,7 +50,17 @@
 - (void)setUpDataManager
 {
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
-    [dataManager saveDataFromURL];
+    if([dataManager isConnectionAvailable]){
+        [dataManager saveDataFromURL];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"This application requires an active network connection to fetch the tourism information. Please check your connection."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     [_loadingIndicator stopAnimating];
     _loadingView.hidden = YES;
 }

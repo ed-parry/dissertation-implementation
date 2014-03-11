@@ -12,4 +12,7 @@
 
 - (void)saveDataFromURL;
 - (void)saveDataFromURLReset;
+
+// Checks whether we have a usable Internet connection
+- (bool)isConnectionAvailable;
 @end
