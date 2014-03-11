@@ -13,7 +13,7 @@
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 
-@interface MapViewController () <GMSMapViewDelegate>
+@interface MapViewController () <GMSMapViewDelegate, UIAlertViewDelegate>
 - (void)buildMapMarkers;
 
 // Core Features
@@ -110,8 +110,6 @@
         if (error) {
             [self showUIAlertView:address];
             NSLog(@"%@", error);
-            // the below line needs to happen after they press "OK".
-            [self.navigationController popViewControllerAnimated:YES];
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
             GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
@@ -244,11 +242,24 @@
 - (void)showUIAlertView:(NSString *)searchText
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not Found", searchText]
-                                                    message:@"The place that you searched for cannot be found on the map. Please try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
+                                                    message:@"Your search cannot be found on the map. Please try again, or search using your current location."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Search Again"
+                                          otherButtonTitles:@"Current Location", nil];
     [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // called after the alert view is pressed. Move views here.
+    if(buttonIndex == 0){
+        NSLog(@"Try again, go back");
+        [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    }
+    else if(buttonIndex == 1){
+        [self getActualLocationCoordinates];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
