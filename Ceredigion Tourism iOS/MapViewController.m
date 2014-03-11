@@ -251,7 +251,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // called after the alert view is pressed. Move views here.
     if(buttonIndex == 0){
         NSLog(@"Try again, go back");
         [self.tabBarController.navigationController popViewControllerAnimated:YES];
@@ -259,7 +258,6 @@
     else if(buttonIndex == 1){
         [self getActualLocationCoordinates];
     }
-
 }
 
 - (void)didReceiveMemoryWarning

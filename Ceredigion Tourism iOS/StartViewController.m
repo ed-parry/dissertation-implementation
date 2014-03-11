@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad
 {
+    
+    self.navigationController.navigationBarHidden = TRUE;
     [self.view setBackgroundColor:[UIColor colorWithRed:35.0/255.0
                                                   green:164.0/255.0
                                                    blue:219.0/255.0
@@ -106,6 +108,16 @@
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useCurrentLocationPosition:_locationManager];
     }
+}
+
+// Small delegate methods to hide and show the nav bar on the home display.
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = FALSE;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = TRUE;
 }
 
 - (void)didReceiveMemoryWarning
