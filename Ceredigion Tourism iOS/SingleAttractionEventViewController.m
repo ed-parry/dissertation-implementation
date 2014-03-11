@@ -49,6 +49,12 @@
             eventController.eventStore = eventStore;
             eventController.editViewDelegate = self;
             
+            EKEvent *attractionEvent = [EKEvent eventWithEventStore:eventStore];
+            attractionEvent.title = _thisAttraction.name;
+            attractionEvent.location = _thisAttraction.address;
+            
+            eventController.event = attractionEvent;
+            
             [self presentViewController:eventController animated:YES completion:nil];
         }
         else{
