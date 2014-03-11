@@ -108,7 +108,10 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
+            [self showUIAlertView:address];
             NSLog(@"%@", error);
+            // the below line needs to happen after they press "OK".
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
             GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
@@ -236,6 +239,16 @@
             }
         }
     }
+}
+
+- (void)showUIAlertView:(NSString *)searchText
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not Found", searchText]
+                                                    message:@"The place that you searched for cannot be found on the map. Please try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
