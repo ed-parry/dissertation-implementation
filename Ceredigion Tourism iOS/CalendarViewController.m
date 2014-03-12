@@ -33,8 +33,10 @@
 - (bool)isDateWithinEventsArray:(NSDate *)date
 {
     [self addEventsToLocalArray];
-    if([_allEventDates containsObject:date]){
-        return YES;
+    for(NSDate *arrayDate in _allEventDates){
+        if([date isEqualToDate:arrayDate]){
+            return TRUE;
+        }
     }
     return NO;
 }
@@ -60,6 +62,38 @@
 {
     _dataManager = [[CoreDataManager alloc] init];
     _allEventDates = [_dataManager getAllEventDates];
+    _allEventDates = [self stripTimeFromDatesArray:_allEventDates];
+}
+
+- (NSArray *)stripTimeFromDatesArray:(NSArray *)datesArray
+{
+    NSMutableArray *newDatesArray = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    for(NSDate *date in datesArray){
+        NSString *dateString = [NSString stringWithFormat:@"%@", date];
+        NSString *dateSegment = [dateString substringToIndex:10];
+        dateSegment = [self switchDateStringOrder:dateSegment];
+
+        NSDate *newDate = [dateFormatter dateFromString:dateSegment];
+        [newDatesArray addObject:newDate];
+    }
+    return newDatesArray;
+}
+
+- (NSString *)switchDateStringOrder:(NSString *)date
+{
+    NSRange yearRange = NSMakeRange(0, 4);
+    NSRange monthRange = NSMakeRange(5, 7- 5);
+    NSRange dayRange = NSMakeRange(8, 10-8);
+    
+    NSString *yearSegment = [date substringWithRange:yearRange];
+    NSString *monthSegment = [date substringWithRange:monthRange];
+    NSString *daySegment = [date substringWithRange:dayRange];
+    
+    return [NSString stringWithFormat:@"%@-%@-%@", daySegment, monthSegment, yearSegment];
 }
 
 // Bit of a hack to fix the clear navigation bar.
