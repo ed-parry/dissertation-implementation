@@ -55,7 +55,23 @@
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
 {
     [self addEventsToLocalArray];
-    [calendarView markDates:_allEventDates];
+    NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month]];
+    [calendarView markDates:allEventsForActiveMonth];
+}
+
+- (NSArray *)removeEventsNotInActiveMonth:(int)month
+{
+    NSMutableArray *newEventsArray = [[NSMutableArray alloc] init];
+    for(NSDate *date in _allEventDates){
+        NSString *dateString = [NSString stringWithFormat:@"%@", date];
+        NSRange monthRange = NSMakeRange(5, 7- 5);
+        NSString *monthString = [dateString substringWithRange:monthRange];
+        int thisMonth = [monthString intValue];
+        if(thisMonth == month){
+            [newEventsArray addObject:date];
+        }
+    }
+    return newEventsArray;
 }
 
 - (void)addEventsToLocalArray
