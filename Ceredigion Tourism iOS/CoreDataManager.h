@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @interface CoreDataManager : NSObject
-- (void)saveCSVToCoreData:(NSString *)csvFileLocation;
+- (void)saveCSVToCoreData:(NSString *)csvFileLocation ofType:(NSString *)type;
 - (NSArray *) getAllAttractionPositions;
 - (NSArray *) getAllAttractionGroupTypes;
 - (NSArray *) getAllAttractionsInGroupArrays;

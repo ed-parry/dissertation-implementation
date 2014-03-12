@@ -9,36 +9,52 @@
 #import "CoreDataManager.h"
 #import "CHCSVParser.h"
 #import "Attraction.h"
+#import "Event.h"
 #import "AppDelegate.h"
 
 
 @interface CoreDataManager ()
 @property NSArray *attractions;
+@property NSArray *events;
+@property NSString *currentDataType;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation CoreDataManager
 
-- (void)saveCSVToCoreData:(NSString *)csvFileLocation
+- (void)saveCSVToCoreData:(NSString *)csvFileLocation ofType:(NSString *)type
 {
-    [self makeArrayFromCSVFile:csvFileLocation];
-    [self cleanCoreData];
-    int counter = 0;
-    for (NSArray *singleAttractionArray in _attractions){
-        [self makeAttractionObjectFromArray:singleAttractionArray :counter];
-        counter++;
+    _currentDataType = type; // may not need this.
+    [self makeArrayFromCSVFile:csvFileLocation ofType:type];
+
+
+    if([_currentDataType isEqualToString:@"attractions"]){
+        [self cleanCoreData:@"Attractions"];
+        int counter = 0;
+        for (NSArray *singleAttractionArray in _attractions){
+            [self makeAttractionObjectFromArray:singleAttractionArray :counter];
+            counter++;
+        }
+    }
+    else if([_currentDataType isEqualToString:@"events"]){
+        [self cleanCoreData:@"Events"];
+        int counter = 0;
+        for (NSArray *singleEventArray in _events){
+            [self makeEventObjectFromArray:singleEventArray :counter];
+            counter++;
+        }
     }
 }
 
 // Removes all existing data from the database, incase of duplicates coming from the CSV file.
-- (void)cleanCoreData
+- (void)cleanCoreData:(NSString *)entity
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     
     NSFetchRequest * allAttractions = [[NSFetchRequest alloc] init];
-    [allAttractions setEntity:[NSEntityDescription entityForName:@"Attractions" inManagedObjectContext:context]];
+    [allAttractions setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:context]];
     [allAttractions setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
 
     NSArray * attractions = [context executeFetchRequest:allAttractions error:&error];
@@ -77,20 +93,52 @@
     [context save:&error];
 }
 
-- (void)makeArrayFromCSVFile:(NSString *)csvFileLocation
+- (void)addEventToCoreData:(Event *)event
 {
-    _attractions = [NSArray arrayWithContentsOfCSVFile:csvFileLocation
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error; // maybe pull this out?
+    NSManagedObject *newEvent;
+    newEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Events" inManagedObjectContext:context];
+    
+    NSNumber *eventId = [NSNumber numberWithInt:event.id];
+    
+    [newEvent setValue: eventId forKey:@"id"];
+    [newEvent setValue: event.title forKey:@"title"];
+    [newEvent setValue: event.descriptionText forKey:@"descriptionText"];
+    [newEvent setValue: event.location forKey:@"location"];
+    [newEvent setValue: event.latitude forKey:@"latitude"];
+    [newEvent setValue: event.longitude forKey:@"longitude"];
+    [newEvent setValue: event.startDate forKey:@"startDate"];
+    [newEvent setValue: event.startTime forKey:@"startTime"];
+    [newEvent setValue: event.endDate forKey:@"endDate"];
+    [newEvent setValue: event.endTime forKey:@"endTime"];
+    
+    [context save:&error];
+}
+
+- (void)makeArrayFromCSVFile:(NSString *)csvFileLocation ofType:(NSString *)type
+{
+    NSArray *dataArray;
+    dataArray = [NSArray arrayWithContentsOfCSVFile:csvFileLocation
                                                options:CHCSVParserOptionsRecognizesBackslashesAsEscapes
                                              delimiter:'\t'];
     
     // remove the first item, because that's the "heading" line from the CSV file.
     // also remove all blank items because they can't become Attraction objects.
-    NSMutableArray *tempAttractions = [_attractions mutableCopy];
-    [tempAttractions removeObjectAtIndex:0];
+    NSMutableArray *tempDataArray = [dataArray mutableCopy];
+    [tempDataArray removeObjectAtIndex:0];
     
-    tempAttractions = [self removeEmptyLinesFromArray:tempAttractions];
+    tempDataArray = [self removeEmptyLinesFromArray:tempDataArray];
     
-    _attractions = [tempAttractions mutableCopy];
+    dataArray = [tempDataArray mutableCopy];
+    
+    if([type isEqualToString:@"attractions"]){
+        _attractions = dataArray;
+    }
+    else if([type isEqualToString:@"events"]){
+        _events = dataArray;
+    }
 }
 
 - (void)makeAttractionObjectFromArray:(NSArray *)singleAttractionArray :(int)counter
@@ -119,6 +167,23 @@
     }
     
     [self addAttractionToCoreData:newAttraction];
+}
+
+- (void)makeEventObjectFromArray:(NSArray *)singleEventArray :(int)counter
+{
+    Event *newEvent = [[Event alloc] init];
+    newEvent.id = counter;
+    newEvent.title = [singleEventArray objectAtIndex:4];
+    newEvent.descriptionText = [singleEventArray objectAtIndex:5];
+    newEvent.location = [singleEventArray objectAtIndex:6];
+    newEvent.latitude = [singleEventArray objectAtIndex:7];
+    newEvent.longitude = [singleEventArray objectAtIndex:8];
+    newEvent.startDate = [singleEventArray objectAtIndex:0];
+    newEvent.startTime = [singleEventArray objectAtIndex:2];
+    newEvent.endDate = [singleEventArray objectAtIndex:1];
+    newEvent.endTime = [singleEventArray objectAtIndex:3];
+    
+    [self addEventToCoreData:newEvent];
 }
 
 - (NSString *)stripHTMLFromString:(NSString *)stringToStrip

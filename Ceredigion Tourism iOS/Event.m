@@ -1,13 +1,13 @@
 //
-//  CSVCalendarDataManager.h
+//  Event.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 12/03/2014.
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Event.h"
 
-@interface CSVCalendarDataManager : NSObject
+@implementation Event
 
 @end

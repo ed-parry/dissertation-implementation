@@ -8,6 +8,8 @@
 
 #import "StartViewController.h"
 #import "CSVDataManager.h"
+#import "AttractionsDataManager.h"
+#import "EventsDataManager.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
@@ -53,8 +55,11 @@
 {
     // need to fetch both attractions and events
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
+    AttractionsDataManager *attractionsDataManager = [[AttractionsDataManager alloc] init];
+    EventsDataManager *eventsDataManager = [[EventsDataManager alloc] init];
     if([dataManager isConnectionAvailable]){
-        [dataManager saveDataFromURL];
+        [attractionsDataManager saveDataFromURL];
+        [eventsDataManager saveDataFromURL];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"

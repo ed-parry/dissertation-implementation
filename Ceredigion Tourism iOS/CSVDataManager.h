@@ -10,9 +10,12 @@
 
 @interface CSVDataManager : NSObject
 
-- (void)saveDataFromURL;
-- (void)saveDataFromURLReset;
-
-// Checks whether we have a usable Internet connection
 - (bool)isConnectionAvailable;
+- (NSDate *)getLastUpdatedDateOfServerCSV:(NSString *)urlString;
+- (NSDate *)getLastFetchedDate;
+- (void)removeExistingFetchedDate;
+- (void)saveLastFetchedDate:(NSString *)date;
+- (bool)recentFileExists;
+- (NSString *)getTodaysDate;
+
 @end

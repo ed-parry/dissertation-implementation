@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 #import "CoreDataManager.h"
 #import "CSVDataManager.h"
+#import "AttractionsDataManager.h"
 #import "MapDataManager.h"
 #import "GroupDataManager.h"
 #import "Attraction.h"
@@ -99,8 +100,8 @@
 
 - (IBAction)dataRefreshButton:(id)sender {
     // call a function to reset the data
-    CSVDataManager *csvFetch = [[CSVDataManager alloc] init];
-    [csvFetch saveDataFromURLReset];
+    AttractionsDataManager *attractionsDataManager = [[AttractionsDataManager alloc] init];
+    [attractionsDataManager saveDataFromURLReset];
 }
 
 - (void)setGroupSelectionValues

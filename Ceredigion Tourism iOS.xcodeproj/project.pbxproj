@@ -54,7 +54,9 @@
 		6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D618B39396006BE307 /* OpenGLES.framework */; };
 		6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D818B393A2006BE307 /* QuartzCore.framework */; };
 		6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */; };
-		6DD8969218D067BF00BCE840 /* CSVCalendarDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */; };
+		6DD8969518D06A8A00BCE840 /* EventsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8969418D06A8A00BCE840 /* EventsDataManager.m */; };
+		6DD8969818D06A9800BCE840 /* AttractionsDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8969718D06A9800BCE840 /* AttractionsDataManager.m */; };
+		6DD8969B18D06F9300BCE840 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8969A18D06F9300BCE840 /* Event.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,8 +133,12 @@
 		6DD178D618B39396006BE307 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6DD178D818B393A2006BE307 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6DD8969018D067BF00BCE840 /* CSVCalendarDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSVCalendarDataManager.h; sourceTree = "<group>"; };
-		6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVCalendarDataManager.m; sourceTree = "<group>"; };
+		6DD8969318D06A8A00BCE840 /* EventsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsDataManager.h; sourceTree = "<group>"; };
+		6DD8969418D06A8A00BCE840 /* EventsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsDataManager.m; sourceTree = "<group>"; };
+		6DD8969618D06A9800BCE840 /* AttractionsDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionsDataManager.h; sourceTree = "<group>"; };
+		6DD8969718D06A9800BCE840 /* AttractionsDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionsDataManager.m; sourceTree = "<group>"; };
+		6DD8969918D06F9300BCE840 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		6DD8969A18D06F9300BCE840 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,14 +187,16 @@
 			children = (
 				6D749AA318B25D6700E06D7F /* CSVDataManager.h */,
 				6D749AA418B25D6700E06D7F /* CSVDataManager.m */,
+				6DD8969318D06A8A00BCE840 /* EventsDataManager.h */,
+				6DD8969418D06A8A00BCE840 /* EventsDataManager.m */,
+				6DD8969618D06A9800BCE840 /* AttractionsDataManager.h */,
+				6DD8969718D06A9800BCE840 /* AttractionsDataManager.m */,
 				6D749AA618B2618E00E06D7F /* CoreDataManager.h */,
 				6D749AA718B2618E00E06D7F /* CoreDataManager.m */,
 				6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */,
 				6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */,
 				6D0AC0DC18C8E86700091562 /* GroupDataManager.h */,
 				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
-				6DD8969018D067BF00BCE840 /* CSVCalendarDataManager.h */,
-				6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +309,8 @@
 				6D749A9818B2566900E06D7F /* Model.xcdatamodeld */,
 				6D749AA018B258DE00E06D7F /* Attraction.h */,
 				6D749AA118B258DE00E06D7F /* Attraction.m */,
+				6DD8969918D06F9300BCE840 /* Event.h */,
+				6DD8969A18D06F9300BCE840 /* Event.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -463,13 +473,15 @@
 				6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */,
 				6D58575C18B2537600306327 /* main.m in Sources */,
 				6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */,
+				6DD8969518D06A8A00BCE840 /* EventsDataManager.m in Sources */,
 				6D749AA518B25D6700E06D7F /* CSVDataManager.m in Sources */,
 				6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */,
 				6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */,
+				6DD8969B18D06F9300BCE840 /* Event.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
+				6DD8969818D06A9800BCE840 /* AttractionsDataManager.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
-				6DD8969218D067BF00BCE840 /* CSVCalendarDataManager.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
