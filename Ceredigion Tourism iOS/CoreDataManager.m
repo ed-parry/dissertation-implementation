@@ -321,4 +321,46 @@
     return sortedArray;
 }
 
+
+// EVENTS RETRIEVAL CODE
+- (NSArray *)getAllEvents
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *allEventsRequest = [[NSFetchRequest alloc] init];
+    [allEventsRequest setEntity:[NSEntityDescription entityForName:@"Events" inManagedObjectContext:context]];
+    [allEventsRequest setIncludesPropertyValues:YES];
+    
+    NSArray *allEventsArray = [context executeFetchRequest:allEventsRequest error:&error];
+    
+    [context save:&error];
+    return allEventsArray;
+}
+
+- (Event *)getSingleEventByTitle:(NSString *)title
+{
+    Event *singleEvent = [[Event alloc] init];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *singleEventRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Events" inManagedObjectContext:context];
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"title==%@",title];
+    [singleEventRequest setEntity:entity];
+    [singleEventRequest setPredicate:predicate];
+    [singleEventRequest setIncludesPropertyValues:YES];
+    
+    NSArray *returnedEvents = [[context executeFetchRequest:singleEventRequest error:&error] mutableCopy];
+    if([returnedEvents count] > 0){
+        singleEvent = [returnedEvents objectAtIndex:0];
+    }
+    else{
+        singleEvent = nil;
+    }
+    return singleEvent;
+}
+
 @end
