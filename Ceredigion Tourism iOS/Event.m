@@ -12,28 +12,20 @@
 
 - (NSDate *) getStartAsNSDate
 {
-    if([self.startTime length] == 0){
-        self.startTime = @"00:00";
-    }
-    NSString *tempStartDateTime = [NSString stringWithFormat:@"%@ %@",self.startDate,self.startTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yy HH:mm"];
-    NSDate* startDateTime = [dateFormatter dateFromString:tempStartDateTime];
-    
-    return startDateTime;
+    _startDateTime = [dateFormatter dateFromString:[self startDateTimeString]];
+
+    return _startDateTime;
 }
 
 - (NSDate *) getEndAsNSDate
 {
-    if([self.endTime length] == 0){
-        self.endTime = @"00:00";
-    }
-    NSString *tempEndDateTime = [NSString stringWithFormat:@"%@ %@",self.startDate,self.startTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yy HH:mm"];
-    NSDate* endDateTime = [dateFormatter dateFromString:tempEndDateTime];
-    
-    return endDateTime;
+    _endDateTime = [dateFormatter dateFromString:[self endDateTimeString]];
+
+    return _endDateTime;
 }
 
 @end

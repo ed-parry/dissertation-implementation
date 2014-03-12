@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Event.h"
 
 @interface CoreDataManager : NSObject
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation ofType:(NSString *)type;
@@ -16,4 +17,8 @@
 - (NSArray *) getAllAttractionsInGroupArrays;
 - (NSString *)stripHTMLFromString:(NSString *)stringToStrip;
 - (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)unsortedArray forArrayType:(NSString *)arrayType;
+
+- (NSArray *)getAllEvents;
+- (Event *)getSingleEventByTitle:(NSString *)title;
+- (NSArray *)getAllEventDates;
 @end

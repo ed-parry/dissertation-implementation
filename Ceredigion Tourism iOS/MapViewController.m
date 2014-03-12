@@ -252,7 +252,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        NSLog(@"Try again, go back");
         [self.tabBarController.navigationController popViewControllerAnimated:YES];
     }
     else if(buttonIndex == 1){

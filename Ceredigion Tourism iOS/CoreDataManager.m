@@ -177,10 +177,23 @@
     newEvent.location = [singleEventArray objectAtIndex:6];
     newEvent.latitude = [singleEventArray objectAtIndex:7];
     newEvent.longitude = [singleEventArray objectAtIndex:8];
-    newEvent.startDate = [singleEventArray objectAtIndex:0];
-    newEvent.startTime = [singleEventArray objectAtIndex:2];
-    newEvent.endDate = [singleEventArray objectAtIndex:1];
-    newEvent.endTime = [singleEventArray objectAtIndex:3];
+
+    NSString *startDate = [singleEventArray objectAtIndex:0];
+    NSString *startTime = [singleEventArray objectAtIndex:2];
+    NSString *endDate = [singleEventArray objectAtIndex:1];
+    NSString *endTime = [singleEventArray objectAtIndex:3];
+    
+    if([startTime length] == 0){
+        startTime = @"00:00";
+    }
+    if([endTime length] == 0){
+        endTime = @"00:00";
+    }
+    NSString *startDateTimeString = [NSString stringWithFormat:@"%@ %@",startDate,startTime];
+    NSString *endDateTimeString = [NSString stringWithFormat:@"%@ %@",endDate,endTime];
+    
+    newEvent.startDateTimeString = startDateTimeString;
+    newEvent.endDateTimeString = endDateTimeString;
     
     [self addEventToCoreData:newEvent];
 }
@@ -337,6 +350,18 @@
     
     [context save:&error];
     return allEventsArray;
+}
+
+- (NSArray *)getAllEventDates
+{
+    NSArray *allEvents = [self getAllEvents];
+    NSMutableArray *allEventDates = [[NSMutableArray alloc] init];
+    for (Event *event in allEvents){
+        [allEventDates addObject:event.startDateTime];
+        [allEventDates addObject:event.endDateTime];
+    }
+    NSArray *allReturnedEventDates = [[NSArray alloc] initWithArray:allEventDates];
+    return allReturnedEventDates;
 }
 
 - (Event *)getSingleEventByTitle:(NSString *)title
