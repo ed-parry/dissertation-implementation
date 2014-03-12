@@ -10,4 +10,30 @@
 
 @implementation Event
 
+- (NSDate *) getStartAsNSDate
+{
+    NSString *tempStartDateTime = [NSString stringWithFormat:@"%@ %@",self.startDate,self.startTime];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"MM-dd-yy hh:mm a"];
+    
+    NSDate* startDateTime = [dateFormatter dateFromString:tempStartDateTime];
+    
+    return startDateTime;
+}
+
+- (NSDate *) getEndAsNSDate
+{
+    NSString *tempEndDateTime = [NSString stringWithFormat:@"%@ %@",self.startDate,self.startTime];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"MM-dd-yy hh:mm a"];
+    
+    NSDate* endDateTime = [dateFormatter dateFromString:tempEndDateTime];
+    
+    return endDateTime;
+}
+
 @end

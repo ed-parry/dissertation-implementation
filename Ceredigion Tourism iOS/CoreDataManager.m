@@ -27,7 +27,6 @@
     _currentDataType = type; // may not need this.
     [self makeArrayFromCSVFile:csvFileLocation ofType:type];
 
-
     if([_currentDataType isEqualToString:@"attractions"]){
         [self cleanCoreData:@"Attractions"];
         int counter = 0;
@@ -102,6 +101,8 @@
     newEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Events" inManagedObjectContext:context];
     
     NSNumber *eventId = [NSNumber numberWithInt:event.id];
+    NSString *startDateTime = [NSString stringWithFormat:@"%@", event.getStartAsNSDate];
+    NSString *endDateTime = [NSString stringWithFormat:@"%@", event.getEndAsNSDate];
     
     [newEvent setValue: eventId forKey:@"id"];
     [newEvent setValue: event.title forKey:@"title"];
@@ -109,10 +110,8 @@
     [newEvent setValue: event.location forKey:@"location"];
     [newEvent setValue: event.latitude forKey:@"latitude"];
     [newEvent setValue: event.longitude forKey:@"longitude"];
-    [newEvent setValue: event.startDate forKey:@"startDate"];
-    [newEvent setValue: event.startTime forKey:@"startTime"];
-    [newEvent setValue: event.endDate forKey:@"endDate"];
-    [newEvent setValue: event.endTime forKey:@"endTime"];
+    [newEvent setValue: startDateTime forKey:@"startDateTime"];
+    [newEvent setValue: endDateTime forKey:@"endDateTime"];
     
     [context save:&error];
 }

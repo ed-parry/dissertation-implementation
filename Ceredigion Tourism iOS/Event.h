@@ -20,8 +20,6 @@
 @property (strong, nonatomic) NSString *endDate;
 @property (strong, nonatomic) NSString *endTime;
 
-// The date & time values pushed together into NSDate values.
-// Not yet used, but likely will be useful on the calendar view.
-@property (strong, nonatomic) NSDate *startDateTime;
-@property (strong, nonatomic) NSDate *endDateTime;
+- (NSDate *) getStartAsNSDate;
+- (NSDate *) getEndAsNSDate;
 @end
