@@ -109,7 +109,8 @@
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
     _attractionGroups = [groupDataManager getAllowedGroupsFromPlist];
 
-    [_groupTableView reloadData];
+    // Fix this line
+//    [_groupTableView reloadData];
 }
 
 - (void)setRadiusSettingsValue
