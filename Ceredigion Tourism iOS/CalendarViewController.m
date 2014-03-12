@@ -10,10 +10,10 @@
 #import "CoreDataManager.h"
 #import "VRGCalendarView.h"
 
-
 @interface CalendarViewController () <VRGCalendarViewDelegate>
 @property NSArray *allEventDates;
 @property CoreDataManager *dataManager;
+@property (strong, nonatomic) IBOutlet UIButton *viewEventsButton;
 @end
 
 @implementation CalendarViewController
@@ -21,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [_viewEventsButton setHidden:YES];
 
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
     calendar.delegate = self;
@@ -41,10 +43,10 @@
 {
     bool showEventButton = [self isDateWithinEventsArray:date];
     if(showEventButton){
-        // show the event button.
+        [_viewEventsButton setHidden:NO];
     }
     else{
-        // don't show the event button, maybe hide it by force.
+        [_viewEventsButton setHidden:YES];
     }
 }
 
@@ -65,7 +67,7 @@
 {
     self.navigationController.navigationBar.translucent = NO;
 }
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.translucent = YES;
 }
