@@ -13,6 +13,7 @@
 @interface CalendarViewController () <VRGCalendarViewDelegate>
 @property NSArray *allEventDates;
 @property CoreDataManager *dataManager;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIButton *viewEventsButton;
 @end
 

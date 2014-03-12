@@ -9,14 +9,14 @@
             <objects>
                 <viewController title="New Search" id="vXZ-lx-hvc" customClass="StartViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eAb-JC-MN4"/>
-                        <viewControllerLayoutGuide type="bottom" id="q7Y-fa-v4r"/>
+                        <viewControllerLayoutGuide type="top" id="fxc-Kx-rTn"/>
+                        <viewControllerLayoutGuide type="bottom" id="PK0-dO-XCk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place name to search" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-cN-jMC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place name to search" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-cN-jMC">
                                 <rect key="frame" x="20" y="225" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -29,24 +29,18 @@
                                     <segue destination="zeh-uP-Jhx" kind="push" identifier="searchBarSegue" id="17c-Zs-MeP"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Events, Attractions &amp; Activities Catalogue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="p9P-Xc-2CU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events, Attractions &amp; Activities Catalogue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="p9P-Xc-2CU">
                                 <rect key="frame" x="6" y="140" width="308" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="b9j-LU-06h"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.241883553126164" green="0.37732818895077641" blue="0.43979193239795922" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-PO-JcL">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3r-PO-JcL">
                                 <rect key="frame" x="83" y="263" width="155" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="ymr-Rq-HyM"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Use Current Location">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,7 +50,7 @@
                                     <segue destination="zeh-uP-Jhx" kind="push" identifier="currentLocationSegue" id="riR-6I-hez"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhc-Qh-vAR">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhc-Qh-vAR">
                                 <rect key="frame" x="149" y="438" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -69,12 +63,9 @@
                                     <segue destination="Ppq-eM-k7O" kind="push" id="RpD-Kd-wrK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ceredigion Tourism" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5J-Rh-xYQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ceredigion Tourism" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5J-Rh-xYQ">
                                 <rect key="frame" x="20" y="82" width="281" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="OFa-uJ-LFg"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -82,21 +73,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20630964124801543" green="0.53445949332219622" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.96921180206066848" green="0.97632334183673475" blue="0.96475528478887018" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="n3r-PO-JcL" firstAttribute="centerX" secondItem="Vhc-Qh-vAR" secondAttribute="centerX" id="3vG-FF-Au6"/>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="B5R-1C-E01"/>
-                            <constraint firstItem="J5J-Rh-xYQ" firstAttribute="top" secondItem="eAb-JC-MN4" secondAttribute="bottom" constant="18" id="Jzi-1b-QPj"/>
-                            <constraint firstItem="n3r-PO-JcL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="83" id="S3N-h6-WfH"/>
-                            <constraint firstItem="n3r-PO-JcL" firstAttribute="centerX" secondItem="uM9-cN-jMC" secondAttribute="centerX" id="XFc-qe-6tO"/>
-                            <constraint firstItem="J5J-Rh-xYQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="Z8r-Ie-YMB"/>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="leading" secondItem="J5J-Rh-xYQ" secondAttribute="leading" id="hR2-uA-TSx"/>
-                            <constraint firstItem="J5J-Rh-xYQ" firstAttribute="centerX" secondItem="p9P-Xc-2CU" secondAttribute="centerX" id="hbX-CU-2b9"/>
-                            <constraint firstItem="n3r-PO-JcL" firstAttribute="top" secondItem="uM9-cN-jMC" secondAttribute="bottom" constant="8" symbolic="YES" id="hiW-fo-HUH"/>
-                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="top" secondItem="J5J-Rh-xYQ" secondAttribute="bottom" constant="8" symbolic="YES" id="knO-Hu-eAf"/>
-                            <constraint firstAttribute="bottom" secondItem="Vhc-Qh-vAR" secondAttribute="bottom" constant="20" symbolic="YES" id="lYh-wl-4RT"/>
-                            <constraint firstItem="uM9-cN-jMC" firstAttribute="centerX" secondItem="p9P-Xc-2CU" secondAttribute="centerX" id="nOn-1d-h3A"/>
-                            <constraint firstItem="p9P-Xc-2CU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="6" id="szo-61-pOn"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Search" id="aRQ-Tv-ZA0"/>
                     <connections>
@@ -112,8 +88,8 @@
             <objects>
                 <viewController id="Ppq-eM-k7O" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0FH-A2-wR5"/>
-                        <viewControllerLayoutGuide type="bottom" id="vQf-yc-S5r"/>
+                        <viewControllerLayoutGuide type="top" id="dd2-9a-wRP"/>
+                        <viewControllerLayoutGuide type="bottom" id="cqG-Ni-REn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="log-RI-LAv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -131,8 +107,8 @@
             <objects>
                 <viewController id="wC6-H5-ytp" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7ki-bh-Dbj"/>
-                        <viewControllerLayoutGuide type="bottom" id="Cv7-8D-0FF"/>
+                        <viewControllerLayoutGuide type="top" id="dYV-gU-YUa"/>
+                        <viewControllerLayoutGuide type="bottom" id="TK8-oW-vNz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="m8F-Ir-vwr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -243,11 +219,11 @@
             <objects>
                 <viewController id="F95-fg-aCk" customClass="SingleAttractionEventViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="o4s-Tb-CSS"/>
-                        <viewControllerLayoutGuide type="bottom" id="MHx-3g-4wj"/>
+                        <viewControllerLayoutGuide type="top" id="umB-xZ-Qh2"/>
+                        <viewControllerLayoutGuide type="bottom" id="x9X-0a-7k0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k6g-eL-QmM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-0n-URk">
@@ -336,8 +312,8 @@
             <objects>
                 <viewController id="6oO-6S-qjB" customClass="CalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="59G-yT-2F7"/>
-                        <viewControllerLayoutGuide type="bottom" id="fJ5-0g-bLn"/>
+                        <viewControllerLayoutGuide type="top" id="IZw-dR-v8C"/>
+                        <viewControllerLayoutGuide type="bottom" id="sal-hy-jpW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yO1-Yc-ja6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -373,8 +349,8 @@
             <objects>
                 <viewController id="JnB-Lm-CNZ" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I2C-Be-Wyu"/>
-                        <viewControllerLayoutGuide type="bottom" id="u0X-Qb-rzM"/>
+                        <viewControllerLayoutGuide type="top" id="AAT-HI-Crj"/>
+                        <viewControllerLayoutGuide type="bottom" id="2eB-cw-6nk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rp4-IL-sXC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
@@ -535,6 +511,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="iqk-FG-hNu"/>
+        <segue reference="gHs-i9-oNr"/>
     </inferredMetricsTieBreakers>
 </document>
