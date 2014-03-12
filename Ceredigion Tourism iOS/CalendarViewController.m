@@ -13,6 +13,7 @@
 
 @interface CalendarViewController () <VRGCalendarViewDelegate>
 @property NSArray *allEventDates;
+@property CoreDataManager *dataManager;
 @end
 
 @implementation CalendarViewController
@@ -20,29 +21,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CoreDataManager *dataManager = [[CoreDataManager alloc] init];
+
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
     calendar.delegate = self;
-    
-    _allEventDates = [dataManager getAllEventDates];
-    
-    NSArray *tempDates = [[NSArray alloc] initWithObjects:[NSDate date], nil];
-    
-    NSArray *markerColours = [[NSArray alloc] initWithObjects:[UIColor redColor], [UIColor blueColor], nil];
-    
-    [calendar markDates:tempDates withColors:markerColours];
     
     [self.view addSubview:calendar];
 }
 
+- (bool)isDateWithinEventsArray:(NSDate *)date
+{
+    [self addEventsToLocalArray];
+    if([_allEventDates containsObject:date]){
+        return YES;
+    }
+    return NO;
+}
+
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
-    
+    bool showEventButton = [self isDateWithinEventsArray:date];
+    if(showEventButton){
+        // show the event button.
+    }
+    else{
+        // don't show the event button, maybe hide it by force.
+    }
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
 {
-    
+    [self addEventsToLocalArray];
+    [calendarView markDates:_allEventDates];
+}
+
+- (void)addEventsToLocalArray
+{
+    _dataManager = [[CoreDataManager alloc] init];
+    _allEventDates = [_dataManager getAllEventDates];
 }
 
 // Bit of a hack to fix the clear navigation bar.

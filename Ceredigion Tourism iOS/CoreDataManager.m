@@ -358,7 +358,16 @@
     NSMutableArray *allEventDates = [[NSMutableArray alloc] init];
     for (Event *event in allEvents){
         [allEventDates addObject:event.startDateTime];
-        [allEventDates addObject:event.endDateTime];
+        NSString *startDate = [[NSString stringWithFormat:@"%@",event.startDateTime] substringToIndex:10];
+        NSString *endDate = [[NSString stringWithFormat:@"%@", event.endDateTime] substringToIndex:10];
+        
+        if([startDate isEqualToString:endDate]){
+            // don't add the end date - it's the same as the start date anyway.
+        }
+        else{
+            [allEventDates addObject:event.endDateTime];
+        }
+
     }
     NSArray *allReturnedEventDates = [[NSArray alloc] initWithArray:allEventDates];
     return allReturnedEventDates;
