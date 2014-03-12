@@ -15,6 +15,7 @@
 @property NSString *baseServerURL;
 @property NSString *attractionsURL;
 @property NSString *calendarURL;
+@property NSString *dataURL;
 @end
 
 @implementation CSVDataManager
@@ -25,7 +26,6 @@
     
     // append the locations.csv to the base URL.
     _attractionsURL = [NSString stringWithFormat:@"%@locations.csv", _baseServerURL];
-    _calendarURL = [NSString stringWithFormat:@"%@calendar.csv", _baseServerURL];
     return self;
 }
 
@@ -69,6 +69,7 @@
 }
 
 // only to be called from the settings menu
+// TODO - may be removed at a later date.
 - (void)saveDataFromURLReset
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -96,6 +97,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+
     // if we have all of the data from the URL, save it to file
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     

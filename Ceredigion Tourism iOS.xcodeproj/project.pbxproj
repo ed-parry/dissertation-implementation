@@ -54,6 +54,7 @@
 		6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D618B39396006BE307 /* OpenGLES.framework */; };
 		6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178D818B393A2006BE307 /* QuartzCore.framework */; };
 		6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */; };
+		6DD8969218D067BF00BCE840 /* CSVCalendarDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		6DD178D618B39396006BE307 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6DD178D818B393A2006BE307 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6DD8969018D067BF00BCE840 /* CSVCalendarDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSVCalendarDataManager.h; sourceTree = "<group>"; };
+		6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVCalendarDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */,
 				6D0AC0DC18C8E86700091562 /* GroupDataManager.h */,
 				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
+				6DD8969018D067BF00BCE840 /* CSVCalendarDataManager.h */,
+				6DD8969118D067BF00BCE840 /* CSVCalendarDataManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
+				6DD8969218D067BF00BCE840 /* CSVCalendarDataManager.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

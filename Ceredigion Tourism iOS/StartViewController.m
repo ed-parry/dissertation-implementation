@@ -51,6 +51,7 @@
 
 - (void)setUpDataManager
 {
+    // need to fetch both attractions and events
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
     if([dataManager isConnectionAvailable]){
         [dataManager saveDataFromURL];
