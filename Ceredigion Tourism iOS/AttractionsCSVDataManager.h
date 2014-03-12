@@ -8,7 +8,7 @@
 
 #import "CSVDataManager.h"
 
-@interface AttractionsDataManager : CSVDataManager
+@interface AttractionsCSVDataManager : CSVDataManager
 - (void)saveDataFromURL;
 - (void)saveDataFromURLReset;
 @end

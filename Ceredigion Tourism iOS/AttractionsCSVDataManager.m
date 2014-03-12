@@ -1,28 +1,28 @@
 //
-//  EventsDataManager.m
+//  AttractionsDataManager.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 12/03/2014.
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "EventsDataManager.h"
+#import "AttractionsCSVDataManager.h"
 #import "CoreDataManager.h"
 
-@interface EventsDataManager ()
-    @property NSMutableData *dataReceived;
-    @property NSString *baseServerURL;
-    @property NSString *calendarURL;
+@interface AttractionsCSVDataManager ()
+@property NSMutableData *dataReceived;
+@property NSString *baseServerURL;
+@property NSString *attractionsURL;
 @end
 
-@implementation EventsDataManager
+@implementation AttractionsCSVDataManager
 
 - (id)init
 {
     _baseServerURL = @"http://www.cardigan.cc/app/";
     
-    // append the calendar.csv to the base URL.
-    _calendarURL = [NSString stringWithFormat:@"%@calendar.csv", _baseServerURL];
+    // append the locations.csv to the base URL.
+    _attractionsURL = [NSString stringWithFormat:@"%@locations.csv", _baseServerURL];
     return self;
 }
 
@@ -32,17 +32,17 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     NSDate *lastFetched = [super getLastFetchedDate];
-    NSDate *lastModified = [super getLastUpdatedDateOfServerCSV:_calendarURL];
+    NSDate *lastModified = [super getLastUpdatedDateOfServerCSV:_attractionsURL];
     
     if(lastModified == nil){
         // give it a second chance to get the HTTP header.
-        lastModified = [super getLastUpdatedDateOfServerCSV:_calendarURL];
+        lastModified = [super getLastUpdatedDateOfServerCSV:_attractionsURL];
     }
     
     // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
     if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
     {
-        NSURL *url = [NSURL URLWithString:_calendarURL];
+        NSURL *url = [NSURL URLWithString:_attractionsURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
@@ -61,7 +61,7 @@
 - (void)saveDataFromURLReset
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    NSURL *url = [NSURL URLWithString:_calendarURL];
+    NSURL *url = [NSURL URLWithString:_attractionsURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:30.0];
@@ -90,7 +90,7 @@
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     // Append today's date to the file name, so we know how old the data is in the future.
-    NSString *fullFileName = [NSString stringWithFormat:@"events-data-%@.csv", [self getTodaysDate]];
+    NSString *fullFileName = [NSString stringWithFormat:@"attractions-data-%@.csv", [self getTodaysDate]];
     
     NSString *fullFilePath = [NSString stringWithFormat:@"%@/%@", documentFolder, fullFileName];
     
@@ -103,7 +103,7 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    [coreDataManager saveCSVToCoreData:fullFilePath ofType:@"events"];
+    [coreDataManager saveCSVToCoreData:fullFilePath ofType:@"attractions"];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

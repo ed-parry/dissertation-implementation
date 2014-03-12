@@ -8,8 +8,8 @@
 
 #import "StartViewController.h"
 #import "CSVDataManager.h"
-#import "AttractionsDataManager.h"
-#import "EventsDataManager.h"
+#import "AttractionsCSVDataManager.h"
+#import "EventsCSVDataManager.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
@@ -55,8 +55,8 @@
 {
     // need to fetch both attractions and events
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
-    AttractionsDataManager *attractionsDataManager = [[AttractionsDataManager alloc] init];
-    EventsDataManager *eventsDataManager = [[EventsDataManager alloc] init];
+    AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
+    EventsCSVDataManager *eventsDataManager = [[EventsCSVDataManager alloc] init];
     if([dataManager isConnectionAvailable]){
         [attractionsDataManager saveDataFromURL];
         [eventsDataManager saveDataFromURL];
