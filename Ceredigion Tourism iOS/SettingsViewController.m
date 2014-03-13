@@ -219,8 +219,7 @@
     CGRect rect = CGRectMake(0, 0, 25, 25);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context,
-                                   [[colourAttractionObj getAttractionGroupColor:group] CGColor]);
+    //CGContextSetFillColorWithColor(context,[[colourAttractionObj getAttractionGroupColor:group] CGColor]);
     CGContextFillRect(context, rect);
     UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
     return colorImage;
