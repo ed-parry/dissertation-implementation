@@ -122,14 +122,24 @@
     double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
     
     int mapRadiusInt = (int)mapRadius;
-    _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", mapRadiusInt];
+    if(mapRadiusInt == 0){
+        _mapRadiusValueLabel.text = [NSString stringWithFormat:@"No map radius set"];
+    }
+    else{
+        _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", mapRadiusInt];
+    }
     _mapRadiusSlider.value = mapRadiusInt;
 }
 
 - (IBAction)radiusSliderValueChanged:(UISlider *)sender
 {
     int radiusValue = (int)sender.value;
-    _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", radiusValue];
+    if(radiusValue == 0){
+        _mapRadiusValueLabel.text = [NSString stringWithFormat:@"No map radius set"];
+    }
+    else{
+        _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", radiusValue];
+    }
     if(_mapDataManager){
         [_mapDataManager storeMapRadiusMetersInPlist:radiusValue];
     }
