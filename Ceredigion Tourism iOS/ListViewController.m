@@ -92,7 +92,7 @@
 
     
     NSString *group = [_attractionGroups objectAtIndex:section];
-    sectionHeadingLabel.backgroundColor = [self returnColorImageFromAttractionGroup:group];
+    sectionHeadingLabel.backgroundColor = [self returnColorForAttractionGroup:group withAlpha:1.0f];
     sectionHeadingLabel.text = [NSString stringWithFormat:@"   %@",[self tableView:tableView titleForHeaderInSection:section]];
     sectionHeadingLabel.textColor = [UIColor whiteColor];
     
@@ -102,16 +102,16 @@
     
     [headerView addSubview:sectionHeadingLabel];
     
-    headerView.backgroundColor = [self returnColorImageFromAttractionGroup:group];
+    headerView.backgroundColor = [self returnColorForAttractionGroup:group withAlpha:1.0f];
     
     return headerView;
 }
 
-- (UIColor *)returnColorImageFromAttractionGroup:(NSString *)group
+- (UIColor *)returnColorForAttractionGroup:(NSString *)group withAlpha:(CGFloat)alpha
 {
     Attraction *colourAttractionObj = [[Attraction alloc] init];
     
-    return [colourAttractionObj getAttractionGroupColour:group];
+    return [colourAttractionObj getAttractionGroupColour:group withAlpha:alpha];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -135,8 +135,8 @@
     static NSString *CellIdentifier = @"attractionListViewCells";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor = [self returnColorImageFromAttractionGroup:cellAttraction.group];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [self returnColorForAttractionGroup:cellAttraction.group withAlpha:0.1f];
+
     cell.textLabel.text = cellAttraction.name;
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     return cell;

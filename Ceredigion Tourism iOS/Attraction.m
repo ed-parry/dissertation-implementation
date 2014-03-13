@@ -40,39 +40,39 @@
     }
 }
 
-- (UIColor *)getAttractionGroupColour:(NSString *)group
+- (UIColor *)getAttractionGroupColour:(NSString *)group withAlpha:(CGFloat)alpha
 {
     if([group isEqualToString:@"Accommodation"]){
         // Green
-        return [UIColor colorWithRed:38.0f/255.0f green:186.0f/255.0f blue:56.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:38.0f/255.0f green:186.0f/255.0f blue:56.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Activity"]){
         // Red
-        return [UIColor colorWithRed:210.0f/255.0f green:34.0f/255.0f blue:59.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:210.0f/255.0f green:34.0f/255.0f blue:59.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Attraction"]){
         // Purple
-        return [UIColor colorWithRed:113.0f/255.0f green:44.0f/255.0f blue:177.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:113.0f/255.0f green:44.0f/255.0f blue:177.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Food & drink"]){
         // Light Blue
-        return [UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:229.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Retail"]){
         // Pink
-        return [UIColor colorWithRed:208.0f/255.0f green:78.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:208.0f/255.0f green:78.0f/255.0f blue:200.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Camp & caravan"]){
         // Yellow
-        return [UIColor colorWithRed:219.0f/255.0f green:206.0f/255.0f blue:4.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:219.0f/255.0f green:206.0f/255.0f blue:4.0f/255.0f alpha:alpha];
     }
     else if([group isEqualToString:@"Arts & crafts"]){
         // Brown
-        return [UIColor colorWithRed:122.0f/255.0f green:64.0f/255.0f blue:7.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:122.0f/255.0f green:64.0f/255.0f blue:7.0f/255.0f alpha:alpha];
     }
     else{
         // Dark Blue
-        return [UIColor colorWithRed:50.0f/255.0f green:82.0f/255.0f blue:189.0f/255.0f alpha:1.0f];
+        return [UIColor colorWithRed:50.0f/255.0f green:82.0f/255.0f blue:189.0f/255.0f alpha:alpha];
     }
 }
 @end

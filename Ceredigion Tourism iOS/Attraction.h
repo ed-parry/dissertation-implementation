@@ -24,6 +24,6 @@
 @property (nonatomic) BOOL hide;
 
 - (UIImage *)getAttractionGroupImage:(NSString *)group;
-- (UIColor *)getAttractionGroupColour:(NSString *)group;
+- (UIColor *)getAttractionGroupColour:(NSString *)group withAlpha:(CGFloat)alpha;
 
 @end
