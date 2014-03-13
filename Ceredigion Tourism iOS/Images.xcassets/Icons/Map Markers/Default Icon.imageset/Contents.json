@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "pin2.png"
+      "filename" : "default.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "pin2-1.png"
+      "filename" : "default-1.png"
     }
   ],
   "info" : {
