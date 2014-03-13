@@ -165,8 +165,6 @@
     
     // Added colour-based image as a key explanation.
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
-    cell.imageView.layer.cornerRadius = 25.0;
-    cell.imageView.layer.masksToBounds = YES;
     
     return cell;
 }
@@ -175,13 +173,7 @@
 {
     Attraction *colourAttractionObj = [[Attraction alloc] init];
     
-    CGRect rect = CGRectMake(0, 0, 25, 25);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    //CGContextSetFillColorWithColor(context,[[colourAttractionObj getAttractionGroupColor:group] CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
-    return colorImage;
+    return [colourAttractionObj getAttractionGroupImage:group];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
