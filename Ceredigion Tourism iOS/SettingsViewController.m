@@ -26,7 +26,10 @@
 
 - (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
 - (IBAction)dataRefreshButton:(id)sender;
-- (IBAction)mapRadiusSettingBar:(UISegmentedControl *)sender;
+
+- (IBAction)radiusSliderValueChanged:(UISlider *)sender;
+@property (strong, nonatomic) IBOutlet UISlider *mapRadiusSlider;
+@property (strong, nonatomic) IBOutlet UILabel *mapRadiusValueLabel;
 
 @end
 
@@ -118,65 +121,21 @@
     _mapDataManager = [[MapDataManager alloc] init];
     double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
     
-    _mapRadiusSettingsSegment.selectedSegmentIndex = [self getMapSegmentPositionFromRadius:mapRadius];
+    int mapRadiusInt = (int)mapRadius;
+    _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", mapRadiusInt];
+    _mapRadiusSlider.value = mapRadiusInt;
 }
 
-- (int)getMapSegmentPositionFromRadius:(int)mapRadius
+- (IBAction)radiusSliderValueChanged:(UISlider *)sender
 {
-    if(mapRadius == 0){
-        return 0;
-    }
-    else if(mapRadius == 1){
-        return 1;
-    }
-    else if(mapRadius == 5){
-        return 2;
-    }
-    else if(mapRadius == 10){
-        return 3;
-    }
-    else if(mapRadius == 20){
-        return 4;
-    }
-    else if(mapRadius == 25){
-        return 5;
+    int radiusValue = (int)sender.value;
+    _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", radiusValue];
+    if(_mapDataManager){
+        [_mapDataManager storeMapRadiusMetersInPlist:radiusValue];
     }
     else{
-        return 0;
-    }
-}
-
-- (IBAction)mapRadiusSettingBar:(UISegmentedControl *)sender
-{
-    int mapRadiusValue = sender.selectedSegmentIndex;
-    _mapDataManager = [[MapDataManager alloc] init];
-    
-    if(mapRadiusValue == 0){
-        [_mapDataManager storeMapRadiusMetersInPlist:0];
-    }
-    else if(mapRadiusValue == 1){
-        [_mapDataManager storeMapRadiusMetersInPlist:1];
-        // 1 mile
-    }
-    else if(mapRadiusValue == 2){
-        [_mapDataManager storeMapRadiusMetersInPlist:5];
-        // 5 mile
-    }
-    else if(mapRadiusValue == 3){
-        [_mapDataManager storeMapRadiusMetersInPlist:10];
-        // 10 mile
-    }
-    else if(mapRadiusValue == 4){
-        [_mapDataManager storeMapRadiusMetersInPlist:20];
-        // 20 mile
-    }
-    else if(mapRadiusValue == 5){
-        [_mapDataManager storeMapRadiusMetersInPlist:25];
-        // 25 mile
-    }
-    else{
-        // something went wrong, don't set a radius.
-        [_mapDataManager storeMapRadiusMetersInPlist:0];
+        _mapDataManager = [[MapDataManager alloc] init];
+        [_mapDataManager storeMapRadiusMetersInPlist:radiusValue];
     }
 }
 
@@ -201,7 +160,7 @@
 {
     static NSString *CellIdentifier = @"groupsList";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row];
+    cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row]; // TODO - monitor this, error thrown in Crashlytics
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
     // Added colour-based image as a key explanation.

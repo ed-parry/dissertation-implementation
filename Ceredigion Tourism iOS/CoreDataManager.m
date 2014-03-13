@@ -344,7 +344,7 @@
     
     NSFetchRequest *allEventsRequest = [[NSFetchRequest alloc] init];
     [allEventsRequest setEntity:[NSEntityDescription entityForName:@"Events" inManagedObjectContext:context]];
-    [allEventsRequest setIncludesPropertyValues:YES];
+    [allEventsRequest setIncludesPropertyValues:YES]; // TODO - monitor this, error thrown in Crashlytics.
     
     NSArray *allEventsArray = [context executeFetchRequest:allEventsRequest error:&error];
     
