@@ -193,7 +193,7 @@
             
                 // Make a new Attraciton object to grab the correct group colour.
                 Attraction *colourAttractionObj = [[Attraction alloc] init];
-                attractionMarker.icon = [colourAttractionObj getAttractionGroupColor:currentAttraction.group];
+                attractionMarker.icon = [colourAttractionObj getAttractionGroupImage:currentAttraction.group];
             
                 attractionMarker.map = _mapView;
             });

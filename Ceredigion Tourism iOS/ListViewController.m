@@ -84,6 +84,36 @@
     return _attractionGroups.count;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *sectionHeadingLabel = [[UILabel alloc] init];
+    sectionHeadingLabel.frame = CGRectMake(0, 0, 340, 20);
+    sectionHeadingLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:18];
+
+    
+    NSString *group = [_attractionGroups objectAtIndex:section];
+    sectionHeadingLabel.backgroundColor = [self returnColorImageFromAttractionGroup:group];
+    sectionHeadingLabel.text = [NSString stringWithFormat:@"   %@",[self tableView:tableView titleForHeaderInSection:section]];
+    sectionHeadingLabel.textColor = [UIColor whiteColor];
+    
+    CGRect newFrame;
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:newFrame];
+    
+    [headerView addSubview:sectionHeadingLabel];
+    
+    headerView.backgroundColor = [self returnColorImageFromAttractionGroup:group];
+    
+    return headerView;
+}
+
+- (UIColor *)returnColorImageFromAttractionGroup:(NSString *)group
+{
+    Attraction *colourAttractionObj = [[Attraction alloc] init];
+    
+    return [colourAttractionObj getAttractionGroupColour:group];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [_attractionGroups objectAtIndex:section];
@@ -102,12 +132,13 @@
     
     Attraction *cellAttraction = [thisGroupAttractions objectAtIndex:indexPath.row];
     
-    // Need to change this to have multiple arrays used, depending on the section...tough one to code on the fly. Break time.
     static NSString *CellIdentifier = @"attractionListViewCells";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    cell.backgroundColor = [self returnColorImageFromAttractionGroup:cellAttraction.group];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.text = cellAttraction.name;
-
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     return cell;
 }
 

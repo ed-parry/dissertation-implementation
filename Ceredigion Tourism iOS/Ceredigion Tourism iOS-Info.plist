@@ -27,6 +27,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Avenir-Light</string>
+		<string>Avenir-Medium</string>
 		<string>SourceCodePro-Light</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
