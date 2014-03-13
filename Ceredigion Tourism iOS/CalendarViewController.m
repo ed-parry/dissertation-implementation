@@ -10,11 +10,12 @@
 #import "CoreDataManager.h"
 #import "VRGCalendarView.h"
 
-@interface CalendarViewController () <VRGCalendarViewDelegate>
+@interface CalendarViewController () <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property NSArray *allEventDates;
 @property CoreDataManager *dataManager;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIButton *viewEventsButton;
+@property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
+@property (strong, nonatomic) NSString *selectedDay;
 @end
 
 @implementation CalendarViewController
@@ -23,7 +24,10 @@
 {
     [super viewDidLoad];
     
-    [_viewEventsButton setHidden:YES];
+    [_dayEventsTable setHidden:YES];
+    
+    _dayEventsTable.delegate = self;
+    _dayEventsTable.dataSource = self;
 
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
     calendar.delegate = self;
@@ -46,11 +50,14 @@
 {
     bool showEventButton = [self isDateWithinEventsArray:date];
     if(showEventButton){
-        [_viewEventsButton setHidden:NO];
+        [_dayEventsTable setHidden:NO];
+        _selectedDay = [NSString stringWithFormat:@"%@", date];
+        [_dayEventsTable reloadData];
     }
     else{
-        [_viewEventsButton setHidden:YES];
+        [_dayEventsTable setHidden:YES];
     }
+
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
@@ -100,6 +107,82 @@
     return newDatesArray;
 }
 
+- (NSString *)getTextualDate:(NSString *)date
+{
+    NSRange monthRange = NSMakeRange(5, 7- 5);
+    NSRange dayRange = NSMakeRange(8, 10- 8);
+    
+    int monthNumber = [[date substringWithRange:monthRange] integerValue];
+    int dayNumber = [[date substringWithRange:dayRange] integerValue];
+    
+    NSString *monthText = [self getTextMonthFromNumber:monthNumber];
+    NSString *dayText = [self getTextDayFromNumber:dayNumber];
+    
+    return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
+}
+
+- (NSString *)getTextDayFromNumber:(int)day
+{
+    day++;
+    int j = day % 10;
+    if (j == 1 && day != 11) {
+        return [NSString stringWithFormat:@"%ist", day];
+    }
+    if (j == 2 && day != 12) {
+        return [NSString stringWithFormat:@"%ind", day];
+    }
+    if (j == 3 && day != 13) {
+        return [NSString stringWithFormat:@"%ird", day];
+    }
+    return [NSString stringWithFormat:@"%ith", day];
+}
+
+- (NSString *)getTextMonthFromNumber:(int)month
+{
+    switch(month)
+    {
+        case 1:
+            return @"January";
+            break;
+        case 2:
+            return @"February";
+            break;
+        case 3:
+            return @"March";
+            break;
+        case 4:
+            return @"April";
+            break;
+        case 5:
+            return @"May";
+            break;
+        case 6:
+            return @"June";
+            break;
+        case 7:
+            return @"July";
+            break;
+        case 8:
+            return @"August";
+            break;
+        case 9:
+            return @"September";
+            break;
+        case 10:
+            return @"October";
+            break;
+        case 11:
+            return @"November";
+            break;
+        case 12:
+            return @"December";
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
 - (NSString *)switchDateStringOrder:(NSString *)date
 {
     NSRange yearRange = NSMakeRange(0, 4);
@@ -111,6 +194,47 @@
     NSString *daySegment = [date substringWithRange:dayRange];
     
     return [NSString stringWithFormat:@"%@-%@-%@", daySegment, monthSegment, yearSegment];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(!_selectedDay){
+        return [NSString stringWithFormat:@"Events on %@", [self getTextualDate:@"2014-01-01"]];
+    }
+    else{
+        NSString *date = [NSString stringWithFormat:@"%@", _selectedDay];
+        return [NSString stringWithFormat:@"Events on %@", [self getTextualDate:date]];
+    }
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Need to fetch how many events are on this day, and return it here.
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Get event title, and start/end date here.
+    
+    static NSString *CellIdentifier = @"eventTableCells";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    cell.textLabel.text = @"Event Name";
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
+    return cell;
+}
+
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *path = [self.dayEventsTable indexPathForSelectedRow];
+    // need to get the event here, and then sent it away.
+    
+//    [segue.destinationViewController startWithAttraction:tappedAttraction];
 }
 
 // Bit of a hack to fix the clear navigation bar.
