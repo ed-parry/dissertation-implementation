@@ -23,16 +23,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _selectedDay = [NSString stringWithFormat:@"%@", [NSDate date]];
     
-    [_dayEventsTable setHidden:YES];
+    //[_dayEventsTable setHidden:YES];
     
     _dayEventsTable.delegate = self;
     _dayEventsTable.dataSource = self;
 
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
     calendar.delegate = self;
-    
-
     
     [self.view addSubview:calendar];
 }
@@ -50,28 +49,22 @@
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
-    bool showEventButton = [self isDateWithinEventsArray:date];
-    if(showEventButton){
-        // Solution from SO to push UITableView into correct position
-        CGRect calendarFrame = calendarView.frame;
-        CGRect tableViewFrame = _dayEventsTable.frame;
-        tableViewFrame.origin.y = calendarFrame.origin.y + calendarFrame.size.height;
-        _dayEventsTable.frame = tableViewFrame;
-        
-        [_dayEventsTable setHidden:NO];
-        _selectedDay = [NSString stringWithFormat:@"%@", date];
-        [_dayEventsTable reloadData];
-    }
-    else{
-        [_dayEventsTable setHidden:YES];
-    }
-
+    _selectedDay = [NSString stringWithFormat:@"%@", date];
+    [_dayEventsTable reloadData];
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
 {
     [self addEventsToLocalArray];
     NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month]];
+    NSTimeInterval animationDuration = animated ? 0.3 :0.0;
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        CGRect frame = _dayEventsTable.frame;
+        frame.origin.y = CGRectGetMinX(calendarView.frame) + targetHeight;
+        frame.size.height = self.view.frame.size.height - frame.origin.y;
+        _dayEventsTable.frame = frame;
+    }];
     [calendarView markDates:allEventsForActiveMonth];
 }
 
@@ -218,8 +211,45 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Need to fetch how many events are on this day, and return it here.
-    return 1;
+    NSArray *thisDaysEvents = [[NSArray alloc] initWithArray:[self returnEventsForSelectedDay:_selectedDay]];
+    return [thisDaysEvents count];
+}
+
+- (NSArray *)returnEventsForSelectedDay:(NSString *)date
+{
+    NSMutableArray *daysEvents = [[NSMutableArray alloc] init];
+    NSArray *allEvents;
+    
+    NSRange monthRange = NSMakeRange(5, 7- 5);
+    NSRange dayRange = NSMakeRange(8, 10-8);
+    
+    NSString *thisMonthSegment = [date substringWithRange:monthRange];
+    NSString *thisDaySegment = [date substringWithRange:dayRange];
+    
+    // TODO - There's a bug with the calendar that forces dates from April to be one day behind the shown values.
+    int thisDayInt = [thisDaySegment integerValue];
+    thisDayInt++;
+    thisDaySegment = [NSString stringWithFormat:@"%i", thisDayInt];
+    
+    if(_dataManager){
+        allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
+    }
+    else{
+        _dataManager = [[CoreDataManager alloc] init];
+        allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
+    }
+
+    for(Event *tempEvent in allEvents){
+        NSString *tempDate = [NSString stringWithFormat:@"%@", tempEvent.startDateTime];
+        NSString *tempMonthSegment = [tempDate substringWithRange:monthRange];
+        NSString *tempDaySegment = [tempDate substringWithRange:dayRange];
+        
+        if(([tempDaySegment isEqualToString:thisDaySegment]) && ([tempMonthSegment isEqualToString:thisMonthSegment])){
+            [daysEvents addObject:tempEvent];
+        }
+    }
+    
+    return daysEvents;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -229,7 +259,11 @@
     static NSString *CellIdentifier = @"eventTableCells";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = @"Event Name";
+    NSArray *thisDaysEvents = [self returnEventsForSelectedDay:_selectedDay];
+    
+    Event *thisEvent = [thisDaysEvents objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = thisEvent.title;
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     return cell;
 }
@@ -240,9 +274,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *path = [self.dayEventsTable indexPathForSelectedRow];
-    // need to get the event here, and then sent it away.
+    NSArray *thisDaysEvents = [self returnEventsForSelectedDay:_selectedDay];
+    Event *thisEvent = [thisDaysEvents objectAtIndex:path.row];
     
-//    [segue.destinationViewController startWithAttraction:tappedAttraction];
+//    [segue.destinationViewController startWithEvent:thisEvent];
 }
 
 // Bit of a hack to fix the clear navigation bar.
