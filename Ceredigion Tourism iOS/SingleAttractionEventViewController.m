@@ -61,17 +61,23 @@
     _thisTitle = currentEvent.title;
     _thisGroup = @"Event";
     _firstTextFieldContent = currentEvent.location;
-    _secondTextFieldContent = currentEvent.startDateTimeString;
+    _secondTextFieldContent = [NSString stringWithFormat:@"%@", currentEvent.startDateTime];
     _thirdTextFieldContent = currentEvent.descriptionText;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    if(!_isAttraction){
+        // we're dealing with an event, so change the labels accordingly.
+        _firstTextFieldLabel.text = @"Event Location";
+        _secondTextFieldLabel.text = @"Date & Time";
+    }
+
     if(_thisTitle != nil){
         // populate the attraction or event
         self.navigationItem.title = _thisTitle;
+        self.navigationItem.titleView.tintColor = [UIColor whiteColor];
         _thirdTextField.text = [NSString stringWithFormat:@"%@", _thirdTextFieldContent];
 
         if([_firstTextFieldContent length] > 1) {
@@ -99,11 +105,6 @@
         _attractionImageView.image = [self fetchImageFromUrl:_thisImageURL];
         _attractionImageView.contentMode = UIViewContentModeScaleToFill;
         [self setPageColorForGroup:_thisGroup];
-    }
-    else if(_thisTitle != nil){
-        // populate the event
-        self.navigationItem.title = _thisTitle;
-        // TODO - finish this
     }
     else{
         NSLog(@"There's no Attraction or Event object to use. Try again.");

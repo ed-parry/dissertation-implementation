@@ -24,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        self.navigationItem.title = @"Calendar of Events";
     _selectedDay = [NSString stringWithFormat:@"%@", [NSDate date]];
     
     //[_dayEventsTable setHidden:YES];

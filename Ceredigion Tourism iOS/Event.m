@@ -28,4 +28,11 @@
     return _endDateTime;
 }
 
+- (NSString *) getTextualDate:(NSString *)date
+{
+    // function takes in 2014-01-01 and returns 1st of January, 2014
+    
+    return @"";
+}
+
 @end

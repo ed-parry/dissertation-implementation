@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.navigationItem.title = @"List View";
     _dataManager = [[CoreDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
     _attractionGroups = [_dataManager getAllAttractionGroupTypes];

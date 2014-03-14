@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.navigationItem.title = @"Settings";
     _groupTableView.dataSource = self;
     _groupTableView.delegate = self;
     

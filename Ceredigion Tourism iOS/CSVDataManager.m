@@ -22,15 +22,14 @@
 - (id)init
 {
     _baseServerURL = @"http://www.cardigan.cc/app/";
-    
-    // append the locations.csv to the base URL.
-    _attractionsURL = [NSString stringWithFormat:@"%@locations.csv", _baseServerURL];
     return self;
 }
 
 - (bool)isConnectionAvailable
 {
-    NSString *URLString = [NSString stringWithContentsOfURL:[NSURL URLWithString:_baseServerURL] encoding:NSUTF8StringEncoding error:nil];
+    NSString *URLString = [NSString stringWithContentsOfURL:[NSURL URLWithString:_baseServerURL]
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
     if(URLString != NULL){
         return YES;
     }
@@ -72,64 +71,26 @@
 
 - (NSDate *)getLastFetchedDate
 {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSArray *lastFetchedArray;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Application_Settings" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    
-    if(fetchedObjects.count > 0){
-        NSMutableArray *elementsFromColumn = [[NSMutableArray alloc] init];
-        [elementsFromColumn addObject:[[fetchedObjects objectAtIndex:0] valueForKey:@"csv_last_fetched"]];
-        
-        NSString *lastFetchedDateString = [elementsFromColumn objectAtIndex: 0];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate *lastFetchedDate = [dateFormatter dateFromString:lastFetchedDateString];
-        
-        return lastFetchedDate;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self getPlistFilePath:@"last_fetched_csv"]]) {
+        lastFetchedArray = [[NSArray alloc] initWithContentsOfFile:[self getPlistFilePath:@"last_fetched_csv"]];
     }
-    else{
-        return nil;
-    }
-}
-
-- (void)removeExistingFetchedDate
-{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError *error;
     
-    NSFetchRequest * allDates = [[NSFetchRequest alloc] init];
-    [allDates setEntity:[NSEntityDescription entityForName:@"Application_Settings" inManagedObjectContext:context]];
-    [allDates setIncludesPropertyValues:NO]; // don't get everything, just the ID field.
+    NSString *lastFetched = [lastFetchedArray objectAtIndex:0];
     
-    NSArray * dates = [context executeFetchRequest:allDates error:&error];
-    for (NSManagedObject * date in dates) {
-        [context deleteObject:date];
-    }
-    [context save:&error];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *lastFetchedDate = [dateFormatter dateFromString:lastFetched];
+    
+    return lastFetchedDate;
 }
 
 - (void)saveLastFetchedDate:(NSString *)date
 {
-    [self removeExistingFetchedDate];
-    // connect to Core Data, and save the date
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError *error;
-    NSManagedObject *newFetchedDate;
-    newFetchedDate = [NSEntityDescription
-                     insertNewObjectForEntityForName:@"Application_Settings"
-                     inManagedObjectContext:context];
-    
-    [newFetchedDate setValue: date forKey:@"csv_last_fetched"];
-
-    [context save:&error];
+    // Storing this into a Plist, rather than Core Data.
+    NSArray *lastFetchedArray = [[NSArray alloc] initWithObjects:date, nil];
+    [lastFetchedArray writeToFile:[self getPlistFilePath:@"last_fetched_csv"] atomically:YES];
 }
 
 - (bool)recentFileExists
@@ -151,6 +112,13 @@
     NSString *date = [dateFormatter stringFromDate:[NSDate date]];
     
     return date;
+}
+
+- (NSString *)getPlistFilePath:(NSString *)fileName
+{
+    NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [filePaths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
 
 @end

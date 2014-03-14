@@ -72,6 +72,7 @@
     }
     else{
         // Dark Blue
+        // "Events" will also be triggered by this. 
         return [UIColor colorWithRed:50.0f/255.0f green:82.0f/255.0f blue:189.0f/255.0f alpha:alpha];
     }
 }
