@@ -19,25 +19,52 @@
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
 @property Attraction *thisAttraction;
+@property Event *thisEvent;
+
 - (IBAction)addToCalendarTapped:(id)sender;
 - (IBAction)visitWebsiteTapped:(id)sender;
 @end
 
 @implementation SingleAttractionEventViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
     _thisAttraction = [[Attraction alloc] init];
     _thisAttraction = currentAttraction;
+}
+
+- (void)startWithEvent:(Event *)currentEvent
+{
+    _thisEvent = [[Event alloc] init];
+    _thisEvent = currentEvent;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if(_thisAttraction.name != nil){
+        // populate the attraction
+        self.navigationItem.title = _thisAttraction.name;
+        _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
+        _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
+        _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
+        _groupField.text = [NSString stringWithFormat:@"%@", _thisAttraction.group];
+        if([_thisAttraction.group  isEqual: @"Accommodation"]){
+            _addToCalendarButton.enabled = FALSE;
+        }
+        if([_thisAttraction.website length] < 1){
+            _visitWebsiteButton.enabled = FALSE;
+        }
+        _attractionImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_attractionImageView setImage:[self fetchImageFromUrl:_thisAttraction.imageLocationURL]];
+    }
+    else if(_thisEvent.title != nil){
+        // populate the event
+        self.navigationItem.title = _thisEvent.title;
+    }
+    else{
+        NSLog(@"There's no Attraction or Event object to use. Try again.");
+    }
 }
 
 - (IBAction)addToCalendarTapped:(id)sender
@@ -78,30 +105,6 @@
 - (IBAction)visitWebsiteTapped:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    if(_thisAttraction.name != nil){
-        // populate the content
-        self.navigationItem.title = _thisAttraction.name;
-        _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
-        _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
-        _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
-        _groupField.text = [NSString stringWithFormat:@"%@", _thisAttraction.group];
-        if([_thisAttraction.group  isEqual: @"Accommodation"]){
-            _addToCalendarButton.enabled = FALSE;
-        }
-        if([_thisAttraction.website length] < 1){
-            _visitWebsiteButton.enabled = FALSE;
-        }
-        _attractionImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_attractionImageView setImage:[self fetchImageFromUrl:_thisAttraction.imageLocationURL]];
-    }
-    else{
-        NSLog(@"There's no Attraction object to use. Try again.");
-    }
 }
 
 - (void) setPageColorForGroup:(NSString *)group

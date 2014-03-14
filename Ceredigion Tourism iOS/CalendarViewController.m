@@ -8,6 +8,7 @@
 
 #import "CalendarViewController.h"
 #import "CoreDataManager.h"
+#import "SingleAttractionEventViewController.h"
 #import "VRGCalendarView.h"
 
 @interface CalendarViewController () <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -269,15 +270,13 @@
 }
 
 #pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *path = [self.dayEventsTable indexPathForSelectedRow];
     NSArray *thisDaysEvents = [self returnEventsForSelectedDay:_selectedDay];
     Event *thisEvent = [thisDaysEvents objectAtIndex:path.row];
-    
-//    [segue.destinationViewController startWithEvent:thisEvent];
+
+    [segue.destinationViewController startWithEvent:thisEvent];
 }
 
 // Bit of a hack to fix the clear navigation bar.

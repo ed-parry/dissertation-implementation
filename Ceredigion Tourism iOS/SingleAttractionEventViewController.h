@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Attraction.h"
+#import "Event.h"
 
 @interface SingleAttractionEventViewController : UIViewController
 - (void)startWithAttraction:(Attraction *)currentAttraction;
+- (void)startWithEvent:(Event *)currentEvent;
 @end

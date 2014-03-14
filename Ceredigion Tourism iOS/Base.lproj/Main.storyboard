@@ -335,7 +335,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="F95-fg-aCk" kind="push" id="OID-Kh-SbG"/>
+                                            <segue destination="F95-fg-aCk" kind="push" id="wro-Vf-o8J"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ecx-0c-1M7">
@@ -551,6 +551,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="OID-Kh-SbG"/>
+        <segue reference="wro-Vf-o8J"/>
     </inferredMetricsTieBreakers>
 </document>
