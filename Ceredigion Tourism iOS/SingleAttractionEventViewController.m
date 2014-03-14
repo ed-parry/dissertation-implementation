@@ -10,16 +10,23 @@
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *descriptionField;
+
 @property (strong, nonatomic) IBOutlet UILabel *addressField;
-@property (strong, nonatomic) IBOutlet UILabel *telephoneField;
+@property (strong, nonatomic) IBOutlet UIButton *telephoneField;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionField;
+
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
+
+@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UILabel *telephoneLabel;
+
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
 @property Attraction *thisAttraction;
 @property Event *thisEvent;
 
+- (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
 - (IBAction)visitWebsiteTapped:(id)sender;
 @end
@@ -47,15 +54,16 @@
         self.navigationItem.title = _thisAttraction.name;
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
         _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
-        _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
+        [_telephoneField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
+
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
         }
         if([_thisAttraction.website length] < 1){
             _visitWebsiteButton.enabled = FALSE;
         }
-        _attractionImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_attractionImageView setImage:[self fetchImageFromUrl:_thisAttraction.imageLocationURL]];
+        _attractionImageView.image = [self fetchImageFromUrl:_thisAttraction.imageLocationURL];
+        _attractionImageView.contentMode = UIViewContentModeScaleToFill;
         [self setPageColorForGroup:_thisAttraction.group];
     }
     else if(_thisEvent.title != nil){
@@ -100,6 +108,21 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)phoneNumberClicked:(UIButton *)sender
+{
+    NSString *phoneNumber = [_thisAttraction.telephone stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel://%@", phoneNumber]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    } else
+    {
+        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Sorry" message:@"Unfortunately you are unable to call this number on your device from this application." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [calert show];
+    }
+}
+
 - (IBAction)visitWebsiteTapped:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
@@ -109,9 +132,9 @@
 {
     Attraction *colourAttraction = [[Attraction alloc] init];
 
-    _addressField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.8f];
-    _telephoneField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.6f];
-    _descriptionField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.4f];
+    _addressLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
+    _telephoneLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
+    _descriptionField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
 }
 
 // 320 x 128
