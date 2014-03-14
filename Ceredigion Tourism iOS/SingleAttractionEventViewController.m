@@ -56,7 +56,7 @@
         _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         [_telephoneField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
 
-        if([_thisAttraction.group  isEqual: @"Accommodation"]){
+        if([_thisAttraction.group  isEqual: @"Accommodation"] || [_thisAttraction.group isEqual:@"Camp & caravan"]){
             _addToCalendarButton.enabled = FALSE;
         }
         if([_thisAttraction.website length] < 1){
@@ -110,7 +110,7 @@
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender
 {
-    NSString *phoneNumber = [_thisAttraction.telephone stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *phoneNumber = [_thisAttraction.telephone stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel://%@", phoneNumber]];
     
@@ -118,7 +118,7 @@
         [[UIApplication sharedApplication] openURL:phoneUrl];
     } else
     {
-        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Sorry" message:@"Unfortunately you are unable to call this number on your device from this application." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Unable to call" message:@"Unfortunately you are unable to call this number on your device from this application." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         [calert show];
     }
 }
