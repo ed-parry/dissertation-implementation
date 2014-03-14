@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionField;
 @property (strong, nonatomic) IBOutlet UILabel *addressField;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
+@property (strong, nonatomic) IBOutlet UILabel *groupField;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
@@ -88,6 +89,7 @@
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
         _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
+        _groupField.text = [NSString stringWithFormat:@"%@", _thisAttraction.group];
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
         }
@@ -101,6 +103,14 @@
         NSLog(@"There's no Attraction object to use. Try again.");
     }
 }
+
+- (void) setPageColorForGroup:(NSString *)group
+{
+    Attraction *colourAttraction = [[Attraction alloc] init];
+    
+    
+}
+
 // 320 x 128
 - (UIImage *)fetchImageFromUrl:(NSString *)URL
 {

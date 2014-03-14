@@ -32,6 +32,8 @@
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
     calendar.delegate = self;
     
+
+    
     [self.view addSubview:calendar];
 }
 
@@ -50,6 +52,12 @@
 {
     bool showEventButton = [self isDateWithinEventsArray:date];
     if(showEventButton){
+        // Solution from SO to push UITableView into correct position
+        CGRect calendarFrame = calendarView.frame;
+        CGRect tableViewFrame = _dayEventsTable.frame;
+        tableViewFrame.origin.y = calendarFrame.origin.y + calendarFrame.size.height;
+        _dayEventsTable.frame = tableViewFrame;
+        
         [_dayEventsTable setHidden:NO];
         _selectedDay = [NSString stringWithFormat:@"%@", date];
         [_dayEventsTable reloadData];
