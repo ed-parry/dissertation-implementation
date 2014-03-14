@@ -115,8 +115,8 @@
     NSRange monthRange = NSMakeRange(5, 7- 5);
     NSRange dayRange = NSMakeRange(8, 10- 8);
     
-    int monthNumber = [[date substringWithRange:monthRange] integerValue];
-    int dayNumber = [[date substringWithRange:dayRange] integerValue];
+    NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
+    NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
     
     NSString *monthText = [self getTextMonthFromNumber:monthNumber];
     NSString *dayText = [self getTextDayFromNumber:dayNumber];
@@ -124,23 +124,24 @@
     return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
 }
 
-- (NSString *)getTextDayFromNumber:(int)day
+- (NSString *)getTextDayFromNumber:(NSInteger)day
 {
+
     day++;
-    int j = day % 10;
+    NSInteger j = day % 10;
     if (j == 1 && day != 11) {
-        return [NSString stringWithFormat:@"%ist", day];
+        return [NSString stringWithFormat:@"%list", (long)day];
     }
     if (j == 2 && day != 12) {
-        return [NSString stringWithFormat:@"%ind", day];
+        return [NSString stringWithFormat:@"%lind", (long)day];
     }
     if (j == 3 && day != 13) {
-        return [NSString stringWithFormat:@"%ird", day];
+        return [NSString stringWithFormat:@"%lird", (long)day];
     }
-    return [NSString stringWithFormat:@"%ith", day];
+    return [NSString stringWithFormat:@"%lith", (long)day];
 }
 
-- (NSString *)getTextMonthFromNumber:(int)month
+- (NSString *)getTextMonthFromNumber:(NSInteger)month
 {
     switch(month)
     {
@@ -229,9 +230,9 @@
     NSString *thisDaySegment = [date substringWithRange:dayRange];
     
     // TODO - There's a bug with the calendar that forces dates from April to be one day behind the shown values.
-    int thisDayInt = [thisDaySegment integerValue];
+    NSInteger thisDayInt = [thisDaySegment integerValue];
     thisDayInt++;
-    thisDaySegment = [NSString stringWithFormat:@"%i", thisDayInt];
+    thisDaySegment = [NSString stringWithFormat:@"%li", (long)thisDayInt];
     
     if(_dataManager){
         allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];

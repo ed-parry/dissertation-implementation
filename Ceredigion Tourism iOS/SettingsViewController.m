@@ -21,11 +21,11 @@
 @property (strong, nonatomic) IBOutlet UIView *groupSettingView;
 @property (strong, nonatomic) IBOutlet UIView *mappingSettingView;
 @property (strong, nonatomic) IBOutlet UIView *dataSettingView;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *mapRadiusSettingsSegment;
+
 @property MapDataManager *mapDataManager;
 
 - (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
-- (IBAction)dataRefreshButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *groupRadiusSegmentControl;
 
 - (IBAction)radiusSliderValueChanged:(UISlider *)sender;
 @property (strong, nonatomic) IBOutlet UISlider *mapRadiusSlider;
@@ -38,13 +38,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Settings";
+    
+    _groupRadiusSegmentControl.tintColor = [UIColor colorWithRed:35.0/255.0
+                                                           green:164.0/255.0
+                                                            blue:219.0/255.0
+                                                           alpha:1.0];
+    _groupRadiusSegmentControl.backgroundColor = [UIColor whiteColor];
+
     _groupTableView.dataSource = self;
     _groupTableView.delegate = self;
     
     [self setActiveSettingsMenu:@"group"];
     [self setRadiusSettingsValue];
-
     
     // get array of all groups
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
@@ -64,23 +69,15 @@
     if([menu isEqualToString:@"group"]){
         _groupSettingView.hidden = NO;
         _mappingSettingView.hidden = YES;
-        _dataSettingView.hidden = YES;
     }
     else if([menu isEqualToString:@"mapping"]){
         _groupSettingView.hidden = YES;
         _mappingSettingView.hidden = NO;
-        _dataSettingView.hidden = YES;
-    }
-    else if([menu isEqualToString:@"data"]){
-        _groupSettingView.hidden = YES;
-        _mappingSettingView.hidden = YES;
-        _dataSettingView.hidden = NO;
     }
     else{
         // the default is just to show the groupings
         _groupSettingView.hidden = NO;
         _mappingSettingView.hidden = YES;
-        _dataSettingView.hidden = YES;
     }
 }
 
@@ -92,20 +89,10 @@
         // mapping
         [self setActiveSettingsMenu:@"mapping"];
     }
-    else if(sender.selectedSegmentIndex == 2){
-        // data
-        [self setActiveSettingsMenu:@"data"];
-    }
     else{
         // should never get here, but treat it as default: group
         [self setActiveSettingsMenu:@"group"];
     }
-}
-
-- (IBAction)dataRefreshButton:(id)sender {
-    // call a function to reset the data
-    AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
-    [attractionsDataManager saveDataFromURLReset];
 }
 
 - (void)setGroupSelectionValues
@@ -172,8 +159,8 @@
     static NSString *CellIdentifier = @"groupsList";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row]; // TODO - monitor this, error thrown in Crashlytics
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
     // Added colour-based image as a key explanation.
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
     

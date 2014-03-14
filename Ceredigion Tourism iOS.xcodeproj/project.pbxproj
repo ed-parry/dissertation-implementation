@@ -31,7 +31,6 @@
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 		6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7B856718CF732000361807 /* Crashlytics.framework */; };
-		6D84A6AE18CA9A9C004C1E14 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
 		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
@@ -41,8 +40,6 @@
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
 		6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
-		6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C218B38DBA006BE307 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD178C418B38E10006BE307 /* GoogleMaps.bundle */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
 		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
 		6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CA18B3935A006BE307 /* CoreText.framework */; };
@@ -62,6 +59,8 @@
 		6DD896A918D0A28300BCE840 /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A218D0A28300BCE840 /* UIColor+expanded.m */; };
 		6DD896AA18D0A28300BCE840 /* UIView+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A418D0A28300BCE840 /* UIView+convenience.m */; };
 		6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A618D0A28300BCE840 /* VRGCalendarView.m */; };
+		6DE0F3A318D37FCD006C8E88 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */; };
+		6DE0F3A518D37FD7006C8E88 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,8 +124,6 @@
 		6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
 		6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
-		6DD178C218B38DBA006BE307 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		6DD178C418B38E10006BE307 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DD178C818B39352006BE307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6DD178CA18B3935A006BE307 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -154,6 +151,8 @@
 		6DD896A418D0A28300BCE840 /* UIView+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+convenience.m"; sourceTree = "<group>"; };
 		6DD896A518D0A28300BCE840 /* VRGCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRGCalendarView.h; sourceTree = "<group>"; };
 		6DD896A618D0A28300BCE840 /* VRGCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRGCalendarView.m; sourceTree = "<group>"; };
+		6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DE0F3A318D37FCD006C8E88 /* GoogleMaps.framework in Frameworks */,
 				6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */,
 				6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */,
 				6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */,
@@ -178,7 +178,6 @@
 				6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */,
 				6D58575218B2537600306327 /* CoreGraphics.framework in Frameworks */,
 				6D58575418B2537600306327 /* UIKit.framework in Frameworks */,
-				6DD178C318B38DBA006BE307 /* GoogleMaps.framework in Frameworks */,
 				6D58575018B2537600306327 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,7 +186,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D84A6AE18CA9A9C004C1E14 /* GoogleMaps.framework in Frameworks */,
 				6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */,
 				6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */,
 				6DB4041D18BE1F13007A092E /* Foundation.framework in Frameworks */,
@@ -246,6 +244,8 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */,
+				6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */,
 				6DD8969C18D0A28300BCE840 /* Vurig Calendar */,
 				6D7B856718CF732000361807 /* Crashlytics.framework */,
 				6D37BA8218CF3AF400641DA6 /* EventKit.framework */,
@@ -261,8 +261,6 @@
 				6DD178CA18B3935A006BE307 /* CoreText.framework */,
 				6DD178C818B39352006BE307 /* CoreLocation.framework */,
 				6DD178C618B39346006BE307 /* AVFoundation.framework */,
-				6DD178C418B38E10006BE307 /* GoogleMaps.bundle */,
-				6DD178C218B38DBA006BE307 /* GoogleMaps.framework */,
 				6D749A9F18B2583700E06D7F /* CHCSVParser */,
 				6D749AAC18B282DC00E06D7F /* CoreData.framework */,
 				6D58574F18B2537600306327 /* Foundation.framework */,
@@ -463,7 +461,7 @@
 				6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */,
 				6D58575A18B2537600306327 /* InfoPlist.strings in Resources */,
 				6D58576318B2537600306327 /* Main.storyboard in Resources */,
-				6DD178C518B38E10006BE307 /* GoogleMaps.bundle in Resources */,
+				6DE0F3A518D37FD7006C8E88 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,16 +649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth,
-					Year/Second,
-					Semester/Dissertation/Implementation/Ceredigion,
-					Tourism,
-					iOS,
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
@@ -680,16 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/edparry/Dropbox/Documents/Aberystwyth/Fourth,
-					Year/Second,
-					Semester/Dissertation/Implementation/Ceredigion,
-					Tourism,
-					iOS,
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Prefix.pch";
 				INFOPLIST_FILE = "Ceredigion Tourism iOS/Ceredigion Tourism iOS-Info.plist";
