@@ -53,8 +53,22 @@
         // populate the attraction
         self.navigationItem.title = _thisAttraction.name;
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
-        _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
-        [_telephoneField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
+
+        if([_thisAttraction.address length] > 1) {
+            _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
+        }
+        else{
+            _addressField.text = [NSString stringWithFormat:@"No address was provided for %@.", _thisAttraction.name];
+        }
+        
+        if([_thisAttraction.telephone length] > 1){
+            [_telephoneField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
+        }
+        else{
+            [_telephoneField setTitle:@"No phone number is available." forState:UIControlStateNormal];
+            _telephoneField.enabled = NO;
+        }
+
 
         if([_thisAttraction.group  isEqual: @"Accommodation"] || [_thisAttraction.group isEqual:@"Camp & caravan"]){
             _addToCalendarButton.enabled = FALSE;
