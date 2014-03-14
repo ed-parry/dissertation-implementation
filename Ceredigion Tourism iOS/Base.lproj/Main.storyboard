@@ -311,12 +311,12 @@
                     <navigationItem key="navigationItem" title="Event Name" id="CtM-7f-pyV"/>
                     <connections>
                         <outlet property="addToCalendarButton" destination="ybk-8u-EJN" id="svT-jW-n4v"/>
-                        <outlet property="addressField" destination="EcH-pH-M1c" id="6gN-RI-FQX"/>
-                        <outlet property="addressLabel" destination="23i-K1-ICW" id="xFa-6d-dcv"/>
                         <outlet property="attractionImageView" destination="BrV-zS-uzD" id="UBj-U4-TvI"/>
-                        <outlet property="descriptionField" destination="OWA-Eq-2JC" id="YWj-Gs-W62"/>
-                        <outlet property="telephoneField" destination="vwU-dh-BNt" id="QsY-cz-ZlB"/>
-                        <outlet property="telephoneLabel" destination="xDR-f1-YgB" id="AzD-Ip-18q"/>
+                        <outlet property="firstTextField" destination="EcH-pH-M1c" id="LvC-0N-yxl"/>
+                        <outlet property="firstTextFieldLabel" destination="23i-K1-ICW" id="YcF-t0-Hai"/>
+                        <outlet property="secondTextField" destination="vwU-dh-BNt" id="iho-Yn-n8j"/>
+                        <outlet property="secondTextFieldLabel" destination="xDR-f1-YgB" id="n7Q-jO-5fL"/>
+                        <outlet property="thirdTextField" destination="OWA-Eq-2JC" id="603-XA-YO3"/>
                         <outlet property="visitWebsiteButton" destination="QHO-VN-So0" id="gnG-i8-ApH"/>
                     </connections>
                 </viewController>

@@ -11,20 +11,29 @@
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UILabel *addressField;
-@property (strong, nonatomic) IBOutlet UIButton *telephoneField;
-@property (strong, nonatomic) IBOutlet UILabel *descriptionField;
+@property (strong, nonatomic) IBOutlet UILabel *firstTextField;
+@property (strong, nonatomic) IBOutlet UIButton *secondTextField;
+@property (strong, nonatomic) IBOutlet UILabel *thirdTextField;
 
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 
-@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
-@property (strong, nonatomic) IBOutlet UILabel *telephoneLabel;
+@property (strong, nonatomic) IBOutlet UILabel *firstTextFieldLabel;
+@property (strong, nonatomic) IBOutlet UILabel *secondTextFieldLabel;
+
+// These string variables are used to link either an
+// Attraction or Event to the View itself.
+@property bool isAttraction;
+
+@property (strong, nonatomic) NSString *firstTextFieldContent;
+@property (strong, nonatomic) NSString *secondTextFieldContent;
+@property (strong, nonatomic) NSString *thirdTextFieldContent;
+@property (strong, nonatomic) NSString *thisTitle;
+@property (strong, nonatomic) NSString *thisGroup;
+@property (strong, nonatomic) NSString *thisWebsite;
+@property (strong, nonatomic) NSString *thisImageURL;
 
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
-
-@property Attraction *thisAttraction;
-@property Event *thisEvent;
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
@@ -35,54 +44,65 @@
 
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
-    _thisAttraction = [[Attraction alloc] init];
-    _thisAttraction = currentAttraction;
+    _isAttraction = YES;
+    _thisTitle = currentAttraction.name;
+    _thisGroup = currentAttraction.group;
+    _firstTextFieldContent = currentAttraction.address;
+    _secondTextFieldContent = currentAttraction.telephone;
+    _thirdTextFieldContent = currentAttraction.descriptionText;
+    _thisWebsite = currentAttraction.website;
+    _thisImageURL = currentAttraction.imageLocationURL;
+
 }
 
 - (void)startWithEvent:(Event *)currentEvent
 {
-    _thisEvent = [[Event alloc] init];
-    _thisEvent = currentEvent;
+    _isAttraction = NO;
+    _thisTitle = currentEvent.title;
+    _thisGroup = @"Event";
+    _firstTextFieldContent = currentEvent.location;
+    _secondTextFieldContent = currentEvent.startDateTimeString;
+    _thirdTextFieldContent = currentEvent.descriptionText;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    if(_thisAttraction.name != nil){
-        // populate the attraction
-        self.navigationItem.title = _thisAttraction.name;
-        _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
+    if(_thisTitle != nil){
+        // populate the attraction or event
+        self.navigationItem.title = _thisTitle;
+        _thirdTextField.text = [NSString stringWithFormat:@"%@", _thirdTextFieldContent];
 
-        if([_thisAttraction.address length] > 1) {
-            _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
+        if([_firstTextFieldContent length] > 1) {
+            _firstTextField.text = [NSString stringWithFormat:@"%@", _firstTextFieldContent];
         }
         else{
-            _addressField.text = [NSString stringWithFormat:@"No address was provided for %@.", _thisAttraction.name];
+            _firstTextField.text = [NSString stringWithFormat:@"No address was provided for %@.", _thisTitle];
         }
         
-        if([_thisAttraction.telephone length] > 1){
-            [_telephoneField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
+        if([_secondTextFieldContent length] > 1){
+            [_secondTextField setTitle:_secondTextFieldContent forState:UIControlStateNormal];
         }
         else{
-            [_telephoneField setTitle:@"No phone number is available." forState:UIControlStateNormal];
-            _telephoneField.enabled = NO;
+            [_secondTextField setTitle:@"No phone number is available." forState:UIControlStateNormal];
+            _secondTextField.enabled = NO;
         }
 
 
-        if([_thisAttraction.group  isEqual: @"Accommodation"] || [_thisAttraction.group isEqual:@"Camp & caravan"]){
+        if([_thisGroup isEqual: @"Accommodation"] || [_thisGroup isEqual:@"Camp & caravan"]){
             _addToCalendarButton.enabled = FALSE;
         }
-        if([_thisAttraction.website length] < 1){
+        if([_thisWebsite length] < 1){
             _visitWebsiteButton.enabled = FALSE;
         }
-        _attractionImageView.image = [self fetchImageFromUrl:_thisAttraction.imageLocationURL];
+        _attractionImageView.image = [self fetchImageFromUrl:_thisImageURL];
         _attractionImageView.contentMode = UIViewContentModeScaleToFill;
-        [self setPageColorForGroup:_thisAttraction.group];
+        [self setPageColorForGroup:_thisGroup];
     }
-    else if(_thisEvent.title != nil){
+    else if(_thisTitle != nil){
         // populate the event
-        self.navigationItem.title = _thisEvent.title;
+        self.navigationItem.title = _thisTitle;
         // TODO - finish this
     }
     else{
@@ -101,8 +121,8 @@
             eventController.editViewDelegate = self;
             
             EKEvent *attractionEvent = [EKEvent eventWithEventStore:eventStore];
-            attractionEvent.title = _thisAttraction.name;
-            attractionEvent.location = _thisAttraction.address;
+            attractionEvent.title = _thisTitle;
+            attractionEvent.location = _firstTextFieldContent;
             
             eventController.event = attractionEvent;
             
@@ -124,7 +144,7 @@
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender
 {
-    NSString *phoneNumber = [_thisAttraction.telephone stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *phoneNumber = [_secondTextFieldContent stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel://%@", phoneNumber]];
     
@@ -139,16 +159,16 @@
 
 - (IBAction)visitWebsiteTapped:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisWebsite]];
 }
 
 - (void)setPageColorForGroup:(NSString *)group
 {
     Attraction *colourAttraction = [[Attraction alloc] init];
 
-    _addressLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
-    _telephoneLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
-    _descriptionField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
+    _firstTextFieldLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
+    _secondTextFieldLabel.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
+    _thirdTextField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
 }
 
 // 320 x 128
