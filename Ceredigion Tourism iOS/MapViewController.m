@@ -48,6 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [_mapLoadSpinner startAnimating];
     if(animated == FALSE){
         MapDataManager *dataManager = [[MapDataManager alloc] init];
         double mapRadius = [dataManager getMapRadiusMetersFromPlist];
@@ -164,8 +165,14 @@
         CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
         GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter
                                                          radius:meters];
-        circleRadius.fillColor = [UIColor colorWithRed:0 green:0 blue:0.25 alpha:0.10];
-        circleRadius.strokeColor = [UIColor blueColor];
+        circleRadius.fillColor = [UIColor colorWithRed:35.0/255.0
+                                                 green:164.0/255.0
+                                                  blue:219.0/255.0
+                                                 alpha:0.1];
+        circleRadius.strokeColor = [UIColor colorWithRed:35.0/255.0
+                                                   green:164.0/255.0
+                                                    blue:219.0/255.0
+                                                   alpha:1.0];
         circleRadius.strokeWidth = 2;
         circleRadius.map = _mapView;
         
