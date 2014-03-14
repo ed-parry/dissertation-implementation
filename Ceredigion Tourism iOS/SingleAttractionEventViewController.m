@@ -13,7 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionField;
 @property (strong, nonatomic) IBOutlet UILabel *addressField;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneField;
-@property (strong, nonatomic) IBOutlet UILabel *groupField;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
@@ -42,13 +41,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     if(_thisAttraction.name != nil){
         // populate the attraction
         self.navigationItem.title = _thisAttraction.name;
         _descriptionField.text = [NSString stringWithFormat:@"%@", _thisAttraction.descriptionText];
         _addressField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         _telephoneField.text = [NSString stringWithFormat:@"%@", _thisAttraction.telephone];
-        _groupField.text = [NSString stringWithFormat:@"%@", _thisAttraction.group];
         if([_thisAttraction.group  isEqual: @"Accommodation"]){
             _addToCalendarButton.enabled = FALSE;
         }
@@ -57,10 +56,12 @@
         }
         _attractionImageView.contentMode = UIViewContentModeScaleAspectFit;
         [_attractionImageView setImage:[self fetchImageFromUrl:_thisAttraction.imageLocationURL]];
+        [self setPageColorForGroup:_thisAttraction.group];
     }
     else if(_thisEvent.title != nil){
         // populate the event
         self.navigationItem.title = _thisEvent.title;
+        // TODO - finish this
     }
     else{
         NSLog(@"There's no Attraction or Event object to use. Try again.");
@@ -90,10 +91,7 @@
             // Need to display an error message saying we don't have access.
             // Users can re-enable access from Privacy Settings on their device.
         }
-        
     }];
-    
-
 }
 
 - (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
@@ -107,11 +105,13 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
 }
 
-- (void) setPageColorForGroup:(NSString *)group
+- (void)setPageColorForGroup:(NSString *)group
 {
     Attraction *colourAttraction = [[Attraction alloc] init];
-    
-    
+
+    _addressField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.8f];
+    _telephoneField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.6f];
+    _descriptionField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.4f];
 }
 
 // 320 x 128
