@@ -128,14 +128,14 @@
 {
 
     day++;
-    NSInteger j = day % 10;
-    if (j == 1 && day != 11) {
+    NSInteger remainder = day % 10;
+    if (remainder == 1 && day != 11) {
         return [NSString stringWithFormat:@"%list", (long)day];
     }
-    if (j == 2 && day != 12) {
+    if (remainder == 2 && day != 12) {
         return [NSString stringWithFormat:@"%lind", (long)day];
     }
-    if (j == 3 && day != 13) {
+    if (remainder == 3 && day != 13) {
         return [NSString stringWithFormat:@"%lird", (long)day];
     }
     return [NSString stringWithFormat:@"%lith", (long)day];
