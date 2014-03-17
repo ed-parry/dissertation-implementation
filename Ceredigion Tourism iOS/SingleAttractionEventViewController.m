@@ -124,6 +124,10 @@
             EKEvent *attractionEvent = [EKEvent eventWithEventStore:eventStore];
             attractionEvent.title = _thisTitle;
             attractionEvent.location = _firstTextFieldContent;
+
+            // set the start date and time and the end date and time.
+            
+            attractionEvent.notes = _thirdTextFieldContent;
             
             eventController.event = attractionEvent;
             
