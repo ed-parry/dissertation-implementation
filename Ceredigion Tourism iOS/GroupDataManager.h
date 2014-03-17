@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Attraction.h"
 
 @interface GroupDataManager : NSObject
 - (void)storeDefaultAllowedGroupsInPlist;
 - (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups;
 - (void)toggleGroupInAllowedGroups:(NSString *)group;
+
+- (bool)isAttractionInAllowedGroups:(Attraction *)attraction;
 - (NSArray *)getAllowedGroupsFromPlist;
 @end

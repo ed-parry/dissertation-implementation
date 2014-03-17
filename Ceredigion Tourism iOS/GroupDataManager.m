@@ -8,6 +8,7 @@
 
 #import "GroupDataManager.h"
 #import "CoreDataManager.h"
+#import "Attraction.h"
 
 @interface GroupDataManager ()
     @property NSString *filePath;
@@ -18,6 +19,18 @@
 - (id)init{
     _filePath = [self getPlistFilePath:@"allowed_groups"];
     return self;
+}
+
+- (bool)isAttractionInAllowedGroups:(Attraction *)attraction
+{
+    NSArray *allowedGroups = [self getAllowedGroupsFromPlist];
+    
+    for(NSString *group in allowedGroups){
+        if([group isEqualToString:attraction.group]){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)storeDefaultAllowedGroupsInPlist

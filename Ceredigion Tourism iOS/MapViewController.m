@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 #import "MapDataManager.h"
 #import "CoreDataManager.h"
+#import "GroupDataManager.h"
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 
@@ -188,7 +189,10 @@
         attractionCoordinates.longitude = [currentAttraction.longitude doubleValue];
         
         [self createMapDataManager];
-        if([_mapDataManager isCoordinatesWithinRadius:attractionCoordinates])
+        
+        GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+        
+        if(([_mapDataManager isCoordinatesWithinRadius:attractionCoordinates]) && ([groupDataManager isAttractionInAllowedGroups:currentAttraction]))
         {
             double attractionLat = [currentAttraction.latitude doubleValue];
             double attractionLong = [currentAttraction.longitude doubleValue];
