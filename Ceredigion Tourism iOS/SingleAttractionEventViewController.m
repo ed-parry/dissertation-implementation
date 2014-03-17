@@ -33,6 +33,9 @@
 @property (strong, nonatomic) NSString *thisWebsite;
 @property (strong, nonatomic) NSString *thisImageURL;
 
+// the start date is already in "secondTextFieldContent"
+@property (strong, nonatomic) NSString *eventEndDate;
+
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
@@ -63,6 +66,8 @@
     _firstTextFieldContent = currentEvent.location;
     _secondTextFieldContent = [NSString stringWithFormat:@"%@", currentEvent.startDateTime];
     _thirdTextFieldContent = currentEvent.descriptionText;
+    
+    _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDateTime];
 }
 
 - (void)viewDidLoad
@@ -126,9 +131,29 @@
             attractionEvent.location = _firstTextFieldContent;
 
             // set the start date and time and the end date and time.
+            if(!_isAttraction){
+                NSString *startDateString = _secondTextFieldContent;
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+                [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+                NSTimeZone *GMT = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                [dateFormatter setTimeZone:GMT];
+                
+                
+                NSDate *startDate = [dateFormatter dateFromString:startDateString];
+                NSDate *endDate = [dateFormatter dateFromString:_eventEndDate];
+                
+                NSLog(@"The start date string is: %@", startDateString);
+                NSLog(@"The end date string is: %@", _eventEndDate);
+                
+                NSLog(@"Start date: %@", [NSString stringWithFormat:@"%@", startDate]);
+                NSLog(@"End date: %@", [NSString stringWithFormat:@"%@", endDate]);
+                
+                attractionEvent.startDate = startDate;
+                attractionEvent.endDate = endDate;
+            }
             
             attractionEvent.notes = _thirdTextFieldContent;
-            
             eventController.event = attractionEvent;
             
             [self presentViewController:eventController animated:YES completion:nil];
