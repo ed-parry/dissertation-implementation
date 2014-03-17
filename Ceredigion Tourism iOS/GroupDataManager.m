@@ -33,6 +33,18 @@
     return NO;
 }
 
+- (bool)isGroupInAllowedGroups:(NSString *)group
+{
+    NSArray *allowedGroups = [self getAllowedGroupsFromPlist];
+    
+    for(NSString *allowedGroup in allowedGroups){
+        if([allowedGroup isEqualToString:group]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)storeDefaultAllowedGroupsInPlist
 {
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];

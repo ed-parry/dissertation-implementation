@@ -15,5 +15,8 @@
 - (void)toggleGroupInAllowedGroups:(NSString *)group;
 
 - (bool)isAttractionInAllowedGroups:(Attraction *)attraction;
+- (bool)isGroupInAllowedGroups:(NSString *)group;
+
 - (NSArray *)getAllowedGroupsFromPlist;
+
 @end

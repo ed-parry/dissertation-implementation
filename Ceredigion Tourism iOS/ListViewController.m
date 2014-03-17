@@ -10,6 +10,7 @@
 #import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 #import "MapViewController.h"
+#import "GroupDataManager.h"
 #import "MapDataManager.h"
 #import "CoreDataManager.h"
 
@@ -37,7 +38,9 @@
 {
     if(animated == FALSE){
 //        [self applyRadiusSettings];
-//        [self.tableView reloadData];
+        [self applyGroupSettings];
+        [self updateAttractionGroupsArray];
+        [self.tableView reloadData];
     }
 }
 
@@ -52,7 +55,7 @@
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
 
     _mapDataManagerWithCoords = [[MapDataManager alloc] initWithCurrentRadiusCenter:radiusCoordinates
-                                                                                 andRadiusInMeters:radiusMeters];
+                                                                  andRadiusInMeters:radiusMeters];
     NSMutableArray *allAttractionsByGroupInRadius;
     
     for(NSArray *singleGroupAttractions in _allAttractionsByGroup){
@@ -71,6 +74,48 @@
         [allAttractionsByGroupInRadius addObject:allAttractionsInGroupInRadius];
     }
     _allAttractionsByGroup = allAttractionsByGroupInRadius;
+}
+
+- (void)applyGroupSettings
+{
+    if(!_dataManager){
+        _dataManager = [[CoreDataManager alloc] init];
+    }
+    _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
+    
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    
+    NSMutableArray *allAttractionsBySelectedGroup = [[NSMutableArray alloc] init];
+    
+    for(NSArray *tempGroup in _allAttractionsByGroup){
+        Attraction *tempAttraction = [tempGroup objectAtIndex:0];
+        NSString *group = tempAttraction.group;
+        
+        if([groupDataManager isGroupInAllowedGroups:group]){
+            [allAttractionsBySelectedGroup addObject:tempGroup];
+        }
+    }
+    
+    _allAttractionsByGroup = allAttractionsBySelectedGroup;
+}
+
+- (void)updateAttractionGroupsArray
+{
+    if(!_dataManager){
+        _dataManager = [[CoreDataManager alloc] init];
+    }
+    _attractionGroups = [_dataManager getAllAttractionGroupTypes];
+    
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    
+    NSMutableArray *allowedGroupsArray = [[NSMutableArray alloc] init];
+    
+    for(NSString *group in _attractionGroups){
+        if([groupDataManager isGroupInAllowedGroups:group]){
+            [allowedGroupsArray addObject:group];
+        }
+    }
+    _attractionGroups = allowedGroupsArray;
 }
 
 - (void)didReceiveMemoryWarning
