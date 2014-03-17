@@ -73,11 +73,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(!_isAttraction){
-        // we're dealing with an event, so change the labels accordingly.
-        _firstTextFieldLabel.text = @"Event Location";
-        _secondTextFieldLabel.text = @"Date & Time";
-    }
 
     if(_thisTitle != nil){
         // populate the attraction or event
@@ -113,6 +108,15 @@
     }
     else{
         NSLog(@"There's no Attraction or Event object to use. Try again.");
+    }
+    
+    if(!_isAttraction){
+        // we're dealing with an event, so change the labels accordingly.
+        _firstTextFieldLabel.text = @"Event Location";
+        _secondTextFieldLabel.text = @"Date & Time";
+        
+        // we now use this to store the start date and time, so shouldn't be a button.
+        _secondTextField.enabled = NO;
     }
 }
 
