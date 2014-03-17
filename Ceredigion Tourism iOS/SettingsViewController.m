@@ -17,19 +17,23 @@
 
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
-@property NSArray *attractionGroups;
+
 @property (strong, nonatomic) IBOutlet UIView *groupSettingView;
 @property (strong, nonatomic) IBOutlet UIView *mappingSettingView;
 @property (strong, nonatomic) IBOutlet UIView *dataSettingView;
 
-@property MapDataManager *mapDataManager;
+@property NSArray *attractionGroups;
 
-- (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
+@property MapDataManager *mapDataManager;
+@property CoreDataManager *coreDataManager;
+@property GroupDataManager *groupDataManager;
+
 @property (strong, nonatomic) IBOutlet UISegmentedControl *groupRadiusSegmentControl;
 
-- (IBAction)radiusSliderValueChanged:(UISlider *)sender;
 @property (strong, nonatomic) IBOutlet UISlider *mapRadiusSlider;
 @property (strong, nonatomic) IBOutlet UILabel *mapRadiusValueLabel;
+- (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
+- (IBAction)radiusSliderValueChanged:(UISlider *)sender;
 
 @end
 
@@ -39,29 +43,35 @@
 {
     [super viewDidLoad];
     
-    _groupRadiusSegmentControl.tintColor = [UIColor colorWithRed:35.0/255.0
-                                                           green:164.0/255.0
-                                                            blue:219.0/255.0
-                                                           alpha:1.0];
-    _groupRadiusSegmentControl.backgroundColor = [UIColor whiteColor];
+    [self setSegmentControlColour];
 
     _groupTableView.dataSource = self;
     _groupTableView.delegate = self;
     
     [self setActiveSettingsMenu:@"group"];
     [self setRadiusSettingsValue];
+    [self setGroupSelectionValues];
     
     // get array of all groups
-    CoreDataManager *dataManager = [[CoreDataManager alloc] init];
-    _attractionGroups = [dataManager getAllAttractionGroupTypes];
+    _coreDataManager = [[CoreDataManager alloc] init];
+    _attractionGroups = [_coreDataManager getAllAttractionGroupTypes];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if(animated == FALSE){
-        // While this does somewhat work, it removes the items from the array entirely, and so they are removed from the list. We only need to set them as deselected, rather than remove them.
-        [self setGroupSelectionValues];
+//        [self setGroupSelectionValues];
+//        [_groupTableView reloadData];
     }
+}
+
+- (void)setSegmentControlColour
+{
+    _groupRadiusSegmentControl.tintColor = [UIColor colorWithRed:35.0/255.0
+                                                           green:164.0/255.0
+                                                            blue:219.0/255.0
+                                                           alpha:1.0];
+    _groupRadiusSegmentControl.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setActiveSettingsMenu:(NSString *) menu
@@ -97,11 +107,8 @@
 
 - (void)setGroupSelectionValues
 {
-    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    _attractionGroups = [groupDataManager getAllowedGroupsFromPlist];
-
-    // Fix this line
-//    [_groupTableView reloadData];
+    CoreDataManager *dataManager = [[CoreDataManager alloc] init];
+    _attractionGroups = [dataManager getAllAttractionGroupTypes];
 }
 
 - (void)setRadiusSettingsValue
@@ -137,7 +144,7 @@
     }
 }
 
-- (void)toggleGroupOnMapView:(NSString *)group
+- (void)toggleGroup:(NSString *)group
 {
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
     [groupDataManager toggleGroupInAllowedGroups:group];
@@ -156,21 +163,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"groupsList";
+    NSString *CellIdentifier = @"groupsList";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row]; // TODO - monitor this, error thrown in Crashlytics
+    cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    // Added colour-based image as a key explanation.
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
     
+    // figure out if we should show a checkmark from the start or not
+    _groupDataManager = [[GroupDataManager alloc] init];
+    for(NSString *group in _attractionGroups){
+        if([_groupDataManager isGroupInAllowedGroups:group]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
     return cell;
 }
 
 - (UIImage *)returnColorImageFromAttractionGroup:(NSString *)group
 {
     Attraction *colourAttractionObj = [[Attraction alloc] init];
-    
     return [colourAttractionObj getAttractionGroupImage:group];
 }
 
@@ -180,11 +194,11 @@
     
     if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [self toggleGroupOnMapView:cell.textLabel.text];
+        [self toggleGroup:cell.textLabel.text];
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self toggleGroupOnMapView:cell.textLabel.text];
+        [self toggleGroup:cell.textLabel.text];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
