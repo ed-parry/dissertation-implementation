@@ -168,17 +168,18 @@
     cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
-    
-    // figure out if we should show a checkmark from the start or not
-    _groupDataManager = [[GroupDataManager alloc] init];
-    for(NSString *group in _attractionGroups){
-        if([_groupDataManager isGroupInAllowedGroups:group]){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }
+
+// NEED TO FIX THIS
+//    // figure out if we should show a checkmark from the start or not
+//    _groupDataManager = [[GroupDataManager alloc] init];
+//    for(NSString *group in _attractionGroups){
+//        if([_groupDataManager isGroupInAllowedGroups:group]){
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        }
+//        else{
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//        }
+//    }
     return cell;
 }
 
@@ -201,6 +202,7 @@
         [self toggleGroup:cell.textLabel.text];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [_groupTableView reloadData];
 }
 
 @end
