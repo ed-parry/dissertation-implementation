@@ -172,6 +172,7 @@
     return [allAttractionsInSingleGroup count];
 }
 
+// CALLED EVERY TIME A CELL APPEARS ON VIEW
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *thisGroupAttractions = [_allAttractionsByGroup objectAtIndex:indexPath.section];

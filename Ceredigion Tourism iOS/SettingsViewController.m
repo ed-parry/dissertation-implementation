@@ -161,6 +161,7 @@
     return _attractionGroups.count;
 }
 
+// THIS CODE IS CALLED EVERY TIME A CELL APPEARS
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"groupsList";
@@ -168,19 +169,29 @@
     cell.textLabel.text = [_attractionGroups objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
+    
+    UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
+    [accessorySwitch setOn:NO animated:YES];
+    [accessorySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+    cell.accessoryView = accessorySwitch;
 
-// NEED TO FIX THIS
-//    // figure out if we should show a checkmark from the start or not
-//    _groupDataManager = [[GroupDataManager alloc] init];
-//    for(NSString *group in _attractionGroups){
-//        if([_groupDataManager isGroupInAllowedGroups:group]){
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        }
-//        else{
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//        }
-//    }
+    
+    // NEED TO FIX THIS
+    // figure out if we should show a checkmark from the start or not
+    _groupDataManager = [[GroupDataManager alloc] init];
+    for(NSString *group in _attractionGroups){
+        if([_groupDataManager isGroupInAllowedGroups:group]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
     return cell;
+}
+
+- (void)changeSwitch:(UISwitch *)sender{
+    NSLog(@"called");
 }
 
 - (UIImage *)returnColorImageFromAttractionGroup:(NSString *)group
