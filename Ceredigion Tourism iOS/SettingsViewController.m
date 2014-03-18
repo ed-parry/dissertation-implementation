@@ -114,8 +114,8 @@
 - (void)setRadiusSettingsValue
 {
     _mapDataManager = [[MapDataManager alloc] init];
-    double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
-    
+    double mapRadius = [_mapDataManager getMapRadiusMilesFromPlist];
+    NSLog(@"The map radius in miles is: %f", mapRadius);
     int mapRadiusInt = (int)mapRadius;
     if(mapRadiusInt == 0){
         _mapRadiusValueLabel.text = [NSString stringWithFormat:@"No map radius set"];
@@ -136,11 +136,11 @@
         _mapRadiusValueLabel.text = [NSString stringWithFormat:@"Map Radius: %i miles", radiusValue];
     }
     if(_mapDataManager){
-        [_mapDataManager storeMapRadiusMetersInPlist:radiusValue];
+        [_mapDataManager storeMapRadiusMilesInPlist:radiusValue];
     }
     else{
         _mapDataManager = [[MapDataManager alloc] init];
-        [_mapDataManager storeMapRadiusMetersInPlist:radiusValue];
+        [_mapDataManager storeMapRadiusMilesInPlist:radiusValue];
     }
 }
 

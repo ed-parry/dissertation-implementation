@@ -37,8 +37,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if(animated == FALSE){
-//        [self applyRadiusSettings];
         [self applyGroupSettings];
+        [self applyRadiusSettings];
         [self updateAttractionGroupsArray];
         [self.tableView reloadData];
     }
@@ -50,7 +50,7 @@
     double radiusMeters = [mapDataManager getMapRadiusMetersFromPlist];
     CLLocationCoordinate2D radiusCoordinates = [mapDataManager getMapRadiusCoordinatesFromPlist];
 
-    // got a fresh copy of the data
+    // get a fresh copy of the data
     _dataManager = [[CoreDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
 
@@ -62,10 +62,11 @@
         NSMutableArray *allAttractionsInGroupInRadius;
         
         for(Attraction *tempAttraction in singleGroupAttractions){
-            CLLocationCoordinate2D tempCoords;
-            tempCoords.latitude = [tempAttraction.latitude doubleValue];
-            tempCoords.longitude = [tempAttraction.longitude doubleValue];
+            CLLocationDegrees tempLat = [tempAttraction.latitude doubleValue];
+            CLLocationDegrees tempLong = [tempAttraction.longitude doubleValue];
             
+            CLLocationCoordinate2D tempCoords = CLLocationCoordinate2DMake(tempLat, tempLong);
+
             if([_mapDataManagerWithCoords isCoordinatesWithinRadius:tempCoords])
             {
                 [allAttractionsInGroupInRadius addObject:tempAttraction];
@@ -172,7 +173,6 @@
     return [allAttractionsInSingleGroup count];
 }
 
-// CALLED EVERY TIME A CELL APPEARS ON VIEW
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *thisGroupAttractions = [_allAttractionsByGroup objectAtIndex:indexPath.section];

@@ -41,7 +41,7 @@
     
     MapDataManager *mapDataManager = [[MapDataManager alloc] init];
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    [mapDataManager storeDefaultMapRadiusMetersInPlist];
+    [mapDataManager storeDefaultMapRadiusMilesInPlist];
     [groupDataManager storeDefaultAllowedGroupsInPlist];
     
     [self startLocationManager];

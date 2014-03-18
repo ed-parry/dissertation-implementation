@@ -17,8 +17,9 @@
 - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
 
 - (double) getMapRadiusMetersFromPlist;
-- (void) storeDefaultMapRadiusMetersInPlist;
-- (void) storeMapRadiusMetersInPlist:(double)mapRadius;
+- (double) getMapRadiusMilesFromPlist;
+- (void) storeDefaultMapRadiusMilesInPlist;
+- (void) storeMapRadiusMilesInPlist:(double)mapRadius;
 
 - (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist;
 - (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates;

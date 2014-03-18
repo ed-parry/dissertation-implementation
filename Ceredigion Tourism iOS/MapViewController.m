@@ -47,6 +47,14 @@
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:_currentRadiusCenter andRadiusInMeters:_currentRadiusInMeters];
 }
 
+- (void)viewDidLoad
+{
+    MapDataManager *dataManager = [[MapDataManager alloc] init];
+    double mapRadius = [dataManager getMapRadiusMetersFromPlist];
+    _currentRadiusInMeters = mapRadius;
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [_mapLoadSpinner startAnimating];
@@ -148,9 +156,9 @@
     self.view = _mapView;
 }
 
-- (void)setMapRadiusView:(double)miles withCenter:(CLLocationCoordinate2D)centerCoordinates
+- (void)setMapRadiusView:(double)meters withCenter:(CLLocationCoordinate2D)centerCoordinates
 {
-    if(miles == 0){
+    if(meters == 0){
         _currentRadiusInMeters = 0;
     }
     else{
@@ -159,9 +167,7 @@
         double latitude = centerCoordinates.latitude;
         double longitude = centerCoordinates.longitude;
         
-        [self createMapDataManager];
-        double meters = [_mapDataManager changeMilesToMeters:miles];
-        _currentRadiusInMeters = meters;
+
         
         CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
         GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter

@@ -12,7 +12,6 @@
 #import "Event.h"
 #import "AppDelegate.h"
 
-
 @interface CoreDataManager ()
 @property NSArray *attractions;
 @property NSArray *events;

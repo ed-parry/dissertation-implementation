@@ -37,6 +37,15 @@
     }
 }
 
+- (double)changeMetersToMiles:(double)meters
+{
+    NSLog(@"Meters: %f", meters);
+    double km = meters / 1000;
+    double miles = km / 1.609344;
+    NSLog(@"Miles: %f", miles);
+    return miles;
+}
+
 - (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates
 {
     if(_currentRadiusInMeters == 0){
@@ -47,7 +56,7 @@
         double circleRadius = _currentRadiusInMeters;
         
         double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
-        
+
         if(distanceFromMiddle <= circleRadius){
             // It's inside the radius
             return YES;
@@ -71,14 +80,27 @@
 
 - (double) getMapRadiusMetersFromPlist
 {
-    NSString *filePath = [self getPlistFilePath:@"map_radius_meters"];
+    NSString *filePath = [self getPlistFilePath:@"map_radius_miles"];
     NSArray *mapRadiusArray;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         mapRadiusArray = [[NSArray alloc] initWithContentsOfFile:filePath];
     }
     NSString *mapRadiusString = [mapRadiusArray objectAtIndex:0];
-    return [mapRadiusString doubleValue];
+    
+    double mapRadiusInMiles = [mapRadiusString doubleValue];
+    double mapRadiusInMeters = [self changeMilesToMeters:mapRadiusInMiles];
+    
+    return mapRadiusInMeters;
+}
+
+// Only used for the settings view controller
+- (double) getMapRadiusMilesFromPlist
+{
+    double mapRadiusMeters = [self getMapRadiusMetersFromPlist];
+    double mapRadiusInMiles = [self changeMetersToMiles:mapRadiusMeters];
+    
+    return mapRadiusInMiles;
 }
 
 - (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist
@@ -112,12 +134,12 @@
     [radiusCoordinatesArray writeToFile:[self getPlistFilePath:@"map_radius_coordinates"] atomically:YES];
 }
 
-- (void) storeDefaultMapRadiusMetersInPlist
+- (void) storeDefaultMapRadiusMilesInPlist
 {
-    [self storeMapRadiusMetersInPlist:10.0];
+    [self storeMapRadiusMilesInPlist:10.0];
 }
 
-- (void) storeMapRadiusMetersInPlist:(double)mapRadius
+- (void) storeMapRadiusMilesInPlist:(double)mapRadius
 {
     NSString *mapRadiusString;
     NSArray *mapRadiusArray;
@@ -130,7 +152,7 @@
         mapRadiusString = [NSString stringWithFormat:@"%f", mapRadius];
         mapRadiusArray = [[NSArray alloc] initWithObjects:mapRadiusString, nil];
     }
-    [mapRadiusArray writeToFile:[self getPlistFilePath:@"map_radius_meters"] atomically:YES];
+    [mapRadiusArray writeToFile:[self getPlistFilePath:@"map_radius_miles"] atomically:YES];
 }
 
 - (NSString *)getPlistFilePath:(NSString *)fileName
