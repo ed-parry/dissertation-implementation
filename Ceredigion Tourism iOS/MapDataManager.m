@@ -39,10 +39,8 @@
 
 - (double)changeMetersToMiles:(double)meters
 {
-    NSLog(@"Meters: %f", meters);
     double km = meters / 1000;
     double miles = km / 1.609344;
-    NSLog(@"Miles: %f", miles);
     return miles;
 }
 
@@ -56,7 +54,7 @@
         double circleRadius = _currentRadiusInMeters;
         
         double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
-
+        
         if(distanceFromMiddle <= circleRadius){
             // It's inside the radius
             return YES;

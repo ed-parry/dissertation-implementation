@@ -56,10 +56,10 @@
 
     _mapDataManagerWithCoords = [[MapDataManager alloc] initWithCurrentRadiusCenter:radiusCoordinates
                                                                   andRadiusInMeters:radiusMeters];
-    NSMutableArray *allAttractionsByGroupInRadius;
+    NSMutableArray *allAttractionsByGroupInRadius = [[NSMutableArray alloc] init];
     
     for(NSArray *singleGroupAttractions in _allAttractionsByGroup){
-        NSMutableArray *allAttractionsInGroupInRadius;
+        NSMutableArray *allAttractionsInGroupInRadius = [[NSMutableArray alloc] init];
         
         for(Attraction *tempAttraction in singleGroupAttractions){
             CLLocationDegrees tempLat = [tempAttraction.latitude doubleValue];
@@ -69,6 +69,7 @@
 
             if([_mapDataManagerWithCoords isCoordinatesWithinRadius:tempCoords])
             {
+
                 [allAttractionsInGroupInRadius addObject:tempAttraction];
             }
         }
