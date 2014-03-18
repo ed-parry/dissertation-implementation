@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="511" y="71"/>
         </scene>
-        <!--View Controller - About Ceredigion Tourism-->
+        <!--About View Controller - About Ceredigion Tourism-->
         <scene sceneID="NGv-LQ-a08">
             <objects>
-                <viewController id="Ppq-eM-k7O" sceneMemberID="viewController">
+                <viewController id="Ppq-eM-k7O" customClass="AboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dd2-9a-wRP"/>
                         <viewControllerLayoutGuide type="bottom" id="cqG-Ni-REn"/>
@@ -94,9 +94,32 @@
                     <view key="view" contentMode="scaleToFill" id="log-RI-LAv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0v-sO-2DM">
+                                <rect key="frame" x="113" y="430" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                <state key="normal" title="Legal Notices">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="legalNoticesButtonTapped:" destination="Ppq-eM-k7O" eventType="touchUpInside" id="ssS-Wl-clP"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ceredigion Tourism iOS" translatesAutoresizingMaskIntoConstraints="NO" id="inb-ix-baL">
+                                <rect key="frame" x="20" y="77" width="280" height="345"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="About Ceredigion Tourism" id="aCh-1B-4UN"/>
+                    <connections>
+                        <outlet property="textView" destination="inb-ix-baL" id="8Bn-5V-SoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHv-js-Wue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

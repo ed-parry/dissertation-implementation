@@ -14,6 +14,7 @@
 		6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D718B5356F007BC8CA /* ListViewController.m */; };
 		6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D404AB118D8864200C10CA8 /* GoogleMaps.framework */; };
 		6D404AB418D8864F00C10CA8 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */; };
+		6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D404AB618D8911500C10CA8 /* AboutViewController.m */; };
 		6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */; };
 		6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D55B36318C5EB51005B790F /* CustomMarkerView.xib */; };
 		6D58575018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
@@ -84,6 +85,8 @@
 		6D39A4D718B5356F007BC8CA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		6D404AB118D8864200C10CA8 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		6D404AB518D8911500C10CA8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		6D404AB618D8911500C10CA8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAndGroupDataManagerTests.m; sourceTree = "<group>"; };
 		6D55B36318C5EB51005B790F /* CustomMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerView.xib; sourceTree = "<group>"; };
 		6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ceredigion Tourism iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +304,8 @@
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D404AB518D8911500C10CA8 /* AboutViewController.h */,
+				6D404AB618D8911500C10CA8 /* AboutViewController.m */,
 				6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */,
 				6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */,
 				6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */,
@@ -514,6 +519,7 @@
 				6DD8969B18D06F9300BCE840 /* Event.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6DD8969818D06A9800BCE840 /* AttractionsCSVDataManager.m in Sources */,
+				6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */,
 				6DD896A918D0A28300BCE840 /* UIColor+expanded.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
