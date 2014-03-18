@@ -115,7 +115,7 @@
 {
     _mapDataManager = [[MapDataManager alloc] init];
     double mapRadius = [_mapDataManager getMapRadiusMilesFromPlist];
-    NSLog(@"The map radius in miles is: %f", mapRadius);
+
     int mapRadiusInt = (int)mapRadius;
     if(mapRadiusInt == 0){
         _mapRadiusValueLabel.text = [NSString stringWithFormat:@"No map radius set"];
@@ -171,7 +171,9 @@
     
     UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
 
-    _groupDataManager = [[GroupDataManager alloc] init];
+    if(!_groupDataManager){
+        _groupDataManager = [[GroupDataManager alloc] init];
+    }
     NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
         if([_groupDataManager isGroupInAllowedGroups:thisGroup]){
             [accessorySwitch setOn:YES animated:YES];
