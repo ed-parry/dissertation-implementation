@@ -81,7 +81,7 @@
 		6D37BA8218CF3AF400641DA6 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6D39A4D418B51F73007BC8CA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		6D39A4D618B5356F007BC8CA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		6D39A4D618B5356F007BC8CA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = "Ceredigion Tourism iOS/ListViewController.h"; sourceTree = "<group>"; };
 		6D39A4D718B5356F007BC8CA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		6D404AB118D8864200C10CA8 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
@@ -229,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				6D58575518B2537600306327 /* Ceredigion Tourism iOS */,
+				6D39A4D618B5356F007BC8CA /* ListViewController.h */,
 				6DB4041F18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */,
 				6D58574D18B2537600306327 /* Products */,
 				6D58574E18B2537600306327 /* Frameworks */,
@@ -310,7 +311,6 @@
 				6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */,
 				6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */,
 				6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */,
-				6D39A4D618B5356F007BC8CA /* ListViewController.h */,
 				6D39A4D718B5356F007BC8CA /* ListViewController.m */,
 				6D39A4D318B51F73007BC8CA /* SettingsViewController.h */,
 				6D39A4D418B51F73007BC8CA /* SettingsViewController.m */,
