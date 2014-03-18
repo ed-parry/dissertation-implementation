@@ -69,7 +69,6 @@
 
             if([_mapDataManagerWithCoords isCoordinatesWithinRadius:tempCoords])
             {
-
                 [allAttractionsInGroupInRadius addObject:tempAttraction];
             }
         }

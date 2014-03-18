@@ -12,6 +12,8 @@
 		6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8218CF3AF400641DA6 /* EventKit.framework */; };
 		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
 		6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D718B5356F007BC8CA /* ListViewController.m */; };
+		6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D404AB118D8864200C10CA8 /* GoogleMaps.framework */; };
+		6D404AB418D8864F00C10CA8 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */; };
 		6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */; };
 		6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D55B36318C5EB51005B790F /* CustomMarkerView.xib */; };
 		6D58575018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
@@ -59,8 +61,6 @@
 		6DD896A918D0A28300BCE840 /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A218D0A28300BCE840 /* UIColor+expanded.m */; };
 		6DD896AA18D0A28300BCE840 /* UIView+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A418D0A28300BCE840 /* UIView+convenience.m */; };
 		6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A618D0A28300BCE840 /* VRGCalendarView.m */; };
-		6DE0F3A318D37FCD006C8E88 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */; };
-		6DE0F3A518D37FD7006C8E88 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +82,8 @@
 		6D39A4D418B51F73007BC8CA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6D39A4D618B5356F007BC8CA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		6D39A4D718B5356F007BC8CA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		6D404AB118D8864200C10CA8 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAndGroupDataManagerTests.m; sourceTree = "<group>"; };
 		6D55B36318C5EB51005B790F /* CustomMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerView.xib; sourceTree = "<group>"; };
 		6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ceredigion Tourism iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,8 +153,6 @@
 		6DD896A418D0A28300BCE840 /* UIView+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+convenience.m"; sourceTree = "<group>"; };
 		6DD896A518D0A28300BCE840 /* VRGCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRGCalendarView.h; sourceTree = "<group>"; };
 		6DD896A618D0A28300BCE840 /* VRGCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRGCalendarView.m; sourceTree = "<group>"; };
-		6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DE0F3A318D37FCD006C8E88 /* GoogleMaps.framework in Frameworks */,
+				6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */,
 				6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */,
 				6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */,
 				6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */,
@@ -244,8 +244,8 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6DE0F3A418D37FD7006C8E88 /* GoogleMaps.bundle */,
-				6DE0F3A218D37FCD006C8E88 /* GoogleMaps.framework */,
+				6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */,
+				6D404AB118D8864200C10CA8 /* GoogleMaps.framework */,
 				6DD8969C18D0A28300BCE840 /* Vurig Calendar */,
 				6D7B856718CF732000361807 /* Crashlytics.framework */,
 				6D37BA8218CF3AF400641DA6 /* EventKit.framework */,
@@ -461,7 +461,7 @@
 				6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */,
 				6D58575A18B2537600306327 /* InfoPlist.strings in Resources */,
 				6D58576318B2537600306327 /* Main.storyboard in Resources */,
-				6DE0F3A518D37FD7006C8E88 /* GoogleMaps.bundle in Resources */,
+				6D404AB418D8864F00C10CA8 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
