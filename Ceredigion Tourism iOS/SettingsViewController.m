@@ -161,7 +161,6 @@
     return _attractionGroups.count;
 }
 
-// THIS CODE IS CALLED EVERY TIME A CELL APPEARS
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"groupsList";
@@ -171,27 +170,31 @@
     cell.imageView.image = [self returnColorImageFromAttractionGroup:[_attractionGroups objectAtIndex:indexPath.row]];
     
     UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
-    [accessorySwitch setOn:NO animated:YES];
-    [accessorySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
-    cell.accessoryView = accessorySwitch;
 
-    
-    // NEED TO FIX THIS
-    // figure out if we should show a checkmark from the start or not
     _groupDataManager = [[GroupDataManager alloc] init];
-    for(NSString *group in _attractionGroups){
-        if([_groupDataManager isGroupInAllowedGroups:group]){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
+        if([_groupDataManager isGroupInAllowedGroups:thisGroup]){
+            [accessorySwitch setOn:YES animated:YES];
         }
         else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            [accessorySwitch setOn:NO animated:YES];
         }
-    }
+
+
+    [accessorySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+    cell.accessoryView = accessorySwitch;
+    
     return cell;
 }
 
 - (void)changeSwitch:(UISwitch *)sender{
-    NSLog(@"called");
+    CGPoint center= sender.center;
+    CGPoint rootViewPoint = [sender.superview convertPoint:center toView:_groupTableView];
+    NSIndexPath *indexPath = [_groupTableView indexPathForRowAtPoint:rootViewPoint];
+
+    NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
+    
+    [self toggleGroup:selectedGroup];
 }
 
 - (UIImage *)returnColorImageFromAttractionGroup:(NSString *)group
@@ -204,16 +207,7 @@
 
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if(cell.accessoryType == UITableViewCellAccessoryCheckmark){
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [self toggleGroup:cell.textLabel.text];
-    }
-    else{
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self toggleGroup:cell.textLabel.text];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [_groupTableView reloadData];
+    [self toggleGroup:cell.textLabel.text];
 }
 
 @end
