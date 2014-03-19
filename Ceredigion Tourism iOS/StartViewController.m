@@ -71,6 +71,7 @@
     }
     [_loadingIndicator stopAnimating];
     _loadingView.hidden = YES;
+    NSLog(@"START VIEW all data ready");
 }
 
 - (void)startLocationManager
@@ -104,12 +105,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"START VIEW Called prepareForSegue");
     if([segue.identifier isEqualToString:@"searchBarSegue"]){
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useSearchedAddress:_searchTextField.text];
     }
     else if([segue.identifier isEqualToString:@"currentLocationSegue"]){
+        NSLog(@"START VIEW Called segue of: currentLocationSegue");
         UITabBarController *tabBarController = segue.destinationViewController;
         MapViewController *mapView = [tabBarController.viewControllers objectAtIndex:0];
         [mapView useCurrentLocationPosition:_locationManager];
@@ -120,6 +123,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = FALSE;
+    NSLog(@"START VIEW Called view will disappear");
 }
 - (void)viewWillAppear:(BOOL)animated
 {

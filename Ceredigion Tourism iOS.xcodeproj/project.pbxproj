@@ -104,6 +104,7 @@
 		6D58576518B2537600306327 /* StartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		6D58576718B2537600306327 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6D58576E18B2537600306327 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6D65E7B718D9D43300A92F25 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		6D749A9318B2559E00E06D7F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		6D749A9418B2559E00E06D7F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6D749A9918B2566900E06D7F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -311,6 +312,7 @@
 				6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */,
 				6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */,
 				6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */,
+				6D65E7B718D9D43300A92F25 /* ListViewController.h */,
 				6D39A4D718B5356F007BC8CA /* ListViewController.m */,
 				6D39A4D318B51F73007BC8CA /* SettingsViewController.h */,
 				6D39A4D418B51F73007BC8CA /* SettingsViewController.m */,

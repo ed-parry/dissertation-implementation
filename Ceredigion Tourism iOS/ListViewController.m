@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"LIST VIEW viewDidLoad");
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.navigationItem.title = @"List View";
     _dataManager = [[CoreDataManager alloc] init];
@@ -36,6 +37,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"LIST VIEW viewDidAppear");
     if(animated == FALSE){
         [self applyGroupSettings];
         [self applyRadiusSettings];
@@ -117,6 +119,7 @@
         }
     }
     _attractionGroups = allowedGroupsArray;
+    NSLog(@"LIST VIEW all data ready");
 }
 
 - (void)didReceiveMemoryWarning

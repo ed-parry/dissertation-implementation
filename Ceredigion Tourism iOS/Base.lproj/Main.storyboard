@@ -326,7 +326,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwU-dh-BNt">
                                 <rect key="frame" x="0.0" y="168" width="320" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="Call their phone number"/>
+                                <accessibility key="accessibilityConfiguration" label="Call their telephone number"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="0.047581788336396626" green="0.047672193877551061" blue="0.04747521176774603" alpha="1" colorSpace="calibratedRGB"/>
