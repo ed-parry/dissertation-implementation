@@ -49,7 +49,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"MAP VIEW viewDidLoad");
     MapDataManager *dataManager = [[MapDataManager alloc] init];
     double mapRadius = [dataManager getMapRadiusMetersFromPlist];
     _currentRadiusInMeters = mapRadius;
@@ -57,7 +56,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"MAP VIEW viewDidAppear");
     [_mapLoadSpinner startAnimating];
     if(animated == FALSE){
         MapDataManager *dataManager = [[MapDataManager alloc] init];
@@ -74,7 +72,6 @@
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
 {
-    NSLog(@"MAP VIEW useCurrentLocationPosition");
     [_mapLoadSpinner startAnimating];
     _locationManager = locationManager;
     [self getActualLocationCoordinates];
@@ -98,7 +95,6 @@
     else{
         [self setUpMapWithCurrentLocation];
     }
-    NSLog(@"MAP VIEW gotActualCoordinates");
 }
 
 - (void)setUpMapWithCurrentLocation
@@ -158,7 +154,6 @@
     [_mapLoadSpinner stopAnimating];
     _mapView.delegate = (id)self;
     self.view = _mapView;
-    NSLog(@"MAP VIEW all content ready");
 }
 
 - (void)setMapRadiusView:(double)meters withCenter:(CLLocationCoordinate2D)centerCoordinates

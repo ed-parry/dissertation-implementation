@@ -47,7 +47,6 @@
 
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
-    NSLog(@"SINGLE VIEW startWithAttraction");
     _isAttraction = YES;
     _thisTitle = currentAttraction.name;
     _thisGroup = currentAttraction.group;
@@ -73,7 +72,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"SINGLE VIEW viewDidLoad");
     [super viewDidLoad];
 
     if(_thisTitle != nil){
