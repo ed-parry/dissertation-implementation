@@ -59,10 +59,17 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+    
     if(animated == FALSE){
 //        [self setGroupSelectionValues];
 //        [_groupTableView reloadData];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+        self.tabBarController.navigationItem.hidesBackButton = NO;
 }
 
 - (void)setSegmentControlColour
