@@ -13,9 +13,9 @@
 #import "AppDelegate.h"
 
 @interface CoreDataManager ()
-@property NSArray *attractions;
-@property NSArray *events;
-@property NSString *currentDataType;
+@property (nonatomic, strong) NSArray *attractions;
+@property (nonatomic, strong) NSArray *events;
+@property (nonatomic, strong) NSString *currentDataType;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
@@ -44,7 +44,6 @@
     }
 }
 
-// Removes all existing data from the database, incase of duplicates coming from the CSV file.
 - (void)cleanCoreData:(NSString *)entity
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -366,7 +365,6 @@
         else{
             [allEventDates addObject:event.endDateTime];
         }
-
     }
     NSArray *allReturnedEventDates = [[NSArray alloc] initWithArray:allEventDates];
     return allReturnedEventDates;
