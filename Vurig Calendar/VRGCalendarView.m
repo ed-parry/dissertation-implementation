@@ -19,6 +19,7 @@
 #pragma mark - Select Date
 -(void)selectDate:(int)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSDateComponents *comps = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit fromDate:self.currentMonth];
     [comps setDay:date];
     self.selectedDate = [gregorian dateFromComponents:comps];

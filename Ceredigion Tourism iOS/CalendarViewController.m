@@ -117,6 +117,8 @@
     
     NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
     NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
+
+    dayNumber--; // current bug with the Vurig framework. This is the easiest fix.
     
     NSString *monthText = [self getTextMonthFromNumber:monthNumber];
     NSString *dayText = [self getTextDayFromNumber:dayNumber];
@@ -231,7 +233,7 @@
     
     // TODO - There's a bug with the calendar that forces dates from April to be one day behind the shown values.
     NSInteger thisDayInt = [thisDaySegment integerValue];
-    thisDayInt++;
+
     thisDaySegment = [NSString stringWithFormat:@"%li", (long)thisDayInt];
     
     if(_dataManager){
