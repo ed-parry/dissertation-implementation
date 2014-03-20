@@ -64,7 +64,6 @@
         _currentRadiusInMeters = mapRadius;
         
         [_mapView clear];
-        [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
         [self setUpMapView];
     }
     [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
