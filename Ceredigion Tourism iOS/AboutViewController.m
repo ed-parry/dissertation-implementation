@@ -32,6 +32,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.tabBarController.navigationItem.title = @"About This App";
+}
+
 - (IBAction)legalNoticesButtonTapped:(id)sender
 {
     _textView.text = [GMSServices openSourceLicenseInfo];

@@ -78,7 +78,7 @@
                         <color key="backgroundColor" red="0.20630964124801543" green="0.53445949332219622" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.96921180206066848" green="0.97632334183673475" blue="0.96475528478887018" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Search" id="aRQ-Tv-ZA0"/>
+                    <navigationItem key="navigationItem" title="Search" id="aRQ-Tv-ZA0"/>
                     <connections>
                         <outlet property="searchTextField" destination="uM9-cN-jMC" id="vep-fY-XSH"/>
                     </connections>
@@ -250,7 +250,7 @@
                         <viewControllerLayoutGuide type="bottom" id="x9X-0a-7k0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k6g-eL-QmM">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-0n-URk">
@@ -565,6 +565,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="wro-Vf-o8J"/>
+        <segue reference="iqk-FG-hNu"/>
     </inferredMetricsTieBreakers>
 </document>

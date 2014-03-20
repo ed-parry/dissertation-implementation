@@ -60,6 +60,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.hidesBackButton = YES;
+    self.tabBarController.navigationItem.title = @"Settings";
     
     if(animated == FALSE){
 //        [self setGroupSelectionValues];
@@ -69,7 +70,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-        self.tabBarController.navigationItem.hidesBackButton = NO;
+    self.tabBarController.navigationItem.hidesBackButton = NO;
 }
 
 - (void)setSegmentControlColour

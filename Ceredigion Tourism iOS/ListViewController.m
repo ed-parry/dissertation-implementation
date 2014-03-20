@@ -36,6 +36,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.tabBarController.navigationItem.title = @"List of Attractions";
     if(animated == FALSE){
         [self applyGroupSettings];
         [self applyRadiusSettings];

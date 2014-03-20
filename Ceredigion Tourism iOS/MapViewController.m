@@ -56,6 +56,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.tabBarController.navigationItem.title = @"Map";
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+
     [_mapLoadSpinner startAnimating];
     if(animated == FALSE){
         MapDataManager *dataManager = [[MapDataManager alloc] init];

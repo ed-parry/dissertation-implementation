@@ -284,6 +284,7 @@
 // Bit of a hack to fix the clear navigation bar.
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.tabBarController.navigationItem.title = @"Calendar of Events";
     self.navigationController.navigationBar.translucent = NO;
 }
 - (void)viewDidDisappear:(BOOL)animated
