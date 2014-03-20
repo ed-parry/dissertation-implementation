@@ -139,19 +139,13 @@
                 NSString *startDateString = _secondTextFieldContent;
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-                [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-                NSTimeZone *GMT = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                [dateFormatter setTimeZone:GMT];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
                 
+                startDateString = [startDateString substringToIndex:16];
+                _eventEndDate = [_eventEndDate substringToIndex:16];
                 
                 NSDate *startDate = [dateFormatter dateFromString:startDateString];
                 NSDate *endDate = [dateFormatter dateFromString:_eventEndDate];
-                
-                NSLog(@"The start date string is: %@", startDateString);
-                NSLog(@"The end date string is: %@", _eventEndDate);
-                
-                NSLog(@"Start date: %@", [NSString stringWithFormat:@"%@", startDate]);
-                NSLog(@"End date: %@", [NSString stringWithFormat:@"%@", endDate]);
                 
                 attractionEvent.startDate = startDate;
                 attractionEvent.endDate = endDate;
