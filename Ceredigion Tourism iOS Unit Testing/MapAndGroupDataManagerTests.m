@@ -23,6 +23,10 @@
 - (void)setUp
 {
     [super setUp];
+    // set up for the tests.
+    _groupDataManager = [[GroupDataManager alloc] init];
+    _dataManager = [[CoreDataManager alloc] init];
+    _mapDataManager = [[MapDataManager alloc] init];
 }
 
 - (void)tearDown
@@ -34,9 +38,7 @@
 // Group Data Manager
 - (void)testStoreDefaultAllowedGroupsInPlist
 {
-    // set up for the test.
-    _groupDataManager = [[GroupDataManager alloc] init];
-    _dataManager = [[CoreDataManager alloc] init];
+
 
     // run the method, to store the defaults.
     [_groupDataManager storeDefaultAllowedGroupsInPlist];
@@ -85,24 +87,91 @@
 // - (NSArray *)getAllowedGroupsFromPlist;
 }
 
+- (void)testMilesToMeters
+{
+    double miles = 10;
+    double metersExpectedResult = 16093.44;
+    
+    double metersReceivedResult = [_mapDataManager changeMilesToMeters:miles];
+    
+    XCTAssertEqual(metersReceivedResult, metersExpectedResult, @"The converted meters matches the expected result.");
+}
 
-/* Functions from MapDataManager
- *
- - (id)initWithCurrentRadiusCenter:(CLLocationCoordinate2D)currentRadiusCenter andRadiusInMeters:(double)radiusInMeters;
- 
- - (double)changeMilesToMeters:(double)miles;
- - (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates;
- - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
- 
- - (double) getMapRadiusMetersFromPlist;
- - (void) storeDefaultMapRadiusMetersInPlist;
- - (void) storeMapRadiusMetersInPlist:(double)mapRadius;
- 
- - (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist;
- - (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates;
- 
- - (NSString *)getPlistFilePath:(NSString *)fileName;
- 
- */
+- (void)testMetersToMiles
+{
+    double meters = 33796.224;
+    double milesExpectedResult = 21;
+    
+    double milesReceivedResult = [_mapDataManager changeMetersToMiles:meters];
+    
+    XCTAssertEqual(milesReceivedResult, milesExpectedResult, @"The converted miles matches the expected result.");
+}
+
+- (void)testStoreAndGetMapRadiusCoordinatesFromPlist
+{
+    // store a value in the Plist
+    double mapRadiusValue = 12;
+    [_mapDataManager storeMapRadiusMilesInPlist:mapRadiusValue];
+
+    // get it back and compare
+    double returnedMapRadiusValue = [_mapDataManager getMapRadiusMilesFromPlist];
+    
+    XCTAssertEqual(mapRadiusValue, returnedMapRadiusValue, @"The returned map radius from the Plist is the expected value.");
+}
+
+- (void)testStoreDefaultMapRadiusMetersInPlist
+{
+    [_mapDataManager storeDefaultMapRadiusMilesInPlist];
+    double defaultRadiusMilesValue = 10;
+    
+    double returnedMapRadiusValue = [_mapDataManager getMapRadiusMilesFromPlist];
+    
+    XCTAssertEqual(defaultRadiusMilesValue, returnedMapRadiusValue, @"The returned map radius is the default value expected.");
+}
+
+- (void)testIsCoordinatesWithinRadius
+{
+    CLLocationCoordinate2D radiusCenter = CLLocationCoordinate2DMake(52.4162226, -4.0627321);
+    
+    // 16093.44 meters = 10 miles, default value.
+    _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:radiusCenter andRadiusInMeters:16093.44];
+    
+    CLLocationCoordinate2D newPointCoordinates = CLLocationCoordinate2DMake(52.355979, -4.0321255);
+    
+    bool isWithinRadius = [_mapDataManager isCoordinatesWithinRadius:newPointCoordinates];
+    
+    XCTAssertTrue(isWithinRadius, @"The supplied coordinates are within the set radius.");
+}
+
+- (void)testIsCoordinatesOutsideRadius
+{
+    CLLocationCoordinate2D radiusCenter = CLLocationCoordinate2DMake(52.4162226, -4.0627321);
+    
+    // 16093.44 meters = 10 miles, default value.
+    _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:radiusCenter andRadiusInMeters:16093.44];
+    
+    // this point is about 22 miles away from the location center.
+    CLLocationCoordinate2D newPointCoordinates = CLLocationCoordinate2DMake(52.125529, -4.589009);
+    
+    bool isWithinRadius = [_mapDataManager isCoordinatesWithinRadius:newPointCoordinates];
+    
+    XCTAssertFalse(isWithinRadius, @"The supplied coordinates are outside of the set radius.");
+}
+
+- (void)testGetDistanceInMetersFromXToY
+{
+//  - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
+}
+
+- (void)testStoreGetMapRadiusCoordinatesFromPlist
+{
+//    - (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist;
+//    - (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates;
+}
+
+- (void)testGetPlistFilePath
+{
+//     - (NSString *)getPlistFilePath:(NSString *)fileName;
+}
 
 @end
