@@ -76,8 +76,11 @@
 
     if(_thisTitle != nil){
         // populate the attraction or event
+
+        // hide the word "back" from the navigation bar, and set the title.
         self.navigationItem.title = _thisTitle;
-        self.navigationItem.titleView.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.topItem.title = @"";
+        
         _thirdTextField.text = [NSString stringWithFormat:@"%@", _thirdTextFieldContent];
 
         if([_firstTextFieldContent length] > 1) {
