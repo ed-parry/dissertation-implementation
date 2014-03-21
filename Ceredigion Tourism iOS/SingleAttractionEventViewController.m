@@ -32,6 +32,7 @@
 @property (strong, nonatomic) NSString *thisGroup;
 @property (strong, nonatomic) NSString *thisWebsite;
 @property (strong, nonatomic) NSString *thisImageURL;
+@property UIImage *attractionImage;
 
 // the start date is already in "secondTextFieldContent"
 @property (strong, nonatomic) NSString *eventEndDate;
@@ -109,8 +110,10 @@
         if([_thisWebsite length] < 1){
             _visitWebsiteButton.enabled = FALSE;
         }
-        _attractionImageView.image = [self fetchImageFromUrl:_thisImageURL];
-        _attractionImageView.contentMode = UIViewContentModeScaleToFill;
+        
+        [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisImageURL];
+        [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
+        
         [self setPageColorForGroup:_thisGroup];
     }
     else{
@@ -207,7 +210,7 @@
 }
 
 // 320 x 128
-- (UIImage *)fetchImageFromUrl:(NSString *)URL
+- (void)fetchImageFromUrl:(NSString *)URL
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSURL *imageUrl = [NSURL URLWithString:URL];
@@ -216,13 +219,15 @@
     // if there's something available to grab
     if(attractionImageData){
         UIImage *attractionImage = [[UIImage alloc] initWithData:attractionImageData];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        return attractionImage;
+        _attractionImage = attractionImage;
     }
-    else{
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        return nil;
-    }
+}
+
+- (void)putImageOnView
+{
+    _attractionImageView.image = _attractionImage;
+    _attractionImageView.contentMode = UIViewContentModeScaleToFill;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)didReceiveMemoryWarning

@@ -42,12 +42,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setSegmentControlColour];
-
     _groupTableView.dataSource = self;
     _groupTableView.delegate = self;
-    
+    [self setSegmentControlColour];
+    [self setupSettingsView];
+}
+
+- (void)setupSettingsView
+{
     [self setActiveSettingsMenu:@"group"];
     [self setRadiusSettingsValue];
     [self setGroupSelectionValues];
