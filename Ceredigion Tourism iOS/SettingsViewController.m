@@ -182,6 +182,7 @@
     if(!_groupDataManager){
         _groupDataManager = [[GroupDataManager alloc] init];
     }
+
     NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
         if([_groupDataManager isGroupInAllowedGroups:thisGroup]){
             [accessorySwitch setOn:YES animated:YES];
@@ -189,7 +190,6 @@
         else{
             [accessorySwitch setOn:NO animated:YES];
         }
-
 
     [accessorySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     cell.accessoryView = accessorySwitch;
