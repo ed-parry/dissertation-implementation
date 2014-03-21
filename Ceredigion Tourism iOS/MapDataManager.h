@@ -13,6 +13,7 @@
 - (id)initWithCurrentRadiusCenter:(CLLocationCoordinate2D)currentRadiusCenter andRadiusInMeters:(double)radiusInMeters;
 
 - (double)changeMilesToMeters:(double)miles;
+- (double)changeMetersToMiles:(double)meters;
 - (BOOL)isCoordinatesWithinRadius:(CLLocationCoordinate2D)coordinates;
 - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
 

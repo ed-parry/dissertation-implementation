@@ -348,7 +348,7 @@
                                     <action selector="visitWebsiteTapped:" destination="F95-fg-aCk" eventType="touchUpInside" id="bAW-WC-Y4V"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-zS-uzD">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-zS-uzD">
                                 <rect key="frame" x="0.0" y="331" width="320" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -387,9 +387,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.98574913761765248" blue="0.97500473887061745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="OWA-Eq-2JC" firstAttribute="trailing" secondItem="BrV-zS-uzD" secondAttribute="trailing" id="1rh-YY-Csl"/>
                             <constraint firstItem="QHO-VN-So0" firstAttribute="top" secondItem="OWA-Eq-2JC" secondAttribute="bottom" constant="5" id="2Me-Mt-wBT"/>
-                            <constraint firstAttribute="bottom" secondItem="BrV-zS-uzD" secondAttribute="bottom" constant="-49" id="3Re-xB-WSm"/>
                             <constraint firstItem="vwU-dh-BNt" firstAttribute="trailing" secondItem="OWA-Eq-2JC" secondAttribute="trailing" id="49X-CH-Uld"/>
                             <constraint firstItem="OWA-Eq-2JC" firstAttribute="top" secondItem="xDR-f1-YgB" secondAttribute="bottom" constant="31" id="73h-7z-STd"/>
                             <constraint firstItem="ybk-8u-EJN" firstAttribute="leading" secondItem="QHO-VN-So0" secondAttribute="trailing" constant="80" id="7d7-vh-Alc"/>
@@ -402,12 +400,10 @@
                             <constraint firstItem="tbI-0n-URk" firstAttribute="leading" secondItem="k6g-eL-QmM" secondAttribute="leading" constant="20" symbolic="YES" id="OmR-8q-Wfp"/>
                             <constraint firstItem="QHO-VN-So0" firstAttribute="top" secondItem="ybk-8u-EJN" secondAttribute="top" id="PfX-oA-c0O"/>
                             <constraint firstItem="EcH-pH-M1c" firstAttribute="leading" secondItem="23i-K1-ICW" secondAttribute="leading" id="QL0-R6-EQa"/>
-                            <constraint firstItem="OWA-Eq-2JC" firstAttribute="leading" secondItem="BrV-zS-uzD" secondAttribute="leading" id="QcY-as-Ebe"/>
                             <constraint firstItem="xDR-f1-YgB" firstAttribute="trailing" secondItem="EcH-pH-M1c" secondAttribute="trailing" id="QhF-mJ-omD"/>
                             <constraint firstItem="xDR-f1-YgB" firstAttribute="top" secondItem="EcH-pH-M1c" secondAttribute="bottom" id="TlB-rU-H9j"/>
                             <constraint firstAttribute="trailing" secondItem="23i-K1-ICW" secondAttribute="trailing" id="VWp-Bt-t3s"/>
                             <constraint firstItem="tbI-0n-URk" firstAttribute="leading" secondItem="QHO-VN-So0" secondAttribute="leading" id="XCk-JL-Gsq"/>
-                            <constraint firstItem="BrV-zS-uzD" firstAttribute="top" secondItem="ybk-8u-EJN" secondAttribute="bottom" constant="2" id="dQ8-aW-uBI"/>
                             <constraint firstItem="23i-K1-ICW" firstAttribute="bottom" secondItem="tbI-0n-URk" secondAttribute="bottom" id="raf-FC-8ft"/>
                             <constraint firstItem="EcH-pH-M1c" firstAttribute="trailing" secondItem="23i-K1-ICW" secondAttribute="trailing" id="rks-K0-NDp"/>
                             <constraint firstItem="23i-K1-ICW" firstAttribute="top" secondItem="k6g-eL-QmM" secondAttribute="top" constant="63" id="t1J-gC-k43"/>
