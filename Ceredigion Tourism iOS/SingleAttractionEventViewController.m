@@ -73,16 +73,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpViewContent];
+}
 
+- (void)setUpViewContent
+{
     if(_thisTitle != nil){
         // populate the attraction or event
-
+        
         // hide the word "back" from the navigation bar, and set the title.
         self.navigationItem.title = _thisTitle;
         self.navigationController.navigationBar.topItem.title = @"";
         
         _thirdTextField.text = [NSString stringWithFormat:@"%@", _thirdTextFieldContent];
-
+        
         if([_firstTextFieldContent length] > 1) {
             _firstTextField.text = [NSString stringWithFormat:@"%@", _firstTextFieldContent];
         }
@@ -97,8 +101,8 @@
             [_secondTextField setTitle:@"No phone number is available." forState:UIControlStateNormal];
             _secondTextField.enabled = NO;
         }
-
-
+        
+        
         if([_thisGroup isEqual: @"Accommodation"] || [_thisGroup isEqual:@"Camp & caravan"]){
             _addToCalendarButton.enabled = FALSE;
         }
