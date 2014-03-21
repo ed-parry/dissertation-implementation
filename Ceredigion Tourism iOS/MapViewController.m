@@ -52,6 +52,7 @@
     MapDataManager *dataManager = [[MapDataManager alloc] init];
     double mapRadius = [dataManager getMapRadiusMetersFromPlist];
     _currentRadiusInMeters = mapRadius;
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -69,7 +70,6 @@
         [_mapView clear];
         [self setUpMapView];
     }
-    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
 }
 
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager
@@ -145,7 +145,7 @@
 {
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     _attractionPositions = [dataManager getAllAttractionPositions];
-
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
     [self buildMapMarkers];
 }
 

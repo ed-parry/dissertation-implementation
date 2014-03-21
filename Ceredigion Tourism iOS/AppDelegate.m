@@ -10,6 +10,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <Crashlytics/Crashlytics.h>
 #import <NewRelicAgent/NewRelic.h>
+#import "MapDataManager.h"
+#import "GroupDataManager.h"
 
 @implementation AppDelegate
 
@@ -33,6 +35,11 @@
                                                         green:(164.0/256.0)
                                                          blue:(219.0/256.0)
                                                         alpha:(1.0)]];
+    
+    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    [mapDataManager storeDefaultMapRadiusMilesInPlist];
+    [groupDataManager storeDefaultAllowedGroupsInPlist];
     
     // Google Maps SDK API
     [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY

@@ -39,11 +39,6 @@
     [_loadingIndicator startAnimating];
     _shouldMove = YES;
     
-    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
-    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    [mapDataManager storeDefaultMapRadiusMilesInPlist];
-    [groupDataManager storeDefaultAllowedGroupsInPlist];
-    
     [self startLocationManager];
     [self setUpDataManager];
 
