@@ -49,6 +49,7 @@
                                     <color key="titleShadowColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="useCurrentLocationButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fod-ES-f1K"/>
                                     <segue destination="zeh-uP-Jhx" kind="push" identifier="currentLocationSegue" id="riR-6I-hez"/>
                                 </connections>
                             </button>
@@ -63,6 +64,7 @@
                                     <color key="titleShadowColor" red="0.9549386160714286" green="0.9549386160714286" blue="0.9549386160714286" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="viewAboutInfoButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4gK-0a-0ms"/>
                                     <segue destination="Ppq-eM-k7O" kind="push" id="RpD-Kd-wrK"/>
                                 </connections>
                             </button>

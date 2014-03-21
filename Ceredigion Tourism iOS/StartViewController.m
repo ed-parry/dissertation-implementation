@@ -21,6 +21,8 @@
 @property CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIView *loadingView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+- (IBAction)useCurrentLocationButton:(id)sender;
+- (IBAction)viewAboutInfoButton:(id)sender;
 
 - (IBAction)searchTextFieldReturn:(id)sender;
 @end
@@ -81,6 +83,16 @@
 {
     _shouldMove = NO;
     [_searchTextField resignFirstResponder];
+}
+
+- (IBAction)useCurrentLocationButton:(id)sender
+{
+    _shouldMove = YES;
+}
+
+- (IBAction)viewAboutInfoButton:(id)sender
+{
+    _shouldMove = YES;
 }
 
 - (IBAction)searchTextFieldReturn:(id)sender {
