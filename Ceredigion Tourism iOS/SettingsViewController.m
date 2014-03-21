@@ -213,11 +213,23 @@
     return [colourAttractionObj getAttractionGroupImage:group];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    [self toggleGroup:cell.textLabel.text];
+    UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
+    accessorySwitch = (UISwitch *)cell.accessoryView;
+    
+    if(accessorySwitch.on){
+        [accessorySwitch setOn:NO animated:YES];
+    }
+    else{
+         [accessorySwitch setOn:YES animated:YES];
+    }
+
+    NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
+    [self toggleGroup:selectedGroup];
 }
 
 @end
