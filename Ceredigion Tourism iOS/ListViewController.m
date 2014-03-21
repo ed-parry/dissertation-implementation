@@ -12,6 +12,7 @@
 #import "MapViewController.h"
 #import "GroupDataManager.h"
 #import "MapDataManager.h"
+#import "GroupDataManager.h"
 #import "CoreDataManager.h"
 
 @interface ListViewController ()
@@ -20,6 +21,7 @@
 @property NSArray *attractionPositions;
 @property MapDataManager *mapDataManagerWithCoords;
 @property CoreDataManager *dataManager;
+@property GroupDataManager *groupDataManager;
 @end
 
 @implementation ListViewController
@@ -30,14 +32,19 @@
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.navigationItem.title = @"List View";
     _dataManager = [[CoreDataManager alloc] init];
+    _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
-    _attractionGroups = [_dataManager getAllAttractionGroupTypes];
+    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.title = @"List of Attractions";
     if(animated == FALSE){
+        if(!_groupDataManager){
+            _groupDataManager = [[GroupDataManager alloc] init];
+        }
+        _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
         [self applyGroupSettings];
         [self applyRadiusSettings];
         [self updateAttractionGroupsArray];
@@ -103,21 +110,8 @@
 
 - (void)updateAttractionGroupsArray
 {
-    if(!_dataManager){
-        _dataManager = [[CoreDataManager alloc] init];
-    }
-    _attractionGroups = [_dataManager getAllAttractionGroupTypes];
-    
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    
-    NSMutableArray *allowedGroupsArray = [[NSMutableArray alloc] init];
-    
-    for(NSString *group in _attractionGroups){
-        if([groupDataManager isGroupInAllowedGroups:group]){
-            [allowedGroupsArray addObject:group];
-        }
-    }
-    _attractionGroups = allowedGroupsArray;
+    _attractionGroups = [groupDataManager getAllowedGroupsFromPlist];
 }
 
 - (void)didReceiveMemoryWarning

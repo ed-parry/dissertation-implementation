@@ -10,6 +10,7 @@
 #import "CHCSVParser.h"
 #import "Attraction.h"
 #import "Event.h"
+#import "GroupDataManager.h"
 #import "AppDelegate.h"
 
 @interface CoreDataManager ()
@@ -269,8 +270,11 @@
 
 - (NSArray *) getAllAttractionsInGroupArrays
 {
-    NSArray *allGroups = [self getAllAttractionGroupTypes];
+//    NSArray *allGroups = [self getAllAttractionGroupTypes];
     NSMutableArray *allAttractionsByGroupArrays = [[NSMutableArray alloc] init];
+    
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    NSArray *allGroups = [groupDataManager getAllowedGroupsFromPlist];
     
     for(NSString *group in allGroups){
         NSArray *allSingleGroupAttractions = [self getAllAttractionsForGroup:group];
