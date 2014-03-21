@@ -87,7 +87,18 @@
         allowedGroups = [[NSArray alloc] initWithContentsOfFile:_filePath];
     }
     
-    return allowedGroups;
+    return [self getAlphabeticallyOrderedArray:allowedGroups];
+}
+
+- (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)unsortedArray
+{
+    NSArray *sortedArray;
+
+    sortedArray = [unsortedArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [(NSString *)obj1 compare:(NSString *)obj2 options:NSNumericSearch];
+    }];
+
+    return sortedArray;
 }
 
 - (NSString *)getPlistFilePath:(NSString *)fileName

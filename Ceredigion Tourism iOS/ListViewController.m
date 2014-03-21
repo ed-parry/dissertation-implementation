@@ -104,7 +104,6 @@
             [allAttractionsBySelectedGroup addObject:tempGroup];
         }
     }
-    
     _allAttractionsByGroup = allAttractionsBySelectedGroup;
 }
 
