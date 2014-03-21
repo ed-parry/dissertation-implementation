@@ -15,6 +15,8 @@
 		6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D404AB118D8864200C10CA8 /* GoogleMaps.framework */; };
 		6D404AB418D8864F00C10CA8 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */; };
 		6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D404AB618D8911500C10CA8 /* AboutViewController.m */; };
+		6D4A581E18DC49CC00A56E47 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */; };
+		6D4A582018DC4A2B00A56E47 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */; };
 		6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */; };
 		6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D55B36318C5EB51005B790F /* CustomMarkerView.xib */; };
 		6D58575018B2537600306327 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58574F18B2537600306327 /* Foundation.framework */; };
@@ -86,6 +88,8 @@
 		6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		6D404AB518D8911500C10CA8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6D404AB618D8911500C10CA8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
+		6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAndGroupDataManagerTests.m; sourceTree = "<group>"; };
 		6D55B36318C5EB51005B790F /* CustomMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerView.xib; sourceTree = "<group>"; };
 		6D58574C18B2537600306327 /* Ceredigion Tourism iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ceredigion Tourism iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4A582018DC4A2B00A56E47 /* CoreTelephony.framework in Frameworks */,
 				6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */,
 				6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */,
 				6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */,
@@ -170,6 +175,7 @@
 				6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */,
 				6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */,
 				6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */,
+				6D4A581E18DC49CC00A56E47 /* NewRelicAgent.framework in Frameworks */,
 				6DD178D518B3938E006BE307 /* libz.dylib in Frameworks */,
 				6DD178D318B39382006BE307 /* libicucore.dylib in Frameworks */,
 				6DD178D118B39373006BE307 /* libc++.dylib in Frameworks */,
@@ -247,6 +253,8 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */,
+				6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */,
 				6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */,
 				6D404AB118D8864200C10CA8 /* GoogleMaps.framework */,
 				6DD8969C18D0A28300BCE840 /* Vurig Calendar */,

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <Crashlytics/Crashlytics.h>
+#import <NewRelicAgent/NewRelic.h>
 
 @implementation AppDelegate
 
@@ -39,6 +40,9 @@
     
     // Crashlytics API
     [Crashlytics startWithAPIKey:@"93674e6ba44518b3edb9d4478365345154d0a599"];
+    
+    // NewRelic API
+    [NewRelicAgent startWithApplicationToken:@"AAacea36886503708877ed49e64d4f0df6e412924a"];
     
     return YES;
 }
