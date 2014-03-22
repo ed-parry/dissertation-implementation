@@ -47,14 +47,6 @@
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:_currentRadiusCenter andRadiusInMeters:_currentRadiusInMeters];
 }
 
-- (void)viewDidLoad
-{
-    MapDataManager *dataManager = [[MapDataManager alloc] init];
-    double mapRadius = [dataManager getMapRadiusMetersFromPlist];
-    _currentRadiusInMeters = mapRadius;
-    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.title = @"Map";
@@ -64,7 +56,6 @@
     if(animated == FALSE){
         MapDataManager *dataManager = [[MapDataManager alloc] init];
         double mapRadius = [dataManager getMapRadiusMetersFromPlist];
-        
         _currentRadiusInMeters = mapRadius;
         
         [_mapView clear];
@@ -108,7 +99,12 @@
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     _currentRadiusCenter = _locationManager.location.coordinate;
-    [self setMapRadiusView:10 withCenter:_currentRadiusCenter];
+    
+    MapDataManager *dataManager = [[MapDataManager alloc] init];
+    double mapRadius = [dataManager getMapRadiusMetersFromPlist];
+    _currentRadiusInMeters = mapRadius;
+    
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
 
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
@@ -128,7 +124,10 @@
             _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 
             _currentRadiusCenter = placemark.location.coordinate;
-            [self setMapRadiusView:10 withCenter:_currentRadiusCenter];
+            MapDataManager *dataManager = [[MapDataManager alloc] init];
+            double mapRadius = [dataManager getMapRadiusMetersFromPlist];
+            _currentRadiusInMeters = mapRadius;
+            [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
             
             [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
             [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
