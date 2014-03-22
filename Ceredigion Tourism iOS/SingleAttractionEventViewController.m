@@ -74,7 +74,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [self setUpViewContent];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)setUpViewContent

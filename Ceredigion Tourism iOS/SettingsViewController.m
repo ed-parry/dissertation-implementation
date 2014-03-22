@@ -63,6 +63,7 @@
 {
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.title = @"Settings";
+    self.navigationController.navigationBar.translucent = YES;
     
     if(animated == FALSE){
 //        [self setGroupSelectionValues];

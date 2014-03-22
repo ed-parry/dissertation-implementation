@@ -438,21 +438,26 @@
         // BOOL isCurrentMonth = NO;
         if (i<firstWeekDay) { //previous month
             targetDate = (prevMonthNumDays-firstWeekDay)+(i+1);
-            NSString *hex = (isSelectedDatePreviousMonth) ? @"0x383838" : @"aaaaaa";
-            
             CGContextSetFillColorWithColor(context, 
-                                           [UIColor colorWithHexString:hex].CGColor);
+                                           [UIColor colorWithRed:35.0/255.0
+                                                           green:164.0/255.0
+                                                            blue:219.0/255.0
+                                                           alpha:1.0].CGColor);
         } else if (i>=(firstWeekDay+currentMonthNumDays)) { //next month
             targetDate = (i+1) - (firstWeekDay+currentMonthNumDays);
-            NSString *hex = (isSelectedDateNextMonth) ? @"0x383838" : @"aaaaaa";
             CGContextSetFillColorWithColor(context, 
-                                           [UIColor colorWithHexString:hex].CGColor);
+                                           [UIColor colorWithRed:35.0/255.0
+                                                           green:164.0/255.0
+                                                            blue:219.0/255.0
+                                                           alpha:1.0].CGColor);
         } else { //current month
             // isCurrentMonth = YES;
             targetDate = (i-firstWeekDay)+1;
-            NSString *hex = (isSelectedDatePreviousMonth || isSelectedDateNextMonth) ? @"0xaaaaaa" : @"0x383838";
             CGContextSetFillColorWithColor(context, 
-                                           [UIColor colorWithHexString:hex].CGColor);
+                                           [UIColor colorWithRed:35.0/255.0
+                                                           green:164.0/255.0
+                                                            blue:219.0/255.0
+                                                           alpha:1.0].CGColor);
         }
         
         NSString *date = [NSString stringWithFormat:@"%i",targetDate];
@@ -472,7 +477,10 @@
         } else if (todayBlock==i) {
             CGRect rectangleGrid = CGRectMake(targetX,targetY,kVRGCalendarViewDayWidth+2,kVRGCalendarViewDayHeight+2);
             CGContextAddRect(context, rectangleGrid);
-            CGContextSetFillColorWithColor(context, [UIColor colorWithHexString:@"0x383838"].CGColor);
+            CGContextSetFillColorWithColor(context, [UIColor colorWithRed:35.0/255.0
+                                                                    green:164.0/255.0
+                                                                     blue:219.0/255.0
+                                                                    alpha:1.0].CGColor);
             CGContextFillPath(context);
             
             CGContextSetFillColorWithColor(context, 
@@ -514,7 +522,7 @@
         int targetX = targetColumn * (kVRGCalendarViewDayWidth+2) + 7;
         int targetY = kVRGCalendarViewTopBarHeight + targetRow * (kVRGCalendarViewDayHeight+2) + 32;
         
-        CGRect rectangle = CGRectMake(targetX,targetY,29,2);
+        CGRect rectangle = CGRectMake(targetX,targetY-2,30,5);
         CGContextAddRect(context, rectangle);
         
         UIColor *color;
@@ -525,7 +533,6 @@
         } else {
             color  = (UIColor *)[markedColors objectAtIndex:i];
         }
-        
         
         CGContextSetFillColorWithColor(context, color.CGColor);
         CGContextFillPath(context);

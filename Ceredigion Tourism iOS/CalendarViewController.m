@@ -291,7 +291,7 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    self.navigationController.navigationBar.translucent = YES;
+    //self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
