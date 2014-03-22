@@ -103,8 +103,6 @@
     MapDataManager *dataManager = [[MapDataManager alloc] init];
     double mapRadius = [dataManager getMapRadiusMetersFromPlist];
     _currentRadiusInMeters = mapRadius;
-    
-    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
 
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
@@ -127,8 +125,7 @@
             MapDataManager *dataManager = [[MapDataManager alloc] init];
             double mapRadius = [dataManager getMapRadiusMetersFromPlist];
             _currentRadiusInMeters = mapRadius;
-            [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
-            
+
             [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
             [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
         }
