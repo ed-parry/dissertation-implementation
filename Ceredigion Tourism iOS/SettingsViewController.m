@@ -59,7 +59,7 @@
     _attractionGroups = [_coreDataManager getAllAttractionGroupTypes];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.title = @"Settings";
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     self.tabBarController.navigationItem.hidesBackButton = NO;
 }

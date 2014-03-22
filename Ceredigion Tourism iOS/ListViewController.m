@@ -37,7 +37,7 @@
     _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.title = @"List of Attractions";
     if(animated == FALSE){
