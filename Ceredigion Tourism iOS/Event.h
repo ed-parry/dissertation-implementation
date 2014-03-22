@@ -22,6 +22,4 @@
 
 - (NSDate *) getStartAsNSDate;
 - (NSDate *) getEndAsNSDate;
-
-- (NSString *) getTextualDate:(NSString *)date;
 @end

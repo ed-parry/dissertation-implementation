@@ -13,4 +13,5 @@
 @interface SingleAttractionEventViewController : UIViewController
 - (void)startWithAttraction:(Attraction *)currentAttraction;
 - (void)startWithEvent:(Event *)currentEvent;
+- (NSString *) getTextualDate:(NSString *)date;
 @end

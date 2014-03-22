@@ -7,6 +7,7 @@
 //
 
 #import "SingleAttractionEventViewController.h"
+#import "DateFormatManager.h"
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
@@ -102,7 +103,14 @@
         }
         
         if([_secondTextFieldContent length] > 1){
-            [_secondTextField setTitle:_secondTextFieldContent forState:UIControlStateNormal];
+            if(!_isAttraction){
+                // format the date, and then put it in
+                NSString *textualDate = [self returnTextualDateTime:_secondTextFieldContent];
+                [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
+            }
+            else{
+                [_secondTextField setTitle:_secondTextFieldContent forState:UIControlStateNormal];
+            }
         }
         else{
             [_secondTextField setTitle:@"No phone number is available." forState:UIControlStateNormal];
@@ -117,9 +125,11 @@
             _visitWebsiteButton.enabled = FALSE;
         }
         
-        [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisImageURL];
-        [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
-        
+        if([_thisImageURL length] > 1){
+            [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisImageURL];
+            [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
+        }
+
         [self setPageColorForGroup:_thisGroup];
     }
     else{
@@ -134,6 +144,18 @@
         // we now use this to store the start date and time, so shouldn't be a button.
         _secondTextField.enabled = NO;
     }
+}
+
+- (NSString *)returnTextualDateTime:(NSString *)datetime
+{
+    NSString *date = [datetime substringToIndex:10];
+    NSString *time = [datetime substringFromIndex:10];
+    time = [time substringToIndex:6];
+    
+    DateFormatManager *dateManager = [[DateFormatManager alloc] init];
+    NSString *textualDate = [dateManager getTextualDate:date];
+    
+    return [NSString stringWithFormat:@"%@ at%@", textualDate, time];
 }
 
 - (IBAction)addToCalendarTapped:(id)sender
