@@ -165,8 +165,25 @@
 
 - (void)testStoreGetMapRadiusCoordinatesFromPlist
 {
-//    - (CLLocationCoordinate2D) getMapRadiusCoordinatesFromPlist;
-//    - (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates;
+    CLLocationCoordinate2D coordinatesToStore = CLLocationCoordinate2DMake(52.4162226, -4.0627321);
+    [_mapDataManager storeMapRadiusCoordinatesInPlist:coordinatesToStore];
+    
+    CLLocationCoordinate2D receivedCoordinatesFromPlist = [_mapDataManager getMapRadiusCoordinatesFromPlist];
+    
+    bool isSuccessful = FALSE;
+    
+    double sentLat = coordinatesToStore.latitude;
+    double sentLong = coordinatesToStore.longitude;
+    double receivedLat = receivedCoordinatesFromPlist.latitude;
+    double receivedLong = receivedCoordinatesFromPlist.longitude;
+
+    // can't really compare floating point numbers due to accuracy.
+    // so use fabs to make sure the difference between them is a minute number that doesn't affect the coordinate accuracy.
+    if((fabs(sentLat - receivedLat) <= 0.000001) && (fabs(sentLong - receivedLong) <= 0.000001)){
+        isSuccessful = TRUE;
+    }
+
+    XCTAssertTrue(isSuccessful, @"The coordinates from the Plist match those that were sent to be stored.");
 }
 
 - (void)testGetPlistFilePath
