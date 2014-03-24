@@ -10,6 +10,8 @@
 
 @interface ActivityPlannerSelectViewController ()
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation ActivityPlannerSelectViewController
@@ -26,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.scrollView.contentSize = CGSizeMake(320, 1000);
 }
 
 - (void)didReceiveMemoryWarning
