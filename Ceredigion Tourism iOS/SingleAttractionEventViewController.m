@@ -25,6 +25,8 @@
 // These string variables are used to link either an
 // Attraction or Event to the View itself.
 @property bool isAttraction;
+@property (strong, nonatomic) IBOutlet UIView *imageLoadingView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 
 @property (strong, nonatomic) NSString *firstTextFieldContent;
 @property (strong, nonatomic) NSString *secondTextFieldContent;
@@ -57,7 +59,10 @@
     _thirdTextFieldContent = currentAttraction.descriptionText;
     _thisWebsite = currentAttraction.website;
     _thisImageURL = currentAttraction.imageLocationURL;
-
+    
+    _attractionImageView.hidden = YES;
+    _imageLoadingView.hidden = NO;
+    [_imageLoadingSpinner startAnimating];
 }
 
 - (void)startWithEvent:(Event *)currentEvent
@@ -78,6 +83,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    [_imageLoadingSpinner startAnimating];
     [self setUpViewContent];
 }
 
@@ -130,6 +136,12 @@
         if([_thisImageURL length] > 1){
             [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisImageURL];
             [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
+        }
+        else{
+            [_imageLoadingSpinner stopAnimating];
+            _imageLoadingView.hidden = YES;
+            _attractionImageView.hidden = NO;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
 
         [self setPageColorForGroup:_thisGroup];
@@ -250,6 +262,7 @@
     if(attractionImageData){
         UIImage *attractionImage = [[UIImage alloc] initWithData:attractionImageData];
         _attractionImage = attractionImage;
+        return;
     }
 }
 
@@ -257,6 +270,9 @@
 {
     _attractionImageView.image = _attractionImage;
     _attractionImageView.contentMode = UIViewContentModeScaleToFill;
+    [_imageLoadingSpinner stopAnimating];
+    _imageLoadingView.hidden = YES;
+    _attractionImageView.hidden = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
