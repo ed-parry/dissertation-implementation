@@ -8,7 +8,6 @@
 
 #import "SingleAttractionEventViewController.h"
 #import "DateFormatManager.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
@@ -26,7 +25,8 @@
 // These string variables are used to link either an
 // Attraction or Event to the View itself.
 @property bool isAttraction;
-
+@property (strong, nonatomic) IBOutlet UIView *imageLoadingView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 
 @property (strong, nonatomic) NSString *firstTextFieldContent;
 @property (strong, nonatomic) NSString *secondTextFieldContent;
@@ -36,17 +36,11 @@
 @property (strong, nonatomic) NSString *thisWebsite;
 @property (strong, nonatomic) NSString *thisImageURL;
 @property UIImage *attractionImage;
-// Used to display a small map of the location
-@property (strong, nonatomic) NSString *thisLatitude;
-@property (strong, nonatomic) NSString *thisLongitude;
 
 // the start date is already in "secondTextFieldContent"
 @property (strong, nonatomic) NSString *eventEndDate;
 
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
-@property (strong, nonatomic) IBOutlet UIView *imageLoadingView;
-@property (strong, nonatomic) IBOutlet UIView *smallMapView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
@@ -65,6 +59,10 @@
     _thirdTextFieldContent = currentAttraction.descriptionText;
     _thisWebsite = currentAttraction.website;
     _thisImageURL = currentAttraction.imageLocationURL;
+    
+    _attractionImageView.hidden = YES;
+    _imageLoadingView.hidden = NO;
+    [_imageLoadingSpinner startAnimating];
 }
 
 - (void)startWithEvent:(Event *)currentEvent
@@ -85,8 +83,6 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
-    _imageLoadingView.hidden = NO;
-    _attractionImageView.hidden = YES;
     [_imageLoadingSpinner startAnimating];
     [self setUpViewContent];
 }
@@ -142,7 +138,10 @@
             [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
         }
         else{
-            [self setUpMapView];
+            [_imageLoadingSpinner stopAnimating];
+            _imageLoadingView.hidden = YES;
+            _attractionImageView.hidden = NO;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
 
         [self setPageColorForGroup:_thisGroup];
@@ -159,22 +158,6 @@
         // we now use this to store the start date and time, so shouldn't be a button.
         _secondTextField.enabled = NO;
     }
-}
-
-- (void)setUpMapView
-{
-    NSLog(@"Called");
-    [_imageLoadingSpinner stopAnimating];
-    _imageLoadingView.hidden = YES;
-    _attractionImageView.hidden = YES;
-    
-    double lat = [_thisLatitude doubleValue];
-    double longitude = [_thisLongitude doubleValue];
-
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat longitude:longitude zoom:12];
-    _smallMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    
-    _smallMapView.hidden = NO;
 }
 
 - (NSString *)returnTextualDateTime:(NSString *)datetime
@@ -289,7 +272,6 @@
     _attractionImageView.contentMode = UIViewContentModeScaleToFill;
     [_imageLoadingSpinner stopAnimating];
     _imageLoadingView.hidden = YES;
-    _smallMapView.hidden = YES;
     _attractionImageView.hidden = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
