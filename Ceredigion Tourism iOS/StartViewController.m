@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad
 {
+
     self.navigationController.navigationBarHidden = TRUE;
     [self.view setBackgroundColor:[UIColor colorWithRed:35.0/255.0
                                                   green:164.0/255.0

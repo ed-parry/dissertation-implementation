@@ -42,6 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
+                                                                     NSFontAttributeName, nil]];
     _groupTableView.dataSource = self;
     _groupTableView.delegate = self;
     [self setSegmentControlColour];
@@ -61,6 +64,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+
+    
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.translucent = YES;

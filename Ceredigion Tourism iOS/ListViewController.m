@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"List View";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
+                                                                     NSFontAttributeName, nil]];
     _dataManager = [[CoreDataManager alloc] init];
     _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];

@@ -26,7 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        self.navigationItem.title = @"Calendar of Events";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
+                                                                     NSFontAttributeName, nil]];
+
     _selectedDay = [NSString stringWithFormat:@"%@", [NSDate date]];
     
     //[_dayEventsTable setHidden:YES];
