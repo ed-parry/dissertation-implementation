@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 - (IBAction)useCurrentLocationButton:(id)sender;
 - (IBAction)viewAboutInfoButton:(id)sender;
+- (IBAction)activityPlannerButton:(id)sender;
 
 - (IBAction)searchTextFieldReturn:(id)sender;
 @end
@@ -93,6 +94,11 @@
 }
 
 - (IBAction)viewAboutInfoButton:(id)sender
+{
+    _shouldMove = YES;
+}
+
+- (IBAction)activityPlannerButton:(id)sender
 {
     _shouldMove = YES;
 }

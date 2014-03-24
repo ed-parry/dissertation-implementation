@@ -32,6 +32,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

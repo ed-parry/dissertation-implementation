@@ -85,6 +85,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-3j-0nd">
+                                <rect key="frame" x="67" y="339" width="187" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="22"/>
+                                <state key="normal" title="Activity Planner">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="activityPlannerButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="f0K-ci-B1o"/>
+                                    <segue destination="2gG-VJ-8Gn" kind="push" identifier="activityPlannerSegue" id="eKY-Tz-EM7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20630964124801543" green="0.53445949332219622" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.96921180206066848" green="0.97632334183673475" blue="0.96475528478887018" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,6 +125,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="511" y="71"/>
+        </scene>
+        <!--Activity Planner Select View Controller-->
+        <scene sceneID="C5V-aJ-gc9">
+            <objects>
+                <viewController id="2gG-VJ-8Gn" customClass="ActivityPlannerSelectViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o1e-AA-KiQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zYr-Yj-ZH2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yZ0-vP-hze">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DLX-Xx-50s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Xk-6T-DZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="369"/>
         </scene>
         <!--About View Controller - About Ceredigion Tourism-->
         <scene sceneID="NGv-LQ-a08">
@@ -165,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHv-js-Wue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="388"/>
+            <point key="canvasLocation" x="1051" y="990"/>
         </scene>
         <!--Map View Controller - Map-->
         <scene sceneID="hbS-1t-uc9">
