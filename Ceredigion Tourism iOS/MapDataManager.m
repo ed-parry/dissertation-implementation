@@ -164,7 +164,8 @@
 - (CLLocationCoordinate2D)getCoordinatesForAddressLocation:(NSString *)location
 {
     // accessible from within the block.
-    __block CLLocationCoordinate2D locationCoordinates;
+    __block double latitude;
+    __block double longitude;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     
     [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -172,9 +173,12 @@
             NSLog(@"%@", error);
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
-            locationCoordinates = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+            latitude = placemark.location.coordinate.latitude;
+            longitude = placemark.location.coordinate.longitude;
         }
     }];
+    CLLocationCoordinate2D locationCoordinates = CLLocationCoordinate2DMake(latitude, longitude);
+    NSLog(@"returned coordinates are: %f", locationCoordinates.latitude);
     return locationCoordinates;
 }
 

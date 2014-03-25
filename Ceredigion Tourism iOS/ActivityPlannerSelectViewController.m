@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 @property CLLocationCoordinate2D locationCoordinates;
 @property CLLocationManager *locationManager;
+@property MapDataManager *mapDataManager;
 
 @property (strong, nonatomic) IBOutlet UILabel *dayNumberField;
 @property (strong, nonatomic) IBOutlet UILabel *dayWordField;
@@ -146,8 +147,10 @@
     // check all data fields and make sure we've got something for all of them.
     // fields to check: location, start date.
     // dont check number of days, as always a value anyway.
-    MapDataManager *mapManager = [[MapDataManager alloc] init];
-    _locationCoordinates = [mapManager getCoordinatesForAddressLocation:_locationTextField.text];
+    if(!_mapDataManager){
+        _mapDataManager = [[MapDataManager alloc] init];
+    }
+    _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
     NSString *location = _locationTextField.text;
     NSString *startDate = _arrivalDateTextField.text;
     if(([location length] > 0) && ([startDate length] > 0) && ([_arrivalDateNoFormat length] > 0))
@@ -194,6 +197,14 @@
 - (void)dismissKeyboard
 {
     [_locationTextField resignFirstResponder];
+    if([_locationTextField.text length] > 0){
+        if(!_mapDataManager){
+            _mapDataManager = [[MapDataManager alloc] init];
+        }
+        // there's a chance we have some data, so let's try and fetch the coordinates now, ahead of time.
+        NSLog(@"Trying to get coordinates");
+        _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
+    }
 }
 
 - (void)didReceiveMemoryWarning
