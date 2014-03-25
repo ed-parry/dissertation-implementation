@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface DateFormatManager : NSObject
-- (NSString *)getTextualDate:(NSString *)date;
+- (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear;
 - (NSString *)switchDateStringOrder:(NSString *)date;
 @end

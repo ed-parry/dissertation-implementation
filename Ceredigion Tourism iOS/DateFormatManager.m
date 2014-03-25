@@ -11,11 +11,12 @@
 @implementation DateFormatManager
 
 
-- (NSString *)getTextualDate:(NSString *)date
+- (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear
 {
     NSRange monthRange = NSMakeRange(5, 7- 5);
     NSRange dayRange = NSMakeRange(8, 10- 8);
-    
+ 
+    NSInteger yearNumber = [[date substringToIndex:4] integerValue];
     NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
     NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
     
@@ -24,7 +25,13 @@
     NSString *monthText = [self getTextMonthFromNumber:monthNumber];
     NSString *dayText = [self getTextDayFromNumber:dayNumber];
     
-    return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
+    if(withYear){
+        return [NSString stringWithFormat:@"%@ of %@, %i", dayText, monthText, yearNumber];
+    }
+    else{
+        return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
+    }
+
 }
 
 - (NSString *)getTextDayFromNumber:(NSInteger)day

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0DD18C8E86700091562 /* GroupDataManager.m */; };
+		6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */; };
 		6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */; };
 		6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8218CF3AF400641DA6 /* EventKit.framework */; };
 		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
@@ -43,6 +44,7 @@
 		6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
 		6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4042218BE1F13007A092E /* InfoPlist.strings */; };
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
+		6DB4D09718E1929F00FE6C4B /* ActivityPlannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */; };
 		6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
@@ -82,6 +84,8 @@
 /* Begin PBXFileReference section */
 		6D0AC0DC18C8E86700091562 /* GroupDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataManager.h; sourceTree = "<group>"; };
 		6D0AC0DD18C8E86700091562 /* GroupDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataManager.m; sourceTree = "<group>"; };
+		6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
+		6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		6D37BA8218CF3AF400641DA6 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 		6DB4042318BE1F13007A092E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ceredigion Tourism iOS Unit Testing-Prefix.pch"; sourceTree = "<group>"; };
 		6DB4042D18BE1F2B007A092E /* CoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTests.m; sourceTree = "<group>"; };
+		6DB4D09518E1929F00FE6C4B /* ActivityPlannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlannerController.h; sourceTree = "<group>"; };
+		6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlannerController.m; sourceTree = "<group>"; };
 		6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
@@ -212,6 +218,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D21E93918E19AD100481FD4 /* RMDateSelectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */,
+				6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */,
+			);
+			path = RMDateSelectionViewController;
+			sourceTree = "<group>";
+		};
 		6D47B6CC18B4C153008DFDF3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +244,8 @@
 				6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */,
 				6D0AC0DC18C8E86700091562 /* GroupDataManager.h */,
 				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
+				6DB4D09518E1929F00FE6C4B /* ActivityPlannerController.h */,
+				6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -263,6 +280,7 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D21E93918E19AD100481FD4 /* RMDateSelectionViewController */,
 				6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */,
 				6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */,
 				6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */,
@@ -522,8 +540,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */,
 				6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */,
 				6D58576618B2537600306327 /* StartViewController.m in Sources */,
+				6DB4D09718E1929F00FE6C4B /* ActivityPlannerController.m in Sources */,
 				6D58576018B2537600306327 /* AppDelegate.m in Sources */,
 				6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */,
 				6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */,

@@ -167,7 +167,7 @@
     time = [time substringToIndex:6];
     
     DateFormatManager *dateManager = [[DateFormatManager alloc] init];
-    NSString *textualDate = [dateManager getTextualDate:date];
+    NSString *textualDate = [dateManager getTextualDate:date withYear:NO];
     
     return [NSString stringWithFormat:@"%@ at%@", textualDate, time];
 }
