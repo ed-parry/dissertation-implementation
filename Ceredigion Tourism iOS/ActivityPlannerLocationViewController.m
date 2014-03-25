@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "ActivityPlannerSelectViewController.h"
+#import "ActivityPlannerLocationViewController.h"
 #import "RMDateSelectionViewController.h"
 #import "DateFormatManager.h"
 #import "MapDataManager.h"
 #import "ActivityPlan.h"
 
-@interface ActivityPlannerSelectViewController () <RMDateSelectionViewControllerDelegate>
+@interface ActivityPlannerLocationViewController () <RMDateSelectionViewControllerDelegate>
 
 @property RMDateSelectionViewController *dateSelectionVC;
 
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation ActivityPlannerSelectViewController
+@implementation ActivityPlannerLocationViewController
 
 - (void)viewDidLoad
 {

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityPlannerSelectViewController : UIViewController
+@interface ActivityPlannerLocationViewController : UIViewController
 
 @end
