@@ -187,7 +187,6 @@
         ActivityPlan *planToSend = [self returnDataAsActivityPlan];
         // do the segue jazz.
         
-        NSLog(@"Ready to send! The place name is: %@, the lat value is: %f and the number of days is: %@", planToSend.location, planToSend.locationCoordinates.latitude, planToSend.days);
     }
     else{
         NSLog(@"There's an error with the supplied data");
@@ -202,7 +201,6 @@
             _mapDataManager = [[MapDataManager alloc] init];
         }
         // there's a chance we have some data, so let's try and fetch the coordinates now, ahead of time.
-        NSLog(@"Trying to get coordinates");
         _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
     }
 }
