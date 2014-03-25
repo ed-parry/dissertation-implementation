@@ -9,6 +9,7 @@
 #import "ActivityPlannerSelectViewController.h"
 #import "RMDateSelectionViewController.h"
 #import "DateFormatManager.h"
+#import "MapDataManager.h"
 #import "ActivityPlan.h"
 
 @interface ActivityPlannerSelectViewController () <RMDateSelectionViewControllerDelegate>
@@ -85,18 +86,7 @@
     [self.view endEditing:YES];
 }
 
-- (void)setCoordinatesForEnteredLocation:(NSString *)location
-{
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (error) {
-            NSLog(@"%@", error);
-        } else {
-            CLPlacemark *placemark = [placemarks lastObject];
-            _locationCoordinates = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
-        }
-    }];
-}
+
 
 - (IBAction)useCurrentLocation:(id)sender
 {
@@ -156,11 +146,19 @@
     // check all data fields and make sure we've got something for all of them.
     // fields to check: location, start date.
     // dont check number of days, as always a value anyway.
+    MapDataManager *mapManager = [[MapDataManager alloc] init];
+    _locationCoordinates = [mapManager getCoordinatesForAddressLocation:_locationTextField.text];
     NSString *location = _locationTextField.text;
     NSString *startDate = _arrivalDateTextField.text;
     if(([location length] > 0) && ([startDate length] > 0) && ([_arrivalDateNoFormat length] > 0))
     {
-        return YES;
+        if(_locationCoordinates.latitude != 0.000000){
+            return YES;
+        }
+        NSLog(@"Can't set the location coordinates");
+        NSLog(@"Location lat is: %f", _locationCoordinates.latitude);
+        
+        return NO;
     }
     return NO;
 }
@@ -173,6 +171,7 @@
     ActivityPlan *plan = [[ActivityPlan alloc] init];
     
     plan.location = location;
+    plan.locationCoordinates = _locationCoordinates;
     plan.startDate = startDate;
     plan.days = [NSNumber numberWithInt:[_dayNumberField.text intValue]];
     
@@ -184,6 +183,8 @@
     if([self allDataComplete]){
         ActivityPlan *planToSend = [self returnDataAsActivityPlan];
         // do the segue jazz.
+        
+        NSLog(@"Ready to send! The place name is: %@, the lat value is: %f and the number of days is: %@", planToSend.location, planToSend.locationCoordinates.latitude, planToSend.days);
     }
     else{
         NSLog(@"There's an error with the supplied data");

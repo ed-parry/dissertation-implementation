@@ -26,4 +26,7 @@
 - (void)storeMapRadiusCoordinatesInPlist:(CLLocationCoordinate2D)coordinates;
 
 - (NSString *)getPlistFilePath:(NSString *)fileName;
+
+// Coordinate/Address Methods
+- (CLLocationCoordinate2D)getCoordinatesForAddressLocation:(NSString *)location;
 @end

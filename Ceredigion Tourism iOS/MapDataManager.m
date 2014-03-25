@@ -160,4 +160,22 @@
     return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
 
+#pragma mark Coordinates and Location methods
+- (CLLocationCoordinate2D)getCoordinatesForAddressLocation:(NSString *)location
+{
+    // accessible from within the block.
+    __block CLLocationCoordinate2D locationCoordinates;
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+    [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks lastObject];
+            locationCoordinates = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+        }
+    }];
+    return locationCoordinates;
+}
+
 @end
