@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0DD18C8E86700091562 /* GroupDataManager.m */; };
+		6D0FC8A618E1D54000B69D35 /* ActivityPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */; };
 		6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */; };
 		6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */; };
 		6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8218CF3AF400641DA6 /* EventKit.framework */; };
@@ -84,6 +85,8 @@
 /* Begin PBXFileReference section */
 		6D0AC0DC18C8E86700091562 /* GroupDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataManager.h; sourceTree = "<group>"; };
 		6D0AC0DD18C8E86700091562 /* GroupDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataManager.m; sourceTree = "<group>"; };
+		6D0FC8A418E1D54000B69D35 /* ActivityPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlan.h; sourceTree = "<group>"; };
+		6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlan.m; sourceTree = "<group>"; };
 		6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -368,6 +371,8 @@
 				6D749AA118B258DE00E06D7F /* Attraction.m */,
 				6DD8969918D06F9300BCE840 /* Event.h */,
 				6DD8969A18D06F9300BCE840 /* Event.m */,
+				6D0FC8A418E1D54000B69D35 /* ActivityPlan.h */,
+				6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				6DD896A918D0A28300BCE840 /* UIColor+expanded.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
+				6D0FC8A618E1D54000B69D35 /* ActivityPlan.m in Sources */,
 				6DD896AA18D0A28300BCE840 /* UIView+convenience.m in Sources */,
 				6DE7A25E18E05E7900F63DC6 /* ActivityPlannerSelectViewController.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,
