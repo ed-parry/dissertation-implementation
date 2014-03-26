@@ -13,6 +13,7 @@
 @interface ActivityPlannerAttractionsViewController ()
 @property ActivityPlan *thisPlan;
 @property NSArray *attractionGroups;
+@property NSArray *activityPlanGroups;
 @property (strong, nonatomic) IBOutlet UITableView *attractionsGroupTable;
 - (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender;
 - (IBAction)activityNumberSelector:(UISlider *)sender;
@@ -39,12 +40,15 @@
     
     _attractionsGroupTable.dataSource = self;
     _attractionsGroupTable.delegate = self;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     CoreDataManager *coreData = [[CoreDataManager alloc] init];
     _attractionGroups = [coreData getAllAttractionGroupTypes];
+    _activityPlanGroups = _attractionGroups;
 }
 
 - (void)continuePlannerWithPlan:(ActivityPlan *)currentPlan
@@ -103,8 +107,9 @@
     CGPoint center= sender.center;
     CGPoint rootViewPoint = [sender.superview convertPoint:center toView:_attractionsGroupTable];
     NSIndexPath *indexPath = [_attractionsGroupTable indexPathForRowAtPoint:rootViewPoint];
-    
     NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
+    
+    [self toggleGroupFromArray:selectedGroup];
 }
 
 - (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender
@@ -127,6 +132,29 @@
     }
 }
 
+- (void)toggleGroupFromArray:(NSString *)group
+{
+    NSMutableArray *currentGroups = [[NSMutableArray alloc] initWithArray:_activityPlanGroups];
+    bool shouldRemove = NO;
+    
+    for (NSString *tempGroup in currentGroups){
+        if([tempGroup isEqualToString:group]){
+            shouldRemove = YES;
+        }
+    }
+    
+    if(shouldRemove){
+        [currentGroups removeObject:group];
+    }
+    else{
+        // it isn't in there, so let's add it back
+        [currentGroups addObject:group];
+    }
+    
+    // set it back to the instance variable
+    _activityPlanGroups = currentGroups;
+}
+
 - (IBAction)activityNumberSelector:(UISlider *)sender
 {
     int activities = (int)sender.value;
@@ -141,7 +169,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
+    // check that we have a complete ActivityPlan object.
+    if([_thisPlan isComplete]){
+        // segue off with the object!
+        NSLog(@"Working@");
+    }
+    else{
+        NSLog(@"Not working.");
+    }
 }
 
 @end
