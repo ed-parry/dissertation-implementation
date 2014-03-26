@@ -8,6 +8,7 @@
 
 #import "ActivityPlannerLocationViewController.h"
 #import "RMDateSelectionViewController.h"
+#import "ActivityPlannerAttractionsViewController.h"
 #import "DateFormatManager.h"
 #import "MapDataManager.h"
 #import "ActivityPlan.h"
@@ -186,7 +187,7 @@
     if([self allDataComplete]){
         ActivityPlan *planToSend = [self returnDataAsActivityPlan];
         // do the segue jazz.
-        
+        [segue.destinationViewController continuePlannerWithPlan:planToSend];
     }
     else{
         NSLog(@"There's an error with the supplied data");

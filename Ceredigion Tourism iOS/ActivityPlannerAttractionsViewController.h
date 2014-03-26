@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActivityPlan.h"
 
-@interface ActivityPlannerAttractionsViewController : UIViewController
-
+@interface ActivityPlannerAttractionsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+- (void)continuePlannerWithPlan:(ActivityPlan *)currentPlan;
 @end

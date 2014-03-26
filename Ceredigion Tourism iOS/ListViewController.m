@@ -132,7 +132,6 @@
     UILabel *sectionHeadingLabel = [[UILabel alloc] init];
     sectionHeadingLabel.frame = CGRectMake(0, 0, 340, 20);
     sectionHeadingLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:18];
-
     
     NSString *group = [_attractionGroups objectAtIndex:section];
     sectionHeadingLabel.backgroundColor = [self returnColorForAttractionGroup:group withAlpha:1.0f];
@@ -141,6 +140,7 @@
     
     CGRect newFrame;
     
+    // Crashlytics error came up here.
     UIView *headerView = [[UIView alloc] initWithFrame:newFrame];
     
     [headerView addSubview:sectionHeadingLabel];
