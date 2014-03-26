@@ -92,6 +92,7 @@
     NSDate *today = [NSDate date];
     DateFormatManager *dateFormatManager = [[DateFormatManager alloc] init];
     NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] withYear:YES];
+    _arrivalDateNoFormat = [NSString stringWithFormat:@"%@", today];
     _arrivalDateTextField.text = textualDate;
 }
 
@@ -170,13 +171,14 @@
         
         return NO;
     }
+    NSLog(@"Okay with coordinates, problem is with location: %@ or the start date: %@ or the unformatted date: %@", location, startDate, _arrivalDateNoFormat);
     return NO;
 }
 
 - (ActivityPlan *)returnDataAsActivityPlan
 {
     NSString *location = _locationTextField.text;
-    NSString *startDate = _arrivalDateTextField.text;
+    NSString *startDate = _arrivalDateNoFormat;
     
     ActivityPlan *plan = [[ActivityPlan alloc] init];
     
@@ -197,6 +199,7 @@
     }
     else{
         NSLog(@"There's an error with the supplied data");
+        
     }
 }
 

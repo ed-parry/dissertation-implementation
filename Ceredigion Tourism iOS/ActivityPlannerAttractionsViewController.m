@@ -53,6 +53,7 @@
 
 - (void)continuePlannerWithPlan:(ActivityPlan *)currentPlan
 {
+    _thisPlan = [[ActivityPlan alloc] init];
     _thisPlan = currentPlan;
 }
 
@@ -153,6 +154,7 @@
     
     // set it back to the instance variable
     _activityPlanGroups = currentGroups;
+    _thisPlan.selectedGroups = currentGroups;
 }
 
 - (IBAction)activityNumberSelector:(UISlider *)sender
@@ -175,8 +177,20 @@
         NSLog(@"Working@");
     }
     else{
-        NSLog(@"Not working.");
+        NSLog(@"Not Working");
     }
+}
+
+// TODO - TEST FUNCTION, REMOVE
+- (void)printOutObject
+{
+    NSLog(@"Location: %@", _thisPlan.location);
+    NSLog(@"Latidude: %f", _thisPlan.locationCoordinates.latitude);
+    NSLog(@"Start Date: %@", _thisPlan.startDate);
+    NSLog(@"Days: %@", _thisPlan.days);
+    NSLog(@"Selected Groups: %@", _thisPlan.selectedGroups);
+    NSLog(@"Adrenaline Level: %@", _thisPlan.adrenalineLevel);
+    NSLog(@"Number of Activies: %@", _thisPlan.numberOfActivities);
 }
 
 @end
