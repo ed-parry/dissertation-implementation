@@ -354,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="1813" y="-679"/>
         </scene>
-        <!--View Controller-->
+        <!--Activity Planner Results View Controller-->
         <scene sceneID="rXb-4t-ec2">
             <objects>
-                <viewController id="y79-Kd-aAA" sceneMemberID="viewController">
+                <viewController id="y79-Kd-aAA" customClass="ActivityPlannerResultsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5r-jt-vum"/>
                         <viewControllerLayoutGuide type="bottom" id="HGb-oo-7qA"/>

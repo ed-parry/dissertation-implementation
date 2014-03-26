@@ -67,7 +67,6 @@
     arrivalPicker.datePickerMode = UIDatePickerModeDate; // only pick the date, not time.
 }
 
-
 #pragma mark - RMDateSelectionViewController Delegates
 - (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate
 {

@@ -39,6 +39,7 @@
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 		6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7B856718CF732000361807 /* Crashlytics.framework */; };
+		6D7C558018E3178800927769 /* ActivityPlannerResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C557F18E3178800927769 /* ActivityPlannerResultsViewController.m */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
 		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
@@ -134,6 +135,8 @@
 		6D749AAA18B26F1200E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6D7B856718CF732000361807 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		6D7C557E18E3178800927769 /* ActivityPlannerResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlannerResultsViewController.h; sourceTree = "<group>"; };
+		6D7C557F18E3178800927769 /* ActivityPlannerResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlannerResultsViewController.m; sourceTree = "<group>"; };
 		6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleAttractionEventViewController.h; sourceTree = "<group>"; };
 		6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleAttractionEventViewController.m; sourceTree = "<group>"; };
 		6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionObjectTests.m; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		6D0085AD18E205A200B9B1D0 /* Activity Planner */ = {
 			isa = PBXGroup;
 			children = (
+				6D7C557E18E3178800927769 /* ActivityPlannerResultsViewController.h */,
+				6D7C557F18E3178800927769 /* ActivityPlannerResultsViewController.m */,
 				6DE7A25C18E05E7900F63DC6 /* ActivityPlannerLocationViewController.h */,
 				6DE7A25D18E05E7900F63DC6 /* ActivityPlannerLocationViewController.m */,
 				6D0085AA18E2059600B9B1D0 /* ActivityPlannerAttractionsViewController.h */,
@@ -577,6 +582,7 @@
 				6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */,
 				6DD896A818D0A28300BCE840 /* NSMutableArray+convenience.m in Sources */,
 				6DD8969B18D06F9300BCE840 /* Event.m in Sources */,
+				6D7C558018E3178800927769 /* ActivityPlannerResultsViewController.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6DD8969818D06A9800BCE840 /* AttractionsCSVDataManager.m in Sources */,
 				6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */,
