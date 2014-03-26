@@ -17,4 +17,6 @@
 @property (strong, nonatomic) NSArray *selectedGroups;
 @property (strong, nonatomic) NSString *adrenalineLevel;
 @property (strong, nonatomic) NSNumber *numberOfActivities;
+
+- (bool)isComplete;
 @end
