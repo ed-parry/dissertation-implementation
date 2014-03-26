@@ -16,4 +16,5 @@
 @property (strong, nonatomic) NSNumber *days;
 @property (strong, nonatomic) NSArray *selectedGroups;
 @property (strong, nonatomic) NSString *adrenalineLevel;
+@property (strong, nonatomic) NSNumber *numberOfActivities;
 @end

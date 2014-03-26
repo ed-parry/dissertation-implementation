@@ -88,7 +88,13 @@
     [self.view endEditing:YES];
 }
 
-
+- (void)showTodaysDateAsArrivalDate
+{
+    NSDate *today = [NSDate date];
+    DateFormatManager *dateFormatManager = [[DateFormatManager alloc] init];
+    NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] withYear:YES];
+    _arrivalDateTextField.text = textualDate;
+}
 
 - (IBAction)useCurrentLocation:(id)sender
 {
@@ -109,6 +115,7 @@
     else{
         _locationCoordinates = CLLocationCoordinate2DMake(lat, longitude);
         [self showCurrentLocationOnView];
+        [self showTodaysDateAsArrivalDate];
     }
 }
 

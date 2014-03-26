@@ -270,6 +270,9 @@
                                     <segment title="High"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="adrenalineLevelSelector:" destination="5F2-il-bUW" eventType="valueChanged" id="Eqe-pN-lZf"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose your adrenaline level:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDA-Jm-HGb">
                                 <rect key="frame" x="20" y="301" width="226" height="21"/>
@@ -299,6 +302,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="thumbTintColor" red="1" green="0.77004640321549567" blue="0.42594938465869436" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="activityNumberSelector:" destination="5F2-il-bUW" eventType="valueChanged" id="V73-qZ-JIr"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How many activities would you like?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Sq-7o9">
                                 <rect key="frame" x="20" y="382" width="278" height="21"/>
@@ -321,8 +327,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8 activities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVF-Xl-cXY">
-                                <rect key="frame" x="114" y="449" width="82" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8 activities" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVF-Xl-cXY">
+                                <rect key="frame" x="105" y="449" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -340,6 +346,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityNumberLabel" destination="nVF-Xl-cXY" id="sJU-o2-teh"/>
                         <outlet property="attractionsGroupTable" destination="wi8-0f-yMi" id="5De-ax-Fuk"/>
                     </connections>
                 </viewController>

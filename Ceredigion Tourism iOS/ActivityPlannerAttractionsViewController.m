@@ -14,6 +14,10 @@
 @property ActivityPlan *thisPlan;
 @property NSArray *attractionGroups;
 @property (strong, nonatomic) IBOutlet UITableView *attractionsGroupTable;
+- (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender;
+- (IBAction)activityNumberSelector:(UISlider *)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *activityNumberLabel;
 @end
 
 @implementation ActivityPlannerAttractionsViewController
@@ -103,15 +107,41 @@
     NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
 }
 
-/*
-#pragma mark - Navigation
+- (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender
+{
+    if(sender.selectedSegmentIndex == 0){
+        // low
+        _thisPlan.adrenalineLevel = @"low";
+    }
+    else if(sender.selectedSegmentIndex == 1){
+        // medium
+        _thisPlan.adrenalineLevel = @"medium";
+    }
+    else if(sender.selectedSegmentIndex == 2){
+        // high
+        _thisPlan.adrenalineLevel = @"high";
+    }
+    else{
+        // shouldn't get here, but we'll treat is as medium just in case.
+        _thisPlan.adrenalineLevel = @"medium";
+    }
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (IBAction)activityNumberSelector:(UISlider *)sender
+{
+    int activities = (int)sender.value;
+    if(activities == 1){
+        _activityNumberLabel.text = [NSString stringWithFormat:@"%i activity", activities];
+    }
+    else{
+        _activityNumberLabel.text = [NSString stringWithFormat:@"%i activities", activities];
+    }
+    _thisPlan.numberOfActivities = [NSNumber numberWithInt:activities];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
 }
-*/
 
 @end
