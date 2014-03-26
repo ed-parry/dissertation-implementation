@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ActivityPlan.h"
 
 @interface ActivityPlannerController : NSObject
-
+- (NSArray *)generateActivityListFromPlan:(ActivityPlan *)plan;
 @end

@@ -10,17 +10,17 @@
 
 @interface ActivityPlannerController ()
 
-// Need to improve this declaration - useless!
-- (void)generateNewActivityPlanForLocation:(NSString *)location;
-
 @end
 
 @implementation ActivityPlannerController
 
 
-- (void)generateNewActivityPlanForLocation:(NSString *)location
+- (NSArray *)generateActivityListFromPlan:(ActivityPlan *)plan
 {
+    NSMutableArray *activityList = [[NSMutableArray alloc] init];
     
+    return activityList;
 }
+
 
 @end

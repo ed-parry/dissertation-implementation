@@ -7,6 +7,7 @@
 //
 
 #import "ActivityPlannerAttractionsViewController.h"
+#import "ActivityPlannerResultsViewController.h"
 #import "CoreDataManager.h"
 #import "Attraction.h"
 
@@ -169,16 +170,22 @@
     _thisPlan.numberOfActivities = [NSNumber numberWithInt:activities];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // check that we have a complete ActivityPlan object.
     if([_thisPlan isComplete]){
-        // segue off with the object!
         NSLog(@"Working@");
+        return YES;
     }
     else{
         NSLog(@"Not Working");
+        return NO;
     }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [segue.destinationViewController completedSetupWithActivityPlan:_thisPlan];
 }
 
 // TODO - TEST FUNCTION, REMOVE

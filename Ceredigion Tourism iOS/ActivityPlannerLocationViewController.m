@@ -190,17 +190,21 @@
     return plan;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if([self allDataComplete]){
-        ActivityPlan *planToSend = [self returnDataAsActivityPlan];
-        // do the segue jazz.
-        [segue.destinationViewController continuePlannerWithPlan:planToSend];
+        return YES;
     }
     else{
         NSLog(@"There's an error with the supplied data");
-        
+        return NO;
     }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ActivityPlan *planToSend = [self returnDataAsActivityPlan];
+    [segue.destinationViewController continuePlannerWithPlan:planToSend];
 }
 
 - (void)dismissKeyboard

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActivityPlan.h"
 
 @interface ActivityPlannerResultsViewController : UIViewController
-
+- (void)completedSetupWithActivityPlan:(ActivityPlan *)plan;
 @end
