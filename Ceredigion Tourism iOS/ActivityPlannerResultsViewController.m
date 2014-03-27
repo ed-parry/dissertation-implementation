@@ -37,6 +37,8 @@
 {
     // set up the table here.
     // maybe have subtitles, of the group, and adrenaline levels?
+    
+    // EP - in fact, do we need this? If _plannerResults is set up already, won't the table produce itself without needing to be called?
 }
 
 - (void)didReceiveMemoryWarning

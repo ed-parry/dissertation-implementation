@@ -158,7 +158,10 @@
     if(!_mapDataManager){
         _mapDataManager = [[MapDataManager alloc] init];
     }
-    _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
+    if(_locationCoordinates.latitude == 0.000000){
+        _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
+    }
+
     NSString *location = _locationTextField.text;
     NSString *startDate = _arrivalDateTextField.text;
     if(([location length] > 0) && ([startDate length] > 0) && ([_arrivalDateNoFormat length] > 0))
@@ -197,6 +200,7 @@
     }
     else{
         NSLog(@"There's an error with the supplied data");
+
         return NO;
     }
 }

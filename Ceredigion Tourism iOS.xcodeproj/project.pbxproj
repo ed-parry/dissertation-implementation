@@ -121,6 +121,7 @@
 		6D58576518B2537600306327 /* StartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		6D58576718B2537600306327 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6D58576E18B2537600306327 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6D65816E18E42C1D00871080 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6D65E7B718D9D43300A92F25 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		6D749A9318B2559E00E06D7F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		6D749A9418B2559E00E06D7F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -302,6 +303,7 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D65816E18E42C1D00871080 /* AudioToolbox.framework */,
 				6D21E93918E19AD100481FD4 /* RMDateSelectionViewController */,
 				6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */,
 				6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */,
