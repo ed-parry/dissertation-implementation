@@ -27,15 +27,30 @@
     [super tearDown];
 }
 
-- (void)testGetTextualDate
+- (void)testGetTextualDateWithoutYear
 {
     NSString *numericalDate = @"2014-01-02";
-    NSString *receivedTextualDate = [_dateManager getTextualDate:numericalDate];
+    NSString *receivedTextualDate = [_dateManager getTextualDate:numericalDate withYear:NO];
     NSLog(@"Returned string date: %@", receivedTextualDate);
     
     BOOL areStringsEqual = NO;
     
     if([receivedTextualDate isEqualToString:@"2nd of January"]){
+        areStringsEqual = YES;
+    }
+    
+    XCTAssertTrue(areStringsEqual, @"The returned textual date matches the string expected.");
+}
+
+- (void)testGetTextualDateWithYear
+{
+    NSString *numericalDate = @"2014-01-02";
+    NSString *receivedTextualDate = [_dateManager getTextualDate:numericalDate withYear:YES];
+    NSLog(@"Returned string date: %@", receivedTextualDate);
+    
+    BOOL areStringsEqual = NO;
+    
+    if([receivedTextualDate isEqualToString:@"2nd of January, 2014"]){
         areStringsEqual = YES;
     }
     
