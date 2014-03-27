@@ -178,7 +178,12 @@
         return YES;
     }
     else{
-        NSLog(@"Not Working");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"More information required"
+                                                        message:@"Please ensure that you have entered in all available information before continuing."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
         return NO;
     }
 }
@@ -186,18 +191,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [segue.destinationViewController completedSetupWithActivityPlan:_thisPlan];
-}
-
-// TODO - TEST FUNCTION, REMOVE
-- (void)printOutObject
-{
-    NSLog(@"Location: %@", _thisPlan.location);
-    NSLog(@"Latidude: %f", _thisPlan.locationCoordinates.latitude);
-    NSLog(@"Start Date: %@", _thisPlan.startDate);
-    NSLog(@"Days: %@", _thisPlan.days);
-    NSLog(@"Selected Groups: %@", _thisPlan.selectedGroups);
-    NSLog(@"Adrenaline Level: %@", _thisPlan.adrenalineLevel);
-    NSLog(@"Number of Activies: %@", _thisPlan.numberOfActivities);
 }
 
 @end

@@ -199,7 +199,12 @@
         return YES;
     }
     else{
-        NSLog(@"There's an error with the supplied data");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"More information required"
+                                                        message:@"Please ensure that you have entered in all available information before continuing."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
 
         return NO;
     }
