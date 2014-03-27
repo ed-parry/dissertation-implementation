@@ -59,23 +59,29 @@
         [activityList addObjectsFromArray:[self getNumberOfAttractions:activitiesPerGroup ofGroup:group usingActivityArray:activityListForLocation]];
 
     }
-    
-
     return activityList;
 }
 
-- (NSArray *)generateSuitableEvents
-{
-    NSMutableArray *suitableEvents = [[NSMutableArray alloc] init];
-    // called by generateActivityList, to include any suitable events
-    return suitableEvents;
-}
+
 
 - (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group usingActivityArray:(NSArray *)activitiesArray
 {
     NSMutableArray *attractionsForThisGroup = [[NSMutableArray alloc] init];
+    NSMutableArray *returnedAttractions = [[NSMutableArray alloc] init];
     
-    return attractionsForThisGroup;
+    for(Attraction *temp in activitiesArray){
+        if([temp.group isEqualToString:group]){
+            [attractionsForThisGroup addObject:temp];
+        }
+    }
+    
+    for(int i = 0; i <= number; i++){
+        NSUInteger randomIndex = arc4random() % [attractionsForThisGroup count];
+        Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex];
+        [returnedAttractions addObject:randomAttraction];
+    }
+    
+    return returnedAttractions;
 }
 
 // Add's all attractions within 10 miles of the plan's location.
@@ -95,6 +101,13 @@
         }
     }
     return attractionsInLocation;
+}
+
+- (NSArray *)generateSuitableEvents
+{
+    NSMutableArray *suitableEvents = [[NSMutableArray alloc] init];
+    // called by generateActivityList, to include any suitable events
+    return suitableEvents;
 }
 
 @end

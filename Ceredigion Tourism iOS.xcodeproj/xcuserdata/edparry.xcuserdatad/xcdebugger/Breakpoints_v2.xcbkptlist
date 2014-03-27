@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ceredigion Tourism iOS/ActivityPlannerController.m"
-            timestampString = "417623623.447992"
+            timestampString = "417626434.220345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-generateActivityList"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-getNumberOfAttractions:ofGroup:usingActivityArray:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
