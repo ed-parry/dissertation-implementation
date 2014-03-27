@@ -45,7 +45,7 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)getAttractionGroupsArray
 {
     CoreDataManager *coreData = [[CoreDataManager alloc] init];
     _attractionGroups = [coreData getAllAttractionGroupTypes];
@@ -56,6 +56,11 @@
 {
     _thisPlan = [[ActivityPlan alloc] init];
     _thisPlan = currentPlan;
+    // setup the current plan with the default values from this view.
+    [self getAttractionGroupsArray];
+    _thisPlan.selectedGroups = _activityPlanGroups;
+    _thisPlan.adrenalineLevel = @"medium";
+    _thisPlan.numberOfActivities = [NSNumber numberWithInt:8];
 }
 
 - (void)didReceiveMemoryWarning
