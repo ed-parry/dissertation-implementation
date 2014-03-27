@@ -92,4 +92,22 @@
     XCTAssertEqual(hideValue, 1, @"Check the Attraction Hide value");
 }
 
+- (void)testGetAttractionGroupImage
+{
+    UIImage *attractionImage = [UIImage imageNamed:@"Attraction Icon"];
+    UIImage *receivedImage = [_testAttraction getAttractionGroupImage:@"Attraction"];
+    
+    // convert to NSData to compare
+    NSData *setImageData = UIImagePNGRepresentation(attractionImage);
+    NSData *receivedImageData = UIImagePNGRepresentation(receivedImage);
+    
+    bool areImagesEqual = [setImageData isEqual:receivedImageData];
+    
+    XCTAssertTrue(areImagesEqual, @"The returned image is equal to the image expected.");
+}
+
+- (void)testGetAttractionGroupColour
+{
+    
+}
 @end
