@@ -74,12 +74,11 @@
         }
     }
     
-    for(int i = 0; i <= number; i++){
+    for(int i = 0; i < number; i++){
         int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
         Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex];
         [returnedAttractions addObject:randomAttraction];
     }
-    
     return returnedAttractions;
 }
 

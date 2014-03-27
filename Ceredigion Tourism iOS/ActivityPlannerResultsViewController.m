@@ -30,6 +30,7 @@
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
+    NSLog(@"Number of planner results are: %i", [_plannerResults count]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,11 +52,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
+    
     NSString *CellIdentifier = @"activityPlannerResultsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.textLabel.text = [_plannerResults objectAtIndex:indexPath.row];
+    cell.textLabel.text = thisAttraction.name;
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
-    cell.imageView.image = [self returnColorImageFromAttractionGroup:[_plannerResults objectAtIndex:indexPath.row]];
+    cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
     
     // add in the cell accessory view
     

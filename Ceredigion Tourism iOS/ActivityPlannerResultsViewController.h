@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ActivityPlan.h"
 
-@interface ActivityPlannerResultsViewController : UIViewController
+@interface ActivityPlannerResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 - (void)completedSetupWithActivityPlan:(ActivityPlan *)plan;
 @end
