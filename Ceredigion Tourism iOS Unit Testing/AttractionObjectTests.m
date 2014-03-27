@@ -108,6 +108,14 @@
 
 - (void)testGetAttractionGroupColour
 {
-    
+    /*
+     Below is the code that is ran in this method, so explains what we would expect to see.
+     
+     else if([group isEqualToString:@"Food & drink"]){
+     // Light Blue
+     return [UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:229.0f/255.0f alpha:alpha];
+     }
+     
+     */
 }
 @end
