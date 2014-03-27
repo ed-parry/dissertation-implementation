@@ -48,8 +48,9 @@
                                                    blue:(219.0/256.0)
                                                   alpha:(1.0)]];
     
-    UIView* dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-    _arrivalDateTextField.inputView = dummyView; // Hide keyboard, but show blinking cursor
+    // Hide keyboard
+    UIView* hiddenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    _arrivalDateTextField.inputView = hiddenView;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];

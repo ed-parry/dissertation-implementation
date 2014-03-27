@@ -164,16 +164,22 @@
 #pragma mark Coordinates and Location methods
 - (CLLocationCoordinate2D)getCoordinatesForAddressLocation:(NSString *)location
 {
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (error) {
-            NSLog(@"%@", error);
-        } else {
-            CLPlacemark *placemark = [placemarks lastObject];
-            _locationAddressCoordinates = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
-        }
-    }];
-    return _locationAddressCoordinates;
+    if([location length] > 0){
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            if (error) {
+                NSLog(@"%@", error);
+            } else {
+                CLPlacemark *placemark = [placemarks lastObject];
+                _locationAddressCoordinates = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+            }
+        }];
+        return _locationAddressCoordinates;
+    }
+    else{
+        // no location provided, return a useless coordinate.
+        return CLLocationCoordinate2DMake(0.000000, 0.000000);
+    }
 }
 
 @end
