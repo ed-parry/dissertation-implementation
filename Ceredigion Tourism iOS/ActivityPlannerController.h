@@ -10,5 +10,6 @@
 #import "ActivityPlan.h"
 
 @interface ActivityPlannerController : NSObject
-- (NSArray *)generateActivityListFromPlan:(ActivityPlan *)plan;
+- (id)initWithPlan:(ActivityPlan *)plan;
+- (NSArray *)generateActivityList;
 @end
