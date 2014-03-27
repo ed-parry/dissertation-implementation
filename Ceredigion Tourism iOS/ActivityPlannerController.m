@@ -41,10 +41,10 @@
     
     // Things to check for:
     // * DONE location (10 miles of coordinates)
-    // * activity group // done automatically, when fetching X number of each group
+    // * DONE activity group // done automatically, when fetching X number of each group
     // * adrenaline level
     // * any events that match location and within days
-    // * total number
+    // * DONE total number
     
     
     int totalActivities = [_thisPlan.numberOfActivities intValue];
@@ -57,7 +57,6 @@
         //  - within 10 miles of their chosen location
         //  - are the correct number of activities, for each of their chosen groups
         [activityList addObjectsFromArray:[self getNumberOfAttractions:activitiesPerGroup ofGroup:group usingActivityArray:activityListForLocation]];
-
     }
     return activityList;
 }
