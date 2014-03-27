@@ -7,9 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ActivityPlan.h"
 
 @interface ActivityPlanObjectTests : XCTestCase
-
+    @property ActivityPlan *plan;
 @end
 
 @implementation ActivityPlanObjectTests
@@ -17,18 +18,26 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _plan = [[ActivityPlan alloc] init];
+    
+    _plan.location = @"";
+    _plan.locationCoordinates = CLLocationCoordinate2DMake(0.00000, 0.00000);
+    _plan.startDate = @"2014-03-26";
+    _plan.days = [NSNumber numberWithInt:3];
+    _plan.selectedGroups = @[@"Activity", @"Accommodation", @"Retail"];
+    _plan.adrenalineLevel = @"medium";
+    _plan.numberOfActivities = [NSNumber numberWithInt:8];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    _plan = nil;
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testIsComplete
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue([_plan isComplete], @"There's a full and complete Activity Plan.");
 }
 
 @end
