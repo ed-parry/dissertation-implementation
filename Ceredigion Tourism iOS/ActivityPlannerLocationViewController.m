@@ -55,6 +55,11 @@
     [self.view addGestureRecognizer:tap];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = YES;
+}
+
 - (IBAction)arrivalDateFieldClicked:(UITextField *)sender
 {
     _dateSelectionVC = [RMDateSelectionViewController dateSelectionController];
