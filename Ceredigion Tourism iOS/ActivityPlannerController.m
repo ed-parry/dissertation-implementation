@@ -75,12 +75,17 @@
     }
     
     for(int i = 0; i <= number; i++){
-        NSUInteger randomIndex = arc4random() % [attractionsForThisGroup count];
+        int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
         Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex];
         [returnedAttractions addObject:randomAttraction];
     }
     
     return returnedAttractions;
+}
+
+-(int)getRandomNumberLessThan:(int)max {
+    
+    return (int)1 + arc4random() % (max-1+1);
 }
 
 // Add's all attractions within 10 miles of the plan's location.

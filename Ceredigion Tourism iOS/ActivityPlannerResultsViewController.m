@@ -8,6 +8,7 @@
 
 #import "ActivityPlannerResultsViewController.h"
 #import "ActivityPlannerController.h"
+#import "Attraction.h"
 
 @interface ActivityPlannerResultsViewController ()
 @property (strong, nonatomic) NSArray *plannerResults;
@@ -29,22 +30,42 @@
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
-    
-    [self showResults];
-}
-
-- (void)showResults
-{
-    // set up the table here.
-    // maybe have subtitles, of the group, and adrenaline levels?
-    
-    // EP - in fact, do we need this? If _plannerResults is set up already, won't the table produce itself without needing to be called?
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Only want a single section
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _plannerResults.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = @"activityPlannerResultsCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.textLabel.text = [_plannerResults objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
+    cell.imageView.image = [self returnColorImageFromAttractionGroup:[_plannerResults objectAtIndex:indexPath.row]];
+    
+    // add in the cell accessory view
+    
+    return cell;
+}
+
+- (UIImage *)returnColorImageFromAttractionGroup:(NSString *)group
+{
+    Attraction *colourAttractionObj = [[Attraction alloc] init];
+    return [colourAttractionObj getAttractionGroupImage:group];
 }
 
 @end
