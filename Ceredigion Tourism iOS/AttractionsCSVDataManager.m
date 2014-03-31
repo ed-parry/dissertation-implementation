@@ -13,6 +13,7 @@
 @property NSMutableData *dataReceived;
 @property NSString *baseServerURL;
 @property NSString *attractionsURL;
+@property NSOperationQueue *queue;
 @end
 
 @implementation AttractionsCSVDataManager
@@ -20,7 +21,7 @@
 - (id)init
 {
     _baseServerURL = @"http://www.cardigan.cc/app/";
-    
+    _queue = [[NSOperationQueue alloc] init];
     // append the locations.csv to the base URL.
     _attractionsURL = [NSString stringWithFormat:@"%@locations.csv", _baseServerURL];
     return self;
@@ -42,12 +43,14 @@
     // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
     if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
     {
+
         NSURL *url = [NSURL URLWithString:_attractionsURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:25.0];
         
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+        [connection setDelegateQueue:_queue];
         [connection start];
     }
     else{
@@ -91,7 +94,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
+    NSLog(@"Delegate methodssssss!");
     // if we have all of the data from the URL, save it to file
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
