@@ -10,9 +10,10 @@
 #import "CoreDataManager.h"
 
 @interface EventsCSVDataManager ()
-    @property NSMutableData *dataReceived;
-    @property NSString *baseServerURL;
-    @property NSString *calendarURL;
+@property NSMutableData *dataReceived;
+@property NSString *baseServerURL;
+@property NSString *calendarURL;
+@property NSOperationQueue *queue;
 @end
 
 @implementation EventsCSVDataManager
@@ -20,7 +21,7 @@
 - (id)init
 {
     _baseServerURL = @"http://www.cardigan.cc/app/";
-    
+    _queue = [[NSOperationQueue alloc] init];
     // append the calendar.csv to the base URL.
     _calendarURL = [NSString stringWithFormat:@"%@calendar.csv", _baseServerURL];
     return self;
@@ -48,6 +49,7 @@
                                              timeoutInterval:30.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [connection setDelegateQueue:_queue];
         [connection start];
     }
     else{

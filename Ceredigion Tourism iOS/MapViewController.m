@@ -52,6 +52,16 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(coreDataChanged)
+                                                 name:@"attractionsDataUpdated"
+                                               object:nil];
+}
+
+- (void)coreDataChanged
+{
+    NSLog(@"There's new data, go get it!");
 }
 
 - (void)viewWillAppear:(BOOL)animated

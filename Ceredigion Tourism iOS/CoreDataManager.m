@@ -34,6 +34,7 @@
             [self makeAttractionObjectFromArray:singleAttractionArray :counter];
             counter++;
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"attractionsDataUpdated" object:self];
     }
     else if([_currentDataType isEqualToString:@"events"]){
         [self cleanCoreData:@"Events"];
@@ -42,6 +43,7 @@
             [self makeEventObjectFromArray:singleEventArray :counter];
             counter++;
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"eventsDataUpdated" object:self];
     }
 }
 
