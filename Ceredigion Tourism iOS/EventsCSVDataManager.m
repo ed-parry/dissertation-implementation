@@ -48,7 +48,7 @@
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
                                              timeoutInterval:30.0];
         
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
         [connection setDelegateQueue:_queue];
         [connection start];
     }
