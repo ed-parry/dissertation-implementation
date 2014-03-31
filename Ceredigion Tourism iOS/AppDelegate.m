@@ -36,12 +36,7 @@
                                                         green:(164.0/256.0)
                                                          blue:(219.0/256.0)
                                                         alpha:(1.0)]];
-    
-    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
-    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    [mapDataManager storeDefaultMapRadiusMilesInPlist];
-    [groupDataManager storeDefaultAllowedGroupsInPlist];
-    
+        
     // Google Maps SDK API
     [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     // [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
@@ -52,6 +47,10 @@
     // NewRelic API
     [NewRelicAgent startWithApplicationToken:@"AAacea36886503708877ed49e64d4f0df6e412924a"];
 
+    
+    MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    [mapDataManager storeDefaultMapRadiusMilesInPlist];
+    
     return YES;
 }
 							

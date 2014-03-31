@@ -42,10 +42,10 @@
 
 
     _shouldMove = YES;
+
     
     [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
 
-    
     [self startLocationManager];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];

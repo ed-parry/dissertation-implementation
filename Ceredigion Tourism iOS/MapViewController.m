@@ -53,6 +53,7 @@
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
     
+    // Listen out for any new data available from Core Data
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(coreDataChanged)
                                                  name:@"attractionsDataUpdated"
@@ -61,7 +62,12 @@
 
 - (void)coreDataChanged
 {
-    NSLog(@"There's new data, go get it!");
+    [_mapView clear];
+    [self createMapDataManager];
+    CoreDataManager *dataManager = [[CoreDataManager alloc] init];
+    _attractionPositions = [dataManager getAllAttractionPositions];
+    [self setMapRadiusView:_currentRadiusInMeters withCenter:_currentRadiusCenter];
+    [self buildMapMarkers];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,11 +76,11 @@
 
     [_mapLoadSpinner startAnimating];
     if(animated == FALSE){
-        MapDataManager *dataManager = [[MapDataManager alloc] init];
-        double mapRadius = [dataManager getMapRadiusMetersFromPlist];
+        [self createMapDataManager];
+        double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
         _currentRadiusInMeters = mapRadius;
         
-        [_mapView clear];
+        //[_mapView clear];
         [self setUpMapView];
     }
 }
@@ -148,11 +154,6 @@
     }];
 }
 
-- (void)toggleGroupOnMap:(NSString *)group
-{
-    // The code called when a user removes a group from the settings page. All the markers of that group should then be removed from the map.
-}
-
 - (void)setUpMapView
 {
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
@@ -203,7 +204,7 @@
 
 - (void)buildMapMarkers{
     for(Attraction *currentAttraction in _attractionPositions){
-
+        
         CLLocationCoordinate2D attractionCoordinates;
         attractionCoordinates.latitude = [currentAttraction.latitude doubleValue];
         attractionCoordinates.longitude = [currentAttraction.longitude doubleValue];

@@ -48,7 +48,13 @@
 - (void)storeDefaultAllowedGroupsInPlist
 {
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
-    NSArray *defaultGroups = [dataManager getAllAttractionGroupTypes];
+    NSMutableArray *defaultGroups = [[NSMutableArray alloc] initWithArray:[dataManager getAllAttractionGroupTypes]];
+    
+    if([defaultGroups count] < 1){
+        // make a new list that will work for 90% of cases as a default
+        defaultGroups = [[NSMutableArray alloc] initWithArray:@[@"Accommodation", @"Activity", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail"]];
+    }
+    
     [self storeAllowedGroupsInPlist:defaultGroups];
 }
 

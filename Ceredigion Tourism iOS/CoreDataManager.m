@@ -34,6 +34,9 @@
             [self makeAttractionObjectFromArray:singleAttractionArray :counter];
             counter++;
         }
+        // Store the default groups, taken from the list of attractions
+        GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+        [groupDataManager storeDefaultAllowedGroupsInPlist];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"attractionsDataUpdated" object:self];
     }
     else if([_currentDataType isEqualToString:@"events"]){
