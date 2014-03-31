@@ -97,6 +97,28 @@
                                     <segue destination="2gG-VJ-8Gn" kind="push" identifier="activityPlannerSegue" id="eKY-Tz-EM7"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j4i-20-gGp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Start Loading Image" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-XW-ZOY">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9KT-wd-NPI">
+                                        <rect key="frame" x="142" y="221" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fetching Attractions..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWu-ep-DYp">
+                                        <rect key="frame" x="73" y="266" width="174" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20630964124801543" green="0.53445949332219622" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.96921180206066848" green="0.97632334183673475" blue="0.96475528478887018" alpha="1" colorSpace="calibratedRGB"/>
@@ -119,6 +141,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="aRQ-Tv-ZA0"/>
                     <connections>
+                        <outlet property="loadingSpinner" destination="9KT-wd-NPI" id="2Pb-TR-lcP"/>
+                        <outlet property="loadingView" destination="j4i-20-gGp" id="Nv7-9S-pSb"/>
                         <outlet property="searchTextField" destination="uM9-cN-jMC" id="vep-fY-XSH"/>
                     </connections>
                 </viewController>
@@ -892,6 +916,7 @@
         <image name="List Icon" width="32" height="32"/>
         <image name="Map Icon" width="32" height="32"/>
         <image name="Settings Icon" width="32" height="32"/>
+        <image name="Start Loading Image" width="640" height="960"/>
     </resources>
     <color key="tintColor" red="0.22572991794775565" green="0.54297304012100978" blue="0.89730268716812134" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

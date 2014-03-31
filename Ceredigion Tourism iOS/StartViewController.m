@@ -24,6 +24,8 @@
 - (IBAction)activityPlannerButton:(id)sender;
 
 - (IBAction)searchTextFieldReturn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) IBOutlet UIView *loadingView;
 @end
 
 @implementation StartViewController
@@ -31,21 +33,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_loadingSpinner startAnimating];
     self.navigationController.navigationBarHidden = TRUE;
     [self.view setBackgroundColor:[UIColor colorWithRed:35.0/255.0
                                                   green:164.0/255.0
                                                    blue:219.0/255.0
                                                   alpha:1.0]];
 
-    NSLog(@"gets here before fetching the data");
-//    [_loadingIndicator startAnimating];
+
     _shouldMove = YES;
     
+    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+
     
+    [self startLocationManager];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)dataIsReady
+{
+    [_loadingSpinner stopAnimating];
+    _loadingView.hidden = YES;
+}
+
+- (void)setUpDataManager
+{
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
     if([dataManager isConnectionAvailable]){
-        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
-        [self performSelectorOnMainThread:@selector(dataIsReady) withObject:nil waitUntilDone:NO];
+        // need to fetch both attractions and events
+        AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
+        EventsCSVDataManager *eventsDataManager = [[EventsCSVDataManager alloc] init];
+
+        [attractionsDataManager saveDataFromURL];
+        [eventsDataManager saveDataFromURL];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
@@ -55,28 +77,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
-    [self startLocationManager];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-//    [_loadingIndicator stopAnimating];
-//    _loadingView.hidden = YES;
-}
-
-- (void)dataIsReady
-{
-    NSLog(@"Data is ready!");
-}
-
-- (void)setUpDataManager
-{
-    // need to fetch both attractions and events
-    AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
-    EventsCSVDataManager *eventsDataManager = [[EventsCSVDataManager alloc] init];
-
-    [attractionsDataManager saveDataFromURL];
-    [eventsDataManager saveDataFromURL];
+    [self performSelectorOnMainThread:@selector(dataIsReady) withObject:nil waitUntilDone:YES];
 }
 
 - (void)startLocationManager
