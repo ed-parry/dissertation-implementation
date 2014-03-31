@@ -42,6 +42,7 @@
     
     // Has to be mutable, to be able to set HTTP Method.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval:10];
     
     [request setHTTPMethod:@"GET"];
     

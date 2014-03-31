@@ -45,7 +45,7 @@
         NSURL *url = [NSURL URLWithString:_attractionsURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                             timeoutInterval:30.0];
+                                             timeoutInterval:25.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [connection start];
@@ -81,6 +81,12 @@
         [[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
         // Trying again with new credentials
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // called when there's no network connection, or the timeout is hit. In this case, we should just carry on and use the data that's already in the DB.
+    NSLog(@"Error fetching the attractions CSV file. Will use the existing Core Data datasource.");
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
