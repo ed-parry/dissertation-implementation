@@ -25,14 +25,12 @@
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation ofType:(NSString *)type
 {
     _currentDataType = type; // may not need this.
-    NSLog(@"Let's store it!");
     [self makeArrayFromCSVFile:csvFileLocation ofType:type];
 
     if([_currentDataType isEqualToString:@"attractions"]){
         [self cleanCoreData:@"Attractions"];
         int counter = 0;
         for (NSArray *singleAttractionArray in _attractions){
-            NSLog(@"Adding attraction to the database. Number: %i", counter);
             [self makeAttractionObjectFromArray:singleAttractionArray :counter];
             counter++;
         }
@@ -41,12 +39,10 @@
         [self cleanCoreData:@"Events"];
         int counter = 0;
         for (NSArray *singleEventArray in _events){
-            NSLog(@"Adding events to the database. Number: %i", counter);
             [self makeEventObjectFromArray:singleEventArray :counter];
             counter++;
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"coreDataUpdated" object:self];
 }
 
 - (void)cleanCoreData:(NSString *)entity

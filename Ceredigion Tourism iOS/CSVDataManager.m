@@ -27,9 +27,11 @@
 
 - (bool)isConnectionAvailable
 {
+    NSLog(@"Starts to check for available connection");
     NSString *URLString = [NSString stringWithContentsOfURL:[NSURL URLWithString:_baseServerURL]
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
+    NSLog(@"Finished checking for available connection");
     if(URLString != NULL){
         return YES;
     }
@@ -38,6 +40,7 @@
 
 - (NSDate *)getLastUpdatedDateOfServerCSV:(NSString *)urlString
 {
+    NSLog(@"Starting to check the last update of CSV");
     NSURL *url = [NSURL URLWithString:urlString];
     
     // Has to be mutable, to be able to set HTTP Method.
@@ -50,6 +53,7 @@
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
     if(response){
+        NSLog(@"Received the CSV");
         NSDate *lastModifiedDate;
         NSString *lastModifiedString = [[response allHeaderFields] objectForKey:@"Last-Modified"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -66,6 +70,7 @@
         return lastModifiedDate;
     }
     else{
+        NSLog(@"There was a problem connecting to the server, or the timeout was reached.");
         return nil;
     }
 }
