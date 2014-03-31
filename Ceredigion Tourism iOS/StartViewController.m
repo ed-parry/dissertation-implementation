@@ -43,31 +43,9 @@
 
     _shouldMove = YES;
     
-    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
-
-    
-    [self startLocationManager];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-}
-
-- (void)dataIsReady
-{
-    [_loadingSpinner stopAnimating];
-    _loadingView.hidden = YES;
-}
-
-- (void)setUpDataManager
-{
     CSVDataManager *dataManager = [[CSVDataManager alloc] init];
     if([dataManager isConnectionAvailable]){
-        // need to fetch both attractions and events
-        AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
-        EventsCSVDataManager *eventsDataManager = [[EventsCSVDataManager alloc] init];
-
-        [attractionsDataManager saveDataFromURL];
-        [eventsDataManager saveDataFromURL];
+        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
@@ -77,6 +55,30 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)dataIsReady
+{
+    [_loadingSpinner stopAnimating];
+    _loadingView.hidden = YES;
+
+    // starting this too soon stops the loading screen from working.
+    [self startLocationManager];
+}
+
+- (void)setUpDataManager
+{
+    // need to fetch both attractions and events
+    AttractionsCSVDataManager *attractionsDataManager = [[AttractionsCSVDataManager alloc] init];
+    EventsCSVDataManager *eventsDataManager = [[EventsCSVDataManager alloc] init];
+
+    [attractionsDataManager saveDataFromURL];
+    [eventsDataManager saveDataFromURL];
+
     [self performSelectorOnMainThread:@selector(dataIsReady) withObject:nil waitUntilDone:YES];
 }
 

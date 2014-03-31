@@ -1,14 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
       "filename" : "iphone4-launch-image.png"
     },
     {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "iphone5-launch-image.png"
+      "idiom" : "iphone",
+      "filename" : "iphone5-launch-image.png",
+      "subtype" : "retina4",
+      "scale" : "2x"
     }
   ],
   "info" : {

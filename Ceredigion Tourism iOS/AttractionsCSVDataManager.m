@@ -28,6 +28,7 @@
 
 - (void)saveDataFromURL
 {
+        NSLog(@"Helloooo starting!");
     // Start the network activity indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -48,6 +49,7 @@
                                              timeoutInterval:25.0];
         
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        NSLog(@"Helloooo connection starting!");
         [connection start];
     }
     else{
@@ -64,7 +66,7 @@
     NSURL *url = [NSURL URLWithString:_attractionsURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                         timeoutInterval:30.0];
+                                         timeoutInterval:25.0];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -91,7 +93,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
+    NSLog(@"Helloooo");
     // if we have all of the data from the URL, save it to file
     NSString *documentFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
@@ -107,13 +109,14 @@
     
     // stop the network activity indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
+    NSLog(@"Got the data from the network");
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     [coreDataManager saveCSVToCoreData:fullFilePath ofType:@"attractions"];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+        NSLog(@"getting data...");
     if (_dataReceived){
         [_dataReceived appendData:data];
     }

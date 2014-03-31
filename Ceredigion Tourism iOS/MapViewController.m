@@ -52,6 +52,16 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(coreDataChanged)
+                                                 name:@"coreDataUpdated"
+                                               object:nil];
+}
+
+- (void)coreDataChanged
+{
+    NSLog(@"New data is in the database!");
 }
 
 - (void)viewWillAppear:(BOOL)animated
