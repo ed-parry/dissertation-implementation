@@ -392,7 +392,6 @@
     for (Event *event in allEvents){
 
         NSDate *startDate = [dateFormatter dateFromString:event.startDate];
-        NSLog(@"The date string is %@ but the NSDate object is %@", event.startDate, [NSString stringWithFormat:@"%@", startDate]);
         [allEventDates addObject:startDate];
         
         if([event.startDate isEqualToString:event.endDate]){
