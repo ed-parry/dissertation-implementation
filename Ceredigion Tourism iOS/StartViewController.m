@@ -13,6 +13,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
+#import "CoreDataManager.h"
 #import "GroupDataManager.h"
 
 @interface StartViewController ()
@@ -33,18 +34,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_loadingSpinner startAnimating];
+
     self.navigationController.navigationBarHidden = TRUE;
     [self.view setBackgroundColor:[UIColor colorWithRed:35.0/255.0
                                                   green:164.0/255.0
                                                    blue:219.0/255.0
                                                   alpha:1.0]];
 
+    // Listen out for any new data available from Core Data
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataSavedInCoreData)
+                                                 name:@"attractionsDataUpdated"
+                                               object:nil];
 
     _shouldMove = YES;
-
+    [_loadingSpinner startAnimating];
     
-    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+    CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
+    if([coreDataManager doesCoreDataEntityHaveData:@"Attractions"]){
+        [_loadingSpinner stopAnimating];
+        _loadingView.hidden = YES;
+        
+        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+    }
+    else{
+        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
+    }
+
 
     [self startLocationManager];
 
@@ -52,7 +68,7 @@
     [self.view addGestureRecognizer:tap];
 }
 
-- (void)dataIsReady
+- (void)dataSavedInCoreData
 {
     [_loadingSpinner stopAnimating];
     _loadingView.hidden = YES;
@@ -77,7 +93,6 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-    [self performSelectorOnMainThread:@selector(dataIsReady) withObject:nil waitUntilDone:YES];
 }
 
 - (void)startLocationManager

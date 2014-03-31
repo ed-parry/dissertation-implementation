@@ -50,6 +50,24 @@
     }
 }
 
+- (BOOL)doesCoreDataEntityHaveData:(NSString *)entity
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *allAttractions = [[NSFetchRequest alloc] init];
+    [allAttractions setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:context]];
+    int count = [context countForFetchRequest:allAttractions error:&error];
+    
+    if (count == 0){
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
 - (void)cleanCoreData:(NSString *)entity
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

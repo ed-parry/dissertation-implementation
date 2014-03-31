@@ -21,4 +21,6 @@
 - (NSArray *)getAllEvents;
 - (Event *)getSingleEventByTitle:(NSString *)title;
 - (NSArray *)getAllEventDates;
+
+- (BOOL)doesCoreDataEntityHaveData:(NSString *)entity;
 @end
