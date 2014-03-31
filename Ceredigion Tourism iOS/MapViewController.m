@@ -185,6 +185,7 @@
 
         
         CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
+        
         GMSCircle *circleRadius = [GMSCircle circleWithPosition:circleCenter
                                                          radius:meters];
         circleRadius.fillColor = [UIColor colorWithRed:35.0/255.0

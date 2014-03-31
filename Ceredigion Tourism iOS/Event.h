@@ -15,10 +15,13 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
-@property (strong, nonatomic) NSString *startDateTimeString;
-@property (strong, nonatomic) NSString *endDateTimeString;
+@property (strong, nonatomic) NSString *startDate;
+@property (strong, nonatomic) NSString *endDate;
+@property (strong, nonatomic) NSString *startTime;
+@property (strong, nonatomic) NSString *endTime;
 @property (strong, nonatomic) NSDate *startDateTime;
 @property (strong, nonatomic) NSDate *endDateTime;
+@property (nonatomic) int allDay;
 
 - (NSDate *) getStartAsNSDate;
 - (NSDate *) getEndAsNSDate;

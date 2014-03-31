@@ -123,8 +123,7 @@
     newEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Events" inManagedObjectContext:context];
     
     NSNumber *eventId = [NSNumber numberWithInt:event.id];
-    NSString *startDateTime = [NSString stringWithFormat:@"%@", event.getStartAsNSDate];
-    NSString *endDateTime = [NSString stringWithFormat:@"%@", event.getEndAsNSDate];
+    NSNumber *eventAllDay = [NSNumber numberWithInt:event.allDay];
     
     [newEvent setValue: eventId forKey:@"id"];
     [newEvent setValue: event.title forKey:@"title"];
@@ -132,8 +131,11 @@
     [newEvent setValue: event.location forKey:@"location"];
     [newEvent setValue: event.latitude forKey:@"latitude"];
     [newEvent setValue: event.longitude forKey:@"longitude"];
-    [newEvent setValue: startDateTime forKey:@"startDateTime"];
-    [newEvent setValue: endDateTime forKey:@"endDateTime"];
+    [newEvent setValue: event.startDate forKey:@"startDate"];
+    [newEvent setValue: event.startTime forKey:@"startTime"];
+    [newEvent setValue: event.endDate forKey:@"endDate"];
+    [newEvent setValue: event.endTime forKey:@"endTime"];
+    [newEvent setValue: eventAllDay forKey:@"allDay"];
     
     [context save:&error];
 }
@@ -207,16 +209,18 @@
     
     if([startTime length] == 0){
         startTime = @"00:00";
+        newEvent.allDay = 1;
     }
     if([endTime length] == 0){
         endTime = @"00:00";
+        newEvent.allDay = 1;
     }
-    NSString *startDateTimeString = [NSString stringWithFormat:@"%@ %@",startDate,startTime];
-    NSString *endDateTimeString = [NSString stringWithFormat:@"%@ %@",endDate,endTime];
     
-    newEvent.startDateTimeString = startDateTimeString;
-    newEvent.endDateTimeString = endDateTimeString;
-    
+    newEvent.startDate = startDate;
+    newEvent.startTime = startTime;
+    newEvent.endDate = endDate;
+    newEvent.endTime = endTime;
+    NSLog(@"Made a new event");
     [self addEventToCoreData:newEvent];
 }
 

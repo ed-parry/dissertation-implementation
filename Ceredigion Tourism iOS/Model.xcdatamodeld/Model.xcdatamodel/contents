@@ -14,17 +14,20 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Events" syncable="YES">
+        <attribute name="allDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="endDateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startDateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attractions" positionX="178" positionY="0" width="128" height="210"/>
-        <element name="Events" positionX="-308" positionY="17" width="128" height="163"/>
+        <element name="Attractions" positionX="178" positionY="0" width="128" height="208"/>
+        <element name="Events" positionX="-308" positionY="17" width="128" height="208"/>
     </elements>
 </model>
