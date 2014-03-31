@@ -71,10 +71,10 @@
     _thisTitle = currentEvent.title;
     _thisGroup = @"Event";
     _firstTextFieldContent = currentEvent.location;
-    _secondTextFieldContent = [NSString stringWithFormat:@"%@", currentEvent.startDateTime];
+    _secondTextFieldContent = [NSString stringWithFormat:@"%@", currentEvent.startDate];
     _thirdTextFieldContent = currentEvent.descriptionText;
     
-    _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDateTime];
+    _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDate];
 }
 
 - (void)viewDidLoad

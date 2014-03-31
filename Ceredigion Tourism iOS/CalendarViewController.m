@@ -105,26 +105,6 @@
 {
     _dataManager = [[CoreDataManager alloc] init];
     _allEventDates = [_dataManager getAllEventDates];
-    _allEventDates = [self stripTimeFromDatesArray:_allEventDates];
-}
-
-- (NSArray *)stripTimeFromDatesArray:(NSArray *)datesArray
-{
-    NSMutableArray *newDatesArray = [[NSMutableArray alloc] init];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    
-    for(NSDate *date in datesArray){
-        NSString *dateString = [NSString stringWithFormat:@"%@", date];
-        NSString *dateSegment = [dateString substringToIndex:10];
-        _dateManager = [[DateFormatManager alloc] init];
-        dateSegment = [_dateManager switchDateStringOrder:dateSegment];
-
-        NSDate *newDate = [dateFormatter dateFromString:dateSegment];
-        [newDatesArray addObject:newDate];
-    }
-    return newDatesArray;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -151,31 +131,20 @@
     NSMutableArray *daysEvents = [[NSMutableArray alloc] init];
     NSArray *allEvents;
     
-    NSRange monthRange = NSMakeRange(5, 7- 5);
-    NSRange dayRange = NSMakeRange(8, 10-8);
-    
-    NSString *thisMonthSegment = [date substringWithRange:monthRange];
-    NSString *thisDaySegment = [date substringWithRange:dayRange];
+  
     
     // TODO - There's a bug with the calendar that forces dates from April to be one day behind the shown values.
-    NSInteger thisDayInt = [thisDaySegment integerValue];
 
-    thisDaySegment = [NSString stringWithFormat:@"%li", (long)thisDayInt];
+
+
     
-    if(_dataManager){
-        allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
-    }
-    else{
+    if(!_dataManager){
         _dataManager = [[CoreDataManager alloc] init];
-        allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
     }
+    allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
 
     for(Event *tempEvent in allEvents){
-        NSString *tempDate = [NSString stringWithFormat:@"%@", tempEvent.startDateTime];
-        NSString *tempMonthSegment = [tempDate substringWithRange:monthRange];
-        NSString *tempDaySegment = [tempDate substringWithRange:dayRange];
-        
-        if(([tempDaySegment isEqualToString:thisDaySegment]) && ([tempMonthSegment isEqualToString:thisMonthSegment])){
+        if(([date isEqualToString:tempEvent.startDate]) || ([date isEqualToString:tempEvent.endDate])){
             [daysEvents addObject:tempEvent];
         }
     }

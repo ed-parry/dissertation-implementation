@@ -220,7 +220,7 @@
     newEvent.startTime = startTime;
     newEvent.endDate = endDate;
     newEvent.endTime = endTime;
-    NSLog(@"Made a new event");
+
     [self addEventToCoreData:newEvent];
 }
 
@@ -373,7 +373,7 @@
     
     NSFetchRequest *allEventsRequest = [[NSFetchRequest alloc] init];
     [allEventsRequest setEntity:[NSEntityDescription entityForName:@"Events" inManagedObjectContext:context]];
-    [allEventsRequest setIncludesPropertyValues:YES]; // TODO - monitor this, error thrown in Crashlytics.
+    [allEventsRequest setIncludesPropertyValues:YES];
     
     NSArray *allEventsArray = [context executeFetchRequest:allEventsRequest error:&error];
     
@@ -385,21 +385,45 @@
 {
     NSArray *allEvents = [self getAllEvents];
     NSMutableArray *allEventDates = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd/MM/yy"];
+    
     for (Event *event in allEvents){
-        [allEventDates addObject:event.startDateTime];
-        NSString *startDate = [[NSString stringWithFormat:@"%@",event.startDateTime] substringToIndex:10];
-        NSString *endDate = [[NSString stringWithFormat:@"%@", event.endDateTime] substringToIndex:10];
+
+        NSDate *startDate = [dateFormatter dateFromString:event.startDate];
+        NSLog(@"The date string is %@ but the NSDate object is %@", event.startDate, [NSString stringWithFormat:@"%@", startDate]);
+        [allEventDates addObject:startDate];
         
-        if([startDate isEqualToString:endDate]){
+        if([event.startDate isEqualToString:event.endDate]){
             // don't add the end date - it's the same as the start date anyway.
         }
         else{
-            [allEventDates addObject:event.endDateTime];
+            NSDate *endDate = [dateFormatter dateFromString:event.endDate];
+            [allEventDates addObject:endDate];
+            // get the filler dates and add them, too.
+            
+            [allEventDates addObjectsFromArray:[self getAllEventFillerDatesBetween:startDate and:endDate]];
         }
     }
     NSArray *allReturnedEventDates = [[NSArray alloc] initWithArray:allEventDates];
     return allReturnedEventDates;
 }
+
+// this method should return a complete list of all NSDate's that have an event on them
+// including the days between the start and end dates.
+- (NSArray *)getAllEventFillerDatesBetween :(NSDate *)startDate and :(NSDate *)endDate
+{
+    NSMutableArray *fillerDates = [[NSMutableArray alloc] init];
+    NSDate *nextDate;
+    for ( nextDate = startDate ; [nextDate compare:endDate] < 0 ; nextDate = [nextDate dateByAddingTimeInterval:24*60*60] ) {
+        [fillerDates addObject:nextDate];
+    }
+    
+    return fillerDates;
+}
+
+
 
 - (Event *)getSingleEventByTitle:(NSString *)title
 {
