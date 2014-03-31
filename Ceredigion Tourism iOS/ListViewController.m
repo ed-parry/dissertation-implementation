@@ -32,6 +32,13 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    
+    // Listen out for any new data available from Core Data
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(coreDataChanged)
+                                                 name:@"attractionsDataUpdated"
+                                               object:nil];
+    
     _dataManager = [[CoreDataManager alloc] init];
     _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
@@ -52,6 +59,18 @@
         [self updateAttractionGroupsArray];
         [self.tableView reloadData];
     }
+}
+
+- (void)coreDataChanged
+{
+    if(!_groupDataManager){
+        _groupDataManager = [[GroupDataManager alloc] init];
+    }
+    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
+    [self applyGroupSettings];
+    [self applyRadiusSettings];
+    [self updateAttractionGroupsArray];
+    [self.tableView reloadData];
 }
 
 - (void)applyRadiusSettings

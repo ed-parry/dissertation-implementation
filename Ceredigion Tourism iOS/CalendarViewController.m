@@ -29,6 +29,12 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
+    
+    // Listen out for any new data available from Core Data
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(coreDataChanged)
+                                                 name:@"eventsDataUpdated"
+                                               object:nil];
 
     _selectedDay = [NSString stringWithFormat:@"%@", [NSDate date]];
     
@@ -41,6 +47,11 @@
     calendar.delegate = self;
     
     [self.view addSubview:calendar];
+}
+
+- (void)coreDataChanged
+{
+    [self addEventsToLocalArray];
 }
 
 - (bool)isDateWithinEventsArray:(NSDate *)date
