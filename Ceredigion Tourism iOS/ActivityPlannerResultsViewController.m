@@ -13,6 +13,7 @@
 
 @interface ActivityPlannerResultsViewController ()
 @property (strong, nonatomic) NSArray *plannerResults;
+@property (strong, nonatomic) NSArray *plannerEvents;
 @property (strong, nonatomic) IBOutlet UITableView *activityResultsTableView;
 
 @end
@@ -34,6 +35,7 @@
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
+    _plannerEvents = [planController generateEventsList];
 
     [_activityResultsTableView reloadData];
 }
@@ -46,8 +48,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Only want a single section
-    return 1;
+    if([_plannerEvents count] > 0){
+        return 2;
+    }
+    else{
+        return 1;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section == 1){
+        return @"Attractions";
+    }
+    else if (section == 2){
+        return @"Events";
+    }
+    else{
+        return @"Attractions";
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,8 +82,6 @@
     cell.textLabel.text = thisAttraction.name;
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
     cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
-    
-    // add in the cell accessory view
     
     return cell;
 }

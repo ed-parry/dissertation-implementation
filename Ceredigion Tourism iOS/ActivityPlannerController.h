@@ -12,4 +12,5 @@
 @interface ActivityPlannerController : NSObject
 - (id)initWithPlan:(ActivityPlan *)plan;
 - (NSArray *)generateActivityList;
+- (NSArray *)generateEventsList;
 @end

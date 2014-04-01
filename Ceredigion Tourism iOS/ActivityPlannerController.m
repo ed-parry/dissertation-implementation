@@ -77,6 +77,13 @@
     return activityList;
 }
 
+- (NSArray *)generateEventsList
+{
+    NSMutableArray *relevantEvents = [[NSMutableArray alloc] init];
+    
+    return relevantEvents;
+}
+
 - (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group usingActivityArray:(NSArray *)activitiesArray
 {
     NSMutableArray *attractionsForThisGroup = [[NSMutableArray alloc] init];
