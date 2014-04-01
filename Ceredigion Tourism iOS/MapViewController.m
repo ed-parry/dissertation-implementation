@@ -80,7 +80,7 @@
         double mapRadius = [_mapDataManager getMapRadiusMetersFromPlist];
         _currentRadiusInMeters = mapRadius;
         
-        //[_mapView clear];
+        [_mapView clear];
         [self setUpMapView];
     }
 }
