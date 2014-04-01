@@ -62,8 +62,6 @@
     int numberAlreadyFound = [activityList count];
     int numberRemaining = totalActivities - numberAlreadyFound;
     if(numberRemaining > -1){
-
-        NSLog(@"The number of slots remaining is: %i", numberRemaining);
         for(int i = 0; i <= numberRemaining; i++){
             NSString *group = [shuffledGroups objectAtIndex:i];
             [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];

@@ -36,8 +36,6 @@
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
     _plannerEvents = [planController generateEventsList];
-    
-    NSLog(@"Number of events: %i", [_plannerEvents count]);
 
     [_activityResultsTableView reloadData];
 }
@@ -97,7 +95,7 @@
     else if(indexPath.section == 1){
         Event *thisEvent = [_plannerEvents objectAtIndex:indexPath.row];
         cell.textLabel.text = thisEvent.title;
-        //set a new custom event image icon
+        cell.imageView.image = [UIImage imageNamed:@"Event Icon"];
     }
     return cell;
 }
