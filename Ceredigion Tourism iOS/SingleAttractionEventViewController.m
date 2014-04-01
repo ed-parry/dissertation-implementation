@@ -179,6 +179,7 @@
 
 - (NSString *)returnTextualDateTime:(NSString *)datetime
 {
+    // this is what needs refactoring
     NSString *date = [datetime substringToIndex:10];
     NSString *time = [datetime substringFromIndex:10];
     time = [time substringToIndex:6];
