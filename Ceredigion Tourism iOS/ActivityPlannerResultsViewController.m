@@ -111,9 +111,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *path = [_activityResultsTableView indexPathForSelectedRow];
-    Attraction *tappedAttraction = [_plannerResults objectAtIndex:path.row];
-    
-    [segue.destinationViewController startWithAttraction:tappedAttraction];
+    if(path.section == 0){
+        Attraction *tappedAttraction = [_plannerResults objectAtIndex:path.row];
+        [segue.destinationViewController startWithAttraction:tappedAttraction];
+    }
+    else if(path.section == 1){
+        int eventIndex = path.row - [_plannerResults count];
+        Event *tappedEvent = [_plannerEvents objectAtIndex:eventIndex];
+        [segue.destinationViewController startWithEvent:tappedEvent];
+    }
 }
 
 @end

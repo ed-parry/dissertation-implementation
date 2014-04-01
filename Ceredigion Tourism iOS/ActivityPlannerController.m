@@ -47,7 +47,9 @@
     
     int activitiesPerGroup = totalActivities / totalGroups;
     
-    for(NSString *group in _thisPlan.selectedGroups){
+    NSArray *shuffledGroups = [[NSMutableArray alloc] initWithArray:[self shuffleArrayContents:_thisPlan.selectedGroups]];
+    
+    for(NSString *group in shuffledGroups){
         // this adds to the activityList array a collection of objects that are:
         //  - within 10 miles of their chosen location
         //  - are the correct number of activities, for each of their chosen groups
@@ -63,7 +65,7 @@
 
         NSLog(@"The number of slots remaining is: %i", numberRemaining);
         for(int i = 0; i <= numberRemaining; i++){
-            NSString *group = [_thisPlan.selectedGroups objectAtIndex:i];
+            NSString *group = [shuffledGroups objectAtIndex:i];
             [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
         }
     }
@@ -105,6 +107,19 @@
     
     
     return relevantEvents;
+}
+
+- (NSArray *)shuffleArrayContents:(NSArray *)arrayToShuffle
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:arrayToShuffle];
+    NSUInteger count = [array count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        // Select a random element between i and end of array to swap with.
+        int nElements = count - i;
+        int n = (arc4random() % nElements) + i;
+        [array exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+    return array;
 }
 
 - (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group usingActivityArray:(NSArray *)activitiesArray
