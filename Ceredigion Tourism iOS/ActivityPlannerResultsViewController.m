@@ -22,6 +22,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _activityResultsTableView.delegate = self;
+    _activityResultsTableView.dataSource = self;
 }
 
 - (void)completedSetupWithActivityPlan:(ActivityPlan *)plan
@@ -55,7 +57,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
-    
+    NSLog(@"This is called");
+    NSLog(@"With the attraction: %@", thisAttraction.name);
     NSString *CellIdentifier = @"activityPlannerResultsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.textLabel.text = thisAttraction.name;
