@@ -38,8 +38,6 @@
 
     _selectedDay = [NSString stringWithFormat:@"%@", [NSDate date]];
     
-    //[_dayEventsTable setHidden:YES];
-    
     _dayEventsTable.delegate = self;
     _dayEventsTable.dataSource = self;
 
@@ -63,7 +61,7 @@
             return TRUE;
         }
     }
-    return NO;
+    return FALSE;
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
@@ -98,10 +96,10 @@
     [_dayEventsTable reloadData];
 }
 
--(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
+-(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month withYear:(int)year targetHeight:(float)targetHeight animated:(BOOL)animated
 {
     [self addEventsToLocalArray];
-    NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month]];
+    NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month orYear:year]];
     NSTimeInterval animationDuration = animated ? 0.3 :0.0;
     
     [UIView animateWithDuration:animationDuration animations:^{
@@ -113,15 +111,19 @@
     [calendarView markDates:allEventsForActiveMonth];
 }
 
-- (NSArray *)removeEventsNotInActiveMonth:(int)month
+- (NSArray *)removeEventsNotInActiveMonth:(int)month orYear:(int)year
 {
     NSMutableArray *newEventsArray = [[NSMutableArray alloc] init];
     for(NSDate *date in _allEventDates){
         NSString *dateString = [NSString stringWithFormat:@"%@", date];
         NSRange monthRange = NSMakeRange(5, 7- 5);
+        NSRange yearRange = NSMakeRange(0, 4-0);
         NSString *monthString = [dateString substringWithRange:monthRange];
+        NSString *yearString = [dateString substringWithRange:yearRange];
         int thisMonth = [monthString intValue];
-        if(thisMonth == month){
+        int thisYear = [yearString intValue];
+        
+        if((thisMonth == month) && (thisYear == year)){
             [newEventsArray addObject:date];
         }
     }
@@ -182,7 +184,7 @@
             NSString *tempEventDateDay = [tempEvent.startDate substringToIndex:2];
             NSString *tempEventDateMonth = [tempEvent.startDate substringWithRange:tempEventMonthRange];
             NSString *tempEventDateYear = [tempEvent.startDate substringWithRange:tempEventYearRange];
-            NSLog(@"The temp event year is %@ and the selected year is %@", tempEventDateYear, selectedDateYear);
+
             if(([selectedDateDay isEqualToString:tempEventDateDay]) && ([selectedDateMonth isEqualToString:tempEventDateMonth]) && ([selectedDateYear isEqualToString:tempEventDateYear])){
                 [daysEvents addObject:tempEvent];
             }
