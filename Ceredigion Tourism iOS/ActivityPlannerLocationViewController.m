@@ -9,7 +9,7 @@
 #import "ActivityPlannerLocationViewController.h"
 #import "RMDateSelectionViewController.h"
 #import "ActivityPlannerAttractionsViewController.h"
-#import "DateFormatManager.h"
+#import "EventAndDateFormatManager.h"
 #import "MapDataManager.h"
 #import "ActivityPlan.h"
 
@@ -76,7 +76,7 @@
 #pragma mark - RMDateSelectionViewController Delegates
 - (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate
 {
-    DateFormatManager *dateFormatManager = [[DateFormatManager alloc] init];
+    EventAndDateFormatManager *dateFormatManager = [[EventAndDateFormatManager alloc] init];
     NSString *date = [NSString stringWithFormat:@"%@", aDate];
     
     NSString *textualDate = [dateFormatManager getTextualDate:date withYear:YES];
@@ -96,7 +96,7 @@
 - (void)showTodaysDateAsArrivalDate
 {
     NSDate *today = [NSDate date];
-    DateFormatManager *dateFormatManager = [[DateFormatManager alloc] init];
+    EventAndDateFormatManager *dateFormatManager = [[EventAndDateFormatManager alloc] init];
     NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] withYear:YES];
     _arrivalDateNoFormat = [NSString stringWithFormat:@"%@", today];
     _arrivalDateTextField.text = textualDate;

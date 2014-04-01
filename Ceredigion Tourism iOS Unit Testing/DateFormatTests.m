@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "DateFormatManager.h"
+#import "EventAndDateFormatManager.h"
 
 @interface DateFormatTests : XCTestCase
-@property DateFormatManager *dateManager;
+@property EventAndDateFormatManager *dateManager;
 @end
 
 @implementation DateFormatTests
@@ -18,7 +18,7 @@
 - (void)setUp
 {
     [super setUp];
-    _dateManager = [[DateFormatManager alloc] init];
+    _dateManager = [[EventAndDateFormatManager alloc] init];
 }
 
 - (void)tearDown

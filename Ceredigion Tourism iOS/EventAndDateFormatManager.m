@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "DateFormatManager.h"
+#import "EventAndDateFormatManager.h"
 
-@implementation DateFormatManager
+@implementation EventAndDateFormatManager
 
 
 - (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear

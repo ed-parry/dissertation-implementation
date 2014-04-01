@@ -10,12 +10,12 @@
 #import "CoreDataManager.h"
 #import "SingleAttractionEventViewController.h"
 #import "VRGCalendarView.h"
-#import "DateFormatManager.h"
+#import "EventAndDateFormatManager.h"
 
 @interface CalendarViewController () <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property NSArray *allEventDates;
 @property CoreDataManager *dataManager;
-@property DateFormatManager *dateManager;
+@property EventAndDateFormatManager *dateManager;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
 @property (strong, nonatomic) NSString *selectedDay;
@@ -138,7 +138,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    _dateManager = [[DateFormatManager alloc] init];
+    _dateManager = [[EventAndDateFormatManager alloc] init];
     if(!_selectedDay){
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" withYear:NO]];
     }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DateFormatManager : NSObject
+@interface EventAndDateFormatManager : NSObject
 - (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear;
 - (NSString *)switchDateStringOrder:(NSString *)date;
 @end

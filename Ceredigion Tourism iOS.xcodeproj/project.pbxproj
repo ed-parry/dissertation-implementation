@@ -72,7 +72,7 @@
 		6DD896AA18D0A28300BCE840 /* UIView+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A418D0A28300BCE840 /* UIView+convenience.m */; };
 		6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD896A618D0A28300BCE840 /* VRGCalendarView.m */; };
 		6DE7A25E18E05E7900F63DC6 /* ActivityPlannerLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7A25D18E05E7900F63DC6 /* ActivityPlannerLocationViewController.m */; };
-		6DFFBDA618DDD62500ABBD84 /* DateFormatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFBDA518DDD62500ABBD84 /* DateFormatManager.m */; };
+		6DFFBDA618DDD62500ABBD84 /* EventAndDateFormatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFBDA518DDD62500ABBD84 /* EventAndDateFormatManager.m */; };
 		6DFFBDA818DDDA4C00ABBD84 /* DateFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFBDA718DDDA4C00ABBD84 /* DateFormatTests.m */; };
 /* End PBXBuildFile section */
 
@@ -185,8 +185,8 @@
 		6DD896A618D0A28300BCE840 /* VRGCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRGCalendarView.m; sourceTree = "<group>"; };
 		6DE7A25C18E05E7900F63DC6 /* ActivityPlannerLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlannerLocationViewController.h; sourceTree = "<group>"; };
 		6DE7A25D18E05E7900F63DC6 /* ActivityPlannerLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlannerLocationViewController.m; sourceTree = "<group>"; };
-		6DFFBDA418DDD62500ABBD84 /* DateFormatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatManager.h; sourceTree = "<group>"; };
-		6DFFBDA518DDD62500ABBD84 /* DateFormatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatManager.m; sourceTree = "<group>"; };
+		6DFFBDA418DDD62500ABBD84 /* EventAndDateFormatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAndDateFormatManager.h; sourceTree = "<group>"; };
+		6DFFBDA518DDD62500ABBD84 /* EventAndDateFormatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAndDateFormatManager.m; sourceTree = "<group>"; };
 		6DFFBDA718DDDA4C00ABBD84 /* DateFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,8 +257,8 @@
 		6D47B6CC18B4C153008DFDF3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6DFFBDA418DDD62500ABBD84 /* DateFormatManager.h */,
-				6DFFBDA518DDD62500ABBD84 /* DateFormatManager.m */,
+				6DFFBDA418DDD62500ABBD84 /* EventAndDateFormatManager.h */,
+				6DFFBDA518DDD62500ABBD84 /* EventAndDateFormatManager.m */,
 				6D749AA318B25D6700E06D7F /* CSVDataManager.h */,
 				6D749AA418B25D6700E06D7F /* CSVDataManager.m */,
 				6DD8969318D06A8A00BCE840 /* EventsCSVDataManager.h */,
@@ -578,7 +578,7 @@
 				6D58576018B2537600306327 /* AppDelegate.m in Sources */,
 				6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */,
 				6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */,
-				6DFFBDA618DDD62500ABBD84 /* DateFormatManager.m in Sources */,
+				6DFFBDA618DDD62500ABBD84 /* EventAndDateFormatManager.m in Sources */,
 				6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */,
 				6D749A9A18B2566900E06D7F /* Model.xcdatamodeld in Sources */,
 				6D58575C18B2537600306327 /* main.m in Sources */,

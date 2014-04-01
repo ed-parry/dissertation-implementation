@@ -81,6 +81,10 @@
 {
     NSMutableArray *relevantEvents = [[NSMutableArray alloc] init];
     
+    NSString *startDate = _thisPlan.startDate;
+    NSNumber *days = _thisPlan.days;
+    
+    
     return relevantEvents;
 }
 

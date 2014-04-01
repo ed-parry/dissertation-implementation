@@ -7,7 +7,7 @@
 //
 
 #import "SingleAttractionEventViewController.h"
-#import "DateFormatManager.h"
+#import "EventAndDateFormatManager.h"
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
@@ -166,7 +166,7 @@
     NSString *time = [datetime substringFromIndex:10];
     time = [time substringToIndex:6];
     
-    DateFormatManager *dateManager = [[DateFormatManager alloc] init];
+    EventAndDateFormatManager *dateManager = [[EventAndDateFormatManager alloc] init];
     NSString *textualDate = [dateManager getTextualDate:date withYear:NO];
     
     return [NSString stringWithFormat:@"%@ at%@", textualDate, time];
