@@ -154,7 +154,8 @@
             NSDate *startDate = [dateFormatter dateFromString:tempEvent.startDate];
             NSDate *endDate = [dateFormatter dateFromString:tempEvent.endDate];
             
-            NSMutableArray *fillerDates = [[NSMutableArray alloc] initWithArray:[_dataManager getAllEventFillerDatesBetween:startDate and:endDate]];
+
+            NSMutableArray *fillerDates = [[NSMutableArray alloc] initWithArray:[self getAllEventFillerDatesBetween:startDate and:endDate]];
             
             [fillerDates addObject:endDate];
             
@@ -209,6 +210,35 @@
     }
     
     return daysEvents;
+}
+
+- (NSArray *)makeArrayOfDatesStartingFrom:(NSString *)date forNumberOfDays:(int)days
+{
+    NSMutableArray *datesArray = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    
+    NSDate *startDate = [dateFormatter dateFromString:date];
+    
+    for(int i = 1; i < days; i++){
+        [datesArray addObject:[startDate dateByAddingTimeInterval:60*60*24*i]];
+    }
+
+    return datesArray;
+}
+
+// this method should return a complete list of all NSDate's that have an event on them
+// including the days between the start and end dates.
+- (NSArray *)getAllEventFillerDatesBetween :(NSDate *)startDate and :(NSDate *)endDate
+{
+    NSMutableArray *fillerDates = [[NSMutableArray alloc] init];
+    NSDate *nextDate;
+    for ( nextDate = startDate ; [nextDate compare:endDate] < 0 ; nextDate = [nextDate dateByAddingTimeInterval:24*60*60] ) {
+        [fillerDates addObject:nextDate];
+    }
+    
+    return fillerDates;
 }
 
 

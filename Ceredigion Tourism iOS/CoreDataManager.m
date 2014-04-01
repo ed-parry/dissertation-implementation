@@ -11,6 +11,7 @@
 #import "Attraction.h"
 #import "Event.h"
 #import "GroupDataManager.h"
+#import "EventAndDateFormatManager.h"
 #import "AppDelegate.h"
 
 @interface CoreDataManager ()
@@ -401,28 +402,13 @@
             NSDate *endDate = [dateFormatter dateFromString:event.endDate];
             [allEventDates addObject:endDate];
             // get the filler dates and add them, too.
-            
-            [allEventDates addObjectsFromArray:[self getAllEventFillerDatesBetween:startDate and:endDate]];
+            EventAndDateFormatManager *dateManager = [[EventAndDateFormatManager alloc] init];
+            [allEventDates addObjectsFromArray:[dateManager getAllEventFillerDatesBetween:startDate and:endDate]];
         }
     }
     NSArray *allReturnedEventDates = [[NSArray alloc] initWithArray:allEventDates];
     return allReturnedEventDates;
 }
-
-// this method should return a complete list of all NSDate's that have an event on them
-// including the days between the start and end dates.
-- (NSArray *)getAllEventFillerDatesBetween :(NSDate *)startDate and :(NSDate *)endDate
-{
-    NSMutableArray *fillerDates = [[NSMutableArray alloc] init];
-    NSDate *nextDate;
-    for ( nextDate = startDate ; [nextDate compare:endDate] < 0 ; nextDate = [nextDate dateByAddingTimeInterval:24*60*60] ) {
-        [fillerDates addObject:nextDate];
-    }
-    
-    return fillerDates;
-}
-
-
 
 - (Event *)getSingleEventByTitle:(NSString *)title
 {

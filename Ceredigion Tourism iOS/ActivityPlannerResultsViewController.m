@@ -36,6 +36,8 @@
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
     _plannerEvents = [planController generateEventsList];
+    
+    NSLog(@"Number of events: %i", [_plannerEvents count]);
 
     [_activityResultsTableView reloadData];
 }
@@ -58,11 +60,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section == 1){
+    if(section == 0){
         return @"Attractions";
     }
-    else if (section == 2){
-        return @"Events";
+    else if (section == 1){
+        return @"Nearby Events";
     }
     else{
         return @"Attractions";
@@ -71,18 +73,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _plannerResults.count;
+    if(section == 0){
+        return _plannerResults.count;
+    }
+    else if(section == 1){
+        return _plannerEvents.count;
+    }
+    else{
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
     NSString *CellIdentifier = @"activityPlannerResultsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.textLabel.text = thisAttraction.name;
     cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17];
-    cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
-    
+    if(indexPath.section == 0){
+        Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = thisAttraction.name;
+        cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
+    }
+    else if(indexPath.section == 1){
+        Event *thisEvent = [_plannerEvents objectAtIndex:indexPath.row];
+        cell.textLabel.text = thisEvent.title;
+        //set a new custom event image icon
+    }
     return cell;
 }
 

@@ -9,6 +9,7 @@
 #import "ActivityPlannerController.h"
 #import "CoreDataManager.h"
 #import "MapDataManager.h"
+#import "EventAndDateFormatManager.h"
 #import "Attraction.h"
 
 @interface ActivityPlannerController ()
@@ -82,7 +83,25 @@
     NSMutableArray *relevantEvents = [[NSMutableArray alloc] init];
     
     NSString *startDate = _thisPlan.startDate;
-    NSNumber *days = _thisPlan.days;
+    int days = [_thisPlan.days intValue];
+    
+    EventAndDateFormatManager *eventManager = [[EventAndDateFormatManager alloc] init];
+    
+    NSArray *datesArray = [[NSArray alloc] initWithArray:[eventManager makeArrayOfDatesStartingFrom:startDate forNumberOfDays:days]];
+    
+    for(NSDate *date in datesArray){
+        NSString *selectedDate = [NSString stringWithFormat:@"%@", date];
+        NSArray *tempDateEvents = [[NSArray alloc] initWithArray:[eventManager returnEventsForSelectedDay:selectedDate]];
+        if([tempDateEvents count] > 0){
+            for(Event *thisEvent in tempDateEvents){
+                // only add it if it isn't already there.
+                if(![relevantEvents containsObject:thisEvent]){
+                    [relevantEvents addObject:thisEvent];
+                }
+            }
+        }
+    }
+    
     
     
     return relevantEvents;
@@ -141,13 +160,6 @@
         }
     }
     return attractionsInLocation;
-}
-
-- (NSArray *)generateSuitableEvents
-{
-    NSMutableArray *suitableEvents = [[NSMutableArray alloc] init];
-    // called by generateActivityList, to include any suitable events
-    return suitableEvents;
 }
 
 @end

@@ -12,4 +12,6 @@
 - (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear;
 - (NSString *)switchDateStringOrder:(NSString *)date;
 - (NSArray *)returnEventsForSelectedDay:(NSString *)date;
+- (NSArray *)makeArrayOfDatesStartingFrom:(NSString *)date forNumberOfDays:(int)days;
+- (NSArray *)getAllEventFillerDatesBetween :(NSDate *)startDate and :(NSDate *)endDate;
 @end
