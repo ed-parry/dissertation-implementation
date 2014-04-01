@@ -197,14 +197,36 @@
             
             [fillerDates addObject:endDate];
             if([fillerDates count] == 2){
-                NSLog(@"Called for event %@", tempEvent.title);
-                
                 for(NSDate *fillerTempDate in fillerDates){
                     NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
                     NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
                     int fillerDay = [fillerTempDay intValue];
                     fillerDay++;
                     fillerTempDay = [NSString stringWithFormat:@"%i", fillerDay];
+                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
+                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
+                        [daysEvents addObject:tempEvent];
+                    }
+                }
+            }
+            // deal with long events
+            else if([fillerDates count] > 2){
+                // the first date is wrong, so remove it
+                [fillerDates removeObjectAtIndex:0];
+
+                // add a new last date, because the actual last date is off by 1hour.
+                NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+                dayComponent.day = 1;
+                NSCalendar *theCalendar = [NSCalendar currentCalendar];
+                NSDate *lastDate = [fillerDates lastObject];
+                NSDate *dateToBeIncremented = [theCalendar dateByAddingComponents:dayComponent toDate:lastDate options:0];
+                
+                [fillerDates addObject:dateToBeIncremented];
+                
+                for(NSDate *fillerTempDate in fillerDates){
+                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
+                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
+
                     NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
                     if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
                         [daysEvents addObject:tempEvent];
