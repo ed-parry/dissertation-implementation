@@ -158,8 +158,6 @@
     sectionHeadingLabel.textColor = [UIColor whiteColor];
     
     CGRect newFrame;
-    
-    // Crashlytics error came up here.
     UIView *headerView = [[UIView alloc] initWithFrame:newFrame];
     
     [headerView addSubview:sectionHeadingLabel];
@@ -206,7 +204,6 @@
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];

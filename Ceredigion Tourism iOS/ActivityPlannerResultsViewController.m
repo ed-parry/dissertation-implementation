@@ -8,6 +8,7 @@
 
 #import "ActivityPlannerResultsViewController.h"
 #import "ActivityPlannerController.h"
+#import "SingleAttractionEventViewController.h"
 #import "Attraction.h"
 
 @interface ActivityPlannerResultsViewController ()
@@ -23,17 +24,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _activityResultsTableView.delegate = self;
+    _activityResultsTableView.contentInset = UIEdgeInsetsZero;
     _activityResultsTableView.dataSource = self;
 }
 
 - (void)completedSetupWithActivityPlan:(ActivityPlan *)plan
 {
-    NSLog(@"Here with a plan for a location: %@", plan.location);
     ActivityPlannerController *planController = [[ActivityPlannerController alloc] initWithPlan:plan];
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
-    NSLog(@"Number of planner results are: %i", [_plannerResults count]);
+
     [_activityResultsTableView reloadData];
 }
 
@@ -57,8 +58,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
-    NSLog(@"This is called");
-    NSLog(@"With the attraction: %@", thisAttraction.name);
     NSString *CellIdentifier = @"activityPlannerResultsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.textLabel.text = thisAttraction.name;
@@ -74,6 +73,14 @@
 {
     Attraction *colourAttractionObj = [[Attraction alloc] init];
     return [colourAttractionObj getAttractionGroupImage:group];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *path = [_activityResultsTableView indexPathForSelectedRow];
+    Attraction *tappedAttraction = [_plannerResults objectAtIndex:path.row];
+    
+    [segue.destinationViewController startWithAttraction:tappedAttraction];
 }
 
 @end
