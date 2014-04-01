@@ -69,11 +69,9 @@
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
 
+    // Required timezone changes to update dates for DST.
     NSTimeZone *thisTZ = [NSTimeZone systemTimeZone];
     if([thisTZ isDaylightSavingTimeForDate:date]){
-
-        NSLog(@"Is in DST");
-        
         NSString *thisDate = [NSString stringWithFormat:@"%@", date];
         
         NSRange yearRange = NSMakeRange(0, 4-0);
@@ -97,13 +95,11 @@
         date = [dateFormatter dateFromString:updatedDate];
     }
     _selectedDay = [NSString stringWithFormat:@"%@", date];
-    NSLog(@"The selected date is: %@", [NSString stringWithFormat:@"%@", date]);
     [_dayEventsTable reloadData];
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
 {
-    NSLog(@"Switched to the month: %i", month);
     [self addEventsToLocalArray];
     NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month]];
     NSTimeInterval animationDuration = animated ? 0.3 :0.0;
@@ -166,11 +162,14 @@
         _dataManager = [[CoreDataManager alloc] init];
     }
     allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
-
-    NSRange dayRange = NSMakeRange(8, 10-8);
+    
+    NSRange yearRange = NSMakeRange(2, 4-2);
     NSRange monthRange = NSMakeRange(5, 7- 5);
+    NSRange dayRange = NSMakeRange(8, 10-8);
+    
     NSString *selectedDateDay = [date substringWithRange:dayRange];
     NSString *selectedDateMonth = [date substringWithRange:monthRange];
+    NSString *selectedDateYear = [date substringWithRange:yearRange];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"dd/MM/yy"];
@@ -179,10 +178,12 @@
         
         if([tempEvent.startDate isEqualToString:tempEvent.endDate]){
             NSRange tempEventMonthRange = NSMakeRange(3, 5-3);
+            NSRange tempEventYearRange = NSMakeRange(6, 8-6);
             NSString *tempEventDateDay = [tempEvent.startDate substringToIndex:2];
             NSString *tempEventDateMonth = [tempEvent.startDate substringWithRange:tempEventMonthRange];
-            
-            if(([selectedDateDay isEqualToString:tempEventDateDay]) && ([selectedDateMonth isEqualToString:tempEventDateMonth])){
+            NSString *tempEventDateYear = [tempEvent.startDate substringWithRange:tempEventYearRange];
+            NSLog(@"The temp event year is %@ and the selected year is %@", tempEventDateYear, selectedDateYear);
+            if(([selectedDateDay isEqualToString:tempEventDateDay]) && ([selectedDateMonth isEqualToString:tempEventDateMonth]) && ([selectedDateYear isEqualToString:tempEventDateYear])){
                 [daysEvents addObject:tempEvent];
             }
         }
