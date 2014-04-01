@@ -44,6 +44,7 @@
     _dayEventsTable.dataSource = self;
 
     VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
+
     calendar.delegate = self;
     
     [self.view addSubview:calendar];
@@ -67,12 +68,42 @@
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
+
+    NSTimeZone *thisTZ = [NSTimeZone systemTimeZone];
+    if([thisTZ isDaylightSavingTimeForDate:date]){
+
+        NSLog(@"Is in DST");
+        
+        NSString *thisDate = [NSString stringWithFormat:@"%@", date];
+        
+        NSRange yearRange = NSMakeRange(0, 4-0);
+        NSRange monthRange = NSMakeRange(5, 7- 5);
+        NSRange dayRange = NSMakeRange(8, 10-8);
+
+        NSString *thisDay = [thisDate substringWithRange:dayRange];
+        NSString *thisMonth = [thisDate substringWithRange:monthRange];
+        NSString *thisYear = [thisDate substringWithRange:yearRange];
+        
+        int dayInt = [thisDay intValue];
+        dayInt = dayInt + 2;
+        
+        thisDay = [NSString stringWithFormat:@"%i", dayInt];
+        
+        NSString *updatedDate = [NSString stringWithFormat:@"%@-%@-%@", thisYear, thisMonth, thisDay];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        date = [dateFormatter dateFromString:updatedDate];
+    }
     _selectedDay = [NSString stringWithFormat:@"%@", date];
+    NSLog(@"The selected date is: %@", [NSString stringWithFormat:@"%@", date]);
     [_dayEventsTable reloadData];
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated
 {
+    NSLog(@"Switched to the month: %i", month);
     [self addEventsToLocalArray];
     NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month]];
     NSTimeInterval animationDuration = animated ? 0.3 :0.0;

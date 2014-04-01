@@ -19,11 +19,15 @@
 #pragma mark - Select Date
 -(void)selectDate:(int)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+
+    // not taking into account the daylight savings time.
+    [gregorian setTimeZone:[NSTimeZone systemTimeZone]];
+
     NSDateComponents *comps = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit fromDate:self.currentMonth];
     [comps setDay:date];
-    self.selectedDate = [gregorian dateFromComponents:comps];
     
+    self.selectedDate = [gregorian dateFromComponents:comps];
+        
     int selectedDateYear = [selectedDate year];
     int selectedDateMonth = [selectedDate month];
     int currentMonthYear = [currentMonth year];
