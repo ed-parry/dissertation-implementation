@@ -74,17 +74,30 @@
         }
     }
     
-    for(int i = 0; i < number; i++){
-        int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
-        Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex];
-        [returnedAttractions addObject:randomAttraction];
+    if([attractionsForThisGroup count] == 0){
+        return nil;
     }
-    return returnedAttractions;
+    else{
+        for(int i = 0; i < number; i++){
+            int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
+            Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-1];
+            [returnedAttractions addObject:randomAttraction];
+        }
+        attractionsForThisGroup = nil;
+        return returnedAttractions;
+    }
 }
 
 -(int)getRandomNumberLessThan:(int)max {
-    
-    return (int)1 + arc4random() % (max-1+1);
+    if (max == 0){
+        return 1;
+    }
+    else if(max == 1){
+        return 1;
+    }
+    else{
+        return (int)1 + arc4random() % (max-1+1);
+    }
 }
 
 // Add's all attractions within 10 miles of the plan's location.

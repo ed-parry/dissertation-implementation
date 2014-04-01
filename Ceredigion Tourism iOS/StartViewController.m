@@ -50,21 +50,21 @@
     _shouldMove = YES;
     [_loadingSpinner startAnimating];
     
-    CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    if([coreDataManager doesCoreDataEntityHaveData:@"Attractions"]){
-        [_loadingSpinner stopAnimating];
-        _loadingView.hidden = YES;
-        
-        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
-    }
-    else{
-        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
-    }
-
+    [self startDataFetch];
     [self startLocationManager];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)startDataFetch
+{
+    CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
+    if([coreDataManager doesCoreDataEntityHaveData:@"Attractions"]){
+        [_loadingSpinner stopAnimating];
+        _loadingView.hidden = YES;
+    }
+    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
 }
 
 - (void)dataSavedInCoreData

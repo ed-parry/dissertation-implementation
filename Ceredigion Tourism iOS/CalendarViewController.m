@@ -196,6 +196,7 @@
             NSMutableArray *fillerDates = [[NSMutableArray alloc] initWithArray:[_dataManager getAllEventFillerDatesBetween:startDate and:endDate]];
             
             [fillerDates addObject:endDate];
+            
             if([fillerDates count] == 2){
                 for(NSDate *fillerTempDate in fillerDates){
                     NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
