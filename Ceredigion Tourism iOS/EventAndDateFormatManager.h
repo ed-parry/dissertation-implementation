@@ -11,4 +11,5 @@
 @interface EventAndDateFormatManager : NSObject
 - (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear;
 - (NSString *)switchDateStringOrder:(NSString *)date;
+- (NSArray *)returnEventsForSelectedDay:(NSString *)date;
 @end

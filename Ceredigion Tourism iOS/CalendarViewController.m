@@ -16,7 +16,6 @@
 @property NSArray *allEventDates;
 @property CoreDataManager *dataManager;
 @property EventAndDateFormatManager *dateManager;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
 @property (strong, nonatomic) NSString *selectedDay;
 @end
@@ -151,104 +150,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *thisDaysEvents = [[NSArray alloc] initWithArray:[self returnEventsForSelectedDay:_selectedDay]];
+    if(!_dateManager){
+        _dateManager = [[EventAndDateFormatManager alloc] init];
+    }
+    NSArray *thisDaysEvents = [[NSArray alloc] initWithArray:[_dateManager returnEventsForSelectedDay:_selectedDay]];
     return [thisDaysEvents count];
 }
 
-- (NSArray *)returnEventsForSelectedDay:(NSString *)date
-{
-    NSMutableArray *daysEvents = [[NSMutableArray alloc] init];
-    NSArray *allEvents;
 
-    if(!_dataManager){
-        _dataManager = [[CoreDataManager alloc] init];
-    }
-    allEvents = [[NSArray alloc] initWithArray:[_dataManager getAllEvents]];
-    
-    NSRange yearRange = NSMakeRange(2, 4-2);
-    NSRange monthRange = NSMakeRange(5, 7- 5);
-    NSRange dayRange = NSMakeRange(8, 10-8);
-    
-    NSString *selectedDateDay = [date substringWithRange:dayRange];
-    NSString *selectedDateMonth = [date substringWithRange:monthRange];
-    NSString *selectedDateYear = [date substringWithRange:yearRange];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd/MM/yy"];
-
-    for(Event *tempEvent in allEvents){
-        
-        if([tempEvent.startDate isEqualToString:tempEvent.endDate]){
-            NSRange tempEventMonthRange = NSMakeRange(3, 5-3);
-            NSRange tempEventYearRange = NSMakeRange(6, 8-6);
-            NSString *tempEventDateDay = [tempEvent.startDate substringToIndex:2];
-            NSString *tempEventDateMonth = [tempEvent.startDate substringWithRange:tempEventMonthRange];
-            NSString *tempEventDateYear = [tempEvent.startDate substringWithRange:tempEventYearRange];
-
-            if(([selectedDateDay isEqualToString:tempEventDateDay]) && ([selectedDateMonth isEqualToString:tempEventDateMonth]) && ([selectedDateYear isEqualToString:tempEventDateYear])){
-                [daysEvents addObject:tempEvent];
-            }
-        }
-        else{
-            NSDate *startDate = [dateFormatter dateFromString:tempEvent.startDate];
-            NSDate *endDate = [dateFormatter dateFromString:tempEvent.endDate];
-            
-            NSMutableArray *fillerDates = [[NSMutableArray alloc] initWithArray:[_dataManager getAllEventFillerDatesBetween:startDate and:endDate]];
-            
-            [fillerDates addObject:endDate];
-            
-            if([fillerDates count] == 2){
-                for(NSDate *fillerTempDate in fillerDates){
-                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
-                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
-                    int fillerDay = [fillerTempDay intValue];
-                    fillerDay++;
-                    fillerTempDay = [NSString stringWithFormat:@"%i", fillerDay];
-                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
-                        [daysEvents addObject:tempEvent];
-                    }
-                }
-            }
-            // deal with long events
-            else if([fillerDates count] > 2){
-                // the first date is wrong, so remove it
-                [fillerDates removeObjectAtIndex:0];
-
-                // add a new last date, because the actual last date is off by 1hour.
-                NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-                dayComponent.day = 1;
-                NSCalendar *theCalendar = [NSCalendar currentCalendar];
-                NSDate *lastDate = [fillerDates lastObject];
-                NSDate *dateToBeIncremented = [theCalendar dateByAddingComponents:dayComponent toDate:lastDate options:0];
-                
-                [fillerDates addObject:dateToBeIncremented];
-                
-                for(NSDate *fillerTempDate in fillerDates){
-                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
-                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
-
-                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
-                        [daysEvents addObject:tempEvent];
-                    }
-                }
-            }
-            else{
-                for(NSDate *fillerTempDate in fillerDates){
-                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
-                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
-                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
-                        [daysEvents addObject:tempEvent];
-                    }
-                }
-            }
-        }
-    }
-    
-    return daysEvents;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -257,7 +166,10 @@
     static NSString *CellIdentifier = @"eventTableCells";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSArray *thisDaysEvents = [self returnEventsForSelectedDay:_selectedDay];
+    if(!_dateManager){
+        _dateManager = [[EventAndDateFormatManager alloc] init];
+    }
+    NSArray *thisDaysEvents = [_dateManager returnEventsForSelectedDay:_selectedDay];
     
     Event *thisEvent = [thisDaysEvents objectAtIndex:indexPath.row];
     
@@ -269,8 +181,11 @@
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if(!_dateManager){
+        _dateManager = [[EventAndDateFormatManager alloc] init];
+    }
     NSIndexPath *path = [self.dayEventsTable indexPathForSelectedRow];
-    NSArray *thisDaysEvents = [self returnEventsForSelectedDay:_selectedDay];
+    NSArray *thisDaysEvents = [_dateManager returnEventsForSelectedDay:_selectedDay];
     Event *thisEvent = [thisDaysEvents objectAtIndex:path.row];
 
     [segue.destinationViewController startWithEvent:thisEvent];
