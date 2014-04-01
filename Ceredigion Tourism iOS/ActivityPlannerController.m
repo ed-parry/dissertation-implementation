@@ -30,6 +30,10 @@
     return self;
 }
 
+// Things left to check for:
+// * adrenaline level
+// * any events that match location and within days
+
 - (NSArray *)generateActivityList
 {
     NSMutableArray *activityList = [[NSMutableArray alloc] init];
@@ -37,16 +41,6 @@
     
     NSArray *activityListForLocation = [[NSArray alloc] initWithArray:[self generateAttractionsForLocation:_thisPlan.locationCoordinates]];
 
-    
-    
-    // Things to check for:
-    // * DONE location (10 miles of coordinates)
-    // * DONE activity group // done automatically, when fetching X number of each group
-    // * adrenaline level
-    // * any events that match location and within days
-    // * DONE total number
-    
-    
     int totalActivities = [_thisPlan.numberOfActivities intValue];
     int totalGroups = [_thisPlan.selectedGroups count];
     
@@ -58,16 +52,35 @@
         //  - are the correct number of activities, for each of their chosen groups
         [activityList addObjectsFromArray:[self getNumberOfAttractions:activitiesPerGroup ofGroup:group usingActivityArray:activityListForLocation]];
     }
+    
+
+    
+    // because of whole point integer numbers, we might have some left over. Assignment them to the first three groups in the selected groups array.
+    int numberAlreadyFound = [activityList count];
+    int numberRemaining = totalActivities - numberAlreadyFound;
+    if(numberRemaining > -1){
+
+        NSLog(@"The number of slots remaining is: %i", numberRemaining);
+        for(int i = 0; i <= numberRemaining; i++){
+            NSString *group = [_thisPlan.selectedGroups objectAtIndex:i];
+            [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
+        }
+    }
+    
+    // if we're only after one activity
+    if(totalActivities == 1){
+        NSString *group = [_thisPlan.selectedGroups objectAtIndex:0];
+        [activityList removeAllObjects];
+        [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
+    }
+
     return activityList;
 }
-
-
 
 - (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group usingActivityArray:(NSArray *)activitiesArray
 {
     NSMutableArray *attractionsForThisGroup = [[NSMutableArray alloc] init];
     NSMutableArray *returnedAttractions = [[NSMutableArray alloc] init];
-    
     for(Attraction *temp in activitiesArray){
         if([temp.group isEqualToString:group]){
             [attractionsForThisGroup addObject:temp];
