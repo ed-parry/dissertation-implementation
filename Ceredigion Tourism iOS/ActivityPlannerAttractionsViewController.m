@@ -179,7 +179,6 @@
 {
     // check that we have a complete ActivityPlan object.
     if([_thisPlan isComplete]){
-        NSLog(@"Working@");
         return YES;
     }
     else{

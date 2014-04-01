@@ -12,6 +12,7 @@
 
 @interface ActivityPlannerResultsViewController ()
 @property (strong, nonatomic) NSArray *plannerResults;
+@property (strong, nonatomic) IBOutlet UITableView *activityResultsTableView;
 
 @end
 
@@ -31,6 +32,7 @@
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
     NSLog(@"Number of planner results are: %i", [_plannerResults count]);
+    [_activityResultsTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
