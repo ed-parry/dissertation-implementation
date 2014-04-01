@@ -8,6 +8,7 @@
 
 #import "SingleAttractionEventViewController.h"
 #import "EventAndDateFormatManager.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
@@ -25,7 +26,7 @@
 // These string variables are used to link either an
 // Attraction or Event to the View itself.
 @property bool isAttraction;
-@property (strong, nonatomic) IBOutlet UIView *imageLoadingView;
+@property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 
 @property (strong, nonatomic) NSString *firstTextFieldContent;
@@ -61,7 +62,7 @@
     _thisImageURL = currentAttraction.imageLocationURL;
     
     _attractionImageView.hidden = YES;
-    _imageLoadingView.hidden = NO;
+    _imageLoadingOrMapView.hidden = NO;
     [_imageLoadingSpinner startAnimating];
 }
 
@@ -75,6 +76,11 @@
     _thirdTextFieldContent = currentEvent.descriptionText;
     
     _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDate];
+    
+    _attractionImageView.hidden = YES;
+    [_imageLoadingSpinner stopAnimating];
+    
+    [self addMapToViewForEvent:currentEvent];
 }
 
 - (void)viewDidLoad
@@ -139,7 +145,7 @@
         }
         else{
             [_imageLoadingSpinner stopAnimating];
-            _imageLoadingView.hidden = YES;
+            _imageLoadingOrMapView.hidden = YES;
             _attractionImageView.hidden = NO;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
@@ -158,6 +164,17 @@
         // we now use this to store the start date and time, so shouldn't be a button.
         _secondTextField.enabled = NO;
     }
+}
+
+- (void)addMapToViewForEvent:(Event *)event
+{
+    // can use the image loading view
+    [_imageLoadingSpinner removeFromSuperview];
+    double latitude = [event.latitude doubleValue];
+    double longitude = [event.longitude doubleValue];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:12];
+    _imageLoadingOrMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 }
 
 - (NSString *)returnTextualDateTime:(NSString *)datetime
@@ -271,7 +288,7 @@
     _attractionImageView.image = _attractionImage;
     _attractionImageView.contentMode = UIViewContentModeScaleToFill;
     [_imageLoadingSpinner stopAnimating];
-    _imageLoadingView.hidden = YES;
+    _imageLoadingOrMapView.hidden = YES;
     _attractionImageView.hidden = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
