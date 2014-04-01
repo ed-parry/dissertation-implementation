@@ -193,14 +193,32 @@
             NSDate *startDate = [dateFormatter dateFromString:tempEvent.startDate];
             NSDate *endDate = [dateFormatter dateFromString:tempEvent.endDate];
             
-            NSArray *fillerDates = [[NSArray alloc] initWithArray:[_dataManager getAllEventFillerDatesBetween:startDate and:endDate]];
+            NSMutableArray *fillerDates = [[NSMutableArray alloc] initWithArray:[_dataManager getAllEventFillerDatesBetween:startDate and:endDate]];
             
-            for(NSDate *fillerTempDate in fillerDates){
-                NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
-                NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
-                NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
-                    [daysEvents addObject:tempEvent];
+            [fillerDates addObject:endDate];
+            if([fillerDates count] == 2){
+                NSLog(@"Called for event %@", tempEvent.title);
+                
+                for(NSDate *fillerTempDate in fillerDates){
+                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
+                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
+                    int fillerDay = [fillerTempDay intValue];
+                    fillerDay++;
+                    fillerTempDay = [NSString stringWithFormat:@"%i", fillerDay];
+                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
+                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
+                        [daysEvents addObject:tempEvent];
+                    }
+                }
+            }
+            else{
+                for(NSDate *fillerTempDate in fillerDates){
+                    NSString *fillerTempDateString = [NSString stringWithFormat:@"%@", fillerTempDate];
+                    NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
+                    NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
+                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
+                        [daysEvents addObject:tempEvent];
+                    }
                 }
             }
         }
