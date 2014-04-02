@@ -727,7 +727,7 @@
                         <outlet property="attractionImageView" destination="BrV-zS-uzD" id="UBj-U4-TvI"/>
                         <outlet property="firstTextField" destination="EcH-pH-M1c" id="LvC-0N-yxl"/>
                         <outlet property="firstTextFieldLabel" destination="23i-K1-ICW" id="YcF-t0-Hai"/>
-                        <outlet property="imageLoadingOrMapView" destination="RI2-KV-rgN" id="ifl-Lf-VmC"/>
+                        <outlet property="imageLoadingOrMapView" destination="RI2-KV-rgN" id="PpL-Td-nvR"/>
                         <outlet property="imageLoadingSpinner" destination="igQ-c3-lc1" id="dAg-md-L3Z"/>
                         <outlet property="secondTextField" destination="vwU-dh-BNt" id="iho-Yn-n8j"/>
                         <outlet property="secondTextFieldLabel" destination="xDR-f1-YgB" id="n7Q-jO-5fL"/>

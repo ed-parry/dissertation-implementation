@@ -11,7 +11,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <EventKitUI/EventKitUI.h>
 
-@interface SingleAttractionEventViewController () <EKEventEditViewDelegate>
+@interface SingleAttractionEventViewController () <EKEventEditViewDelegate, GMSMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *firstTextField;
 @property (strong, nonatomic) IBOutlet UIButton *secondTextField;
@@ -26,8 +26,8 @@
 // These string variables are used to link either an
 // Attraction or Event to the View itself.
 @property bool isAttraction;
-@property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
+
+
 
 @property (strong, nonatomic) NSString *firstTextFieldContent;
 @property (strong, nonatomic) NSString *secondTextFieldContent;
@@ -41,6 +41,9 @@
 // the start date is already in "secondTextFieldContent"
 @property (strong, nonatomic) NSString *eventEndDate;
 
+// Extra views
+@property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
@@ -78,6 +81,7 @@
     _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDate];
     
     _attractionImageView.hidden = YES;
+    _imageLoadingOrMapView.hidden = NO;
     [_imageLoadingSpinner stopAnimating];
     
     [self addMapToViewForEvent:currentEvent];
@@ -168,19 +172,13 @@
 
 - (void)addMapToViewForEvent:(Event *)event
 {
-    // can use the image loading view
-    [_imageLoadingSpinner removeFromSuperview];
     double latitude = [event.latitude doubleValue];
     double longitude = [event.longitude doubleValue];
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:12];
-    _imageLoadingOrMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+
 }
 
 - (NSString *)returnTextualDate:(NSString *)date andTime:(NSString *)time
 {
-    // this is what needs refactoring
-    // no date returns now, only has date dd/MM/yy
     EventAndDateFormatManager *dateManager = [[EventAndDateFormatManager alloc] init];
     NSString *textualDate = [dateManager getTextualDate:date forCalendar:NO];
     
