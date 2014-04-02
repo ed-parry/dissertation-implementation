@@ -142,8 +142,20 @@
         }
         
         // Date and Time
-        NSString *textualDate = [self returnTextualDate:_thisEvent.startDate andTime:_thisEvent.startTime];
-        [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
+        NSString *textualDateTime;
+        if([_thisEvent.startTime isEqualToString:@"00:00"]){
+            // just dates
+            textualDateTime = [self returnTextualDate:_thisEvent.startDate andTime:nil];
+            if(![_thisEvent.startDate isEqualToString:_thisEvent.endDate]){
+                textualDateTime = [NSString stringWithFormat:@"%@ until %@", textualDateTime, [self returnTextualDate:_thisEvent.endDate andTime:nil]];
+            }
+        }
+        else{
+            textualDateTime = [self returnTextualDate:_thisEvent.startDate andTime:_thisEvent.startTime];
+            textualDateTime = [NSString stringWithFormat:@"%@ until %@", textualDateTime, _thisEvent.endTime];
+        }
+
+        [_secondTextField setTitle:textualDateTime forState:UIControlStateNormal];
         
         // Description
         _thirdTextField.text = _thisEvent.descriptionText;
@@ -169,8 +181,13 @@
 {
     EventAndDateFormatManager *dateManager = [[EventAndDateFormatManager alloc] init];
     NSString *textualDate = [dateManager getTextualDate:date forCalendar:NO];
-    
-    return [NSString stringWithFormat:@"%@ at %@", textualDate, time];
+    if(time == nil){
+        return [NSString stringWithFormat:@"%@", textualDate];
+    }
+    else{
+        return [NSString stringWithFormat:@"%@ at %@", textualDate, time];
+    }
+
 }
 
 - (IBAction)addToCalendarTapped:(id)sender
