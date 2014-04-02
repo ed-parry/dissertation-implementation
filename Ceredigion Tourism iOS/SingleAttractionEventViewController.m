@@ -146,7 +146,8 @@
         [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
         
         // Description
-        _thirdTextField.text = _thisAttraction.descriptionText;
+        // Description
+        _thirdTextField.text = _thisEvent.descriptionText;
         
         [self setPageColorForGroup:@"Event"];
 
