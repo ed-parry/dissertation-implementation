@@ -134,22 +134,29 @@
 {
     [_mapLoadSpinner startAnimating];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
-            [self showUIAlertView:address];
+            [self showUIAlertView:address forProblem:@"Not Found"];
             NSLog(@"%@", error);
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
-            GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
-            _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 
-            _currentRadiusCenter = placemark.location.coordinate;
-            MapDataManager *dataManager = [[MapDataManager alloc] init];
-            double mapRadius = [dataManager getMapRadiusMetersFromPlist];
-            _currentRadiusInMeters = mapRadius;
-
-            [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
-            [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
+            if([placemark.administrativeArea isEqualToString:@"Wales"]){
+                GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:placemark.location.coordinate.latitude longitude:placemark.location.coordinate.longitude zoom:12];
+                _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+                
+                _currentRadiusCenter = placemark.location.coordinate;
+                MapDataManager *dataManager = [[MapDataManager alloc] init];
+                double mapRadius = [dataManager getMapRadiusMetersFromPlist];
+                _currentRadiusInMeters = mapRadius;
+                
+                [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
+                [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];
+            }
+            else{
+                [self showUIAlertView:address forProblem:@"Not In Area"];
+            }
         }
     }];
 }
@@ -272,13 +279,24 @@
     }
 }
 
-- (void)showUIAlertView:(NSString *)searchText
+- (void)showUIAlertView:(NSString *)searchText forProblem:(NSString *)problem
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not Found", searchText]
-                                                    message:@"Your search cannot be found on the map. Please try again, or search using your current location."
-                                                   delegate:self
-                                          cancelButtonTitle:@"Search Again"
-                                          otherButtonTitles:@"Current Location", nil];
+    UIAlertView *alert;
+    if([problem isEqualToString:@"Not Found"]){
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not Found", searchText]
+                                                        message:@"Your search cannot be found on the map. Please try again, or search using your current location."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Search Again"
+                                              otherButtonTitles:@"Current Location", nil];
+    }
+    else if([problem isEqualToString:@"Not In Area"]){
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not in Wales", searchText]
+                                           message:@"Your search is not within the area of Wales. Please try again, or search using your current location."
+                                          delegate:self
+                                 cancelButtonTitle:@"Search Again"
+                                 otherButtonTitles:@"Current Location", nil];
+    }
+
     [alert show];
 }
 
