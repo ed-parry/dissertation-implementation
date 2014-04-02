@@ -146,8 +146,9 @@
         [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
         
         // Description
-        // Description
         _thirdTextField.text = _thisEvent.descriptionText;
+        
+        _visitWebsiteButton.enabled = FALSE;
         
         [self setPageColorForGroup:@"Event"];
 
