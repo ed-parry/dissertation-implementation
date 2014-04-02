@@ -35,9 +35,7 @@
     NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
     NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
 
-    if(calendar){
-        dayNumber--; // current bug with the Vurig framework. This is the easiest fix.
-    }
+    dayNumber--;
     
     NSString *monthText = [self getTextMonthFromNumber:monthNumber];
     NSString *dayText = [self getTextDayFromNumber:dayNumber];
