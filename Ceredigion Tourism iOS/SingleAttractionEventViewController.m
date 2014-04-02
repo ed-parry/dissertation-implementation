@@ -13,6 +13,9 @@
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate, GMSMapViewDelegate>
 
+@property (strong, nonatomic) Attraction *thisAttraction;
+@property (strong, nonatomic) Event *thisEvent;
+
 @property (strong, nonatomic) IBOutlet UILabel *firstTextField;
 @property (strong, nonatomic) IBOutlet UIButton *secondTextField;
 @property (strong, nonatomic) IBOutlet UILabel *thirdTextField;
@@ -23,23 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *firstTextFieldLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondTextFieldLabel;
 
-// These string variables are used to link either an
-// Attraction or Event to the View itself.
-@property bool isAttraction;
-
-
-
-@property (strong, nonatomic) NSString *firstTextFieldContent;
-@property (strong, nonatomic) NSString *secondTextFieldContent;
-@property (strong, nonatomic) NSString *thirdTextFieldContent;
-@property (strong, nonatomic) NSString *thisTitle;
-@property (strong, nonatomic) NSString *thisGroup;
-@property (strong, nonatomic) NSString *thisWebsite;
-@property (strong, nonatomic) NSString *thisImageURL;
 @property UIImage *attractionImage;
-
-// the start date is already in "secondTextFieldContent"
-@property (strong, nonatomic) NSString *eventEndDate;
 
 // Extra views
 @property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
@@ -55,15 +42,9 @@
 
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
-    _isAttraction = YES;
-    _thisTitle = currentAttraction.name;
-    _thisGroup = currentAttraction.group;
-    _firstTextFieldContent = currentAttraction.address;
-    _secondTextFieldContent = currentAttraction.telephone;
-    _thirdTextFieldContent = currentAttraction.descriptionText;
-    _thisWebsite = currentAttraction.website;
-    _thisImageURL = currentAttraction.imageLocationURL;
-    
+    _thisAttraction = [[Attraction alloc] init];
+    _thisAttraction = currentAttraction;
+
     _attractionImageView.hidden = YES;
     _imageLoadingOrMapView.hidden = NO;
     [_imageLoadingSpinner startAnimating];
@@ -71,14 +52,8 @@
 
 - (void)startWithEvent:(Event *)currentEvent
 {
-    _isAttraction = NO;
-    _thisTitle = currentEvent.title;
-    _thisGroup = @"Event";
-    _firstTextFieldContent = currentEvent.location;
-    _secondTextFieldContent = [NSString stringWithFormat:@"%@", currentEvent.startDate];
-    _thirdTextFieldContent = currentEvent.descriptionText;
-    
-    _eventEndDate = [NSString stringWithFormat:@"%@", currentEvent.endDate];
+    _thisEvent = [[Event alloc] init];
+    _thisEvent = currentEvent;
     
     _attractionImageView.hidden = YES;
     _imageLoadingOrMapView.hidden = NO;
@@ -104,47 +79,40 @@
 
 - (void)setUpViewContent
 {
-    if(_thisTitle != nil){
-        // populate the attraction or event
-        
-        // hide the word "back" from the navigation bar, and set the title.
-        self.navigationItem.title = _thisTitle;
+    if(_thisAttraction){
+        self.navigationItem.title = _thisAttraction.name;
         self.navigationController.navigationBar.topItem.title = @"";
         
-        _thirdTextField.text = [NSString stringWithFormat:@"%@", _thirdTextFieldContent];
-        
-        if([_firstTextFieldContent length] > 1) {
-            _firstTextField.text = [NSString stringWithFormat:@"%@", _firstTextFieldContent];
+        // Address
+        if([_thisAttraction.address length] > 1) {
+            _firstTextField.text = [NSString stringWithFormat:@"%@", _thisAttraction.address];
         }
         else{
-            _firstTextField.text = [NSString stringWithFormat:@"No address was provided for %@.", _thisTitle];
+            _firstTextField.text = [NSString stringWithFormat:@"No address was provided for %@.", _thisAttraction.name];
         }
         
-        if([_secondTextFieldContent length] > 1){
-            if(!_isAttraction){
-                // format the date, and then put it in
-                NSString *textualDate = [self returnTextualDate:_secondTextFieldContent andTime:@"10:10"];
-                [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
-            }
-            else{
-                [_secondTextField setTitle:_secondTextFieldContent forState:UIControlStateNormal];
-            }
+        // Telephone
+        if([_thisAttraction.telephone length] > 1){
+            [_secondTextField setTitle:_thisAttraction.telephone forState:UIControlStateNormal];
         }
         else{
             [_secondTextField setTitle:@"No phone number is available." forState:UIControlStateNormal];
             _secondTextField.enabled = NO;
         }
         
+        // Description
+        _thirdTextField.text = _thisAttraction.descriptionText;
         
-        if([_thisGroup isEqual: @"Accommodation"] || [_thisGroup isEqual:@"Camp & caravan"]){
+        if([_thisAttraction.group isEqual: @"Accommodation"] || [_thisAttraction.group isEqual:@"Camp & caravan"]){
             _addToCalendarButton.enabled = FALSE;
         }
-        if([_thisWebsite length] < 1){
+        
+        if([_thisAttraction.website length] < 1){
             _visitWebsiteButton.enabled = FALSE;
         }
         
-        if([_thisImageURL length] > 1){
-            [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisImageURL];
+        if([_thisAttraction.imageLocationURL length] > 1){
+            [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisAttraction.imageLocationURL];
             [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
         }
         else{
@@ -153,20 +121,38 @@
             _attractionImageView.hidden = NO;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
-
-        [self setPageColorForGroup:_thisGroup];
+        [self setPageColorForGroup:_thisAttraction.group];
     }
-    else{
-        NSLog(@"There's no Attraction or Event object to use. Try again.");
-    }
-    
-    if(!_isAttraction){
-        // we're dealing with an event, so change the labels accordingly.
+    else if(_thisEvent){
+        self.navigationItem.title = _thisEvent.title;
+        self.navigationController.navigationBar.topItem.title = @"";
+        
         _firstTextFieldLabel.text = @"Event Location";
         _secondTextFieldLabel.text = @"Date & Time";
         
-        // we now use this to store the start date and time, so shouldn't be a button.
+        // This is DateTime not Telephone, so don't need a button
         _secondTextField.enabled = NO;
+
+        // Address/Location
+        if([_thisEvent.location length] > 1) {
+            _firstTextField.text = [NSString stringWithFormat:@"%@", _thisEvent.location];
+        }
+        else{
+            _firstTextField.text = [NSString stringWithFormat:@"No location was provided for %@.", _thisEvent.title];
+        }
+        
+        // Date and Time
+        NSString *textualDate = [self returnTextualDate:_thisEvent.startDate andTime:_thisEvent.startTime];
+        [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
+        
+        // Description
+        _thirdTextField.text = _thisAttraction.descriptionText;
+        
+        [self setPageColorForGroup:@"Event"];
+
+    }
+    else{
+        NSLog(@"There's no Attraction or Event object to use. Try again.");
     }
 }
 
@@ -196,29 +182,30 @@
             eventController.editViewDelegate = self;
             
             EKEvent *attractionEvent = [EKEvent eventWithEventStore:eventStore];
-            attractionEvent.title = _thisTitle;
-            attractionEvent.location = _firstTextFieldContent;
 
             // set the start date and time and the end date and time.
-            if(!_isAttraction){
-                NSString *startDateString = _secondTextFieldContent;
+            if(_thisEvent){
+                attractionEvent.title = _thisEvent.title;
+                attractionEvent.location = _thisEvent.location;
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-                
-                startDateString = [startDateString substringToIndex:16];
-                _eventEndDate = [_eventEndDate substringToIndex:16];
-                
-                NSDate *startDate = [dateFormatter dateFromString:startDateString];
-                NSDate *endDate = [dateFormatter dateFromString:_eventEndDate];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            
+                NSDate *startDate = [dateFormatter dateFromString:_thisEvent.startDate];
+                NSDate *endDate = [dateFormatter dateFromString:_thisEvent.endDate];
                 
                 attractionEvent.startDate = startDate;
                 attractionEvent.endDate = endDate;
+                
+                attractionEvent.notes = _thisEvent.descriptionText;
+            }
+            else{
+                attractionEvent.title = _thisAttraction.name;
+                attractionEvent.location = _thisAttraction.address;
+                attractionEvent.notes = _thisAttraction.descriptionText;
             }
             
-            attractionEvent.notes = _thirdTextFieldContent;
             eventController.event = attractionEvent;
-            
             [self presentViewController:eventController animated:YES completion:nil];
         }
         else{
@@ -237,7 +224,7 @@
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender
 {
-    NSString *phoneNumber = [_secondTextFieldContent stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *phoneNumber = [_thisAttraction.telephone stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel://%@", phoneNumber]];
     
@@ -252,7 +239,7 @@
 
 - (IBAction)visitWebsiteTapped:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisWebsite]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
 }
 
 - (void)setPageColorForGroup:(NSString *)group

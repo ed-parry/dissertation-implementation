@@ -61,7 +61,7 @@
     // because of whole point integer numbers, we might have some left over. Assignment them to the first three groups in the selected groups array.
     int numberAlreadyFound = [activityList count];
     int numberRemaining = totalActivities - numberAlreadyFound;
-    if(numberRemaining > -1){
+    if((numberRemaining > -1) && (numberRemaining < totalActivities)){
         for(int i = 0; i <= numberRemaining; i++){
             NSString *group = [shuffledGroups objectAtIndex:i];
             [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
