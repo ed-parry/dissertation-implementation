@@ -16,6 +16,8 @@
 @property ActivityPlan *thisPlan;
 @property CoreDataManager *coreDataManager;
 @property NSArray *allAttractionsInGroupArrays;
+
+@property NSMutableArray *activityListForLocation;
 @end
 
 @implementation ActivityPlannerController
@@ -40,7 +42,7 @@
     NSMutableArray *activityList = [[NSMutableArray alloc] init];
     _allAttractionsInGroupArrays = [_coreDataManager getAllAttractionsInGroupArrays];
     
-    NSArray *activityListForLocation = [[NSArray alloc] initWithArray:[self generateAttractionsForLocation:_thisPlan.locationCoordinates]];
+    _activityListForLocation = [[NSMutableArray alloc] initWithArray:[self generateAttractionsForLocation:_thisPlan.locationCoordinates]];
 
     int totalActivities = [_thisPlan.numberOfActivities intValue];
     int totalGroups = [_thisPlan.selectedGroups count];
@@ -53,7 +55,7 @@
         // this adds to the activityList array a collection of objects that are:
         //  - within 10 miles of their chosen location
         //  - are the correct number of activities, for each of their chosen groups
-        [activityList addObjectsFromArray:[self getNumberOfAttractions:activitiesPerGroup ofGroup:group usingActivityArray:activityListForLocation]];
+        [activityList addObjectsFromArray:[self getNumberOfAttractions:activitiesPerGroup ofGroup:group]];
     }
     
 
@@ -64,7 +66,7 @@
     if((numberRemaining > -1) && (numberRemaining < totalActivities)){
         for(int i = 0; i <= numberRemaining; i++){
             NSString *group = [shuffledGroups objectAtIndex:i];
-            [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
+            [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group]];
         }
     }
     
@@ -72,9 +74,8 @@
     if(totalActivities == 1){
         NSString *group = [_thisPlan.selectedGroups objectAtIndex:0];
         [activityList removeAllObjects];
-        [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
+        [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group]];
     }
-    
 
     if([activityList count] > totalActivities){
         // remove some
@@ -92,12 +93,11 @@
         NSString *group = [_thisPlan.selectedGroups objectAtIndex:getRandomLocation];
         
         [activityList addObjectsFromArray:[self getNumberOfAttractions:numberToAdd
-                                                               ofGroup:group
-                                                    usingActivityArray:activityListForLocation]];
+                                                               ofGroup:group]];
 
     }
     
-    return activityList;
+    return [self shuffleArrayContents:activityList];
 }
 
 - (NSArray *)generateEventsList
@@ -123,9 +123,6 @@
             }
         }
     }
-    
-    
-    
     return relevantEvents;
 }
 
@@ -142,15 +139,13 @@
     return array;
 }
 
-- (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group usingActivityArray:(NSArray *)activitiesArray
+- (NSArray *)getNumberOfAttractions:(int)number ofGroup:(NSString *)group
 {
     NSMutableArray *attractionsForThisGroup = [[NSMutableArray alloc] init];
     NSMutableArray *returnedAttractions = [[NSMutableArray alloc] init];
-    for(Attraction *temp in activitiesArray){
+    for(Attraction *temp in _activityListForLocation){
         if([temp.group isEqualToString:group]){
-            if(![attractionsForThisGroup containsObject:temp]){
-                [attractionsForThisGroup addObject:temp];
-            }
+            [attractionsForThisGroup addObject:temp];
         }
     }
     
@@ -161,9 +156,9 @@
         for(int i = 0; i < number; i++){
             int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
             Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-1];
-            if(![returnedAttractions containsObject:randomAttraction]){
-                [returnedAttractions addObject:randomAttraction];
-            }
+            [returnedAttractions addObject:randomAttraction];
+            [_activityListForLocation removeObject:randomAttraction];
+            [attractionsForThisGroup removeObject:randomAttraction];
         }
         attractionsForThisGroup = nil;
         return returnedAttractions;
