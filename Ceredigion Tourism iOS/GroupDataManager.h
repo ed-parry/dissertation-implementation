@@ -10,13 +10,13 @@
 #import "Attraction.h"
 
 @interface GroupDataManager : NSObject
-- (void)storeDefaultAllowedGroupsInPlist;
-- (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups;
-- (void)toggleGroupInAllowedGroups:(NSString *)group;
+- (void)storeDefaultAllowedGroupsInPlistForAttractionPlanner:(bool)attractionPlanner;
+- (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups forAttractionPlanner:(bool)attractionPlanner;
+- (void)toggleGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner;
 
 - (bool)isAttractionInAllowedGroups:(Attraction *)attraction;
-- (bool)isGroupInAllowedGroups:(NSString *)group;
+- (bool)isGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner;
 
-- (NSArray *)getAllowedGroupsFromPlist;
+- (NSArray *)getAllowedGroupsFromPlistForAttractionPlanner:(bool)attractionPlanner;
 
 @end

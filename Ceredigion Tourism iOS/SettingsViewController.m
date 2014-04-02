@@ -163,7 +163,7 @@
 - (void)toggleGroup:(NSString *)group
 {
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    [groupDataManager toggleGroupInAllowedGroups:group];
+    [groupDataManager toggleGroupInAllowedGroups:group forAttractionPlanner:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -192,7 +192,7 @@
     }
 
     NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
-        if([_groupDataManager isGroupInAllowedGroups:thisGroup]){
+        if([_groupDataManager isGroupInAllowedGroups:thisGroup forAttractionPlanner:NO]){
             [accessorySwitch setOn:YES animated:YES];
         }
         else{

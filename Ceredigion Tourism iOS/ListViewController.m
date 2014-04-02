@@ -42,7 +42,7 @@
     _dataManager = [[CoreDataManager alloc] init];
     _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
-    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
+    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +53,7 @@
         if(!_groupDataManager){
             _groupDataManager = [[GroupDataManager alloc] init];
         }
-        _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
+        _attractionGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
         [self applyGroupSettings];
         [self applyRadiusSettings];
         [self updateAttractionGroupsArray];
@@ -66,7 +66,7 @@
     if(!_groupDataManager){
         _groupDataManager = [[GroupDataManager alloc] init];
     }
-    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlist];
+    _attractionGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
     [self applyGroupSettings];
     [self applyRadiusSettings];
     [self updateAttractionGroupsArray];
@@ -121,7 +121,7 @@
         Attraction *tempAttraction = [tempGroup objectAtIndex:0];
         NSString *group = tempAttraction.group;
         
-        if([groupDataManager isGroupInAllowedGroups:group]){
+        if([groupDataManager isGroupInAllowedGroups:group forAttractionPlanner:NO]){
             [allAttractionsBySelectedGroup addObject:tempGroup];
         }
     }
@@ -131,7 +131,7 @@
 - (void)updateAttractionGroupsArray
 {
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
-    _attractionGroups = [groupDataManager getAllowedGroupsFromPlist];
+    _attractionGroups = [groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,7 +23,7 @@
 
 - (bool)isAttractionInAllowedGroups:(Attraction *)attraction
 {
-    NSArray *allowedGroups = [self getAllowedGroupsFromPlist];
+    NSArray *allowedGroups = [self getAllowedGroupsFromPlistForAttractionPlanner:NO];
     
     for(NSString *group in allowedGroups){
         if([group isEqualToString:attraction.group]){
@@ -33,9 +33,10 @@
     return NO;
 }
 
-- (bool)isGroupInAllowedGroups:(NSString *)group
+- (bool)isGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner
 {
-    NSArray *allowedGroups = [self getAllowedGroupsFromPlist];
+
+    NSArray *allowedGroups = [self getAllowedGroupsFromPlistForAttractionPlanner:attractionPlanner];
     
     for(NSString *allowedGroup in allowedGroups){
         if([allowedGroup isEqualToString:group]){
@@ -45,7 +46,7 @@
     return NO;
 }
 
-- (void)storeDefaultAllowedGroupsInPlist
+- (void)storeDefaultAllowedGroupsInPlistForAttractionPlanner:(bool)attractionPlanner
 {
     CoreDataManager *dataManager = [[CoreDataManager alloc] init];
     NSMutableArray *defaultGroups = [[NSMutableArray alloc] initWithArray:[dataManager getAllAttractionGroupTypes]];
@@ -54,17 +55,20 @@
         // make a new list that will work for 90% of cases as a default
         defaultGroups = [[NSMutableArray alloc] initWithArray:@[@"Accommodation", @"Activity", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail"]];
     }
-    
-    [self storeAllowedGroupsInPlist:defaultGroups];
+
+    [self storeAllowedGroupsInPlist:defaultGroups forAttractionPlanner:attractionPlanner];
 }
 
-- (void)toggleGroupInAllowedGroups:(NSString *)group
+- (void)toggleGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner
 {
-    NSArray *currentGroups = [self getAllowedGroupsFromPlist];
+    NSArray *currentGroups;
+
+    currentGroups = [self getAllowedGroupsFromPlistForAttractionPlanner:attractionPlanner];
+
+
     NSMutableArray *currentMutableGroups = [[NSMutableArray alloc] initWithArray:currentGroups];
     
     bool isFound = NO;
-    
     for(NSString *tempGroup in currentGroups){
         if([tempGroup isEqualToString:group]){
             [currentMutableGroups removeObject:tempGroup];
@@ -77,22 +81,33 @@
         [currentMutableGroups addObject:group];
     }
     
-    [self storeAllowedGroupsInPlist:currentMutableGroups];
+    [self storeAllowedGroupsInPlist:currentMutableGroups forAttractionPlanner:attractionPlanner];
 }
 
-- (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups
+- (void)storeAllowedGroupsInPlist:(NSArray *)allowedGroups forAttractionPlanner:(bool)attractionPlanner
 {
-    [allowedGroups writeToFile:_filePath atomically:YES];
+    if(attractionPlanner){
+        [allowedGroups writeToFile:[self getPlistFilePath:@"attraction_planner-allowed-categories"] atomically:YES];
+    }
+    else{
+        [allowedGroups writeToFile:_filePath atomically:YES];
+    }
 }
 
-- (NSArray *)getAllowedGroupsFromPlist
+- (NSArray *)getAllowedGroupsFromPlistForAttractionPlanner:(bool)attractionPlanner
 {
     NSArray *allowedGroups;
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:_filePath]) {
-        allowedGroups = [[NSArray alloc] initWithContentsOfFile:_filePath];
+    if(!attractionPlanner){
+        if ([[NSFileManager defaultManager] fileExistsAtPath:_filePath]) {
+            allowedGroups = [[NSArray alloc] initWithContentsOfFile:_filePath];
+        }
     }
-    
+    else{
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[self getPlistFilePath:@"attraction_planner-allowed-categories"]]) {
+            allowedGroups = [[NSArray alloc] initWithContentsOfFile:[self getPlistFilePath:@"attraction_planner-allowed-categories"]];
+        }
+    }
+
     return [self getAlphabeticallyOrderedArray:allowedGroups];
 }
 

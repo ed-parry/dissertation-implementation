@@ -9,10 +9,12 @@
 #import "ActivityPlannerAttractionsViewController.h"
 #import "ActivityPlannerResultsViewController.h"
 #import "CoreDataManager.h"
+#import "GroupDataManager.h"
 #import "Attraction.h"
 
 @interface ActivityPlannerAttractionsViewController ()
 @property ActivityPlan *thisPlan;
+@property GroupDataManager *groupDataManager;
 @property NSArray *attractionGroups;
 @property NSArray *activityPlanGroups;
 @property (strong, nonatomic) IBOutlet UITableView *attractionsGroupTable;
@@ -42,7 +44,8 @@
     _attractionsGroupTable.dataSource = self;
     _attractionsGroupTable.delegate = self;
     
-    
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:YES];
 }
 
 - (void)getAttractionGroupsArray
@@ -96,7 +99,19 @@
     
     UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
 
-    [accessorySwitch setOn:YES animated:YES];
+    
+    if(!_groupDataManager){
+        _groupDataManager = [[GroupDataManager alloc] init];
+    }
+    NSLog(@"The contents of the array now are: %@", [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:YES]);
+    NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
+    NSLog(@"This group is: %@", thisGroup);
+    if([_groupDataManager isGroupInAllowedGroups:thisGroup forAttractionPlanner:YES]){
+        [accessorySwitch setOn:YES animated:YES];
+    }
+    else{
+        [accessorySwitch setOn:NO animated:YES];
+    }
 
     [accessorySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     cell.accessoryView = accessorySwitch;
@@ -115,7 +130,7 @@
     CGPoint rootViewPoint = [sender.superview convertPoint:center toView:_attractionsGroupTable];
     NSIndexPath *indexPath = [_attractionsGroupTable indexPathForRowAtPoint:rootViewPoint];
     NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
-    
+
     [self toggleGroupFromArray:selectedGroup];
 }
 
@@ -141,26 +156,8 @@
 
 - (void)toggleGroupFromArray:(NSString *)group
 {
-    NSMutableArray *currentGroups = [[NSMutableArray alloc] initWithArray:_activityPlanGroups];
-    bool shouldRemove = NO;
-    
-    for (NSString *tempGroup in currentGroups){
-        if([tempGroup isEqualToString:group]){
-            shouldRemove = YES;
-        }
-    }
-    
-    if(shouldRemove){
-        [currentGroups removeObject:group];
-    }
-    else{
-        // it isn't in there, so let's add it back
-        [currentGroups addObject:group];
-    }
-    
-    // set it back to the instance variable
-    _activityPlanGroups = currentGroups;
-    _thisPlan.selectedGroups = currentGroups;
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    [groupDataManager toggleGroupInAllowedGroups:group forAttractionPlanner:YES];
 }
 
 - (IBAction)activityNumberSelector:(UISlider *)sender
@@ -178,6 +175,9 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // check that we have a complete ActivityPlan object.
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    _thisPlan.selectedGroups = [groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:YES];
+    
     if([_thisPlan isComplete]){
         return YES;
     }
