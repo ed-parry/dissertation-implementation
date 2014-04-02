@@ -139,11 +139,11 @@
 {
     _dateManager = [[EventAndDateFormatManager alloc] init];
     if(!_selectedDay){
-        return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" withYear:NO]];
+        return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" forCalendar:YES]];
     }
     else{
         NSString *date = [NSString stringWithFormat:@"%@", _selectedDay];
-        return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:date withYear:NO]];
+        return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:date forCalendar:YES]];
     }
 
 }

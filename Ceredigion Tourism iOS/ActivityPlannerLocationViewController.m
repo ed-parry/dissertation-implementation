@@ -79,7 +79,7 @@
     EventAndDateFormatManager *dateFormatManager = [[EventAndDateFormatManager alloc] init];
     NSString *date = [NSString stringWithFormat:@"%@", aDate];
     
-    NSString *textualDate = [dateFormatManager getTextualDate:date withYear:YES];
+    NSString *textualDate = [dateFormatManager getTextualDate:date forCalendar:YES];
     _arrivalDateTextField.text = textualDate;
     
     // store the original formatting locally, to use later in the object.
@@ -97,7 +97,7 @@
 {
     NSDate *today = [NSDate date];
     EventAndDateFormatManager *dateFormatManager = [[EventAndDateFormatManager alloc] init];
-    NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] withYear:YES];
+    NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] forCalendar:YES];
     _arrivalDateNoFormat = [NSString stringWithFormat:@"%@", today];
     _arrivalDateTextField.text = textualDate;
 }

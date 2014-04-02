@@ -119,7 +119,7 @@
         if([_secondTextFieldContent length] > 1){
             if(!_isAttraction){
                 // format the date, and then put it in
-                NSString *textualDate = [self returnTextualDateTime:_secondTextFieldContent];
+                NSString *textualDate = [self returnTextualDate:_secondTextFieldContent andTime:@"10:10"];
                 [_secondTextField setTitle:textualDate forState:UIControlStateNormal];
             }
             else{
@@ -177,17 +177,14 @@
     _imageLoadingOrMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 }
 
-- (NSString *)returnTextualDateTime:(NSString *)datetime
+- (NSString *)returnTextualDate:(NSString *)date andTime:(NSString *)time
 {
     // this is what needs refactoring
-    NSString *date = [datetime substringToIndex:10];
-    NSString *time = [datetime substringFromIndex:10];
-    time = [time substringToIndex:6];
-    
+    // no date returns now, only has date dd/MM/yy
     EventAndDateFormatManager *dateManager = [[EventAndDateFormatManager alloc] init];
-    NSString *textualDate = [dateManager getTextualDate:date withYear:NO];
+    NSString *textualDate = [dateManager getTextualDate:date forCalendar:NO];
     
-    return [NSString stringWithFormat:@"%@ at%@", textualDate, time];
+    return [NSString stringWithFormat:@"%@ at %@", textualDate, time];
 }
 
 - (IBAction)addToCalendarTapped:(id)sender

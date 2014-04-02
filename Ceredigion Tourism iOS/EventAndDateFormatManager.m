@@ -16,27 +16,33 @@
 @implementation EventAndDateFormatManager
 
 
-- (NSString *)getTextualDate:(NSString *)date withYear:(bool)withYear
+- (NSString *)getTextualDate:(NSString *)date forCalendar:(bool)calendar
 {
-    NSRange monthRange = NSMakeRange(5, 7- 5);
-    NSRange dayRange = NSMakeRange(8, 10- 8);
- 
-    NSInteger yearNumber = [[date substringToIndex:4] integerValue];
-    NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
-    NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
+    NSRange monthRange;
+    NSRange dayRange;
     
-    dayNumber--; // current bug with the Vurig framework. This is the easiest fix.
+    if(calendar){
+        // example date: 2014-04-26
+        dayRange = NSMakeRange(8, 10- 8);
+        monthRange = NSMakeRange(5, 7- 5);
+    }
+    else if(!calendar){
+        // example date: 26-04-14
+        dayRange = NSMakeRange(0, 2- 0);
+        monthRange = NSMakeRange(3, 5- 3);
+    }
+
+    NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
+    NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
+
+    if(calendar){
+        dayNumber--; // current bug with the Vurig framework. This is the easiest fix.
+    }
     
     NSString *monthText = [self getTextMonthFromNumber:monthNumber];
     NSString *dayText = [self getTextDayFromNumber:dayNumber];
     
-    if(withYear){
-        return [NSString stringWithFormat:@"%@ of %@, %i", dayText, monthText, yearNumber];
-    }
-    else{
-        return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
-    }
-
+    return [NSString stringWithFormat:@"%@ of %@", dayText, monthText];
 }
 
 - (NSString *)getTextDayFromNumber:(NSInteger)day
