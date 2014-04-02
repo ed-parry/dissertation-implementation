@@ -126,7 +126,9 @@
     NSMutableArray *returnedAttractions = [[NSMutableArray alloc] init];
     for(Attraction *temp in activitiesArray){
         if([temp.group isEqualToString:group]){
-            [attractionsForThisGroup addObject:temp];
+            if(![attractionsForThisGroup containsObject:temp]){
+                [attractionsForThisGroup addObject:temp];
+            }
         }
     }
     
@@ -137,7 +139,9 @@
         for(int i = 0; i < number; i++){
             int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
             Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-1];
-            [returnedAttractions addObject:randomAttraction];
+            if(![returnedAttractions containsObject:randomAttraction]){
+                [returnedAttractions addObject:randomAttraction];
+            }
         }
         attractionsForThisGroup = nil;
         return returnedAttractions;
