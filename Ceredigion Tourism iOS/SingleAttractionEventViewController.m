@@ -191,13 +191,20 @@
                 attractionEvent.location = _thisEvent.location;
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            
-                NSDate *startDate = [dateFormatter dateFromString:_thisEvent.startDate];
-                NSDate *endDate = [dateFormatter dateFromString:_thisEvent.endDate];
+
+                NSString *startDateTime = [NSString stringWithFormat:@"%@ %@", _thisEvent.startDate, _thisEvent.startTime];
+                NSString *endDateTime = [NSString stringWithFormat:@"%@ %@", _thisEvent.endDate, _thisEvent.endTime];
                 
+                [dateFormatter setDateFormat:@"dd/MM/yy HH:mm"];
+                NSDate *startDate = [dateFormatter dateFromString:startDateTime];
+                NSDate *endDate = [dateFormatter dateFromString:endDateTime];
+
                 attractionEvent.startDate = startDate;
                 attractionEvent.endDate = endDate;
+                
+                if([_thisEvent.startTime isEqualToString:@"00:00"]){
+                    attractionEvent.allDay = YES;
+                }
                 
                 attractionEvent.notes = _thisEvent.descriptionText;
             }
