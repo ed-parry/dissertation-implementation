@@ -74,7 +74,29 @@
         [activityList removeAllObjects];
         [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group usingActivityArray:activityListForLocation]];
     }
+    
 
+    if([activityList count] > totalActivities){
+        // remove some
+        int numberToRemove = [activityList count] - totalActivities;
+        for(int i = 0; i < numberToRemove; i++){
+            [activityList removeObjectAtIndex:i];
+        }
+
+    }
+    else if([activityList count] < totalActivities){
+        // add some
+        int numberToAdd = totalActivities - [activityList count];
+
+        int getRandomLocation = [self getRandomNumberLessThan:[_thisPlan.selectedGroups count]];
+        NSString *group = [_thisPlan.selectedGroups objectAtIndex:getRandomLocation];
+        
+        [activityList addObjectsFromArray:[self getNumberOfAttractions:numberToAdd
+                                                               ofGroup:group
+                                                    usingActivityArray:activityListForLocation]];
+
+    }
+    
     return activityList;
 }
 
