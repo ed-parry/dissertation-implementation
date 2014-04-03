@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityPlannerLocationViewController : UIViewController
+@interface AttractionPlannerLocationViewController : UIViewController
 
 @end

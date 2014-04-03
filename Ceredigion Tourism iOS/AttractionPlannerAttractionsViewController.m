@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "ActivityPlannerAttractionsViewController.h"
-#import "ActivityPlannerResultsViewController.h"
+#import "AttractionPlannerAttractionsViewController.h"
+#import "AttractionPlannerResultsViewController.h"
 #import "CoreDataManager.h"
 #import "GroupDataManager.h"
 #import "Attraction.h"
 
-@interface ActivityPlannerAttractionsViewController ()
+@interface AttractionPlannerAttractionsViewController ()
 @property ActivityPlan *thisPlan;
 @property GroupDataManager *groupDataManager;
 @property NSArray *attractionGroups;
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *activityNumberLabel;
 @end
 
-@implementation ActivityPlannerAttractionsViewController
+@implementation AttractionPlannerAttractionsViewController
 
 - (void)viewDidLoad
 {

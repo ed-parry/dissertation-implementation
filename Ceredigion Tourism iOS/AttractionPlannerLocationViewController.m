@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "ActivityPlannerLocationViewController.h"
+#import "AttractionPlannerLocationViewController.h"
 #import "RMDateSelectionViewController.h"
-#import "ActivityPlannerAttractionsViewController.h"
+#import "AttractionPlannerAttractionsViewController.h"
 #import "EventAndDateFormatManager.h"
 #import "MapDataManager.h"
 #import "ActivityPlan.h"
 
-@interface ActivityPlannerLocationViewController () <RMDateSelectionViewControllerDelegate>
+@interface AttractionPlannerLocationViewController () <RMDateSelectionViewControllerDelegate>
 
 @property RMDateSelectionViewController *dateSelectionVC;
 
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation ActivityPlannerLocationViewController
+@implementation AttractionPlannerLocationViewController
 
 - (void)viewDidLoad
 {

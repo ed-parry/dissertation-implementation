@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "ActivityPlannerResultsViewController.h"
+#import "AttractionPlannerResultsViewController.h"
 #import "ActivityPlannerController.h"
 #import "SingleAttractionEventViewController.h"
 #import "Attraction.h"
 
-@interface ActivityPlannerResultsViewController ()
+@interface AttractionPlannerResultsViewController ()
 @property (strong, nonatomic) NSArray *plannerResults;
 @property (strong, nonatomic) NSArray *plannerEvents;
 @property (strong, nonatomic) IBOutlet UITableView *activityResultsTableView;
 
 @end
 
-@implementation ActivityPlannerResultsViewController
+@implementation AttractionPlannerResultsViewController
 
 - (void)viewDidLoad
 {

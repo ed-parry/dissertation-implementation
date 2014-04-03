@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="511" y="71"/>
         </scene>
-        <!--Activity Planner Location View Controller - Activity Planner-->
+        <!--Attraction Planner Location View Controller - Activity Planner-->
         <scene sceneID="C5V-aJ-gc9">
             <objects>
-                <viewController title="Activity Planner" id="2gG-VJ-8Gn" customClass="ActivityPlannerLocationViewController" sceneMemberID="viewController">
+                <viewController title="Activity Planner" id="2gG-VJ-8Gn" customClass="AttractionPlannerLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o1e-AA-KiQ"/>
                         <viewControllerLayoutGuide type="bottom" id="zYr-Yj-ZH2"/>
@@ -266,10 +266,10 @@
             </objects>
             <point key="canvasLocation" x="1275" y="-679"/>
         </scene>
-        <!--Activity Planner Attractions View Controller-->
+        <!--Attraction Planner Attractions View Controller-->
         <scene sceneID="tUh-kL-fSI">
             <objects>
-                <viewController id="5F2-il-bUW" customClass="ActivityPlannerAttractionsViewController" sceneMemberID="viewController">
+                <viewController id="5F2-il-bUW" customClass="AttractionPlannerAttractionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NLi-sY-Ry3"/>
                         <viewControllerLayoutGuide type="bottom" id="ACv-Xw-Ior"/>
@@ -378,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="1813" y="-679"/>
         </scene>
-        <!--Activity Planner Results View Controller-->
+        <!--Attraction Planner Results View Controller-->
         <scene sceneID="rXb-4t-ec2">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="y79-Kd-aAA" customClass="ActivityPlannerResultsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="y79-Kd-aAA" customClass="AttractionPlannerResultsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5r-jt-vum"/>
                         <viewControllerLayoutGuide type="bottom" id="HGb-oo-7qA"/>
@@ -562,7 +562,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zeh-uP-Jhx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="h1i-cw-cH8"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="8Mn-xA-O0k">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
