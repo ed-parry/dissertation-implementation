@@ -50,11 +50,6 @@
     [self.view addSubview:calendar];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
-}
-
 - (void)coreDataChanged
 {
     [self addEventsToLocalArray];
@@ -215,9 +210,10 @@
     self.tabBarController.navigationItem.title = @"Calendar of Events";
     self.navigationController.navigationBar.translucent = NO;
 }
--(void)viewDidDisappear:(BOOL)animated
+
+- (void)viewDidAppear:(BOOL)animated
 {
-//    self.navigationController.navigationBar.translucent = YES;
+        [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
 }
 
 - (void)didReceiveMemoryWarning

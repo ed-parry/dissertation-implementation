@@ -76,9 +76,9 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated] ;
     [_map clear];
     [_map removeFromSuperview];
+    _map.delegate = nil;
     _map = nil;
 }
 
