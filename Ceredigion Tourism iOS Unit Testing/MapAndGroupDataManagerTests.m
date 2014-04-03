@@ -38,8 +38,6 @@
 // Group Data Manager
 - (void)testStoreDefaultAllowedGroupsInPlist
 {
-
-
     // run the method, to store the defaults.
     [_groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
@@ -76,15 +74,31 @@
 
 - (void)testToggleGroupInAllowedGroups
 {
-// - (void)toggleGroupInAllowedGroups:(NSString *)group;
+    NSArray *expectedAllowedGroups = @[@"Accommodation", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail"];
+    // store the default
+    [_groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
+    
+    // toggle one (remove)
+    [_groupDataManager toggleGroupInAllowedGroups:@"Activity" forAttractionPlanner:NO];
+    
+    NSArray *allowedGroupsResult = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
+    
+    bool isArrayTheSame = [allowedGroupsResult isEqualToArray:expectedAllowedGroups];
+    
+    XCTAssertTrue(isArrayTheSame, @"The returned array matches the expect array reuslt.");
 }
 
 - (void)testGetAllowedGroupsFromPlist
 {
+    NSArray *expectedAllowedGroups = @[@"Accommodation", @"Activity", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail"];
+    // store the default
+    [_groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
+    NSArray *allowedGroupsResult = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
     
+    bool isArrayTheSame = [allowedGroupsResult isEqualToArray:expectedAllowedGroups];
     
-// - (NSArray *)getAllowedGroupsFromPlist;
+    XCTAssertTrue(isArrayTheSame, @"The returned array from getAllowedGroups... matches the expect array reuslt.");
 }
 
 - (void)testMilesToMeters
@@ -160,7 +174,15 @@
 
 - (void)testGetDistanceInMetersFromXToY
 {
-//  - (double)getDistanceInMetersFrom:(CLLocationCoordinate2D)firstPoint to:(CLLocationCoordinate2D)secondPoint;
+    int expectedMeters = 48341;
+    
+    CLLocationCoordinate2D firstPoint = CLLocationCoordinate2DMake(52.125529, -4.589009);
+    CLLocationCoordinate2D secondPoint = CLLocationCoordinate2DMake(52.4162226, -4.0627321);
+    
+    double returnedDistance = [_mapDataManager getDistanceInMetersFrom:firstPoint to:secondPoint];
+    int returnedDistanceInt = (int)returnedDistance;
+    
+    XCTAssertEqual(expectedMeters, returnedDistanceInt, @"The returned distance matches the expected value");
 }
 
 - (void)testStoreGetMapRadiusCoordinatesFromPlist
@@ -186,9 +208,16 @@
     XCTAssertTrue(isSuccessful, @"The coordinates from the Plist match those that were sent to be stored.");
 }
 
+// WARNING - this test will fail if the application is removed from the iPhone Simulator.
 - (void)testGetPlistFilePath
 {
-//     - (NSString *)getPlistFilePath:(NSString *)fileName;
+    NSString *expectedFilePath = @"/Users/edparry/Library/Application Support/iPhone Simulator/7.1/Applications/98043B10-2092-4F7B-B331-7933084B918D/Documents/allowed_groups";
+    
+    NSString *returnedFilePath = [_mapDataManager getPlistFilePath:@"allowed_groups"];
+    NSLog(@"File path: %@", returnedFilePath);
+    
+    bool isFilePathEqual = [returnedFilePath isEqualToString:expectedFilePath];
+    XCTAssertTrue(isFilePathEqual, @"The returned file path matches the expected value");
 }
 
 @end
