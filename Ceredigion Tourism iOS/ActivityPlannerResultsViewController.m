@@ -114,9 +114,15 @@
         [segue.destinationViewController startWithAttraction:tappedAttraction];
     }
     else if(path.section == 1){
-        int eventIndex = path.row - [_plannerResults count];
-        Event *tappedEvent = [_plannerEvents objectAtIndex:eventIndex];
-        [segue.destinationViewController startWithEvent:tappedEvent];
+        // this isn't working yet..
+        
+        UITableViewCell *rowSelected = [_activityResultsTableView cellForRowAtIndexPath:[_activityResultsTableView indexPathForSelectedRow]];
+        
+        for(Event *thisEvent in _plannerEvents){
+            if([thisEvent.title isEqualToString:rowSelected.textLabel.text]){
+                [segue.destinationViewController startWithEvent:thisEvent];
+            }
+        }
     }
 }
 

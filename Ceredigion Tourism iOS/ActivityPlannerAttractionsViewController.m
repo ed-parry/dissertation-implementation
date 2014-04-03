@@ -103,9 +103,7 @@
     if(!_groupDataManager){
         _groupDataManager = [[GroupDataManager alloc] init];
     }
-    NSLog(@"The contents of the array now are: %@", [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:YES]);
     NSString *thisGroup = [_attractionGroups objectAtIndex:indexPath.row];
-    NSLog(@"This group is: %@", thisGroup);
     if([_groupDataManager isGroupInAllowedGroups:thisGroup forAttractionPlanner:YES]){
         [accessorySwitch setOn:YES animated:YES];
     }
