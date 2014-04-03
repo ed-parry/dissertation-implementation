@@ -108,19 +108,22 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *path = [_activityResultsTableView indexPathForSelectedRow];
-    if(path.section == 0){
-        Attraction *tappedAttraction = [_plannerResults objectAtIndex:path.row];
-        [segue.destinationViewController startWithAttraction:tappedAttraction];
+    if([segue.identifier isEqualToString:@"returnToSearchSegue"]){
+        // don't do the below code, we don't need to do anything special for this
     }
-    else if(path.section == 1){
-        // this isn't working yet..
-        
-        UITableViewCell *rowSelected = [_activityResultsTableView cellForRowAtIndexPath:[_activityResultsTableView indexPathForSelectedRow]];
-        
-        for(Event *thisEvent in _plannerEvents){
-            if([thisEvent.title isEqualToString:rowSelected.textLabel.text]){
-                [segue.destinationViewController startWithEvent:thisEvent];
+    else{
+        NSIndexPath *path = [_activityResultsTableView indexPathForSelectedRow];
+        if(path.section == 0){
+            Attraction *tappedAttraction = [_plannerResults objectAtIndex:path.row];
+            [segue.destinationViewController startWithAttraction:tappedAttraction];
+        }
+        else if(path.section == 1){
+            UITableViewCell *rowSelected = [_activityResultsTableView cellForRowAtIndexPath:[_activityResultsTableView indexPathForSelectedRow]];
+            
+            for(Event *thisEvent in _plannerEvents){
+                if([thisEvent.title isEqualToString:rowSelected.textLabel.text]){
+                    [segue.destinationViewController startWithEvent:thisEvent];
+                }
             }
         }
     }

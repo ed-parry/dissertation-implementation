@@ -416,7 +416,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UNu-R5-QNc" kind="modal" modalTransitionStyle="flipHorizontal" id="yhq-Oy-ket"/>
+                                    <segue destination="UNu-R5-QNc" kind="modal" identifier="returnToSearchSegue" modalTransitionStyle="flipHorizontal" id="yhq-Oy-ket"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here's what we found!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzU-U5-G8g">
