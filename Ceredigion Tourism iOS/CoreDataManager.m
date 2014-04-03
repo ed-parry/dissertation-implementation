@@ -25,7 +25,7 @@
 
 - (void)saveCSVToCoreData:(NSString *)csvFileLocation ofType:(NSString *)type
 {
-    _currentDataType = type; // may not need this.
+    _currentDataType = type;
     [self makeArrayFromCSVFile:csvFileLocation ofType:type];
 
     if([_currentDataType isEqualToString:@"attractions"]){

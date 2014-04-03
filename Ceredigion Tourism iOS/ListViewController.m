@@ -49,7 +49,10 @@
 {
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.navigationItem.title = @"List of Attractions";
+    
     if(animated == FALSE){
+
+        
         if(!_groupDataManager){
             _groupDataManager = [[GroupDataManager alloc] init];
         }

@@ -18,6 +18,9 @@
 @property EventAndDateFormatManager *dateManager;
 @property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
 @property (strong, nonatomic) NSString *selectedDay;
+
+@property float currentTargetHeight;
+@property (strong, nonatomic) VRGCalendarView *currentCalendarView;
 @end
 
 @implementation CalendarViewController
@@ -45,6 +48,11 @@
     calendar.delegate = self;
     
     [self.view addSubview:calendar];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
 }
 
 - (void)coreDataChanged
@@ -97,17 +105,27 @@
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month withYear:(int)year targetHeight:(float)targetHeight animated:(BOOL)animated
 {
+    _currentTargetHeight = targetHeight;
+    _currentCalendarView = calendarView;
+    
+    [self positionEventsTableWithTargetHeight:targetHeight andCalendarView:calendarView withAnimation:animated];
+    
     [self addEventsToLocalArray];
     NSArray *allEventsForActiveMonth = [[NSArray alloc] initWithArray:[self removeEventsNotInActiveMonth:month orYear:year]];
-    NSTimeInterval animationDuration = animated ? 0.3 :0.0;
     
+
+    [calendarView markDates:allEventsForActiveMonth];
+}
+
+- (void)positionEventsTableWithTargetHeight:(float)targetHeight andCalendarView:(VRGCalendarView *)calendarView withAnimation:(bool)animated
+{
+    NSTimeInterval animationDuration = animated ? 0.3 :0.0;
     [UIView animateWithDuration:animationDuration animations:^{
         CGRect frame = _dayEventsTable.frame;
         frame.origin.y = CGRectGetMinX(calendarView.frame) + targetHeight;
         frame.size.height = self.view.frame.size.height - frame.origin.y;
         _dayEventsTable.frame = frame;
     }];
-    [calendarView markDates:allEventsForActiveMonth];
 }
 
 - (NSArray *)removeEventsNotInActiveMonth:(int)month orYear:(int)year
@@ -197,9 +215,9 @@
     self.tabBarController.navigationItem.title = @"Calendar of Events";
     self.navigationController.navigationBar.translucent = NO;
 }
--(void)viewWillDisappear:(BOOL)animated
+-(void)viewDidDisappear:(BOOL)animated
 {
-    //self.navigationController.navigationBar.translucent = YES;
+//    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
