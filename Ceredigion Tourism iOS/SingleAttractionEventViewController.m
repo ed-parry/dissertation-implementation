@@ -28,6 +28,8 @@
 
 @property UIImage *attractionImage;
 
+@property GMSMapView *map;
+
 // Extra views
 @property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
@@ -70,6 +72,14 @@
                                                                      NSFontAttributeName, nil]];
     [_imageLoadingSpinner startAnimating];
     [self setUpViewContent];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated] ;
+    [_map clear];
+    [_map removeFromSuperview];
+    _map = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -174,7 +184,24 @@
 {
     double latitude = [event.latitude doubleValue];
     double longitude = [event.longitude doubleValue];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:12];
+    
+    // position the map correctly.
+    CGRect frame = CGRectMake(0, 0, 320, 149);
+    frame.origin.x = 0;
+    frame.origin.y = self.view.frame.size.height - 149;
+    
+    _map = [GMSMapView mapWithFrame:frame camera:camera];
 
+    // add the pin
+    GMSMarker *eventMarker = [[GMSMarker alloc] init];
+    eventMarker.position = CLLocationCoordinate2DMake(latitude, longitude);
+    eventMarker.title = event.title;
+    eventMarker.icon = [UIImage imageNamed:@"Event Icon"];
+    eventMarker.map = _map;
+    
+    [self.view addSubview:_map];
 }
 
 - (NSString *)returnTextualDate:(NSString *)date andTime:(NSString *)time
