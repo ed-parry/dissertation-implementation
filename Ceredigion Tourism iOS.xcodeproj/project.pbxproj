@@ -49,7 +49,7 @@
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
 		6DB4D09718E1929F00FE6C4B /* ActivityPlannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */; };
 		6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */; };
-		6DB66E0F18E49B6200FA2222 /* ActivityPlanObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E0E18E49B6200FA2222 /* ActivityPlanObjectTests.m */; };
+		6DB66E0F18E49B6200FA2222 /* AttractionPlanObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */; };
 		6DB66E1118E49B8000FA2222 /* EventObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E1018E49B8000FA2222 /* EventObjectTests.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
@@ -152,7 +152,7 @@
 		6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlannerController.m; sourceTree = "<group>"; };
 		6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		6DB66E0E18E49B6200FA2222 /* ActivityPlanObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlanObjectTests.m; sourceTree = "<group>"; };
+		6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlanObjectTests.m; sourceTree = "<group>"; };
 		6DB66E1018E49B8000FA2222 /* EventObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventObjectTests.m; sourceTree = "<group>"; };
 		6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
 		6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
@@ -414,7 +414,7 @@
 		6DB4041F18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */ = {
 			isa = PBXGroup;
 			children = (
-				6DB66E0E18E49B6200FA2222 /* ActivityPlanObjectTests.m */,
+				6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */,
 				6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */,
 				6DB4042D18BE1F2B007A092E /* CoreDataTests.m */,
 				6DFFBDA718DDDA4C00ABBD84 /* DateFormatTests.m */,
@@ -609,7 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DB66E0F18E49B6200FA2222 /* ActivityPlanObjectTests.m in Sources */,
+				6DB66E0F18E49B6200FA2222 /* AttractionPlanObjectTests.m in Sources */,
 				6DB66E1118E49B8000FA2222 /* EventObjectTests.m in Sources */,
 				6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */,
 				6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */,
