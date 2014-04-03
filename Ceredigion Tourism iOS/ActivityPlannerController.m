@@ -65,7 +65,15 @@
     int numberRemaining = totalActivities - numberAlreadyFound;
     if((numberRemaining > -1) && (numberRemaining < totalActivities)){
         for(int i = 0; i <= numberRemaining; i++){
-            NSString *group = [shuffledGroups objectAtIndex:i];
+            NSString *group;
+            if([shuffledGroups count] > i)
+            {
+                group = [shuffledGroups objectAtIndex:i];
+            }
+            else{
+                group = [shuffledGroups objectAtIndex:0];
+            }
+
             [activityList addObjectsFromArray:[self getNumberOfAttractions:1 ofGroup:group]];
         }
     }
@@ -90,7 +98,13 @@
         int numberToAdd = totalActivities - [activityList count];
 
         int getRandomLocation = [self getRandomNumberLessThan:[_thisPlan.selectedGroups count]];
-        NSString *group = [_thisPlan.selectedGroups objectAtIndex:getRandomLocation];
+        NSString *group;
+        if([_thisPlan.selectedGroups count] > getRandomLocation){
+            group = [_thisPlan.selectedGroups objectAtIndex:getRandomLocation];
+        }
+        else{
+            group = [_thisPlan.selectedGroups objectAtIndex:getRandomLocation-1];
+        }
         
         [activityList addObjectsFromArray:[self getNumberOfAttractions:numberToAdd
                                                                ofGroup:group]];
@@ -154,8 +168,15 @@
     }
     else{
         for(int i = 0; i < number; i++){
-            int randomIndex = [self getRandomNumberLessThan:[attractionsForThisGroup count]];
-            Attraction *randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-1];
+            int randomIndex = [self getRandomNumberLessThan:number];
+            Attraction *randomAttraction;
+            if([attractionsForThisGroup count] > randomIndex-1){
+                randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-1];
+            }
+            else{
+                randomAttraction = [attractionsForThisGroup objectAtIndex:randomIndex-2];
+            }
+
             [returnedAttractions addObject:randomAttraction];
             [_activityListForLocation removeObject:randomAttraction];
             [attractionsForThisGroup removeObject:randomAttraction];
