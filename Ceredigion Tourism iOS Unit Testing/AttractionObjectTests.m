@@ -108,14 +108,11 @@
 
 - (void)testGetAttractionGroupColour
 {
-    /*
-     Below is the code that is ran in this method, so explains what we would expect to see.
-     
-     else if([group isEqualToString:@"Food & drink"]){
-     // Light Blue
-     return [UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:229.0f/255.0f alpha:alpha];
-     }
-     
-     */
+    UIColor *foodDrinkColour = [UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+    UIColor *receivedColour = [_testAttraction getAttractionGroupColour:@"Food & drink" withAlpha:1.0f];
+    
+    bool areColoursEqual = [foodDrinkColour isEqual:receivedColour];
+    
+    XCTAssertTrue(areColoursEqual, @"The returned colour is equal to the colour expected.");
 }
 @end

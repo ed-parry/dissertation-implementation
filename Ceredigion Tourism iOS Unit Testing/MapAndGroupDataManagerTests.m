@@ -41,10 +41,10 @@
 
 
     // run the method, to store the defaults.
-    [_groupDataManager storeDefaultAllowedGroupsInPlist];
+    [_groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
     // fetch what was stored, and fetch the absolute default to check.
-    NSArray *returnedDefaultGroups = [_groupDataManager getAllowedGroupsFromPlist];
+    NSArray *returnedDefaultGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
     NSArray *defaultGroups = [_dataManager getAllAttractionGroupTypes];
     
     // check that the returned array is equal to the default groups array.
@@ -62,10 +62,10 @@
     NSArray *groupsToStore = @[@"Retail", @"Activities", @"Accommodation"];
     
     // store the array to the Plist
-    [_groupDataManager storeAllowedGroupsInPlist:groupsToStore];
+    [_groupDataManager storeAllowedGroupsInPlist:groupsToStore forAttractionPlanner:NO];
     
     // get the contents of the stored Plist
-    NSArray *returnedGroupsFromPlist = [_groupDataManager getAllowedGroupsFromPlist];
+    NSArray *returnedGroupsFromPlist = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
     
     // put the two arrays into sets to compare them
     NSSet *storedGroupsSet = [NSSet setWithArray:groupsToStore];
