@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attractions" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="adrenalineLevel" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hide" optional="YES" attributeType="Integer 32" syncable="YES"/>
@@ -27,7 +28,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attractions" positionX="178" positionY="0" width="128" height="208"/>
+        <element name="Attractions" positionX="178" positionY="0" width="128" height="225"/>
         <element name="Events" positionX="-308" positionY="17" width="128" height="208"/>
     </elements>
 </model>

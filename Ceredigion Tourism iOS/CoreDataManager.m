@@ -111,6 +111,7 @@
     [newAttraction setValue: attraction.latitude forKey:@"latitude"];
     [newAttraction setValue: attraction.longitude forKey:@"longitude"];
     [newAttraction setValue: attractionHide forKey:@"hide"];
+    [newAttraction setValue: attraction.adrenalineLevel forKey:@"adrenalineLevel"];
 
     [context save:&error];
 }
@@ -189,6 +190,10 @@
     else{
         newAttraction.hide = YES;
     }
+    
+    // assuming that it will be at the end of the data array
+    // newAttraction.adrenalineLevel = [singleAttractionArray objectAtIndex:10];
+    newAttraction.adrenalineLevel = @"medium"; // for testing, remove when data source is updated
     
     [self addAttractionToCoreData:newAttraction];
 }

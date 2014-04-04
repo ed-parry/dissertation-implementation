@@ -90,6 +90,7 @@
 - (void)setUpViewContent
 {
     if(_thisAttraction){
+        NSLog(@"We have an adrenaline level of: %@", _thisAttraction.adrenalineLevel);
         self.navigationItem.title = _thisAttraction.name;
         self.navigationController.navigationBar.topItem.title = @"";
         

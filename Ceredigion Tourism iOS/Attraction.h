@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
 @property (nonatomic) BOOL hide;
+@property (strong, nonatomic) NSString *adrenalineLevel;
 
 - (UIImage *)getAttractionGroupImage:(NSString *)group;
 - (UIColor *)getAttractionGroupColour:(NSString *)group withAlpha:(CGFloat)alpha;
