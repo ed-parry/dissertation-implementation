@@ -14,6 +14,7 @@
 @interface AttractionPlannerResultsViewController ()
 @property (strong, nonatomic) NSArray *plannerResults;
 @property (strong, nonatomic) NSArray *plannerEvents;
+@property AttractionPlan *thisPlan;
 @property (strong, nonatomic) IBOutlet UITableView *activityResultsTableView;
 
 @end
@@ -31,10 +32,16 @@
 
 - (void)completedSetupWithActivityPlan:(AttractionPlan *)plan
 {
+    _thisPlan = plan;
     AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:plan];
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
+    
+    int numberOfActivities = [plan.numberOfActivities intValue];
+    if([_plannerResults count] < numberOfActivities){
+        [self showAlertView];
+    }
     
     _plannerEvents = [planController generateEventsList];
 
@@ -131,6 +138,38 @@
                 }
             }
         }
+    }
+}
+
+- (void)showAlertView
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Enough Results"
+                                    message:@"We were unable to find enough suitable attractions that matched your selection."
+                                      delegate:self
+                             cancelButtonTitle:@"Go back"
+                             otherButtonTitles:@"Show me fewer", nil];
+
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if(buttonIndex == 1){
+        NSLog(@"Go do the process again with less to find?");
+        int currentAmount = [_thisPlan.numberOfActivities intValue];
+        int newAmount = currentAmount / 2;
+        
+        _thisPlan.numberOfActivities = [NSNumber numberWithInt:newAmount];
+        AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:_thisPlan];
+        
+        _plannerResults = [[NSArray alloc] init];
+        _plannerResults = [planController generateActivityList];
+        _plannerEvents = [planController generateEventsList];
+        
+        [_activityResultsTableView reloadData];
     }
 }
 

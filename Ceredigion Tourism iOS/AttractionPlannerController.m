@@ -147,6 +147,7 @@
     else{
         startDistance = startDistance + fiveMiles;
         [self getAllAttractionsWithin:startDistance ofLocation:location usingArray:array];
+        return attractionsWithinLocation;
     }
     NSLog(@"Something is seriously wrong, should never reach this point");
     return nil;
@@ -185,9 +186,14 @@
 {
     int numberInt = [number intValue];
     
-    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] initWithArray:[array subarrayWithRange:NSMakeRange(0, numberInt)]];
-    
-    return arrayToReturn;
+    if([array count] < numberInt){
+        return nil;
+    }
+    else{
+        NSMutableArray *arrayToReturn = [[NSMutableArray alloc] initWithArray:[array subarrayWithRange:NSMakeRange(0, numberInt)]];
+        
+        return arrayToReturn;
+    }
 }
 
 - (NSArray *)generateEventsList

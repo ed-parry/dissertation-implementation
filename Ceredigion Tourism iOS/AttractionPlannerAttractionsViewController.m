@@ -176,6 +176,8 @@
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
     _thisPlan.selectedGroups = [groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:YES];
     
+    _thisPlan.numberOfActivities = [NSNumber numberWithInt:[_activityNumberLabel.text intValue]];
+    
     if([_thisPlan isComplete]){
         return YES;
     }
