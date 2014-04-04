@@ -184,7 +184,7 @@
 - (void)tryToFetchResultsWithLessAmount
 {
     int currentAmount = [_thisPlan.numberOfActivities intValue];
-    int newAmount = currentAmount--;
+    int newAmount = currentAmount - 1;
     
     _thisPlan.numberOfActivities = [NSNumber numberWithInt:newAmount];
     AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:_thisPlan];
@@ -196,7 +196,7 @@
     int numberOfActivities = [_thisPlan.numberOfActivities intValue];
     if([_plannerResults count] < numberOfActivities){
         _errorCount++;
-        if(_errorCount == 3){
+        if(_errorCount == 15){
             [self showAlertViewWithOptionToTryAgain:NO];
         }
         else{
