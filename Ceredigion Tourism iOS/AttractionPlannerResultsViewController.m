@@ -36,8 +36,6 @@
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
     
-    NSLog(@"Size of returned array is: %i", [_plannerResults count]);
-    
     _plannerEvents = [planController generateEventsList];
 
     [_activityResultsTableView reloadData];
@@ -93,6 +91,10 @@
     if(indexPath.section == 0){
         Attraction *thisAttraction = [_plannerResults objectAtIndex:indexPath.row];
         cell.textLabel.text = thisAttraction.name;
+        
+        NSString *firstLetter = [thisAttraction.adrenalineLevel substringToIndex:1];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Adrenaline level: %@%@", [firstLetter capitalizedString], [thisAttraction.adrenalineLevel substringFromIndex:1]];
+        
         cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
     }
     else if(indexPath.section == 1){
