@@ -11,8 +11,11 @@
 
 @interface AboutViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) NSString *openSourceLicences;
+@property bool viewingLegal;
+@property (strong, nonatomic) IBOutlet UIButton *helpViewButton;
 
-- (IBAction)legalNoticesButtonTapped:(id)sender;
+- (IBAction)AboutButtonTapped:(id)sender;
 @end
 
 @implementation AboutViewController
@@ -33,16 +36,41 @@
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
     
+    _viewingLegal = NO;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.navigationItem.title = @"About This App";
+    _openSourceLicences = _textView.text;
+    [self showHelpText];
 }
 
-- (IBAction)legalNoticesButtonTapped:(id)sender
+- (IBAction)AboutButtonTapped:(id)sender
 {
-    _textView.text = [GMSServices openSourceLicenseInfo];
+    if(_viewingLegal){
+        [self showHelpText];
+        [_helpViewButton setTitle:@"View Legal Information" forState:UIControlStateNormal];
+        _viewingLegal = NO;
+    }
+    else{
+        [self showLegalText];
+        [_helpViewButton setTitle:@"View Help Information" forState:UIControlStateNormal];
+        _viewingLegal = YES;
+    }
+}
+
+- (void)showLegalText
+{
+    _textView.font = [UIFont fontWithName:@"Avenir-Medium" size:10.0];
+    _textView.text = [NSString stringWithFormat:@"%@\n%@",[GMSServices openSourceLicenseInfo], _openSourceLicences];
+}
+
+- (void)showHelpText
+{
+    _textView.font = [UIFont fontWithName:@"Avenir-Medium" size:14.0];
+    _textView.text = @"How to use the application...";
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +78,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

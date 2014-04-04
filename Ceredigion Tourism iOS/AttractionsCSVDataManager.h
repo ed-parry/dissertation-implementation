@@ -10,5 +10,4 @@
 
 @interface AttractionsCSVDataManager : CSVDataManager
 - (void)saveDataFromURL;
-- (void)saveDataFromURLReset;
 @end

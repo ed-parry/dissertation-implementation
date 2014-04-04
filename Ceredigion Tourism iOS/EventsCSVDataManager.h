@@ -10,5 +10,4 @@
 
 @interface EventsCSVDataManager : CSVDataManager
 - (void)saveDataFromURL;
-- (void)saveDataFromURLReset;
 @end

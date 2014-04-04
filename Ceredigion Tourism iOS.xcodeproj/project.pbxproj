@@ -10,7 +10,6 @@
 		6D0085AC18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0085AB18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m */; };
 		6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0DD18C8E86700091562 /* GroupDataManager.m */; };
 		6D0FC8A618E1D54000B69D35 /* AttractionPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FC8A518E1D54000B69D35 /* AttractionPlan.m */; };
-		6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */; };
 		6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */; };
 		6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8218CF3AF400641DA6 /* EventKit.framework */; };
 		6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D39A4D418B51F73007BC8CA /* SettingsViewController.m */; };
@@ -52,6 +51,7 @@
 		6DB66E0F18E49B6200FA2222 /* AttractionPlanObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */; };
 		6DB66E1118E49B8000FA2222 /* EventObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E1018E49B8000FA2222 /* EventObjectTests.m */; };
 		6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */; };
+		6DBC6B2818EF090600A2BA07 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBC6B2718EF090600A2BA07 /* RMDateSelectionViewController.m */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
 		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
 		6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CA18B3935A006BE307 /* CoreText.framework */; };
@@ -93,8 +93,6 @@
 		6D0AC0DD18C8E86700091562 /* GroupDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataManager.m; sourceTree = "<group>"; };
 		6D0FC8A418E1D54000B69D35 /* AttractionPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionPlan.h; sourceTree = "<group>"; };
 		6D0FC8A518E1D54000B69D35 /* AttractionPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlan.m; sourceTree = "<group>"; };
-		6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
-		6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		6D37BA8218CF3AF400641DA6 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		6D39A4D318B51F73007BC8CA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -156,6 +154,8 @@
 		6DB66E1018E49B8000FA2222 /* EventObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventObjectTests.m; sourceTree = "<group>"; };
 		6DB9CCBB18C7A37D00D828EE /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
 		6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
+		6DBC6B2618EF090600A2BA07 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
+		6DBC6B2718EF090600A2BA07 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DD178C818B39352006BE307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6DD178CA18B3935A006BE307 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -245,15 +245,6 @@
 			name = "Attraction Planner";
 			sourceTree = "<group>";
 		};
-		6D21E93918E19AD100481FD4 /* RMDateSelectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */,
-				6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */,
-			);
-			path = RMDateSelectionViewController;
-			sourceTree = "<group>";
-		};
 		6D47B6CC18B4C153008DFDF3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,8 +298,8 @@
 		6D58574E18B2537600306327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DBC6B2918EF090F00A2BA07 /* RMDateSelection */,
 				6D65816E18E42C1D00871080 /* AudioToolbox.framework */,
-				6D21E93918E19AD100481FD4 /* RMDateSelectionViewController */,
 				6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */,
 				6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */,
 				6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */,
@@ -433,6 +424,15 @@
 				6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DBC6B2918EF090F00A2BA07 /* RMDateSelection */ = {
+			isa = PBXGroup;
+			children = (
+				6DBC6B2618EF090600A2BA07 /* RMDateSelectionViewController.h */,
+				6DBC6B2718EF090600A2BA07 /* RMDateSelectionViewController.m */,
+			);
+			name = RMDateSelection;
 			sourceTree = "<group>";
 		};
 		6DD8969C18D0A28300BCE840 /* Vurig Calendar */ = {
@@ -571,7 +571,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */,
 				6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */,
 				6D58576618B2537600306327 /* StartViewController.m in Sources */,
 				6DB4D09718E1929F00FE6C4B /* AttractionPlannerController.m in Sources */,
@@ -588,6 +587,7 @@
 				6D749AA518B25D6700E06D7F /* CSVDataManager.m in Sources */,
 				6D749A9518B2559E00E06D7F /* MapViewController.m in Sources */,
 				6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */,
+				6DBC6B2818EF090600A2BA07 /* RMDateSelectionViewController.m in Sources */,
 				6DD896A818D0A28300BCE840 /* NSMutableArray+convenience.m in Sources */,
 				6DD8969B18D06F9300BCE840 /* Event.m in Sources */,
 				6D7C558018E3178800927769 /* AttractionPlannerResultsViewController.m in Sources */,
