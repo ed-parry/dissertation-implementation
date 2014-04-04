@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ActivityPlan.h"
+#import "AttractionPlan.h"
 
 @interface AttractionPlanObjectTests : XCTestCase
-    @property ActivityPlan *plan;
+    @property AttractionPlan *plan;
 @end
 
 @implementation AttractionPlanObjectTests
@@ -18,7 +18,7 @@
 - (void)setUp
 {
     [super setUp];
-    _plan = [[ActivityPlan alloc] init];
+    _plan = [[AttractionPlan alloc] init];
     
     _plan.location = @"Aberaeron Harbour";
     _plan.locationCoordinates = CLLocationCoordinate2DMake(52.4162226, -4.0627321);

@@ -7,7 +7,7 @@
 //
 
 #import "AttractionPlannerResultsViewController.h"
-#import "ActivityPlannerController.h"
+#import "AttractionPlannerController.h"
 #import "SingleAttractionEventViewController.h"
 #import "Attraction.h"
 
@@ -29,12 +29,15 @@
     _activityResultsTableView.dataSource = self;
 }
 
-- (void)completedSetupWithActivityPlan:(ActivityPlan *)plan
+- (void)completedSetupWithActivityPlan:(AttractionPlan *)plan
 {
-    ActivityPlannerController *planController = [[ActivityPlannerController alloc] initWithPlan:plan];
+    AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:plan];
     
     _plannerResults = [[NSArray alloc] init];
     _plannerResults = [planController generateActivityList];
+    
+    NSLog(@"Size of returned array is: %i", [_plannerResults count]);
+    
     _plannerEvents = [planController generateEventsList];
 
     [_activityResultsTableView reloadData];

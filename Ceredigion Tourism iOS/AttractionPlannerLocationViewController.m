@@ -11,7 +11,7 @@
 #import "AttractionPlannerAttractionsViewController.h"
 #import "EventAndDateFormatManager.h"
 #import "MapDataManager.h"
-#import "ActivityPlan.h"
+#import "AttractionPlan.h"
 
 @interface AttractionPlannerLocationViewController () <RMDateSelectionViewControllerDelegate>
 
@@ -184,12 +184,12 @@
     return NO;
 }
 
-- (ActivityPlan *)returnDataAsActivityPlan
+- (AttractionPlan *)returnDataAsActivityPlan
 {
     NSString *location = _locationTextField.text;
     NSString *startDate = _arrivalDateNoFormat;
     
-    ActivityPlan *plan = [[ActivityPlan alloc] init];
+    AttractionPlan *plan = [[AttractionPlan alloc] init];
     
     plan.location = location;
     plan.locationCoordinates = _locationCoordinates;
@@ -218,7 +218,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ActivityPlan *planToSend = [self returnDataAsActivityPlan];
+    AttractionPlan *planToSend = [self returnDataAsActivityPlan];
     [segue.destinationViewController continuePlannerWithPlan:planToSend];
 }
 

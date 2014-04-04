@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ActivityPlan.h"
+#import "AttractionPlan.h"
 
-@interface ActivityPlannerController : NSObject
-- (id)initWithPlan:(ActivityPlan *)plan;
+@interface AttractionPlannerController : NSObject
+- (id)initWithPlan:(AttractionPlan *)plan;
 - (NSArray *)generateActivityList;
 - (NSArray *)generateEventsList;
 @end

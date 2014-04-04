@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6D0085AC18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0085AB18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m */; };
 		6D0AC0DE18C8E86700091562 /* GroupDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0AC0DD18C8E86700091562 /* GroupDataManager.m */; };
-		6D0FC8A618E1D54000B69D35 /* ActivityPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */; };
+		6D0FC8A618E1D54000B69D35 /* AttractionPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FC8A518E1D54000B69D35 /* AttractionPlan.m */; };
 		6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */; };
 		6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */; };
 		6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D37BA8218CF3AF400641DA6 /* EventKit.framework */; };
@@ -47,7 +47,7 @@
 		6DB4041E18BE1F13007A092E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58575318B2537600306327 /* UIKit.framework */; };
 		6DB4042418BE1F13007A092E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4042218BE1F13007A092E /* InfoPlist.strings */; };
 		6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4042D18BE1F2B007A092E /* CoreDataTests.m */; };
-		6DB4D09718E1929F00FE6C4B /* ActivityPlannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */; };
+		6DB4D09718E1929F00FE6C4B /* AttractionPlannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4D09618E1929F00FE6C4B /* AttractionPlannerController.m */; };
 		6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */; };
 		6DB66E0F18E49B6200FA2222 /* AttractionPlanObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */; };
 		6DB66E1118E49B8000FA2222 /* EventObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB66E1018E49B8000FA2222 /* EventObjectTests.m */; };
@@ -91,8 +91,8 @@
 		6D0085AB18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlannerAttractionsViewController.m; sourceTree = "<group>"; };
 		6D0AC0DC18C8E86700091562 /* GroupDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataManager.h; sourceTree = "<group>"; };
 		6D0AC0DD18C8E86700091562 /* GroupDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataManager.m; sourceTree = "<group>"; };
-		6D0FC8A418E1D54000B69D35 /* ActivityPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlan.h; sourceTree = "<group>"; };
-		6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlan.m; sourceTree = "<group>"; };
+		6D0FC8A418E1D54000B69D35 /* AttractionPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionPlan.h; sourceTree = "<group>"; };
+		6D0FC8A518E1D54000B69D35 /* AttractionPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlan.m; sourceTree = "<group>"; };
 		6D21E93A18E19AD100481FD4 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		6D21E93B18E19AD100481FD4 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -148,8 +148,8 @@
 		6DB4042318BE1F13007A092E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6DB4042718BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ceredigion Tourism iOS Unit Testing-Prefix.pch"; sourceTree = "<group>"; };
 		6DB4042D18BE1F2B007A092E /* CoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTests.m; sourceTree = "<group>"; };
-		6DB4D09518E1929F00FE6C4B /* ActivityPlannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlannerController.h; sourceTree = "<group>"; };
-		6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlannerController.m; sourceTree = "<group>"; };
+		6DB4D09518E1929F00FE6C4B /* AttractionPlannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionPlannerController.h; sourceTree = "<group>"; };
+		6DB4D09618E1929F00FE6C4B /* AttractionPlannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlannerController.m; sourceTree = "<group>"; };
 		6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		6DB66E0E18E49B6200FA2222 /* AttractionPlanObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlanObjectTests.m; sourceTree = "<group>"; };
@@ -271,8 +271,8 @@
 				6DB9CCBC18C7A37D00D828EE /* MapDataManager.m */,
 				6D0AC0DC18C8E86700091562 /* GroupDataManager.h */,
 				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
-				6DB4D09518E1929F00FE6C4B /* ActivityPlannerController.h */,
-				6DB4D09618E1929F00FE6C4B /* ActivityPlannerController.m */,
+				6DB4D09518E1929F00FE6C4B /* AttractionPlannerController.h */,
+				6DB4D09618E1929F00FE6C4B /* AttractionPlannerController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,8 +395,8 @@
 				6D749AA118B258DE00E06D7F /* Attraction.m */,
 				6DD8969918D06F9300BCE840 /* Event.h */,
 				6DD8969A18D06F9300BCE840 /* Event.m */,
-				6D0FC8A418E1D54000B69D35 /* ActivityPlan.h */,
-				6D0FC8A518E1D54000B69D35 /* ActivityPlan.m */,
+				6D0FC8A418E1D54000B69D35 /* AttractionPlan.h */,
+				6D0FC8A518E1D54000B69D35 /* AttractionPlan.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -574,7 +574,7 @@
 				6D21E93C18E19AD100481FD4 /* RMDateSelectionViewController.m in Sources */,
 				6DB9CCBD18C7A37D00D828EE /* MapDataManager.m in Sources */,
 				6D58576618B2537600306327 /* StartViewController.m in Sources */,
-				6DB4D09718E1929F00FE6C4B /* ActivityPlannerController.m in Sources */,
+				6DB4D09718E1929F00FE6C4B /* AttractionPlannerController.m in Sources */,
 				6D58576018B2537600306327 /* AppDelegate.m in Sources */,
 				6D39A4D818B5356F007BC8CA /* ListViewController.m in Sources */,
 				6DD896AB18D0A28300BCE840 /* VRGCalendarView.m in Sources */,
@@ -598,7 +598,7 @@
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,
 				6DB5DC1C18CDE94A009935DA /* CalendarViewController.m in Sources */,
 				6D0085AC18E2059600B9B1D0 /* AttractionPlannerAttractionsViewController.m in Sources */,
-				6D0FC8A618E1D54000B69D35 /* ActivityPlan.m in Sources */,
+				6D0FC8A618E1D54000B69D35 /* AttractionPlan.m in Sources */,
 				6DD896AA18D0A28300BCE840 /* UIView+convenience.m in Sources */,
 				6DE7A25E18E05E7900F63DC6 /* AttractionPlannerLocationViewController.m in Sources */,
 				6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */,

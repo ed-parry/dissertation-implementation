@@ -13,7 +13,7 @@
 #import "Attraction.h"
 
 @interface AttractionPlannerAttractionsViewController ()
-@property ActivityPlan *thisPlan;
+@property AttractionPlan *thisPlan;
 @property GroupDataManager *groupDataManager;
 @property NSArray *attractionGroups;
 @property NSArray *activityPlanGroups;
@@ -55,9 +55,9 @@
     _activityPlanGroups = _attractionGroups;
 }
 
-- (void)continuePlannerWithPlan:(ActivityPlan *)currentPlan
+- (void)continuePlannerWithPlan:(AttractionPlan *)currentPlan
 {
-    _thisPlan = [[ActivityPlan alloc] init];
+    _thisPlan = [[AttractionPlan alloc] init];
     _thisPlan = currentPlan;
     // setup the current plan with the default values from this view.
     [self getAttractionGroupsArray];
