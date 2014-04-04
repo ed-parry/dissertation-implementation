@@ -35,8 +35,6 @@
 
 - (NSArray *)generateActivityList
 {
-    NSMutableArray *activityList = [[NSMutableArray alloc] init];
-    
     // get all attractions in group arrays
     NSArray *allAttractionsInGroupArrays = [_coreDataManager getAllAttractionsInGroupArrays];
     
@@ -147,10 +145,9 @@
     else{
         startDistance = startDistance + fiveMiles;
         [self getAllAttractionsWithin:startDistance ofLocation:location usingArray:array];
+        NSLog(@"Shouldn't really get here...");
         return attractionsWithinLocation;
     }
-    NSLog(@"Something is seriously wrong, should never reach this point");
-    return nil;
 }
 
 - (NSMutableArray *)shuffleArrayContents:(NSArray *)arrayToShuffle

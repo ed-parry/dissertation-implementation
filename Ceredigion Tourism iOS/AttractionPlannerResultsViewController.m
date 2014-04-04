@@ -158,7 +158,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else if(buttonIndex == 1){
-        NSLog(@"Go do the process again with less to find?");
         int currentAmount = [_thisPlan.numberOfActivities intValue];
         int newAmount = currentAmount / 2;
         
