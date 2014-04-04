@@ -13,7 +13,7 @@
 #import "MapDataManager.h"
 #import "AttractionPlan.h"
 
-@interface AttractionPlannerLocationViewController () <RMDateSelectionViewControllerDelegate>
+@interface AttractionPlannerLocationViewController () <RMDateSelectionViewControllerDelegate, UITextFieldDelegate>
 
 @property RMDateSelectionViewController *dateSelectionVC;
 
@@ -47,6 +47,8 @@
                                                   green:(164.0/256.0)
                                                    blue:(219.0/256.0)
                                                   alpha:(1.0)]];
+    
+    _locationTextField.delegate = self;
     
     // Hide keyboard
     UIView* hiddenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
@@ -232,6 +234,11 @@
         // there's a chance we have some data, so let's try and fetch the coordinates now, ahead of time.
         _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return [textField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
