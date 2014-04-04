@@ -173,7 +173,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else if(buttonIndex == 1){
-        [self tryToFetchResultsOfNewAmount];
+        [self tryToFetchResultsWithLessAmount];
     }
     else{
         _errorCount = 0;
@@ -181,10 +181,10 @@
     }
 }
 
-- (void)tryToFetchResultsOfNewAmount
+- (void)tryToFetchResultsWithLessAmount
 {
     int currentAmount = [_thisPlan.numberOfActivities intValue];
-    int newAmount = currentAmount / 2;
+    int newAmount = currentAmount--;
     
     _thisPlan.numberOfActivities = [NSNumber numberWithInt:newAmount];
     AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:_thisPlan];
@@ -200,7 +200,7 @@
             [self showAlertViewWithOptionToTryAgain:NO];
         }
         else{
-            [self tryToFetchResultsOfNewAmount];
+            [self tryToFetchResultsWithLessAmount];
         }
     }
     else{
