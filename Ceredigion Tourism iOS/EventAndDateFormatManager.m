@@ -221,8 +221,13 @@
     NSMutableArray *datesArray = [[NSMutableArray alloc] init];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    
+    if([date length] == 8){
+        [dateFormatter setDateFormat:@"dd-MM-yy"];
+    }
+    else{
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    }
+
     NSDate *startDate = [dateFormatter dateFromString:date];
     
     for(int i = 1; i < days; i++){

@@ -208,16 +208,4 @@
     XCTAssertTrue(isSuccessful, @"The coordinates from the Plist match those that were sent to be stored.");
 }
 
-// WARNING - this test will fail if the application is removed from the iPhone Simulator.
-- (void)testGetPlistFilePath
-{
-    NSString *expectedFilePath = @"/Users/edparry/Library/Application Support/iPhone Simulator/7.1/Applications/98043B10-2092-4F7B-B331-7933084B918D/Documents/allowed_groups";
-    
-    NSString *returnedFilePath = [_mapDataManager getPlistFilePath:@"allowed_groups"];
-    NSLog(@"File path: %@", returnedFilePath);
-    
-    bool isFilePathEqual = [returnedFilePath isEqualToString:expectedFilePath];
-    XCTAssertTrue(isFilePathEqual, @"The returned file path matches the expected value");
-}
-
 @end

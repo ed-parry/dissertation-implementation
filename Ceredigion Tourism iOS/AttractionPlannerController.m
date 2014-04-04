@@ -106,7 +106,7 @@
     return adrenalineLevelsToRemove;
 }
 
-- (NSArray *)returnLowerAdrenalineLevelsThan:(NSString *)adrenalineLevel
+- (NSArray *)returnLowerAndIncludedAdrenalineLevelsThan:(NSString *)adrenalineLevel
 {
     NSArray *adrenalineLevelsToKeep;
     if([adrenalineLevel isEqualToString:@"high"]){
@@ -128,7 +128,6 @@
     float fiveMiles = 8046.72; // half the starting distance to add if we need to
     NSMutableArray *attractionsWithinLocation = [[NSMutableArray alloc] init];
     
-    NSLog(@"The location lat is %f and the long is %f", location.latitude, location.longitude);
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:location andRadiusInMeters:startDistance];
 
     for(Attraction *thisAttraction in array){
@@ -173,7 +172,7 @@
 {
     NSMutableArray *orderedArrayByAdrenalineLevel = [[NSMutableArray alloc] init];
     
-    NSArray *adrenalineLevels = [[NSArray alloc] initWithArray:[self returnLowerAdrenalineLevelsThan:_thisPlan.adrenalineLevel]];
+    NSArray *adrenalineLevels = [[NSArray alloc] initWithArray:[self returnLowerAndIncludedAdrenalineLevelsThan:_thisPlan.adrenalineLevel]];
     
     for(NSString *adrenalineLevel in adrenalineLevels){
         for(Attraction *thisAttraction in array){

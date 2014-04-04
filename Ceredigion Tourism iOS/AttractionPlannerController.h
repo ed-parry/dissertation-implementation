@@ -13,4 +13,8 @@
 - (id)initWithPlan:(AttractionPlan *)plan;
 - (NSArray *)generateActivityList;
 - (NSArray *)generateEventsList;
+
+- (NSArray *)returnLowerAndIncludedAdrenalineLevelsThan:(NSString *)adrenalineLevel;
+- (NSArray *)returnHigherAdrenalineLevelsThan:(NSString *)adrenalineLevel;
+- (NSMutableArray *)returnTopNumber:(NSNumber *)number fromArray:(NSArray *)array;
 @end
