@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import "ActivityPlan.h"
+#import "AttractionPlan.h"
 
-@implementation ActivityPlan
+@implementation AttractionPlan
 - (bool)isComplete
 {
     if(([self.location length] > 0) && ([self.startDate length] > 0) && ([self.adrenalineLevel length] > 0) && ([self.selectedGroups count] > 0)){

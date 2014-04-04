@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-@interface ActivityPlan : NSObject
+@interface AttractionPlan : NSObject
 @property (strong, nonatomic) NSString *location;
 @property CLLocationCoordinate2D locationCoordinates;
 @property (strong, nonatomic) NSString *startDate;
