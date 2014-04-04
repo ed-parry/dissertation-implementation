@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray *plannerEvents;
 @property AttractionPlan *thisPlan;
 @property (strong, nonatomic) IBOutlet UITableView *activityResultsTableView;
+@property int errorCount;
 
 @end
 
@@ -28,6 +29,8 @@
     _activityResultsTableView.delegate = self;
     _activityResultsTableView.contentInset = UIEdgeInsetsZero;
     _activityResultsTableView.dataSource = self;
+    
+    _errorCount = 0;
 }
 
 - (void)completedSetupWithActivityPlan:(AttractionPlan *)plan
@@ -40,7 +43,7 @@
     
     int numberOfActivities = [plan.numberOfActivities intValue];
     if([_plannerResults count] < numberOfActivities){
-        [self showAlertView];
+        [self showAlertViewWithOptionToTryAgain:YES];
     }
     
     _plannerEvents = [planController generateEventsList];
@@ -141,13 +144,25 @@
     }
 }
 
-- (void)showAlertView
+
+
+- (void)showAlertViewWithOptionToTryAgain:(bool)tryagain
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Enough Results"
-                                    message:@"We were unable to find enough suitable attractions that matched your selection."
-                                      delegate:self
-                             cancelButtonTitle:@"Go back"
-                             otherButtonTitles:@"Show me fewer", nil];
+    UIAlertView *alert;
+    if(tryagain){
+        alert = [[UIAlertView alloc] initWithTitle:@"Not Enough Results"
+                                                        message:@"We were unable to find enough suitable attractions that matched your selection."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Go back"
+                                              otherButtonTitles:@"Show me fewer", nil];
+    }
+    else{
+        alert = [[UIAlertView alloc] initWithTitle:@"No Available Results"
+                                           message:@"We were unable to find suitable attractions that matched your selection."
+                                          delegate:self
+                                 cancelButtonTitle:@"Go back" otherButtonTitles:nil, nil];
+    }
+
 
     [alert show];
 }
@@ -158,16 +173,38 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else if(buttonIndex == 1){
-        int currentAmount = [_thisPlan.numberOfActivities intValue];
-        int newAmount = currentAmount / 2;
-        
-        _thisPlan.numberOfActivities = [NSNumber numberWithInt:newAmount];
-        AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:_thisPlan];
-        
-        _plannerResults = [[NSArray alloc] init];
-        _plannerResults = [planController generateActivityList];
-        _plannerEvents = [planController generateEventsList];
-        
+        [self tryToFetchResultsOfNewAmount];
+    }
+    else{
+        _errorCount = 0;
+        [_activityResultsTableView reloadData];
+    }
+}
+
+- (void)tryToFetchResultsOfNewAmount
+{
+    int currentAmount = [_thisPlan.numberOfActivities intValue];
+    int newAmount = currentAmount / 2;
+    
+    _thisPlan.numberOfActivities = [NSNumber numberWithInt:newAmount];
+    AttractionPlannerController *planController = [[AttractionPlannerController alloc] initWithPlan:_thisPlan];
+    
+    _plannerResults = [[NSArray alloc] init];
+    _plannerResults = [planController generateActivityList];
+    _plannerEvents = [planController generateEventsList];
+    
+    int numberOfActivities = [_thisPlan.numberOfActivities intValue];
+    if([_plannerResults count] < numberOfActivities){
+        _errorCount++;
+        if(_errorCount == 3){
+            [self showAlertViewWithOptionToTryAgain:NO];
+        }
+        else{
+            [self tryToFetchResultsOfNewAmount];
+        }
+    }
+    else{
+        _errorCount = 0;
         [_activityResultsTableView reloadData];
     }
 }

@@ -128,6 +128,7 @@
     float fiveMiles = 8046.72; // half the starting distance to add if we need to
     NSMutableArray *attractionsWithinLocation = [[NSMutableArray alloc] init];
     
+    NSLog(@"The location lat is %f and the long is %f", location.latitude, location.longitude);
     _mapDataManager = [[MapDataManager alloc] initWithCurrentRadiusCenter:location andRadiusInMeters:startDistance];
 
     for(Attraction *thisAttraction in array){
@@ -139,14 +140,19 @@
     }
     
     int numberOfActivities = [_thisPlan.numberOfActivities intValue];
-    if([attractionsWithinLocation count] > numberOfActivities){
+    if([attractionsWithinLocation count] >= numberOfActivities){
         return attractionsWithinLocation;
     }
     else{
         startDistance = startDistance + fiveMiles;
-        [self getAllAttractionsWithin:startDistance ofLocation:location usingArray:array];
+        if(startDistance < (fiveMiles * 10)){
+            [self getAllAttractionsWithin:startDistance ofLocation:location usingArray:array];
+        }
+        else{
+            return attractionsWithinLocation;
+        }
         NSLog(@"Shouldn't really get here...");
-        return attractionsWithinLocation;
+        return nil;
     }
 }
 
