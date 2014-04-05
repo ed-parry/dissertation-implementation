@@ -132,6 +132,25 @@
     [self toggleGroupFromArray:selectedGroup];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    UISwitch *accessorySwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
+    accessorySwitch = (UISwitch *)cell.accessoryView;
+    
+    if(accessorySwitch.on){
+        [accessorySwitch setOn:NO animated:YES];
+    }
+    else{
+        [accessorySwitch setOn:YES animated:YES];
+    }
+    
+    NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
+    [self toggleGroupFromArray:selectedGroup];
+}
+
 - (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender
 {
     if(sender.selectedSegmentIndex == 0){
