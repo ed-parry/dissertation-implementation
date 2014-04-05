@@ -111,6 +111,7 @@
         Event *thisEvent = [_plannerEvents objectAtIndex:indexPath.row];
         cell.textLabel.text = thisEvent.title;
         cell.imageView.image = [UIImage imageNamed:@"Event Icon"];
+        cell.detailTextLabel.text = thisEvent.location;
     }
     return cell;
 }
