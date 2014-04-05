@@ -46,10 +46,12 @@
     
     // NewRelic API
     [NewRelicAgent startWithApplicationToken:@"AAacea36886503708877ed49e64d4f0df6e412924a"];
-
     
     MapDataManager *mapDataManager = [[MapDataManager alloc] init];
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    
     [mapDataManager storeDefaultMapRadiusMilesInPlist];
+    [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
     return YES;
 }

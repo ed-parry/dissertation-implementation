@@ -193,7 +193,7 @@
         
         CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
         GMSCircle __block *circleRadius;
-        dispatch_async(dispatch_get_main_queue(), ^{
+
         circleRadius = [GMSCircle circleWithPosition:circleCenter
                                                          radius:meters];
         circleRadius.fillColor = [UIColor colorWithRed:35.0/255.0
@@ -205,7 +205,7 @@
                                                     blue:219.0/255.0
                                                    alpha:1.0];
         circleRadius.strokeWidth = 2;
-        });
+
         circleRadius.map = _mapView;
         
         [self storeRadiusCenterCoordinatesInPlist:circleCenter];
