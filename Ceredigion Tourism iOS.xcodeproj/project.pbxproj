@@ -418,11 +418,11 @@
 				6DBC6B2A18EF10B000A2BA07 /* AttractionPlannerTests.m */,
 				6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */,
 				6DB4042D18BE1F2B007A092E /* CoreDataTests.m */,
+				6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */,
 				6DFFBDA718DDDA4C00ABBD84 /* DateFormatTests.m */,
 				6DB66E1018E49B8000FA2222 /* EventObjectTests.m */,
 				6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */,
 				6DB4042018BE1F13007A092E /* Supporting Files */,
-				6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */,
 			);
 			path = "Ceredigion Tourism iOS Unit Testing";
 			sourceTree = "<group>";
