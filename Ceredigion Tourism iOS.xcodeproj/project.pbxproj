@@ -54,6 +54,7 @@
 		6DBC6B2818EF090600A2BA07 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBC6B2718EF090600A2BA07 /* RMDateSelectionViewController.m */; };
 		6DBC6B2B18EF10B000A2BA07 /* AttractionPlannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBC6B2A18EF10B000A2BA07 /* AttractionPlannerTests.m */; };
 		6DBD730D18F177C800E168BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD730C18F177C800E168BC /* MBProgressHUD.m */; };
+		6DBD730F18F1834800E168BC /* CSVDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
 		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
 		6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CA18B3935A006BE307 /* CoreText.framework */; };
@@ -161,6 +162,7 @@
 		6DBC6B2A18EF10B000A2BA07 /* AttractionPlannerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlannerTests.m; sourceTree = "<group>"; };
 		6DBD730B18F177C800E168BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		6DBD730C18F177C800E168BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVDataManagerTests.m; sourceTree = "<group>"; };
 		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DD178C818B39352006BE307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6DD178CA18B3935A006BE307 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -420,6 +422,7 @@
 				6DB66E1018E49B8000FA2222 /* EventObjectTests.m */,
 				6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */,
 				6DB4042018BE1F13007A092E /* Supporting Files */,
+				6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */,
 			);
 			path = "Ceredigion Tourism iOS Unit Testing";
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				6DB66E0F18E49B6200FA2222 /* AttractionPlanObjectTests.m in Sources */,
 				6DB66E1118E49B8000FA2222 /* EventObjectTests.m in Sources */,
 				6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */,
+				6DBD730F18F1834800E168BC /* CSVDataManagerTests.m in Sources */,
 				6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */,
 				6DFFBDA818DDDA4C00ABBD84 /* DateFormatTests.m in Sources */,
 				6DB4042E18BE1F2B007A092E /* CoreDataTests.m in Sources */,
