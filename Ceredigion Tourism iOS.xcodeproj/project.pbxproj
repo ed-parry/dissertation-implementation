@@ -55,6 +55,7 @@
 		6DBC6B2B18EF10B000A2BA07 /* AttractionPlannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBC6B2A18EF10B000A2BA07 /* AttractionPlannerTests.m */; };
 		6DBD730D18F177C800E168BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD730C18F177C800E168BC /* MBProgressHUD.m */; };
 		6DBD730F18F1834800E168BC /* CSVDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */; };
+		6DBD731218F1937C00E168BC /* TestDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD731118F1937C00E168BC /* TestDataGenerator.m */; };
 		6DD178C718B39346006BE307 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C618B39346006BE307 /* AVFoundation.framework */; };
 		6DD178C918B39352006BE307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178C818B39352006BE307 /* CoreLocation.framework */; };
 		6DD178CB18B3935A006BE307 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD178CA18B3935A006BE307 /* CoreText.framework */; };
@@ -163,6 +164,8 @@
 		6DBD730B18F177C800E168BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		6DBD730C18F177C800E168BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		6DBD730E18F1834800E168BC /* CSVDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVDataManagerTests.m; sourceTree = "<group>"; };
+		6DBD731018F1937C00E168BC /* TestDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDataGenerator.h; sourceTree = "<group>"; };
+		6DBD731118F1937C00E168BC /* TestDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDataGenerator.m; sourceTree = "<group>"; };
 		6DD178C618B39346006BE307 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DD178C818B39352006BE307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6DD178CA18B3935A006BE307 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -271,6 +274,8 @@
 				6D0AC0DD18C8E86700091562 /* GroupDataManager.m */,
 				6DB4D09518E1929F00FE6C4B /* AttractionPlannerController.h */,
 				6DB4D09618E1929F00FE6C4B /* AttractionPlannerController.m */,
+				6DBD731018F1937C00E168BC /* TestDataGenerator.h */,
+				6DBD731118F1937C00E168BC /* TestDataGenerator.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				6D7C558018E3178800927769 /* AttractionPlannerResultsViewController.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
 				6DD8969818D06A9800BCE840 /* AttractionsCSVDataManager.m in Sources */,
+				6DBD731218F1937C00E168BC /* TestDataGenerator.m in Sources */,
 				6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */,
 				6DD896A918D0A28300BCE840 /* UIColor+expanded.m in Sources */,
 				6D749AA218B258DE00E06D7F /* Attraction.m in Sources */,

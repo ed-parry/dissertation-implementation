@@ -23,4 +23,7 @@
 - (NSArray *)getAllEventDates;
 
 - (BOOL)doesCoreDataEntityHaveData:(NSString *)entity;
+
+// for testing
+- (void)addEventToCoreData:(Event *)event;
 @end

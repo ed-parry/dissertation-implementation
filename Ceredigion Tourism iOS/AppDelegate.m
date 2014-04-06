@@ -13,6 +13,9 @@
 #import "MapDataManager.h"
 #import "GroupDataManager.h"
 
+//testing
+#import "TestDataGenerator.h"
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext=__managedObjectContext;
@@ -52,6 +55,9 @@
     
     [mapDataManager storeDefaultMapRadiusMilesInPlist];
     [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
+    
+    TestDataGenerator *testGenerator = [[TestDataGenerator alloc] init];
+    [testGenerator generateTestEvents:50];
     
     return YES;
 }
