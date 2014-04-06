@@ -56,8 +56,10 @@
     [mapDataManager storeDefaultMapRadiusMilesInPlist];
     [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
-    TestDataGenerator *testGenerator = [[TestDataGenerator alloc] init];
-    [testGenerator generateTestEvents:50];
+    
+//    TestDataGenerator *testGenerator = [[TestDataGenerator alloc] init];
+//    [testGenerator generateTestEvents:50];
+//    [testGenerator generateTestAttractions:200];
     
     return YES;
 }

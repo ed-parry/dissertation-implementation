@@ -17,10 +17,18 @@
 
 @implementation TestDataGenerator
 
+- (id)init
+{
+    if(self){
+        _coreDataManager = [[CoreDataManager alloc] init];
+    }
+    
+    return self;
+}
+
 // only produces events with an id, title, description and start/end dates, because that's what we care about for the calendar.
 - (void)generateTestEvents:(int)numberToGenerate
 {
-    _coreDataManager = [[CoreDataManager alloc] init];
     for(int i = 0; i < numberToGenerate; i++){
         Event *testEvent = [[Event alloc] init];
         testEvent.id = i+5;
@@ -47,6 +55,40 @@
 
 - (void)generateTestAttractions:(int)numberToGenerate
 {
+    for(int i = 0; i < numberToGenerate; i++){
+        Attraction *testAttraction = [[Attraction alloc] init];
+        testAttraction.id = 300+i;
+        testAttraction.name = [NSString stringWithFormat:@"Test Attraction %i", i];
+        testAttraction.group = [self returnRandomGroup];
+        
+        testAttraction.latitude = [self getRandomLatitude];
+        testAttraction.longitude = [self getRandomLongitude];
+        
+        [_coreDataManager addAttractionToCoreData:testAttraction];
+    }
+}
+
+- (NSString *)getRandomLatitude
+{
+    float diff = 52.9999999 - 52.000000;
+    float randomLat = (((float) rand() / RAND_MAX) * diff) + 52.000000;
     
+    return [NSString stringWithFormat:@"%f", randomLat];
+}
+
+- (NSString *)getRandomLongitude
+{
+    float diff = -4.5999999 - -4.30000;
+    float randomLong = (((float) rand() / RAND_MAX) * diff) + -4.30000;
+
+    return [NSString stringWithFormat:@"%f", randomLong];
+}
+
+- (NSString *)returnRandomGroup
+{
+    NSArray *groups = [[NSArray alloc] initWithObjects:@"Accommodation", @"Activity", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail", nil];
+    
+    NSUInteger randomIndex = arc4random() % [groups count];
+    return [groups objectAtIndex:randomIndex];
 }
 @end

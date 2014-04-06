@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Attraction.h"
 #import "Event.h"
 
 @interface CoreDataManager : NSObject
@@ -25,5 +26,6 @@
 - (BOOL)doesCoreDataEntityHaveData:(NSString *)entity;
 
 // for testing
+- (void)addAttractionToCoreData:(Attraction *)attraction;
 - (void)addEventToCoreData:(Event *)event;
 @end
