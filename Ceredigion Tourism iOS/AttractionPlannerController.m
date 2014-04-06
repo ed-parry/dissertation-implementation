@@ -40,7 +40,7 @@
     
     // get all attractions in user selected groups
     _workingAttractionList = [[NSMutableArray alloc] initWithArray:[self getAllAttractionsInSelectedGroups:_thisPlan.selectedGroups fromArray:allAttractionsInGroupArrays]];
-    
+
     // remove all attractions of a higher adrenaline level
     _workingAttractionList = [self removeAttractionsWithHigherAdrenalineLevelThan:_thisPlan.adrenalineLevel fromArray:_workingAttractionList];
     
@@ -85,25 +85,24 @@
             [attractionsOfSuitableAdrenalineLevel removeObject:tempAttraction];
         }
     }
-    
     return attractionsOfSuitableAdrenalineLevel;
 }
 
 - (NSArray *)returnHigherAdrenalineLevelsThan:(NSString *)adrenalineLevel
 {
-    NSArray *adrenalineLevelsToRemove;
+    NSArray *adrenalineLevelsToReturn;
     if([adrenalineLevel isEqualToString:@"high"]){
         // keep the array empty
-        adrenalineLevelsToRemove = [[NSArray alloc] init];
+        adrenalineLevelsToReturn = [[NSArray alloc] init];
     }
     else if([adrenalineLevel isEqualToString:@"medium"]){
-        adrenalineLevelsToRemove = [[NSArray alloc] initWithObjects:@"high", nil];
+        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"high", nil];
     }
     else if([adrenalineLevel isEqualToString:@"low"]){
-        adrenalineLevelsToRemove = [[NSArray alloc] initWithObjects:@"high", @"medium", nil];
+        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"high", @"medium", nil];
     }
     
-    return adrenalineLevelsToRemove;
+    return adrenalineLevelsToReturn;
 }
 
 - (NSArray *)returnLowerAndIncludedAdrenalineLevelsThan:(NSString *)adrenalineLevel

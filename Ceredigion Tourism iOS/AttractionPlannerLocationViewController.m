@@ -178,8 +178,7 @@
         if(_locationCoordinates.latitude != 0.000000){
             return YES;
         }
-        NSLog(@"Can't set the location coordinates");
-        NSLog(@"Location lat is: %f", _locationCoordinates.latitude);
+        // call itself again until we have coordinate fix.
         [self allDataComplete];
     }
     NSLog(@"Okay with coordinates, problem is with location: %@ or the start date: %@ or the unformatted date: %@", location, startDate, _arrivalDateNoFormat);
@@ -215,7 +214,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         return NO;
     }
 }
