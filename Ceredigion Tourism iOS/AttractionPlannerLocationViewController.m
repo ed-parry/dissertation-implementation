@@ -8,6 +8,7 @@
 
 #import "AttractionPlannerLocationViewController.h"
 #import "RMDateSelectionViewController.h"
+#import "MBProgressHUD.h"
 #import "AttractionPlannerAttractionsViewController.h"
 #import "EventAndDateFormatManager.h"
 #import "MapDataManager.h"
@@ -179,8 +180,7 @@
         }
         NSLog(@"Can't set the location coordinates");
         NSLog(@"Location lat is: %f", _locationCoordinates.latitude);
-        
-        return NO;
+        [self allDataComplete];
     }
     NSLog(@"Okay with coordinates, problem is with location: %@ or the start date: %@ or the unformatted date: %@", location, startDate, _arrivalDateNoFormat);
     return NO;
@@ -203,7 +203,9 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if([self allDataComplete]){
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         return YES;
     }
     else{
