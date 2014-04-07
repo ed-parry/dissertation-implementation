@@ -964,7 +964,6 @@ THE SOFTWARE.
                                 <color key="tintColor" red="0.99422563481850756" green="1" blue="0.95514901944511532" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Map Icon"/>
                                 <connections>
-                                    <action selector="showAttractionOnMapView:" destination="F95-fg-aCk" eventType="touchUpInside" id="lgM-e0-Xpg"/>
                                     <segue destination="wC6-H5-ytp" kind="modal" identifier="attractionMapLocation" modalTransitionStyle="partialCurl" id="xoP-pu-4Em"/>
                                 </connections>
                             </button>
