@@ -107,24 +107,35 @@
 
 - (IBAction)useCurrentLocation:(id)sender
 {
-
-    double lat = _locationManager.location.coordinate.latitude;
-    double longitude = _locationManager.location.coordinate.longitude;
     
-    // wasn't enough time to fetch coords, so let's try again
-    if((lat == 0.000000) && (longitude == 0.000000)){
-        CLLocationManager *newLocationManager = [[CLLocationManager alloc] init];
-        newLocationManager.distanceFilter = kCLDistanceFilterNone;
-        newLocationManager.desiredAccuracy = kCLLocationAccuracyBest; // best possible accuracy level
+    CLAuthorizationStatus mapAuthorised = [CLLocationManager authorizationStatus];
+    if(mapAuthorised == kCLAuthorizationStatusAuthorized){
+        double lat = _locationManager.location.coordinate.latitude;
+        double longitude = _locationManager.location.coordinate.longitude;
         
-        [newLocationManager startUpdatingLocation];
-        _locationManager = newLocationManager;
-        [self useCurrentLocation:self];
+        // wasn't enough time to fetch coords, so let's try again
+        if((lat == 0.000000) && (longitude == 0.000000)){
+            CLLocationManager *newLocationManager = [[CLLocationManager alloc] init];
+            newLocationManager.distanceFilter = kCLDistanceFilterNone;
+            newLocationManager.desiredAccuracy = kCLLocationAccuracyBest; // best possible accuracy level
+            
+            [newLocationManager startUpdatingLocation];
+            _locationManager = newLocationManager;
+            [self useCurrentLocation:self];
+        }
+        else{
+            _locationCoordinates = CLLocationCoordinate2DMake(lat, longitude);
+            [self showCurrentLocationOnView];
+            [self showTodaysDateAsArrivalDate];
+        }
     }
     else{
-        _locationCoordinates = CLLocationCoordinate2DMake(lat, longitude);
-        [self showCurrentLocationOnView];
-        [self showTodaysDateAsArrivalDate];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No GPS Access"
+                                                        message:@"This application does not currently have permission to access your current location. You can change this option, if you wish, from the Privacy section in the Settings app."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 

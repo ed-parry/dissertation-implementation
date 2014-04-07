@@ -130,6 +130,18 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    if([identifier isEqualToString:@"currentLocationSegue"]){
+        CLAuthorizationStatus mapAuthorised = [CLLocationManager authorizationStatus];
+        if(mapAuthorised != kCLAuthorizationStatusAuthorized){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No GPS Access"
+                                                            message:@"This application does not currently have permission to access your current location. You can change this option, if you wish, from the Privacy section in the Settings app."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return NO;
+        }
+    }
     if(_shouldMove){
         _shouldMove = NO;
         return YES;
