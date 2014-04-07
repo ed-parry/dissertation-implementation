@@ -270,9 +270,12 @@
             [self presentViewController:eventController animated:YES completion:nil];
         }
         else{
-            NSLog(@"Not granted access");
-            // Need to display an error message saying we don't have access.
-            // Users can re-enable access from Privacy Settings on their device.
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to access calendar"
+                                                            message:@"You have chosen to not enable calendar access to this application. If you change your mind, you can update your privacy options in the Settings app"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
     }];
 }

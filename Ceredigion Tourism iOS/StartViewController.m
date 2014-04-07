@@ -86,7 +86,7 @@
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"This application requires an active network connection to fetch the tourism information. Please check your connection."
+                                                        message:@"This application works better with an active network connection to fetch the latest tourism attraction information. Please check your connection."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
