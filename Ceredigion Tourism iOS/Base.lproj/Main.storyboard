@@ -910,6 +910,8 @@ THE SOFTWARE.
                                 </subviews>
                                 <color key="backgroundColor" red="0.89768016581632648" green="0.89768016581632648" blue="0.89768016581632648" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="5IR-SX-woV"/>
+                                    <constraint firstAttribute="height" constant="149" id="Igm-Kb-Y16"/>
                                     <constraint firstItem="igQ-c3-lc1" firstAttribute="centerY" secondItem="RI2-KV-rgN" secondAttribute="centerY" id="Mj6-Wk-8BA"/>
                                     <constraint firstItem="igQ-c3-lc1" firstAttribute="top" secondItem="RI2-KV-rgN" secondAttribute="top" constant="56" id="WY2-Vu-9H7"/>
                                     <constraint firstItem="igQ-c3-lc1" firstAttribute="centerX" secondItem="RI2-KV-rgN" secondAttribute="centerX" id="vdO-qD-BBI"/>
@@ -951,7 +953,17 @@ THE SOFTWARE.
                             <constraint firstAttribute="trailing" secondItem="EcH-pH-M1c" secondAttribute="trailing" id="xZb-ig-kTD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Event Name" id="CtM-7f-pyV"/>
+                    <navigationItem key="navigationItem" title="Event Name" id="CtM-7f-pyV">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="GHG-Rw-It4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" id="wMq-dj-vpd">
+                                <rect key="frame" x="282" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchImageToMapView:" destination="F95-fg-aCk" eventType="touchUpInside" id="JrL-1J-1uu"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addToCalendarButton" destination="ybk-8u-EJN" id="svT-jW-n4v"/>

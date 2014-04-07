@@ -12,6 +12,7 @@
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate, GMSMapViewDelegate>
+- (IBAction)switchImageToMapView:(id)sender;
 
 @property (strong, nonatomic) Attraction *thisAttraction;
 @property (strong, nonatomic) Event *thisEvent;
@@ -123,7 +124,6 @@
         
         if([_thisAttraction.imageLocationURL length] > 1){
             [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisAttraction.imageLocationURL];
-            [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
         }
         else{
             [_imageLoadingSpinner stopAnimating];
@@ -315,6 +315,17 @@
     if(attractionImageData){
         UIImage *attractionImage = [[UIImage alloc] initWithData:attractionImageData];
         _attractionImage = attractionImage;
+        [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
+    }
+    else{
+        // no image found
+        NSLog(@"No image found");
+        
+        // stop and hide the spinner.
+        [_imageLoadingSpinner stopAnimating];
+        _imageLoadingSpinner.hidden = YES;
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                
         return;
     }
 }
@@ -333,5 +344,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)switchImageToMapView:(id)sender {
 }
 @end
