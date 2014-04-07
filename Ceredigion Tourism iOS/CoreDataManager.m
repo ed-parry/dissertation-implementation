@@ -190,10 +190,15 @@
     else{
         newAttraction.hide = YES;
     }
-    
+
     // assuming that it will be at the end of the data array
     // newAttraction.adrenalineLevel = [singleAttractionArray objectAtIndex:10];
-    newAttraction.adrenalineLevel = @"medium"; // for testing, remove when data source is updated
+    
+    // ... but for now...
+
+    NSArray *adrenalineLevels = [[NSArray alloc] initWithObjects:@"low", @"medium", @"high", nil];
+    NSUInteger randomIndex = arc4random() % [adrenalineLevels count];
+    newAttraction.adrenalineLevel = [adrenalineLevels objectAtIndex:randomIndex]; // for testing, remove when data source is updated
     
     [self addAttractionToCoreData:newAttraction];
 }

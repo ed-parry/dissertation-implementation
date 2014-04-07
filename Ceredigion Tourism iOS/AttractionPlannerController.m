@@ -77,15 +77,16 @@
 
 - (NSMutableArray *)removeAttractionsWithHigherAdrenalineLevelThan:(NSString *)adrenalineLevel fromArray:(NSArray *)array
 {
-    NSMutableArray *attractionsOfSuitableAdrenalineLevel = [[NSMutableArray alloc] initWithArray:array];
+    NSMutableArray *attractionsOfSuitableAdrenalineLevelToEdit = [[NSMutableArray alloc] initWithArray:array];
+    NSMutableArray *attractionsOfSuitableArenalineLevelToLoop = [[NSMutableArray alloc] initWithArray:array];
     NSArray *adrenalineLevelsToRemove = [[NSArray alloc] initWithArray:[self returnHigherAdrenalineLevelsThan:adrenalineLevel]];
 
-    for(Attraction *tempAttraction in attractionsOfSuitableAdrenalineLevel){
+    for(Attraction *tempAttraction in attractionsOfSuitableArenalineLevelToLoop){
         if([adrenalineLevelsToRemove containsObject:tempAttraction.adrenalineLevel]){
-            [attractionsOfSuitableAdrenalineLevel removeObject:tempAttraction];
+            [attractionsOfSuitableAdrenalineLevelToEdit removeObject:tempAttraction];
         }
     }
-    return attractionsOfSuitableAdrenalineLevel;
+    return attractionsOfSuitableAdrenalineLevelToEdit;
 }
 
 - (NSArray *)returnHigherAdrenalineLevelsThan:(NSString *)adrenalineLevel
