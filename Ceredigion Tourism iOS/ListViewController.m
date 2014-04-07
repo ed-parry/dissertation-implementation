@@ -38,13 +38,15 @@
                                              selector:@selector(coreDataChanged)
                                                  name:@"attractionsDataUpdated"
                                                object:nil];
-    
+    [self fetchRequiredData];
+}
+
+- (void)fetchRequiredData
+{
     _dataManager = [[CoreDataManager alloc] init];
     _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
     _attractionGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
