@@ -129,10 +129,14 @@
             [self performSelectorInBackground:@selector(fetchImageFromUrl:) withObject:_thisAttraction.imageLocationURL];
         }
         else{
+            UIImage *attractionImage = [UIImage imageNamed:@"No Attraction Image (Placeholder)"];
+            _attractionImage = attractionImage;
             [_imageLoadingSpinner stopAnimating];
             _imageLoadingOrMapView.hidden = YES;
             _attractionImageView.hidden = NO;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
+
         }
         
         [self setPageColorForGroup:_thisAttraction.group];
@@ -299,11 +303,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
 }
 
-- (IBAction)showAttractionOnMapView:(id)sender
-{
-
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"attractionMapLocation"]){
@@ -335,12 +334,9 @@
     }
     else{
         // no image found
-        NSLog(@"No image found");
-        
-        // stop and hide the spinner.
-        [_imageLoadingSpinner stopAnimating];
-        _imageLoadingSpinner.hidden = YES;
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        UIImage *attractionImage = [UIImage imageNamed:@"No Attraction Image (Placeholder)"];
+        _attractionImage = attractionImage;
+        [self performSelectorOnMainThread:@selector(putImageOnView) withObject:nil waitUntilDone:NO];
                 
         return;
     }
