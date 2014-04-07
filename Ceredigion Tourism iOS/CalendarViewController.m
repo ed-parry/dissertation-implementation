@@ -170,8 +170,6 @@
     return [thisDaysEvents count];
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Get event title, and start/end date here.
@@ -213,7 +211,12 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-        [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
+    [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning

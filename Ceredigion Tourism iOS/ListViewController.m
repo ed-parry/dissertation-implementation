@@ -43,15 +43,15 @@
     _groupDataManager = [[GroupDataManager alloc] init];
     _allAttractionsByGroup = [_dataManager getAllAttractionsInGroupArrays];
     _attractionGroups = [_groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO];
-    
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
     self.tabBarController.navigationItem.title = @"List of Attractions";
-    self.navigationController.navigationBar.translucent = NO;
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+
     if(animated == FALSE){
         if(!_groupDataManager){
             _groupDataManager = [[GroupDataManager alloc] init];

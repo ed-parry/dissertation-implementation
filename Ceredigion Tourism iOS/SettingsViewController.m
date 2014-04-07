@@ -64,8 +64,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
-    
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.translucent = YES;
