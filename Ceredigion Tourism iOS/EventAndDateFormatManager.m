@@ -171,7 +171,8 @@
                     fillerDay++;
                     fillerTempDay = [NSString stringWithFormat:@"%i", fillerDay];
                     NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
+                    NSString *fillerTempYear = [fillerTempDateString substringWithRange:yearRange];
+                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth]) && ([selectedDateYear isEqualToString:fillerTempYear])){
                         [daysEvents addObject:tempEvent];
                     }
                 }
@@ -195,7 +196,8 @@
                     NSString *fillerTempDay = [fillerTempDateString substringWithRange:dayRange];
                     
                     NSString *fillerTempMonth = [fillerTempDateString substringWithRange:monthRange];
-                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth])){
+                    NSString *fillerTempYear = [fillerTempDateString substringWithRange:yearRange];
+                    if(([selectedDateDay isEqualToString:fillerTempDay]) && ([selectedDateMonth isEqualToString:fillerTempMonth]) && ([selectedDateYear isEqualToString:fillerTempYear])){
                         [daysEvents addObject:tempEvent];
                     }
                 }
