@@ -582,7 +582,7 @@
                                 <rect key="frame" x="20" y="84" width="280" height="338"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">
+                                <mutableString key="text">Map, List Calendar, Settings and Map Marker icons provided by Icons8: http://icons8.com/free-ios-7-icons-in-vector/
 ---
 
 RMDateSelection
@@ -656,7 +656,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-</string>
+</mutableString>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
