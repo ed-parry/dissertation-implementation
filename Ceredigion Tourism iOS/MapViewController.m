@@ -11,7 +11,6 @@
 #import "MapDataManager.h"
 #import "CoreDataManager.h"
 #import "GroupDataManager.h"
-#import "Attraction.h"
 #import "SingleAttractionEventViewController.h"
 
 @interface MapViewController () <GMSMapViewDelegate, UIAlertViewDelegate>
@@ -112,6 +111,35 @@
     }
 }
 
+- (void)setUpMapWithAttraction:(Attraction *)attraction
+{
+    float latitude = [attraction.latitude doubleValue];
+    float longitude = [attraction.longitude doubleValue];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:12];
+    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    _currentRadiusCenter = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    MapDataManager *dataManager = [[MapDataManager alloc] init];
+    _currentRadiusInMeters = [dataManager getMapRadiusMetersFromPlist];
+    
+    GMSMarker *attractionMarker = [[GMSMarker alloc] init];
+    
+    attractionMarker.position = CLLocationCoordinate2DMake(latitude, longitude);
+    attractionMarker.title = attraction.name;
+    attractionMarker.snippet = attraction.group;
+    
+    // Make a new Attraction object to grab the correct group colour.
+    Attraction *colourAttractionObj = [[Attraction alloc] init];
+    attractionMarker.icon = [colourAttractionObj getAttractionGroupImage:attraction.group];
+    
+    attractionMarker.map = _mapView;
+    
+    [_mapView setSelectedMarker:attractionMarker];
+
+    [self putMapOnView];
+}
+
 - (void)setUpMapWithCurrentLocation
 {
     double lat = _locationManager.location.coordinate.latitude;
@@ -123,8 +151,7 @@
     _currentRadiusCenter = _locationManager.location.coordinate;
     
     MapDataManager *dataManager = [[MapDataManager alloc] init];
-    double mapRadius = [dataManager getMapRadiusMetersFromPlist];
-    _currentRadiusInMeters = mapRadius;
+    _currentRadiusInMeters = [dataManager getMapRadiusMetersFromPlist];
 
     [self performSelectorInBackground:@selector(setUpMapView) withObject:nil];
     [self performSelectorOnMainThread:@selector(putMapOnView) withObject:nil waitUntilDone:NO];

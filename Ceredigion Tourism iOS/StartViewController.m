@@ -99,7 +99,7 @@
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
+
     [_locationManager startUpdatingLocation];
 }
 

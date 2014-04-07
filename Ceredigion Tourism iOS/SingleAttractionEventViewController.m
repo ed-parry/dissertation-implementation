@@ -8,12 +8,11 @@
 
 #import "SingleAttractionEventViewController.h"
 #import "EventAndDateFormatManager.h"
+#import "MapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <EventKitUI/EventKitUI.h>
 
 @interface SingleAttractionEventViewController () <EKEventEditViewDelegate, GMSMapViewDelegate>
-- (IBAction)switchImageToMapView:(id)sender;
-
 @property (strong, nonatomic) Attraction *thisAttraction;
 @property (strong, nonatomic) Event *thisEvent;
 
@@ -36,6 +35,9 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
 
+@property (strong, nonatomic) IBOutlet UIButton *showAttractionOnMapViewButton;
+
+- (IBAction)showAttractionOnMapView:(id)sender;
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
 - (IBAction)visitWebsiteTapped:(id)sender;
@@ -62,6 +64,7 @@
     _imageLoadingOrMapView.hidden = NO;
     [_imageLoadingSpinner stopAnimating];
     
+    _showAttractionOnMapViewButton.hidden = YES;
     [self addMapToViewForEvent:currentEvent];
 }
 
@@ -131,6 +134,7 @@
             _attractionImageView.hidden = NO;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
+        
         [self setPageColorForGroup:_thisAttraction.group];
     }
     else if(_thisEvent){
@@ -184,7 +188,7 @@
 {
     double latitude = [event.latitude doubleValue];
     double longitude = [event.longitude doubleValue];
-    
+
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude longitude:longitude zoom:12];
     
     // position the map correctly.
@@ -295,6 +299,18 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_thisAttraction.website]];
 }
 
+- (IBAction)showAttractionOnMapView:(id)sender
+{
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"attractionMapLocation"]){
+        [segue.destinationViewController setUpMapWithAttraction:_thisAttraction];
+    }
+}
+
 - (void)setPageColorForGroup:(NSString *)group
 {
     Attraction *colourAttraction = [[Attraction alloc] init];
@@ -345,6 +361,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)switchImageToMapView:(id)sender {
-}
+
 @end

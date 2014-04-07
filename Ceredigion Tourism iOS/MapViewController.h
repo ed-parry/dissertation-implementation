@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "Attraction.h"
 
 @interface MapViewController : UIViewController
 - (void)useSearchedAddress:(NSString *)address;
 - (void)useCurrentLocationPosition:(CLLocationManager *)locationManager;
+- (void)setUpMapWithAttraction:(Attraction *)attraction;
 @end

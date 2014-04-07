@@ -712,6 +712,7 @@ THE SOFTWARE.
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map Icon" id="PAX-Ph-ddG"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="XIu-uS-MjZ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapLoadSpinner" destination="Ay6-bn-olE" id="8hG-FF-kWg"/>
@@ -955,13 +956,19 @@ THE SOFTWARE.
                     </view>
                     <navigationItem key="navigationItem" title="Event Name" id="CtM-7f-pyV">
                         <barButtonItem key="rightBarButtonItem" style="done" id="GHG-Rw-It4">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" id="wMq-dj-vpd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wMq-dj-vpd">
                                 <rect key="frame" x="282" y="11" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.99512566916921008" blue="0.99938255183206981" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="View attraction on the map"/>
+                                <color key="tintColor" red="0.99422563481850756" green="1" blue="0.95514901944511532" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="Map Icon"/>
                                 <connections>
-                                    <action selector="switchImageToMapView:" destination="F95-fg-aCk" eventType="touchUpInside" id="JrL-1J-1uu"/>
+                                    <action selector="showAttractionOnMapView:" destination="F95-fg-aCk" eventType="touchUpInside" id="lgM-e0-Xpg"/>
+                                    <segue destination="wC6-H5-ytp" kind="modal" identifier="attractionMapLocation" modalTransitionStyle="partialCurl" id="xoP-pu-4Em"/>
                                 </connections>
                             </button>
+                            <color key="tintColor" red="0.99686061847955443" green="1" blue="0.97598806609360034" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -974,6 +981,7 @@ THE SOFTWARE.
                         <outlet property="imageLoadingSpinner" destination="igQ-c3-lc1" id="dAg-md-L3Z"/>
                         <outlet property="secondTextField" destination="vwU-dh-BNt" id="iho-Yn-n8j"/>
                         <outlet property="secondTextFieldLabel" destination="xDR-f1-YgB" id="n7Q-jO-5fL"/>
+                        <outlet property="showAttractionOnMapViewButton" destination="wMq-dj-vpd" id="6N5-fm-HqK"/>
                         <outlet property="thirdTextField" destination="OWA-Eq-2JC" id="603-XA-YO3"/>
                         <outlet property="visitWebsiteButton" destination="QHO-VN-So0" id="gnG-i8-ApH"/>
                     </connections>
@@ -1215,6 +1223,7 @@ THE SOFTWARE.
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="y2l-P1-zEv"/>
+        <segue reference="xoP-pu-4Em"/>
+        <segue reference="lFU-9D-YWQ"/>
     </inferredMetricsTieBreakers>
 </document>
