@@ -1062,7 +1062,7 @@ THE SOFTWARE.
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="355" id="oHj-Po-dPc"/>
+                                            <constraint firstAttribute="height" constant="270" id="oHj-Po-dPc"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groupsList" textLabel="sYc-md-hbt" style="IBUITableViewCellStyleDefault" id="JTD-ha-7U1">
@@ -1091,38 +1091,38 @@ THE SOFTWARE.
                                     <constraint firstItem="JEl-fB-XjJ" firstAttribute="top" secondItem="Tmq-xF-g8f" secondAttribute="bottom" constant="8" symbolic="YES" id="KGf-iY-VNK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-bN-QHY">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-bN-QHY">
                                 <rect key="frame" x="0.0" y="113" width="320" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a map radius using the slider " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhz-dq-FDc">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Select a map radius using the slider " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhz-dq-FDc">
                                         <rect key="frame" x="17" y="55" width="275" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="below, in miles." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fht-0c-tFo">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="below, in miles." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fht-0c-tFo">
                                         <rect key="frame" x="84" y="73" width="152" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="WOH-ah-oFp">
+                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="WOH-ah-oFp">
                                         <rect key="frame" x="39" y="144" width="243" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="radiusSliderValueChanged:" destination="JnB-Lm-CNZ" eventType="valueChanged" id="eqx-Eh-W7J"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Radius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-4Z-lig">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="No Radius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-4Z-lig">
                                         <rect key="frame" x="17" y="168" width="79" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkX-cI-Sb0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkX-cI-Sb0">
                                         <rect key="frame" x="280" y="168" width="20" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -1131,7 +1131,7 @@ THE SOFTWARE.
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Radius: 10 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8R2-hM-zGX">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Map Radius: 10 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8R2-hM-zGX">
                                         <rect key="frame" x="72" y="256" width="176" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
@@ -1161,17 +1161,16 @@ THE SOFTWARE.
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CBG-LL-GaG" firstAttribute="top" secondItem="Rp4-IL-sXC" secondAttribute="top" constant="109" id="7gp-OR-ITt"/>
-                            <constraint firstItem="Jz8-bN-QHY" firstAttribute="leading" secondItem="CBG-LL-GaG" secondAttribute="leading" id="AO7-fB-K9y"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="leading" secondItem="Jz8-bN-QHY" secondAttribute="leading" id="0QT-Da-dCD"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="centerX" secondItem="nwB-nt-TJf" secondAttribute="centerX" id="5D7-NV-fU3"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="top" secondItem="nwB-nt-TJf" secondAttribute="bottom" constant="4" id="5f3-oY-BNZ"/>
                             <constraint firstItem="nwB-nt-TJf" firstAttribute="leading" secondItem="Rp4-IL-sXC" secondAttribute="leading" constant="20" symbolic="YES" id="B3C-xa-eKQ"/>
                             <constraint firstItem="Jz8-bN-QHY" firstAttribute="top" secondItem="nwB-nt-TJf" secondAttribute="bottom" constant="8" symbolic="YES" id="Bfb-fL-DPU"/>
-                            <constraint firstItem="CBG-LL-GaG" firstAttribute="top" secondItem="nwB-nt-TJf" secondAttribute="bottom" constant="4" id="EXA-y2-MGq"/>
-                            <constraint firstItem="Jz8-bN-QHY" firstAttribute="bottom" secondItem="CBG-LL-GaG" secondAttribute="bottom" id="WZt-Oe-itO"/>
-                            <constraint firstAttribute="bottom" secondItem="CBG-LL-GaG" secondAttribute="bottom" id="b9i-CG-bCd"/>
-                            <constraint firstItem="CBG-LL-GaG" firstAttribute="centerX" secondItem="nwB-nt-TJf" secondAttribute="centerX" id="frJ-wr-h3O"/>
-                            <constraint firstItem="Jz8-bN-QHY" firstAttribute="trailing" secondItem="CBG-LL-GaG" secondAttribute="trailing" id="nXl-xT-Oea"/>
-                            <constraint firstItem="CBG-LL-GaG" firstAttribute="leading" secondItem="Rp4-IL-sXC" secondAttribute="leading" id="poN-Pp-9wf"/>
-                            <constraint firstAttribute="trailing" secondItem="CBG-LL-GaG" secondAttribute="trailing" id="vTg-te-RkC"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="top" secondItem="Rp4-IL-sXC" secondAttribute="top" constant="109" id="JE0-ei-VS1"/>
+                            <constraint firstAttribute="trailing" secondItem="CBG-LL-GaG" secondAttribute="trailing" id="Pes-5Z-Aw0"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="trailing" secondItem="Jz8-bN-QHY" secondAttribute="trailing" id="Y1d-Sd-rEr"/>
+                            <constraint firstItem="CBG-LL-GaG" firstAttribute="leading" secondItem="Rp4-IL-sXC" secondAttribute="leading" id="fmi-jY-O9R"/>
+                            <constraint firstAttribute="bottom" secondItem="CBG-LL-GaG" secondAttribute="bottom" id="wsb-J9-1wb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings Icon" id="PEb-Yp-Vcy"/>

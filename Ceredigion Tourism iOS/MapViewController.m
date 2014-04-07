@@ -189,8 +189,6 @@
         double latitude = centerCoordinates.latitude;
         double longitude = centerCoordinates.longitude;
         
-
-        
         CLLocationCoordinate2D circleCenter = CLLocationCoordinate2DMake(latitude, longitude);
         GMSCircle __block *circleRadius;
 
