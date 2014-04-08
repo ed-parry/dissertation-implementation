@@ -67,11 +67,6 @@
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.translucent = YES;
-    
-    if(animated == FALSE){
-//        [self setGroupSelectionValues];
-//        [_groupTableView reloadData];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -204,8 +199,7 @@
 }
 
 - (void)changeSwitch:(UISwitch *)sender{
-    CGPoint center= sender.center;
-    CGPoint rootViewPoint = [sender.superview convertPoint:center toView:_groupTableView];
+    CGPoint rootViewPoint = [sender.superview convertPoint:sender.center toView:_groupTableView];
     NSIndexPath *indexPath = [_groupTableView indexPathForRowAtPoint:rootViewPoint];
 
     NSString *selectedGroup = [_attractionGroups objectAtIndex:indexPath.row];
