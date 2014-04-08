@@ -74,14 +74,6 @@
     [self setUpViewContent];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [_eventMap clear];
-    [_eventMap removeFromSuperview];
-    _eventMap.delegate = nil;
-    _eventMap = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.translucent = YES;
@@ -351,10 +343,37 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
+- (void)cleanUpMemory
+{
+    _thisAttraction = nil;
+    _thisEvent = nil;
+    
+    _firstTextField = nil;
+    _firstTextFieldLabel = nil;
+    _secondTextFieldLabel = nil;
+    _secondTextField = nil;
+    _thirdTextField = nil;
+    
+    [_eventMap clear];
+    _eventMap = nil;
+    
+    _imageLoadingOrMapView = nil;
+    [_imageLoadingOrMapView removeFromSuperview];
+    
+    _attractionImageView = nil;
+    _attractionImage = nil;
+    [_attractionImageView removeFromSuperview];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self cleanUpMemory];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self cleanUpMemory];
 }
 
 @end

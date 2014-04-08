@@ -217,11 +217,13 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.translucent = YES;
+    _currentCalendarView = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    _currentCalendarView = nil;
     // Dispose of any resources that can be recreated.
 }
 @end
