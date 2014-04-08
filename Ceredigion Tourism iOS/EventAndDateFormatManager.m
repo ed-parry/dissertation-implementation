@@ -10,7 +10,7 @@
 #import "CoreDataManager.h"
 
 @interface EventAndDateFormatManager ()
-    @property CoreDataManager *dataManager;
+@property CoreDataManager *dataManager;
 @end
 
 @implementation EventAndDateFormatManager

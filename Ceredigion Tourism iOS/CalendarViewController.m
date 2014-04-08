@@ -13,14 +13,14 @@
 #import "EventAndDateFormatManager.h"
 
 @interface CalendarViewController () <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
-@property NSArray *allEventDates;
-@property CoreDataManager *dataManager;
-@property EventAndDateFormatManager *dateManager;
-@property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
-@property (strong, nonatomic) NSString *selectedDay;
+    @property NSArray *allEventDates;
+    @property CoreDataManager *dataManager;
+    @property EventAndDateFormatManager *dateManager;
+    @property (strong, nonatomic) IBOutlet UITableView *dayEventsTable;
+    @property (strong, nonatomic) NSString *selectedDay;
 
-@property float currentTargetHeight;
-@property (strong, nonatomic) VRGCalendarView *currentCalendarView;
+    @property float currentTargetHeight;
+    @property (strong, nonatomic) VRGCalendarView *currentCalendarView;
 @end
 
 @implementation CalendarViewController

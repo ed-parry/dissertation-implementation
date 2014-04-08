@@ -12,7 +12,7 @@
 #import "Attraction.h"
 
 @interface TestDataGenerator ()
-    @property CoreDataManager *coreDataManager;
+@property CoreDataManager *coreDataManager;
 @end
 
 @implementation TestDataGenerator

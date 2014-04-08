@@ -10,12 +10,12 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface AboutViewController ()
-@property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) NSString *openSourceLicences;
-@property bool viewingLegal;
-@property (strong, nonatomic) IBOutlet UIButton *helpViewButton;
+    @property (strong, nonatomic) IBOutlet UITextView *textView;
+    @property (strong, nonatomic) NSString *openSourceLicences;
+    @property bool viewingLegal;
+    @property (strong, nonatomic) IBOutlet UIButton *helpViewButton;
 
-- (IBAction)AboutButtonTapped:(id)sender;
+    - (IBAction)AboutButtonTapped:(id)sender;
 @end
 
 @implementation AboutViewController

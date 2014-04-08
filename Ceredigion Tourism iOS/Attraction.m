@@ -12,8 +12,7 @@
 - (UIImage *)getAttractionGroupImage:(NSString *)group
 {
     // Have to use if/else rather than switch, because
-    // Obj-C only supports switch on int/bool/double, not
-    // strings.
+    // Obj-C only supports switch on int/bool/double, not strings
     if([group isEqualToString:@"Accommodation"]){
         return [UIImage imageNamed:@"Accommodation Icon"];
     }

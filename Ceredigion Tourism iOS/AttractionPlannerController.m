@@ -16,7 +16,6 @@
 @property AttractionPlan *thisPlan;
 @property CoreDataManager *coreDataManager;
 @property MapDataManager *mapDataManager;
-
 @property NSMutableArray *workingAttractionList;
 @end
 

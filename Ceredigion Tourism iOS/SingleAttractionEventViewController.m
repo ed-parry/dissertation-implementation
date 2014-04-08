@@ -16,26 +16,23 @@
 @property (strong, nonatomic) Attraction *thisAttraction;
 @property (strong, nonatomic) Event *thisEvent;
 
+@property (strong, nonatomic) IBOutlet UILabel *firstTextFieldLabel;
 @property (strong, nonatomic) IBOutlet UILabel *firstTextField;
+@property (strong, nonatomic) IBOutlet UILabel *secondTextFieldLabel;
 @property (strong, nonatomic) IBOutlet UIButton *secondTextField;
 @property (strong, nonatomic) IBOutlet UILabel *thirdTextField;
 
+@property (strong, nonatomic) IBOutlet UIButton *showAttractionOnMapViewButton;
 @property (strong, nonatomic) IBOutlet UIButton *addToCalendarButton;
 @property (strong, nonatomic) IBOutlet UIButton *visitWebsiteButton;
 
-@property (strong, nonatomic) IBOutlet UILabel *firstTextFieldLabel;
-@property (strong, nonatomic) IBOutlet UILabel *secondTextFieldLabel;
-
 @property UIImage *attractionImage;
-
-@property GMSMapView *map;
+@property GMSMapView *eventMap;
 
 // Extra views
 @property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
 @property (strong, nonatomic) IBOutlet UIImageView *attractionImageView;
-
-@property (strong, nonatomic) IBOutlet UIButton *showAttractionOnMapViewButton;
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
@@ -79,10 +76,10 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [_map clear];
-    [_map removeFromSuperview];
-    _map.delegate = nil;
-    _map = nil;
+    [_eventMap clear];
+    [_eventMap removeFromSuperview];
+    _eventMap.delegate = nil;
+    _eventMap = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -199,16 +196,16 @@
     frame.origin.x = 0;
     frame.origin.y = self.view.frame.size.height - 149;
     
-    _map = [GMSMapView mapWithFrame:frame camera:camera];
+    _eventMap = [GMSMapView mapWithFrame:frame camera:camera];
 
     // add the pin
     GMSMarker *eventMarker = [[GMSMarker alloc] init];
     eventMarker.position = CLLocationCoordinate2DMake(latitude, longitude);
     eventMarker.title = event.title;
     eventMarker.icon = [UIImage imageNamed:@"Event Icon"];
-    eventMarker.map = _map;
+    eventMarker.map = _eventMap;
     
-    [self.view addSubview:_map];
+    [self.view addSubview:_eventMap];
 }
 
 - (NSString *)returnTextualDate:(NSString *)date andTime:(NSString *)time
