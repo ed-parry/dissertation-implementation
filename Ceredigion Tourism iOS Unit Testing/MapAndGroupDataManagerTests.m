@@ -100,6 +100,17 @@
     
     XCTAssertTrue(isArrayTheSame, @"The returned array from getAllowedGroups... matches the expect array reuslt.");
 }
+- (void)testGetAlphabeticallyOrderedArray
+{
+// - (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)unsortedArray;
+    NSArray *unorderedArray = @[@"Attraction", @"Food & drink", @"Activity", @"Retail"];
+    NSArray *expectedOrderedArray = @[@"Activity", @"Attraction", @"Food & drink", @"Retail"];
+    NSArray *returnedOrderedArray = [_groupDataManager getAlphabeticallyOrderedArray:unorderedArray];
+    
+    bool isArrayTheSame = [returnedOrderedArray isEqualToArray:expectedOrderedArray];
+    
+    XCTAssertTrue(isArrayTheSame, @"The returned array has been ordered as expected.");
+}
 
 - (void)testMilesToMeters
 {
