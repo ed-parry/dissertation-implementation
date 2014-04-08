@@ -59,7 +59,7 @@
     
     NSFetchRequest *allAttractions = [[NSFetchRequest alloc] init];
     [allAttractions setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:context]];
-    int count = [context countForFetchRequest:allAttractions error:&error];
+    NSUInteger count = [context countForFetchRequest:allAttractions error:&error];
     
     if (count == 0){
         return NO;

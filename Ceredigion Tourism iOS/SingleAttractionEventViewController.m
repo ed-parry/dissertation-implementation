@@ -37,7 +37,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *showAttractionOnMapViewButton;
 
-- (IBAction)showAttractionOnMapView:(id)sender;
 - (IBAction)phoneNumberClicked:(UIButton *)sender;
 - (IBAction)addToCalendarTapped:(id)sender;
 - (IBAction)visitWebsiteTapped:(id)sender;

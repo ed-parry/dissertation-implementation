@@ -7,7 +7,6 @@
 //
 
 #import "MapDataManager.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import "AppDelegate.h"
 
 @interface MapDataManager ()
@@ -57,11 +56,9 @@
         double distanceFromMiddle = [self getDistanceInMetersFrom:circleCenter to:coordinates];
         
         if(distanceFromMiddle <= circleRadius){
-            // It's inside the radius
             return YES;
         }
         else{
-            // It's outside of the radius.
             return NO;
         }
     }
@@ -177,7 +174,6 @@
         return _locationAddressCoordinates;
     }
     else{
-        // no location provided, return a useless coordinate.
         return CLLocationCoordinate2DMake(0.000000, 0.000000);
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DateFormatManager.h
+//  EventAndDateFormatManager.h
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 22/03/2014.

@@ -8,7 +8,6 @@
 
 #import "GroupDataManager.h"
 #import "CoreDataManager.h"
-#import "Attraction.h"
 
 @interface GroupDataManager ()
     @property NSString *filePath;
@@ -35,7 +34,6 @@
 
 - (bool)isGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner
 {
-
     NSArray *allowedGroups = [self getAllowedGroupsFromPlistForAttractionPlanner:attractionPlanner];
     
     for(NSString *allowedGroup in allowedGroups){
@@ -52,7 +50,7 @@
     NSMutableArray *defaultGroups = [[NSMutableArray alloc] initWithArray:[dataManager getAllAttractionGroupTypes]];
     
     if([defaultGroups count] < 1){
-        // make a new list that will work for 90% of cases as a default
+        // a catch all if we get here before a slow network connection
         defaultGroups = [[NSMutableArray alloc] initWithArray:@[@"Accommodation", @"Activity", @"Arts & crafts", @"Attraction", @"Camp & caravan", @"Food & drink", @"Retail"]];
     }
 

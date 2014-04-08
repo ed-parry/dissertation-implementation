@@ -1,5 +1,5 @@
 //
-//  ActivityPlannerResultsViewController.m
+//  AttractionPlannerResultsViewController.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 26/03/2014.

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Aberystwyth University. All rights reserved.
 //
 
-#import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
 #import "CoreDataManager.h"

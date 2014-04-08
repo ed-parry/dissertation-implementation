@@ -35,30 +35,48 @@
 
 - (NSArray *)generateActivityList
 {
-    // get all attractions in group arrays
     NSArray *allAttractionsInGroupArrays = [_coreDataManager getAllAttractionsInGroupArrays];
     
-    // get all attractions in user selected groups
     _workingAttractionList = [[NSMutableArray alloc] initWithArray:[self getAllAttractionsInSelectedGroups:_thisPlan.selectedGroups fromArray:allAttractionsInGroupArrays]];
 
-    // remove all attractions of a higher adrenaline level
     _workingAttractionList = [self removeAttractionsWithHigherAdrenalineLevelThan:_thisPlan.adrenalineLevel fromArray:_workingAttractionList];
     
-    // get suitable amount of attractions within x miles of location
     float startDistance = 16093.44; // 10 miles in meters
     _workingAttractionList = [self getAllAttractionsWithin:startDistance ofLocation:_thisPlan.locationCoordinates usingArray:_workingAttractionList];
     
-    // shuffle array
     _workingAttractionList = [self shuffleArrayContents:_workingAttractionList];
     
-    // order by adrenaline level
     _workingAttractionList = [self orderArrayByAdrenalineLevelWithArray:_workingAttractionList];
     
-    // select top number from array
     _workingAttractionList = [self returnTopNumber:_thisPlan.numberOfActivities fromArray:_workingAttractionList];
     
-    // return!
     return _workingAttractionList;
+}
+
+- (NSArray *)generateEventsList
+{
+    NSMutableArray *relevantEvents = [[NSMutableArray alloc] init];
+    
+    NSString *startDate = _thisPlan.startDate;
+    int days = [_thisPlan.days intValue];
+    
+    EventAndDateFormatManager *eventManager = [[EventAndDateFormatManager alloc] init];
+    
+    NSArray *datesArray = [[NSArray alloc] initWithArray:[eventManager makeArrayOfDatesStartingFrom:startDate forNumberOfDays:days]];
+    
+    for(NSDate *date in datesArray){
+        NSString *selectedDate = [NSString stringWithFormat:@"%@", date];
+        NSArray *tempDateEvents = [[NSArray alloc] initWithArray:[eventManager returnEventsForSelectedDay:selectedDate]];
+        if([tempDateEvents count] > 0){
+            for(Event *thisEvent in tempDateEvents){
+                // only add it if it isn't already there.
+                if(![relevantEvents containsObject:thisEvent]){
+                    [relevantEvents addObject:thisEvent];
+                }
+            }
+        }
+    }
+    return relevantEvents;
 }
 
 - (NSArray *)getAllAttractionsInSelectedGroups:(NSArray *)selectedGroups fromArray:(NSArray *)array
@@ -150,7 +168,6 @@
         else{
             return attractionsWithinLocation;
         }
-        NSLog(@"Shouldn't really get here...");
         return nil;
     }
 }
@@ -161,8 +178,8 @@
     NSUInteger count = [array count];
     for (NSUInteger i = 0; i < count; ++i) {
         // Select a random element between i and end of array to swap with.
-        int nElements = count - i;
-        int n = (arc4random() % nElements) + i;
+        NSUInteger nElements = count - i;
+        NSUInteger n = (arc4random() % nElements) + i;
         [array exchangeObjectAtIndex:i withObjectAtIndex:n];
     }
     return array;
@@ -193,35 +210,7 @@
     }
     else{
         NSMutableArray *arrayToReturn = [[NSMutableArray alloc] initWithArray:[array subarrayWithRange:NSMakeRange(0, numberInt)]];
-        
         return arrayToReturn;
     }
 }
-
-- (NSArray *)generateEventsList
-{
-    NSMutableArray *relevantEvents = [[NSMutableArray alloc] init];
-    
-    NSString *startDate = _thisPlan.startDate;
-    int days = [_thisPlan.days intValue];
-    
-    EventAndDateFormatManager *eventManager = [[EventAndDateFormatManager alloc] init];
-    
-    NSArray *datesArray = [[NSArray alloc] initWithArray:[eventManager makeArrayOfDatesStartingFrom:startDate forNumberOfDays:days]];
-    
-    for(NSDate *date in datesArray){
-        NSString *selectedDate = [NSString stringWithFormat:@"%@", date];
-        NSArray *tempDateEvents = [[NSArray alloc] initWithArray:[eventManager returnEventsForSelectedDay:selectedDate]];
-        if([tempDateEvents count] > 0){
-            for(Event *thisEvent in tempDateEvents){
-                // only add it if it isn't already there.
-                if(![relevantEvents containsObject:thisEvent]){
-                    [relevantEvents addObject:thisEvent];
-                }
-            }
-        }
-    }
-    return relevantEvents;
-}
-
 @end

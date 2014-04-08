@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  StartViewController.h
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 17/02/2014.

@@ -1,5 +1,5 @@
 //
-//  EventsDataManager.m
+//  EventsCSVDataManager.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 12/03/2014.

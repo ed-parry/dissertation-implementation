@@ -1,5 +1,5 @@
 //
-//  DateFormatManager.m
+//  EventAndDateFormatManager.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 22/03/2014.
@@ -10,11 +10,10 @@
 #import "CoreDataManager.h"
 
 @interface EventAndDateFormatManager ()
-@property CoreDataManager *dataManager;
+    @property CoreDataManager *dataManager;
 @end
 
 @implementation EventAndDateFormatManager
-
 
 - (NSString *)getTextualDate:(NSString *)date forCalendar:(bool)calendar
 {
@@ -45,7 +44,6 @@
 
 - (NSString *)getTextDayFromNumber:(NSInteger)day
 {
-    
     day++;
     NSInteger remainder = day % 10;
     if (remainder == 1 && day != 11) {
@@ -119,7 +117,7 @@
     return [NSString stringWithFormat:@"%@-%@-%@", daySegment, monthSegment, yearSegment];
 }
 
-// EVENTS MANAGEMENT
+#pragma mark Events Management
 - (NSArray *)returnEventsForSelectedDay:(NSString *)date
 {
     NSMutableArray *daysEvents = [[NSMutableArray alloc] init];
@@ -214,7 +212,6 @@
             }
         }
     }
-    
     return daysEvents;
 }
 
@@ -239,8 +236,6 @@
     return datesArray;
 }
 
-// this method should return a complete list of all NSDate's that have an event on them
-// including the days between the start and end dates.
 - (NSArray *)getAllEventFillerDatesBetween :(NSDate *)startDate and :(NSDate *)endDate
 {
     NSMutableArray *fillerDates = [[NSMutableArray alloc] init];
@@ -251,6 +246,5 @@
     
     return fillerDates;
 }
-
 
 @end

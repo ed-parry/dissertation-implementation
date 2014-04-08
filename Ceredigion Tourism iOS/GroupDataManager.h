@@ -18,5 +18,5 @@
 - (bool)isGroupInAllowedGroups:(NSString *)group forAttractionPlanner:(bool)attractionPlanner;
 
 - (NSArray *)getAllowedGroupsFromPlistForAttractionPlanner:(bool)attractionPlanner;
-
+- (NSArray *)getAlphabeticallyOrderedArray:(NSArray *)unsortedArray;
 @end

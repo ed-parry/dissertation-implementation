@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  StartViewController.m
 //  Ceredigion Tourism iOS
 //
 //  Created by Ed Parry on 17/02/2014.
@@ -7,14 +7,12 @@
 //
 
 #import "StartViewController.h"
-#import "CSVDataManager.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import "AttractionsCSVDataManager.h"
 #import "EventsCSVDataManager.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
 #import "MapDataManager.h"
 #import "CoreDataManager.h"
-#import "GroupDataManager.h"
 
 @interface StartViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
