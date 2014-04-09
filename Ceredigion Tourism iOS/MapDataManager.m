@@ -9,7 +9,7 @@
 #import "MapDataManager.h"
 #import "AppDelegate.h"
 
-@interface MapDataManager ()
+@interface MapDataManager () <CLLocationManagerDelegate>
 @property CLLocationCoordinate2D currentRadiusCenter;
 @property double currentRadiusInMeters;
 @property CLLocationCoordinate2D locationAddressCoordinates;
