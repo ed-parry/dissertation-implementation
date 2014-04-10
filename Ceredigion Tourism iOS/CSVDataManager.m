@@ -54,7 +54,7 @@
         NSString *lastModifiedString = [[response allHeaderFields] objectForKey:@"Last-Modified"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
-
+        
         lastModifiedDate = [dateFormatter dateFromString:lastModifiedString];
         
         NSDateFormatter *secondaryFormatter = [[NSDateFormatter alloc]init];

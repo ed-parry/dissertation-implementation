@@ -9,7 +9,7 @@
 #import "MapDataManager.h"
 #import "AppDelegate.h"
 
-@interface MapDataManager () <CLLocationManagerDelegate>
+@interface MapDataManager ()
 @property CLLocationCoordinate2D currentRadiusCenter;
 @property double currentRadiusInMeters;
 @property CLLocationCoordinate2D locationAddressCoordinates;
@@ -163,6 +163,7 @@
 {
     if([location length] > 0){
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+
         [geocoder geocodeAddressString:location completionHandler:^(NSArray *placemarks, NSError *error) {
             if (error) {
                 NSLog(@"%@", error);

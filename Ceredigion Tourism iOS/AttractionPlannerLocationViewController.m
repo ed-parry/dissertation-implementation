@@ -26,8 +26,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *arrivalDateTextField;
 @property (strong, nonatomic) IBOutlet UITextField *locationTextField;
-@property (strong, nonatomic) NSString *locationText;
-@property (strong, nonatomic) NSString *arrivalDateText;
 @property (strong, nonatomic) NSString *arrivalDateNoFormat;
 @property CLLocationCoordinate2D locationCoordinates;
 @property CLLocationManager *locationManager;
@@ -53,8 +51,7 @@
                                                    blue:(219.0/256.0)
                                                   alpha:(1.0)]];
     
-    _locationTextField.delegate = self;
-    _locationManager.delegate = self;
+//    _locationTextField.delegate = self;
     
     // Hide keyboard
     UIView* hiddenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
@@ -95,7 +92,6 @@
     
     NSString *textualDate = [dateFormatManager getTextualDate:date forCalendar:YES];
     _arrivalDateTextField.text = textualDate;
-    _arrivalDateText = textualDate;
     
     // store the original formatting locally, to use later in the object.
     _arrivalDateNoFormat = date;
@@ -115,12 +111,10 @@
     NSString *textualDate = [dateFormatManager getTextualDate:[NSString stringWithFormat:@"%@", today] forCalendar:YES];
     _arrivalDateNoFormat = [NSString stringWithFormat:@"%@", today];
     _arrivalDateTextField.text = textualDate;
-    _arrivalDateText = textualDate;
 }
 
 - (IBAction)useCurrentLocation:(id)sender
-{
-    
+{   
     CLAuthorizationStatus mapAuthorised = [CLLocationManager authorizationStatus];
     if(mapAuthorised == kCLAuthorizationStatusAuthorized){
         double lat = _locationManager.location.coordinate.latitude;
@@ -192,11 +186,11 @@
         _mapDataManager = [[MapDataManager alloc] init];
     }
     if(_locationCoordinates.latitude == 0.000000){
-        _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationText];
+        _locationCoordinates = [_mapDataManager getCoordinatesForAddressLocation:_locationTextField.text];
     }
     
-    NSString *location = _locationText;
-    NSString *startDate = _arrivalDateText;
+    NSString *location = _locationTextField.text;
+    NSString *startDate = _arrivalDateTextField.text;
     if(([location length] > 0) && ([startDate length] > 0) && ([_arrivalDateNoFormat length] > 0))
     {
         if(_locationCoordinates.latitude != 0.000000){
@@ -263,7 +257,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    _locationText = _locationTextField.text;
     return [textField resignFirstResponder];
 }
 

@@ -43,7 +43,7 @@
     // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
     if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
     {
-
+        
         NSURL *url = [NSURL URLWithString:_attractionsURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
