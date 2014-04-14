@@ -237,6 +237,8 @@
 }
 
 - (void)buildMapMarkers{
+
+    int addedMapMarkers = 0;
     for(Attraction *currentAttraction in _attractionPositions){
         
         CLLocationCoordinate2D attractionCoordinates;
@@ -256,17 +258,21 @@
                 attractionMarker.position = CLLocationCoordinate2DMake(attractionLat, attractionLong);
                 attractionMarker.title = currentAttraction.name;
                 attractionMarker.snippet = currentAttraction.group;
-            
+                
                 // Make a new Attraciton object to grab the correct group colour.
                 Attraction *colourAttractionObj = [[Attraction alloc] init];
                 attractionMarker.icon = [colourAttractionObj getAttractionGroupImage:currentAttraction.group];
-            
+                
                 attractionMarker.map = _mapView;
             });
+            addedMapMarkers++;
         }
         else{
             // The marker is outside of the current radius, so we shouldn't show it.
         }
+    }
+    if(addedMapMarkers == 0){
+        [self showUIAlertView:@"Nothing Found" forProblem:@"Nothing Found"];
     }
 }
 
@@ -316,11 +322,18 @@
                                               otherButtonTitles:@"Current Location", nil];
     }
     else if([problem isEqualToString:@"Not In Area"]){
-        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' Not in Wales", searchText]
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"'%@' not in Wales", searchText]
                                            message:@"Your search is not within the area of Wales. Please try again, or search using your current location."
                                           delegate:self
                                  cancelButtonTitle:@"Search Again"
                                  otherButtonTitles:@"Current Location", nil];
+    }
+    else if([problem isEqualToString:@"Nothing Found"]){
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"No Attractions Found"]
+                                           message:@"Using your current location, no attractions can be found nearby. Please expand your search using the settings menu or search again."
+                                          delegate:self
+                                 cancelButtonTitle:@"Search Again"
+                                 otherButtonTitles:@"OK", nil];
     }
 
     [alert show];
@@ -331,8 +344,15 @@
     if(buttonIndex == 0){
         [self.tabBarController.navigationController popViewControllerAnimated:YES];
     }
+    
     else if(buttonIndex == 1){
-        [self getActualLocationCoordinates];
+        if([alertView.title isEqualToString:@"No Attractions Found"]){
+            // don't do anything, just dismiss.
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+        }
+        else{
+            [self getActualLocationCoordinates];
+        }
     }
 }
 
