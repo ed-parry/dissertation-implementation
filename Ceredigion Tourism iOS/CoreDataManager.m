@@ -172,17 +172,17 @@
     
     newAttraction.id = counter;
     newAttraction.group = [singleAttractionArray objectAtIndex:0];
-    newAttraction.name = [singleAttractionArray objectAtIndex:1];
-    newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:2];
-    newAttraction.descriptionText = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:3]];
-    newAttraction.address = [singleAttractionArray objectAtIndex:4];
-    newAttraction.telephone = [singleAttractionArray objectAtIndex:5];
-    newAttraction.website = [singleAttractionArray objectAtIndex:6];
+    newAttraction.name = [singleAttractionArray objectAtIndex:2];
+    newAttraction.imageLocationURL = [singleAttractionArray objectAtIndex:3];
+    newAttraction.descriptionText = [self stripHTMLFromString:[singleAttractionArray objectAtIndex:4]];
+    newAttraction.address = [singleAttractionArray objectAtIndex:5];
+    newAttraction.telephone = [singleAttractionArray objectAtIndex:6];
+    newAttraction.website = [singleAttractionArray objectAtIndex:7];
     
-    newAttraction.latitude = [singleAttractionArray objectAtIndex:7];
-    newAttraction.longitude = [singleAttractionArray objectAtIndex:8];
+    newAttraction.latitude = [singleAttractionArray objectAtIndex:8];
+    newAttraction.longitude = [singleAttractionArray objectAtIndex:9];
     
-    NSString *hideValue = [singleAttractionArray objectAtIndex:9];
+    NSString *hideValue = [singleAttractionArray objectAtIndex:10];
     if([hideValue isEqualToString:@""])
     {
         newAttraction.hide = NO;
@@ -191,14 +191,14 @@
         newAttraction.hide = YES;
     }
 
-    // assuming that it will be at the end of the data array
-    // newAttraction.adrenalineLevel = [singleAttractionArray objectAtIndex:10];
-    
-    // ... but for now...
-
-    NSArray *adrenalineLevels = [[NSArray alloc] initWithObjects:@"low", @"medium", @"high", nil];
-    NSUInteger randomIndex = arc4random() % [adrenalineLevels count];
-    newAttraction.adrenalineLevel = [adrenalineLevels objectAtIndex:randomIndex]; // for testing, remove when data source is updated
+    // set the new adrenaline levels: green, amber, red.
+    NSString *adrenalineLevel = [singleAttractionArray objectAtIndex:1];
+    if([adrenalineLevel isEqualToString:@""]){
+        newAttraction.adrenalineLevel = @"none";
+    }
+    else{
+        newAttraction.adrenalineLevel = adrenalineLevel;
+    }
     
     [self addAttractionToCoreData:newAttraction];
 }
