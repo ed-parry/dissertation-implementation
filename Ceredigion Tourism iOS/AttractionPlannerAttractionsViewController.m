@@ -62,7 +62,7 @@
     // setup the current plan with the default values from this view.
     [self getAttractionGroupsArray];
     _thisPlan.selectedGroups = _activityPlanGroups;
-    _thisPlan.adrenalineLevel = @"medium";
+    _thisPlan.adrenalineLevel = @"amber";
     _thisPlan.numberOfActivities = [NSNumber numberWithInt:8];
 }
 
@@ -154,20 +154,20 @@
 - (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender
 {
     if(sender.selectedSegmentIndex == 0){
-        // low
-        _thisPlan.adrenalineLevel = @"low";
+        // green
+        _thisPlan.adrenalineLevel = @"green";
     }
     else if(sender.selectedSegmentIndex == 1){
-        // medium
-        _thisPlan.adrenalineLevel = @"medium";
+        // amber
+        _thisPlan.adrenalineLevel = @"amber";
     }
     else if(sender.selectedSegmentIndex == 2){
-        // high
-        _thisPlan.adrenalineLevel = @"high";
+        // red
+        _thisPlan.adrenalineLevel = @"red";
     }
     else{
         // shouldn't get here, but we'll treat is as medium just in case.
-        _thisPlan.adrenalineLevel = @"medium";
+        _thisPlan.adrenalineLevel = @"none";
     }
 }
 

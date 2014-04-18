@@ -109,15 +109,15 @@
 - (NSArray *)returnHigherAdrenalineLevelsThan:(NSString *)adrenalineLevel
 {
     NSArray *adrenalineLevelsToReturn;
-    if([adrenalineLevel isEqualToString:@"high"]){
+    if([adrenalineLevel isEqualToString:@"red"]){
         // keep the array empty
         adrenalineLevelsToReturn = [[NSArray alloc] init];
     }
-    else if([adrenalineLevel isEqualToString:@"medium"]){
-        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"high", nil];
+    else if([adrenalineLevel isEqualToString:@"amber"]){
+        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"red", nil];
     }
-    else if([adrenalineLevel isEqualToString:@"low"]){
-        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"high", @"medium", nil];
+    else if([adrenalineLevel isEqualToString:@"green"]){
+        adrenalineLevelsToReturn = [[NSArray alloc] initWithObjects:@"red", @"amber", nil];
     }
     
     return adrenalineLevelsToReturn;
@@ -126,15 +126,15 @@
 - (NSArray *)returnLowerAndIncludedAdrenalineLevelsThan:(NSString *)adrenalineLevel
 {
     NSArray *adrenalineLevelsToKeep;
-    if([adrenalineLevel isEqualToString:@"high"]){
+    if([adrenalineLevel isEqualToString:@"red"]){
         // keep the array empty
-        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"high", @"medium", @"low", nil];
+        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"red", @"amber", @"green", @"none", nil];
     }
-    else if([adrenalineLevel isEqualToString:@"medium"]){
-        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"medium", @"low", nil];
+    else if([adrenalineLevel isEqualToString:@"amber"]){
+        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"amber", @"green", @"none", nil];
     }
-    else if([adrenalineLevel isEqualToString:@"low"]){
-        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"low", nil];
+    else if([adrenalineLevel isEqualToString:@"green"]){
+        adrenalineLevelsToKeep = [[NSArray alloc] initWithObjects:@"green", @"none", nil];
     }
     
     return adrenalineLevelsToKeep;

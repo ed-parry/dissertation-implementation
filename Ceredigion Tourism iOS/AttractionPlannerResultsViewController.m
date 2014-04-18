@@ -103,8 +103,12 @@
         cell.textLabel.text = thisAttraction.name;
         
         NSString *firstLetter = [thisAttraction.adrenalineLevel substringToIndex:1];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Adrenaline level: %@%@", [firstLetter capitalizedString], [thisAttraction.adrenalineLevel substringFromIndex:1]];
-        
+        if([thisAttraction.adrenalineLevel isEqualToString:@"none"]){
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Unknown"];
+        }
+        else{
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Adrenaline level: %@%@", [firstLetter capitalizedString], [thisAttraction.adrenalineLevel substringFromIndex:1]];
+        }
         cell.imageView.image = [self returnColorImageFromAttractionGroup:thisAttraction.group];
     }
     else if(indexPath.section == 1){
