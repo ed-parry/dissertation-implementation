@@ -17,6 +17,7 @@
 @property GroupDataManager *groupDataManager;
 @property NSArray *attractionGroups;
 @property NSArray *activityPlanGroups;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *adrenalineSegmentControl;
 @property (strong, nonatomic) IBOutlet UITableView *attractionsGroupTable;
 - (IBAction)adrenalineLevelSelector:(UISegmentedControl *)sender;
 - (IBAction)activityNumberSelector:(UISlider *)sender;

@@ -104,7 +104,7 @@
         
         NSString *firstLetter = [thisAttraction.adrenalineLevel substringToIndex:1];
         if([thisAttraction.adrenalineLevel isEqualToString:@"none"]){
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Unknown"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Adrenaline level: Unknown"];
         }
         else{
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Adrenaline level: %@%@", [firstLetter capitalizedString], [thisAttraction.adrenalineLevel substringFromIndex:1]];
