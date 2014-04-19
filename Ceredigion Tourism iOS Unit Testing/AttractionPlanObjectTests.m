@@ -25,7 +25,7 @@
     _plan.startDate = @"26-03-14";
     _plan.days = [NSNumber numberWithInt:3];
     _plan.selectedGroups = @[@"Activity", @"Accommodation", @"Retail"];
-    _plan.adrenalineLevel = @"medium";
+    _plan.adrenalineLevel = @"amber";
     _plan.numberOfActivities = [NSNumber numberWithInt:8];
 }
 
@@ -73,7 +73,7 @@
 
 - (void)testAttractionPlanAdrenalineLevels
 {
-    XCTAssertEqual(_plan.adrenalineLevel, @"medium", @"Check the Attraction Plan adrenaline level");
+    XCTAssertEqual(_plan.adrenalineLevel, @"amber", @"Check the Attraction Plan adrenaline level");
 }
 
 - (void)testAttractionPlanNumberOfActivities

@@ -28,7 +28,7 @@
     _plan.startDate = @"04-06-14";
     _plan.days = [NSNumber numberWithInt:10];
     _plan.selectedGroups = @[@"Activity", @"Accommodation", @"Retail"];
-    _plan.adrenalineLevel = @"medium";
+    _plan.adrenalineLevel = @"amber";
     _plan.numberOfActivities = [NSNumber numberWithInt:7];
     
     _plannerController = [[AttractionPlannerController alloc] initWithPlan:_plan];
@@ -55,7 +55,7 @@
     bool isListOfCorrectAdrenalineLevels = YES;
     bool isListFreeOfUnselectedGroups = YES;
     for(Attraction *temp in activityList){
-        if([temp.adrenalineLevel isEqualToString:@"high"]){
+        if([temp.adrenalineLevel isEqualToString:@"red"]){
             isListOfCorrectAdrenalineLevels = NO;
         }
         if(![_plan.selectedGroups containsObject:temp.group]){
@@ -85,8 +85,8 @@
 
 - (void)testReturnLowerAndIncludedAdrenalineLevelsThanLevel
 {
-    NSString *selectedChosenAdrenalineLevel = @"medium";
-    NSArray *expectedAdrenalineLevels = [[NSArray alloc] initWithObjects:@"medium", @"low", nil];
+    NSString *selectedChosenAdrenalineLevel = @"amber";
+    NSArray *expectedAdrenalineLevels = [[NSArray alloc] initWithObjects:@"amber", @"green", @"none", nil];
     
     NSArray *receivedResults = [[NSArray alloc] initWithArray:[_plannerController returnLowerAndIncludedAdrenalineLevelsThan:selectedChosenAdrenalineLevel]];
     
@@ -98,8 +98,8 @@
 
 - (void)testReturnHigherAdrenalineLevelsThanLevel
 {
-    NSString *selectedChosenAdrenalineLevel = @"low";
-    NSArray *expectedAdrenalineLevels = [[NSArray alloc] initWithObjects:@"high", @"medium", nil];
+    NSString *selectedChosenAdrenalineLevel = @"green";
+    NSArray *expectedAdrenalineLevels = [[NSArray alloc] initWithObjects:@"red", @"amber", nil];
     
     NSArray *receivedResults = [[NSArray alloc] initWithArray:[_plannerController returnHigherAdrenalineLevelsThan:selectedChosenAdrenalineLevel]];
     
