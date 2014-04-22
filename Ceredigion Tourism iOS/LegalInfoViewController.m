@@ -36,7 +36,7 @@
 - (void)showLegalText
 {
     _textView.font = [UIFont fontWithName:@"Avenir-Medium" size:10.0];
-    _textView.text = [NSString stringWithFormat:@"%@\n%@",[GMSServices openSourceLicenseInfo], _openSourceLicences];
+    
     _textView.userInteractionEnabled = TRUE;
     [_textView sizeToFit];
 }
