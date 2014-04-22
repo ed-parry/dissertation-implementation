@@ -39,6 +39,7 @@
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
 		6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7B856718CF732000361807 /* Crashlytics.framework */; };
 		6D7C558018E3178800927769 /* AttractionPlannerResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C557F18E3178800927769 /* AttractionPlannerResultsViewController.m */; };
+		6D7D1267190691820061535A /* LegalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7D1266190691820061535A /* LegalInfoViewController.m */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
 		6DB4041C18BE1F13007A092E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D58576E18B2537600306327 /* XCTest.framework */; };
@@ -142,6 +143,8 @@
 		6D7B856718CF732000361807 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6D7C557E18E3178800927769 /* AttractionPlannerResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionPlannerResultsViewController.h; sourceTree = "<group>"; };
 		6D7C557F18E3178800927769 /* AttractionPlannerResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlannerResultsViewController.m; sourceTree = "<group>"; };
+		6D7D1265190691820061535A /* LegalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalInfoViewController.h; sourceTree = "<group>"; };
+		6D7D1266190691820061535A /* LegalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalInfoViewController.m; sourceTree = "<group>"; };
 		6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleAttractionEventViewController.h; sourceTree = "<group>"; };
 		6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleAttractionEventViewController.m; sourceTree = "<group>"; };
 		6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionObjectTests.m; sourceTree = "<group>"; };
@@ -373,9 +376,8 @@
 		6D749A9618B255A600E06D7F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D7D12681906918C0061535A /* About Views */,
 				6D0085AD18E205A200B9B1D0 /* Attraction Planner */,
-				6D404AB518D8911500C10CA8 /* AboutViewController.h */,
-				6D404AB618D8911500C10CA8 /* AboutViewController.m */,
 				6DB5DC1A18CDE94A009935DA /* CalendarViewController.h */,
 				6DB5DC1B18CDE94A009935DA /* CalendarViewController.m */,
 				6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */,
@@ -414,6 +416,17 @@
 			);
 			name = CHCSVParser;
 			path = "Ceredigion Tourism iOS";
+			sourceTree = "<group>";
+		};
+		6D7D12681906918C0061535A /* About Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D404AB518D8911500C10CA8 /* AboutViewController.h */,
+				6D404AB618D8911500C10CA8 /* AboutViewController.m */,
+				6D7D1265190691820061535A /* LegalInfoViewController.h */,
+				6D7D1266190691820061535A /* LegalInfoViewController.m */,
+			);
+			name = "About Views";
 			sourceTree = "<group>";
 		};
 		6DB4041F18BE1F13007A092E /* Ceredigion Tourism iOS Unit Testing */ = {
@@ -609,6 +622,7 @@
 				6DD8969B18D06F9300BCE840 /* Event.m in Sources */,
 				6D7C558018E3178800927769 /* AttractionPlannerResultsViewController.m in Sources */,
 				6D39A4D518B51F73007BC8CA /* SettingsViewController.m in Sources */,
+				6D7D1267190691820061535A /* LegalInfoViewController.m in Sources */,
 				6DD8969818D06A9800BCE840 /* AttractionsCSVDataManager.m in Sources */,
 				6DBD731218F1937C00E168BC /* TestDataGenerator.m in Sources */,
 				6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */,

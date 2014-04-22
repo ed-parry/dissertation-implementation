@@ -68,7 +68,7 @@
                                 </state>
                                 <connections>
                                     <action selector="viewAboutInfoButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4gK-0a-0ms"/>
-                                    <segue destination="Ppq-eM-k7O" kind="push" id="RpD-Kd-wrK"/>
+                                    <segue destination="9Om-kj-6SP" kind="push" id="jai-yv-tFa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Ceredigion Tourism" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5J-Rh-xYQ">
@@ -146,6 +146,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="511" y="71"/>
+        </scene>
+        <!--About View Controller - About This App-->
+        <scene sceneID="VZk-Z5-bAn">
+            <objects>
+                <viewController title="About This App" id="9Om-kj-6SP" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zx8-HK-uyl"/>
+                        <viewControllerLayoutGuide type="bottom" id="khq-aO-KJl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lmc-uc-vOy">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrJ-sO-FQN">
+                                <rect key="frame" x="82" y="386" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="View Legal Information">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0Mj-Ac-pbp" kind="push" id="rmE-Il-BXo"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nhh-OJ-V19">
+                                <rect key="frame" x="16" y="312" width="289" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">This application has been produced by Cardigan Coastal Cottages developed with the technical assistance of Edward Parry, an undergraduate of Aberystwyth University.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOP-Cx-qfn">
+                                <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Ceredigion Tourism iOS" id="BbD-au-xdK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFj-6X-mfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="71"/>
         </scene>
         <!--Attraction Planner Location View Controller - Activity Planner-->
         <scene sceneID="C5V-aJ-gc9">
@@ -554,34 +601,30 @@
             </objects>
             <point key="canvasLocation" x="2429" y="-679"/>
         </scene>
-        <!--About View Controller - About Ceredigion Tourism-->
-        <scene sceneID="NGv-LQ-a08">
+        <!--Legal Info View Controller - Legal Information-->
+        <scene sceneID="JlE-VP-WBJ">
             <objects>
-                <viewController id="Ppq-eM-k7O" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController title="Legal Information" id="0Mj-Ac-pbp" customClass="LegalInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dd2-9a-wRP"/>
-                        <viewControllerLayoutGuide type="bottom" id="cqG-Ni-REn"/>
+                        <viewControllerLayoutGuide type="top" id="yF1-4Q-WRv"/>
+                        <viewControllerLayoutGuide type="bottom" id="DeU-Bj-J7i"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="log-RI-LAv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <view key="view" contentMode="scaleToFill" id="IMN-hp-y6B">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0v-sO-2DM">
-                                <rect key="frame" x="81" y="430" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
-                                <state key="normal" title="View Legal Information">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="AboutButtonTapped:" destination="Ppq-eM-k7O" eventType="touchUpInside" id="BMe-AX-wji"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inb-ix-baL">
-                                <rect key="frame" x="20" y="84" width="280" height="338"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-H4-Bf9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="2422"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Map, List Calendar, Settings and Map Marker icons provided by Icons8: http://icons8.com/free-ios-7-icons-in-vector/
+                                <mutableString key="text">---
+
+Map, List Calendar, Settings and Map Marker icons provided by Icons8: http://icons8.com/free-ios-7-icons-in-vector/
+
+---
+
+Map Marker icon graphics and pins are provided by WebIconSet.com: http://webiconset.com
+
 ---
 
 RMDateSelection
@@ -655,31 +698,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-</string>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="inb-ix-baL" firstAttribute="top" secondItem="dd2-9a-wRP" secondAttribute="bottom" constant="20" id="5gH-fm-LTI"/>
-                            <constraint firstItem="X0v-sO-2DM" firstAttribute="centerX" secondItem="log-RI-LAv" secondAttribute="centerX" id="D1t-vv-IpS"/>
-                            <constraint firstItem="inb-ix-baL" firstAttribute="centerX" secondItem="X0v-sO-2DM" secondAttribute="centerX" id="UcP-n7-7aV"/>
-                            <constraint firstItem="inb-ix-baL" firstAttribute="leading" secondItem="log-RI-LAv" secondAttribute="leading" constant="20" symbolic="YES" id="bzt-eI-UXr"/>
-                            <constraint firstAttribute="bottom" secondItem="X0v-sO-2DM" secondAttribute="bottom" constant="20" symbolic="YES" id="c1T-2C-XED"/>
-                            <constraint firstItem="X0v-sO-2DM" firstAttribute="top" secondItem="inb-ix-baL" secondAttribute="bottom" constant="8" symbolic="YES" id="cFB-u7-9qx"/>
-                            <constraint firstItem="X0v-sO-2DM" firstAttribute="leading" secondItem="log-RI-LAv" secondAttribute="leading" constant="81" id="jZW-QD-go3"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="About Ceredigion Tourism" id="aCh-1B-4UN"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Legal Information" id="5BW-ZQ-7mt"/>
+                    <size key="freeformSize" width="320" height="480"/>
                     <connections>
-                        <outlet property="helpViewButton" destination="X0v-sO-2DM" id="BkV-gH-g0v"/>
-                        <outlet property="textView" destination="inb-ix-baL" id="8Bn-5V-SoF"/>
+                        <outlet property="textView" destination="Jju-H4-Bf9" id="Dex-gF-HNf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jHv-js-Wue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zfv-cK-DAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1275" y="71"/>
+            <point key="canvasLocation" x="1751" y="71"/>
         </scene>
         <!--Map View Controller - Map-->
         <scene sceneID="hbS-1t-uc9">
@@ -720,7 +755,7 @@ THE SOFTWARE.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2t-p5-M8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="365"/>
+            <point key="canvasLocation" x="1813" y="725"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oAf-tn-Dyw">
@@ -761,7 +796,7 @@ THE SOFTWARE.
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gio-dG-bTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1275" y="770"/>
+            <point key="canvasLocation" x="1275" y="1130"/>
         </scene>
         <!--List View Controller - List-->
         <scene sceneID="i5O-Ag-SdJ">
@@ -794,7 +829,7 @@ THE SOFTWARE.
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnI-Lj-bUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="972"/>
+            <point key="canvasLocation" x="1813" y="1332"/>
         </scene>
         <!--Single Attraction Event View Controller - Event Name-->
         <scene sceneID="kNh-7n-3a3">
@@ -805,7 +840,7 @@ THE SOFTWARE.
                         <viewControllerLayoutGuide type="bottom" id="x9X-0a-7k0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k6g-eL-QmM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-0n-URk">
@@ -816,7 +851,7 @@ THE SOFTWARE.
                                 <nil key="highlightedColor"/>
                             </label>
                             <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-Eq-2JC">
-                                <rect key="frame" x="0.0" y="222" width="320" height="69"/>
+                                <rect key="frame" x="0.0" y="222" width="320" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.010851006337158076" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Description of this attraction"/>
@@ -835,7 +870,7 @@ THE SOFTWARE.
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybk-8u-EJN">
-                                <rect key="frame" x="188" y="296" width="116" height="33"/>
+                                <rect key="frame" x="188" y="232" width="116" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Add to your calendar"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
@@ -847,7 +882,7 @@ THE SOFTWARE.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHO-VN-So0">
-                                <rect key="frame" x="20" y="296" width="88" height="30"/>
+                                <rect key="frame" x="20" y="232" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Visit their website in Safari"/>
                                 <constraints>
@@ -863,7 +898,7 @@ THE SOFTWARE.
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-zS-uzD">
-                                <rect key="frame" x="0.0" y="331" width="320" height="149"/>
+                                <rect key="frame" x="0.0" y="267" width="320" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23i-K1-ICW">
@@ -899,7 +934,7 @@ THE SOFTWARE.
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-KV-rgN">
-                                <rect key="frame" x="0.0" y="331" width="320" height="149"/>
+                                <rect key="frame" x="0.0" y="267" width="320" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="igQ-c3-lc1">
@@ -986,7 +1021,7 @@ THE SOFTWARE.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dug-LI-Ubf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="770"/>
+            <point key="canvasLocation" x="2429" y="1130"/>
         </scene>
         <!--Calendar View Controller - Calendar-->
         <scene sceneID="Kc2-No-vOQ">
@@ -1032,7 +1067,7 @@ THE SOFTWARE.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rth-DS-4HG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="1608"/>
+            <point key="canvasLocation" x="1813" y="1968"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="DQz-xM-YcA">
@@ -1203,7 +1238,7 @@ THE SOFTWARE.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQn-Ne-q8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="2230"/>
+            <point key="canvasLocation" x="1813" y="2590"/>
         </scene>
     </scenes>
     <resources>
@@ -1221,7 +1256,7 @@ THE SOFTWARE.
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riR-6I-hez"/>
-        <segue reference="iqk-FG-hNu"/>
+        <segue reference="wro-Vf-o8J"/>
         <segue reference="xoP-pu-4Em"/>
     </inferredMetricsTieBreakers>
 </document>
