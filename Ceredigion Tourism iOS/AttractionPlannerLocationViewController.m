@@ -158,7 +158,19 @@
         }
         else{
             CLPlacemark *placemark = [placemarks lastObject];
-            _locationTextField.text = [NSString stringWithFormat:@"%@", placemark.locality];
+            NSString *locationText = [NSString stringWithFormat:@"%@", placemark.locality];
+
+            if([locationText isEqualToString:@"(null)"] == false){
+                _locationTextField.text = locationText;
+            }
+            else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Location Found"
+                                                                message:@"The application is currently unable to obtain a suitable address for your current location. Please try again, or search manually using the available text field."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
         }
     }];
 }

@@ -61,8 +61,8 @@
     if([coreDataManager doesCoreDataEntityHaveData:@"Attractions"]){
         [_loadingSpinner stopAnimating];
         _loadingView.hidden = YES;
+        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
     }
-    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
 }
 
 - (void)dataSavedInCoreData
