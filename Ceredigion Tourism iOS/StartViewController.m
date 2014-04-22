@@ -58,11 +58,12 @@
 - (void)startDataFetch
 {
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
+    // if there are attractions already, work in the background, start using the app.
     if([coreDataManager doesCoreDataEntityHaveData:@"Attractions"]){
         [_loadingSpinner stopAnimating];
         _loadingView.hidden = YES;
-        [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
     }
+    [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
 }
 
 - (void)dataSavedInCoreData
