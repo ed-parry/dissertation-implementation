@@ -34,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *mapRadiusValueLabel;
 - (IBAction)settingsSegmentControl:(UISegmentedControl *)sender;
 - (IBAction)radiusSliderValueChanged:(UISlider *)sender;
+- (IBAction)selectDeselectAllButton:(id)sender;
 
 @end
 
@@ -151,6 +152,21 @@
         _mapDataManager = [[MapDataManager alloc] init];
         [_mapDataManager storeMapRadiusMilesInPlist:radiusValue];
     }
+}
+
+- (IBAction)selectDeselectAllButton:(id)sender
+{
+    GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
+    NSArray *allowedGroups = [[NSArray alloc] initWithArray:[groupDataManager getAllowedGroupsFromPlistForAttractionPlanner:NO]];
+    if([allowedGroups count] == 0){
+        [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
+    }
+    else
+    {
+        NSArray *groupsToStore = [[NSArray alloc] init];
+        [groupDataManager storeAllowedGroupsInPlist:groupsToStore forAttractionPlanner:NO];
+    }
+    [_groupTableView reloadData];
 }
 
 - (void)toggleGroup:(NSString *)group

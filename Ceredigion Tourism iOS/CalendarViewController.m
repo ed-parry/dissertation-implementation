@@ -200,12 +200,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self positionEventsTableWithTargetHeight:_currentTargetHeight andCalendarView:_currentCalendarView withAnimation:YES];
+    [[[self.tabBarController.viewControllers objectAtIndex:3] tabBarItem] setEnabled:NO]; // disable the settings tab item.
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.translucent = YES;
     _currentCalendarView = nil;
+    [[[self.tabBarController.viewControllers objectAtIndex:3] tabBarItem] setEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning
