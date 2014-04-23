@@ -68,8 +68,6 @@
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
-    NSLog(@"Value of date in dateSelected: %@", date);
-
     // Required timezone changes to update dates for DST.
     NSTimeZone *thisTZ = [NSTimeZone systemTimeZone];
     if([thisTZ isDaylightSavingTimeForDate:date]){
@@ -103,7 +101,12 @@
     [UIView animateWithDuration:animationDuration animations:^{
         CGRect frame = _dayEventsTable.frame;
         frame.origin.y = CGRectGetMinX(calendarView.frame) + targetHeight;
-        frame.size.height = self.view.frame.size.height - frame.origin.y;
+        if(targetHeight == 0.000000){
+            frame.size.height = self.view.frame.size.height - frame.origin.y - 64;
+        }
+        else{
+            frame.size.height = self.view.frame.size.height - frame.origin.y;
+        }
         _dayEventsTable.frame = frame;
     }];
 }
