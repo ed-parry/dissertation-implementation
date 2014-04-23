@@ -40,9 +40,6 @@
         lastModified = [super getLastUpdatedDateOfServerCSV:_attractionsURL];
     }
     
-    NSLog(@"The last fetched date is: %@", lastFetched);
-    NSLog(@"The last modified date is: %@", lastModified);
-    
     // If the file was last modifed since we last fetched it, or we've never fetched a file before, grab it.
     if((lastFetched == nil) || ([lastModified compare: lastFetched] == NSOrderedDescending))
     {

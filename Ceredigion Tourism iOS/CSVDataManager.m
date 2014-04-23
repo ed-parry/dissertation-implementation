@@ -39,7 +39,6 @@
 - (NSDate *)getLastUpdatedDateOfServerCSV:(NSString *)urlString
 {
     NSURL *url = [NSURL URLWithString:urlString];
-    NSLog(@"The url inside the function is: %@", url);
     
     // Has to be mutable, to be able to set HTTP Method.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

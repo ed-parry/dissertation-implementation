@@ -143,7 +143,6 @@
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" forCalendar:YES]];
     }
     else{
-        NSLog(@"Value of selected date: %@", _selectedDay);
         NSString *date = [NSString stringWithFormat:@"%@", _selectedDay];
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:date forCalendar:YES]];
     }
