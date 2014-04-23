@@ -29,6 +29,8 @@
 @property UIImage *attractionImage;
 @property GMSMapView *eventMap;
 
+@property bool makingCalendarEvent;
+
 // Extra views
 @property (strong, nonatomic) IBOutlet UIView *imageLoadingOrMapView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingSpinner;
@@ -72,6 +74,7 @@
                                                                      NSFontAttributeName, nil]];
     [_imageLoadingSpinner startAnimating];
     [self setUpViewContent];
+    _makingCalendarEvent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -191,13 +194,20 @@
     _eventMap = [GMSMapView mapWithFrame:frame camera:camera];
 
     // add the pin
+    [self addMapMarkerForEvent:event];
+    
+    [self.view addSubview:_eventMap];
+}
+
+- (void)addMapMarkerForEvent:(Event *)event
+{
+    double latitude = [event.latitude doubleValue];
+    double longitude = [event.longitude doubleValue];
     GMSMarker *eventMarker = [[GMSMarker alloc] init];
     eventMarker.position = CLLocationCoordinate2DMake(latitude, longitude);
     eventMarker.title = event.title;
     eventMarker.icon = [UIImage imageNamed:@"Event Icon"];
     eventMarker.map = _eventMap;
-    
-    [self.view addSubview:_eventMap];
 }
 
 - (NSString *)returnTextualDate:(NSString *)date andTime:(NSString *)time
@@ -215,6 +225,7 @@
 
 - (IBAction)addToCalendarTapped:(id)sender
 {
+    _makingCalendarEvent = YES;
     // called to add a new calendar event.
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
@@ -272,6 +283,7 @@
 {
     // EventKitUI creates the event for me, so just close the view.
     [self dismissViewControllerAnimated:YES completion:nil];
+    _makingCalendarEvent = NO;
 }
 
 - (IBAction)phoneNumberClicked:(UIButton *)sender
@@ -345,24 +357,26 @@
 
 - (void)cleanUpMemory
 {
-    _thisAttraction = nil;
-    _thisEvent = nil;
+    if(!_makingCalendarEvent){
+        _thisAttraction = nil;
+        _thisEvent = nil;
     
-    _firstTextField = nil;
-    _firstTextFieldLabel = nil;
-    _secondTextFieldLabel = nil;
-    _secondTextField = nil;
-    _thirdTextField = nil;
+        _firstTextField = nil;
+        _firstTextFieldLabel = nil;
+        _secondTextFieldLabel = nil;
+        _secondTextField = nil;
+        _thirdTextField = nil;
     
-    [_eventMap clear];
-    _eventMap = nil;
+        [_eventMap clear];
+        _eventMap = nil;
     
-    _imageLoadingOrMapView = nil;
-    [_imageLoadingOrMapView removeFromSuperview];
+        _imageLoadingOrMapView = nil;
+        [_imageLoadingOrMapView removeFromSuperview];
     
-    _attractionImageView = nil;
-    _attractionImage = nil;
-    [_attractionImageView removeFromSuperview];
+        _attractionImageView = nil;
+        _attractionImage = nil;
+        [_attractionImageView removeFromSuperview];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
