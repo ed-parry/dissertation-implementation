@@ -30,7 +30,7 @@
         dayRange = NSMakeRange(0, 2- 0);
         monthRange = NSMakeRange(3, 5- 3);
     }
-
+    
     NSInteger dayNumber = [[date substringWithRange:dayRange] integerValue];
     NSInteger monthNumber = [[date substringWithRange:monthRange] integerValue];
 

@@ -68,31 +68,16 @@
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date
 {
+    NSLog(@"Value of date in dateSelected: %@", date);
 
     // Required timezone changes to update dates for DST.
     NSTimeZone *thisTZ = [NSTimeZone systemTimeZone];
     if([thisTZ isDaylightSavingTimeForDate:date]){
-        NSString *thisDate = [NSString stringWithFormat:@"%@", date];
+        NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+        dayComponent.day = 1;
         
-        NSRange yearRange = NSMakeRange(0, 4-0);
-        NSRange monthRange = NSMakeRange(5, 7- 5);
-        NSRange dayRange = NSMakeRange(8, 10-8);
-
-        NSString *thisDay = [thisDate substringWithRange:dayRange];
-        NSString *thisMonth = [thisDate substringWithRange:monthRange];
-        NSString *thisYear = [thisDate substringWithRange:yearRange];
-        
-        int dayInt = [thisDay intValue];
-        dayInt = dayInt + 2;
-        
-        thisDay = [NSString stringWithFormat:@"%i", dayInt];
-        
-        NSString *updatedDate = [NSString stringWithFormat:@"%@-%@-%@", thisYear, thisMonth, thisDay];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        
-        date = [dateFormatter dateFromString:updatedDate];
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        date = [theCalendar dateByAddingComponents:dayComponent toDate:date options:0];
     }
     _selectedDay = [NSString stringWithFormat:@"%@", date];
     [_dayEventsTable reloadData];
@@ -155,6 +140,7 @@
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" forCalendar:YES]];
     }
     else{
+        NSLog(@"Value of selected date: %@", _selectedDay);
         NSString *date = [NSString stringWithFormat:@"%@", _selectedDay];
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:date forCalendar:YES]];
     }
