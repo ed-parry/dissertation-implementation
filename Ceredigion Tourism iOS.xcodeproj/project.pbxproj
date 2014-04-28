@@ -17,7 +17,6 @@
 		6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D404AB118D8864200C10CA8 /* GoogleMaps.framework */; };
 		6D404AB418D8864F00C10CA8 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */; };
 		6D404AB718D8911500C10CA8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D404AB618D8911500C10CA8 /* AboutViewController.m */; };
-		6D4A581E18DC49CC00A56E47 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */; };
 		6D4A582018DC4A2B00A56E47 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */; };
 		6D510E0918C92D580081E96C /* MapAndGroupDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */; };
 		6D55B36418C5EB51005B790F /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D55B36318C5EB51005B790F /* CustomMarkerView.xib */; };
@@ -37,7 +36,6 @@
 		6D749AA818B2618E00E06D7F /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AA718B2618E00E06D7F /* CoreDataManager.m */; };
 		6D749AAB18B26F1200E06D7F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D749AAA18B26F1200E06D7F /* CHCSVParser.m */; };
 		6D749AAD18B282DC00E06D7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D749AAC18B282DC00E06D7F /* CoreData.framework */; };
-		6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7B856718CF732000361807 /* Crashlytics.framework */; };
 		6D7C558018E3178800927769 /* AttractionPlannerResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C557F18E3178800927769 /* AttractionPlannerResultsViewController.m */; };
 		6D9C64FD18B643C7008B4A50 /* SingleAttractionEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9C64FC18B643C7008B4A50 /* SingleAttractionEventViewController.m */; };
 		6DA5760018BE411D0082F074 /* AttractionObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA575FF18BE411D0082F074 /* AttractionObjectTests.m */; };
@@ -106,7 +104,6 @@
 		6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		6D404AB518D8911500C10CA8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6D404AB618D8911500C10CA8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
 		6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6D510E0818C92D580081E96C /* MapAndGroupDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAndGroupDataManagerTests.m; sourceTree = "<group>"; };
 		6D55B36318C5EB51005B790F /* CustomMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerView.xib; sourceTree = "<group>"; };
@@ -139,7 +136,6 @@
 		6D749AA918B26F1200E06D7F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		6D749AAA18B26F1200E06D7F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		6D749AAC18B282DC00E06D7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6D7B856718CF732000361807 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6D7C557E18E3178800927769 /* AttractionPlannerResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttractionPlannerResultsViewController.h; sourceTree = "<group>"; };
 		6D7C557F18E3178800927769 /* AttractionPlannerResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttractionPlannerResultsViewController.m; sourceTree = "<group>"; };
 		6D9C64FB18B643C7008B4A50 /* SingleAttractionEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleAttractionEventViewController.h; sourceTree = "<group>"; };
@@ -209,11 +205,9 @@
 				6D404AB218D8864200C10CA8 /* GoogleMaps.framework in Frameworks */,
 				6D37BA8318CF3AF400641DA6 /* EventKit.framework in Frameworks */,
 				6D37BA8118CF3AEE00641DA6 /* EventKitUI.framework in Frameworks */,
-				6D7B856818CF732000361807 /* Crashlytics.framework in Frameworks */,
 				6DD178DB18B393C6006BE307 /* SystemConfiguration.framework in Frameworks */,
 				6DD178D918B393A2006BE307 /* QuartzCore.framework in Frameworks */,
 				6DD178D718B39396006BE307 /* OpenGLES.framework in Frameworks */,
-				6D4A581E18DC49CC00A56E47 /* NewRelicAgent.framework in Frameworks */,
 				6DD178D518B3938E006BE307 /* libz.dylib in Frameworks */,
 				6DD178D318B39382006BE307 /* libicucore.dylib in Frameworks */,
 				6DD178D118B39373006BE307 /* libc++.dylib in Frameworks */,
@@ -315,11 +309,9 @@
 				6DBC6B2918EF090F00A2BA07 /* RMDateSelection */,
 				6D65816E18E42C1D00871080 /* AudioToolbox.framework */,
 				6D4A581F18DC4A2B00A56E47 /* CoreTelephony.framework */,
-				6D4A581D18DC49CC00A56E47 /* NewRelicAgent.framework */,
 				6D404AB318D8864F00C10CA8 /* GoogleMaps.bundle */,
 				6D404AB118D8864200C10CA8 /* GoogleMaps.framework */,
 				6DD8969C18D0A28300BCE840 /* Vurig Calendar */,
-				6D7B856718CF732000361807 /* Crashlytics.framework */,
 				6D37BA8218CF3AF400641DA6 /* EventKit.framework */,
 				6D37BA8018CF3AED00641DA6 /* EventKitUI.framework */,
 				6DD178DA18B393C6006BE307 /* SystemConfiguration.framework */,
@@ -478,7 +470,6 @@
 				6D58574818B2537600306327 /* Sources */,
 				6D58574918B2537600306327 /* Frameworks */,
 				6D58574A18B2537600306327 /* Resources */,
-				6D7B856618CF730F00361807 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -565,22 +556,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		6D7B856618CF730F00361807 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 93674e6ba44518b3edb9d4478365345154d0a599 bdf2e4caef3dd3d7864348bda850425ab5596d716c452cce65a319714d8ec1b1";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6D58574818B2537600306327 /* Sources */ = {

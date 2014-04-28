@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import <Crashlytics/Crashlytics.h>
-#import <NewRelicAgent/NewRelic.h>
 #import "MapDataManager.h"
 #import "GroupDataManager.h"
 
@@ -43,12 +41,6 @@
     // Google Maps SDK API
     [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
     //[GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
-    
-    // Crashlytics API
-    [Crashlytics startWithAPIKey:@"93674e6ba44518b3edb9d4478365345154d0a599"];
-    
-    // NewRelic API
-    [NewRelicAgent startWithApplicationToken:@"AAacea36886503708877ed49e64d4f0df6e412924a"];
     
     MapDataManager *mapDataManager = [[MapDataManager alloc] init];
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
