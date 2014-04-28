@@ -30,17 +30,20 @@
                                                                      [UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"Avenir-Medium" size:18.0],
                                                                      NSFontAttributeName, nil]];
     
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    // Make the swipe recognisers, assign directions and add to view
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(detectSwipeUsing:)];
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(detectSwipeUsing:)];
+    
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
 
-    [self.view addGestureRecognizer:swipeLeft];
-    [self.view addGestureRecognizer:swipeRight];
+    [self.view addGestureRecognizer:leftSwipe];
+    [self.view addGestureRecognizer:rightSwipe];
+    
     [self showAppInstructions];
 }
 
-- (void)swipe:(UISwipeGestureRecognizer *)swipeRecogniser
+- (void)detectSwipeUsing:(UISwipeGestureRecognizer *)swipeRecogniser
 {
     if ([swipeRecogniser direction] == UISwipeGestureRecognizerDirectionLeft)
     {

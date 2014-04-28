@@ -41,8 +41,8 @@
                                                         alpha:(1.0)]];
         
     // Google Maps SDK API
-    [GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
-    // [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
+    [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
+    //[GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     
     // Crashlytics API
     [Crashlytics startWithAPIKey:@"93674e6ba44518b3edb9d4478365345154d0a599"];
@@ -56,7 +56,7 @@
     [mapDataManager storeDefaultMapRadiusMilesInPlist];
     [groupDataManager storeDefaultAllowedGroupsInPlistForAttractionPlanner:NO];
     
-    
+//    Testing stub methods used to generate fake events and attractions.
 //    TestDataGenerator *testGenerator = [[TestDataGenerator alloc] init];
 //    [testGenerator generateTestEvents:50];
 //    [testGenerator generateTestAttractions:200];
