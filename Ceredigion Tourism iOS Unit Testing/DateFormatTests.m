@@ -27,7 +27,7 @@
     [super tearDown];
 }
 
-- (void)testGetTextualDateWithoutYear
+- (void)testGetTextualDate
 {
     NSString *numericalDate = @"02-01-14";
     NSString *receivedTextualDate = [_dateManager getTextualDate:numericalDate forCalendar:NO];
