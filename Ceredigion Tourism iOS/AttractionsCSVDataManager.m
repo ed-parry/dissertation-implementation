@@ -60,7 +60,7 @@
 }
 
 // only to be called from the settings menu
-// TODO - may be removed at a later date.
+// no longer used after development
 - (void)saveDataFromURLReset
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];

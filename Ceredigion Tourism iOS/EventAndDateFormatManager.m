@@ -240,7 +240,7 @@
 {
     NSMutableArray *fillerDates = [[NSMutableArray alloc] init];
     NSDate *nextDate;
-    for ( nextDate = startDate ; [nextDate compare:endDate] < 0 ; nextDate = [nextDate dateByAddingTimeInterval:24*60*60] ) {
+    for (nextDate = startDate; [nextDate compare:endDate] < 0 ; nextDate = [nextDate dateByAddingTimeInterval:24*60*60] ) {
         [fillerDates addObject:nextDate];
     }
     
