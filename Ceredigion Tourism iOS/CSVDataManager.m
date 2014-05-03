@@ -89,7 +89,7 @@
 
 - (void)saveLastFetchedDate:(NSString *)date
 {
-    // Storing this into a Plist, rather than Core Data.
+    // Storing this into a Plist
     NSArray *lastFetchedArray = [[NSArray alloc] initWithObjects:date, nil];
     [lastFetchedArray writeToFile:[self getPlistFilePath:@"last_fetched_csv"] atomically:YES];
 }
@@ -115,6 +115,7 @@
     return date;
 }
 
+// return the particular location of the Plist file
 - (NSString *)getPlistFilePath:(NSString *)fileName
 {
     NSArray *filePaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
