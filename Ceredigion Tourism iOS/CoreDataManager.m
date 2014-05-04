@@ -310,7 +310,6 @@
 
 - (NSArray *) getAllAttractionsInGroupArrays
 {
-//    NSArray *allGroups = [self getAllAttractionGroupTypes];
     NSMutableArray *allAttractionsByGroupArrays = [[NSMutableArray alloc] init];
     
     GroupDataManager *groupDataManager = [[GroupDataManager alloc] init];
@@ -344,6 +343,7 @@
     return [self checkAndRemoveHiddenAttractions:allOrderedAttractions];
 }
 
+// remove any attractions which have a '1' set in the hide column
 - (NSArray *)checkAndRemoveHiddenAttractions:(NSArray *)attractions
 {
     NSMutableArray *mutableAttractions = [[NSMutableArray alloc] initWithArray:attractions];

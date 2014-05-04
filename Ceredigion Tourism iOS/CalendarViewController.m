@@ -72,6 +72,7 @@
     NSTimeZone *thisTZ = [NSTimeZone systemTimeZone];
     if([thisTZ isDaylightSavingTimeForDate:date]){
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+        // add a day if required.
         dayComponent.day = 1;
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
@@ -140,6 +141,7 @@
 {
     _dateManager = [[EventAndDateFormatManager alloc] init];
     if(!_selectedDay){
+        // shouldn't reach this, but give a default day in case.
         return [NSString stringWithFormat:@"Events on %@", [_dateManager getTextualDate:@"2014-01-01" forCalendar:YES]];
     }
     else{
@@ -214,6 +216,5 @@
 {
     [super didReceiveMemoryWarning];
     _currentCalendarView = nil;
-    // Dispose of any resources that can be recreated.
 }
 @end

@@ -43,6 +43,7 @@
 
 @implementation SingleAttractionEventViewController
 
+// called from map/list to start with attraction
 - (void)startWithAttraction:(Attraction *)currentAttraction
 {
     _thisAttraction = [[Attraction alloc] init];
@@ -53,6 +54,7 @@
     [_imageLoadingSpinner startAnimating];
 }
 
+// called from map/list to start with event
 - (void)startWithEvent:(Event *)currentEvent
 {
     _thisEvent = [[Event alloc] init];
@@ -322,7 +324,7 @@
     _thirdTextField.backgroundColor = [colourAttraction getAttractionGroupColour:group withAlpha:0.2f];
 }
 
-// 320 x 128
+// preferred image size: 320 x 128
 - (void)fetchImageFromUrl:(NSString *)URL
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
