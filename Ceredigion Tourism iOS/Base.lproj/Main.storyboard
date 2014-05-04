@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UNu-R5-QNc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UNu-R5-QNc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1006,18 +1006,18 @@
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="groups appear on the map and list." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmq-xF-g8f">
-                                        <rect key="frame" x="20" y="20" width="269" height="24"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="groups appear on the map and list." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmq-xF-g8f">
+                                        <rect key="frame" x="20" y="-68" width="269" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JEl-fB-XjJ">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="237"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JEl-fB-XjJ">
+                                        <rect key="frame" x="0.0" y="-36" width="320" height="325"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="238" id="oHj-Po-dPc"/>
+                                            <constraint firstAttribute="height" constant="325" id="i68-l8-uTS"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groupsList" textLabel="sYc-md-hbt" style="IBUITableViewCellStyleDefault" id="JTD-ha-7U1">
@@ -1053,14 +1053,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="JEl-fB-XjJ" firstAttribute="top" secondItem="Tmq-xF-g8f" secondAttribute="bottom" constant="8" symbolic="YES" id="KGf-iY-VNK"/>
+                                    <constraint firstAttribute="trailing" secondItem="JEl-fB-XjJ" secondAttribute="trailing" id="NFi-bS-CL3"/>
+                                    <constraint firstItem="fTf-2z-gTc" firstAttribute="top" secondItem="JEl-fB-XjJ" secondAttribute="bottom" constant="3" id="Q5u-WX-nPs"/>
+                                    <constraint firstItem="JEl-fB-XjJ" firstAttribute="leading" secondItem="CBG-LL-GaG" secondAttribute="leading" id="fqb-WS-D2P"/>
                                     <constraint firstItem="fTf-2z-gTc" firstAttribute="centerX" secondItem="Tmq-xF-g8f" secondAttribute="centerX" id="hCN-s7-IVe"/>
+                                    <constraint firstItem="JEl-fB-XjJ" firstAttribute="top" secondItem="Tmq-xF-g8f" secondAttribute="bottom" constant="8" symbolic="YES" id="knn-hR-QmZ"/>
                                     <constraint firstAttribute="bottom" secondItem="fTf-2z-gTc" secondAttribute="bottom" id="pKU-qU-HaO"/>
                                     <constraint firstItem="fTf-2z-gTc" firstAttribute="leading" secondItem="CBG-LL-GaG" secondAttribute="leading" constant="90" id="uyV-WQ-S5V"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-bN-QHY">
-                                <rect key="frame" x="-10" y="-213" width="320" height="318"/>
+                                <rect key="frame" x="-26" y="-223" width="320" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Select a map radius using the slider " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhz-dq-FDc">
