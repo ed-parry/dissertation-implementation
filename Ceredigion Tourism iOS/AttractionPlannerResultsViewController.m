@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     _activityResultsTableView.delegate = self;
     _activityResultsTableView.contentInset = UIEdgeInsetsZero;
     _activityResultsTableView.dataSource = self;
