@@ -43,6 +43,7 @@
     [self showAppInstructions];
 }
 
+// used to detect a swipt to switch between the available about pages.
 - (void)detectSwipeUsing:(UISwipeGestureRecognizer *)swipeRecogniser
 {
     if ([swipeRecogniser direction] == UISwipeGestureRecognizerDirectionLeft)

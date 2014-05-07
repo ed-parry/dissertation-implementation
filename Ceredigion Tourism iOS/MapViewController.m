@@ -161,6 +161,7 @@
     [_mapLoadSpinner startAnimating];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 
+    // geocode the text-based address into lat/long
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
             [self showUIAlertView:address forProblem:@"Not Found"];
@@ -204,6 +205,7 @@
     self.view = _mapView;
 }
 
+// add a circle radius to the map view, using blue circle
 - (void)setMapRadiusView:(double)meters withCenter:(CLLocationCoordinate2D)centerCoordinates
 {
     if(meters == 0){
@@ -359,7 +361,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -48,8 +48,8 @@
     _shouldMove = YES;
     [_loadingSpinner startAnimating];
     
-    [self startDataFetch];
-    [self startLocationManager];
+    [self startDataFetch]; // start the process of fetching/checking for new data from the server
+    [self startLocationManager]; // start the process of finding a GPS signal, to use with "current location" map option.
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -63,6 +63,8 @@
         [_loadingSpinner stopAnimating];
         _loadingView.hidden = YES;
     }
+
+    //check for new content in a background thread, keep the UI responsive.
     [self performSelectorInBackground:@selector(setUpDataManager) withObject:nil];
 }
 
@@ -176,6 +178,5 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 @end

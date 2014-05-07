@@ -39,6 +39,10 @@
                                                         alpha:(1.0)]];
         
     // Google Maps SDK API
+    
+    // Google Maps SDK was updated to version 1.8 on May 6, 2014.
+    // This update resolves the memory management bug experienced throughout the application.
+    
     [GMSServices provideAPIKey:@"AIzaSyBnON282JpFR4rfAO_PlCy1z3N8fYd7fz8"]; // PRODUCTION KEY
     //[GMSServices provideAPIKey:@"AIzaSyCIJ05AM0-Ow0FVA9brLvRxF2VIDktT9AE"]; // DEVELOPMENT KEY
     
